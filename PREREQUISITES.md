@@ -58,19 +58,23 @@ Used in Stage 2-2 to validate the database schema and mock data by running the g
 
 Verify: `sqlite3 --version`
 
+### 6. Git
+
+Required to clone the workflow, version control your project, and push to GitHub.
+
+| OS | Status | Install |
+|----|--------|---------|
+| Linux (Debian/Ubuntu) | Usually pre-installed | `sudo apt install git` if missing |
+| macOS | Usually pre-installed | `brew install git` if missing |
+| Windows | Not included | https://git-scm.com (Git Bash included) |
+
+Verify: `git --version`
+
 ---
 
 ## Planned (not yet required)
 
 <!--
-  The following tools are planned as future prerequisites
-  once the workflow integrates them:
-
-  - Git: version control for both the workflow itself and each project built with it.
-    Each project produced by the workflow should have its own git repository.
-    The workflow repo should also be version controlled.
-    Install: https://git-scm.com
-
   - Docker: planned for standardizing the development and deployment environment
     in Phase 4 (Prototype Implementation), so the project runs consistently
     across machines without manual dependency setup.
@@ -87,4 +91,5 @@ Run this to check all required tools at once:
 echo "Python 3:  $(python3 --version 2>/dev/null || echo 'NOT FOUND')"
 echo "bash:      $(bash --version 2>/dev/null | head -1 || echo 'NOT FOUND')"
 echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
+echo "git:       $(git --version 2>/dev/null || echo 'NOT FOUND')"
 ```

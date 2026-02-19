@@ -2,6 +2,18 @@
 
 ---
 
+## 2026-02-19: Published to GitHub + README + .gitignore
+
+**Problem:** The workflow had no README explaining its philosophy, no .gitignore, and was not version controlled — making it impossible to share, back up, or reuse across projects.
+
+**Fix:**
+- `README.md` — Written from scratch. Covers: what this is (a process, not a tool), the 7 core philosophies (collaborative style, personas, artifacts as context bridges, Phase 0, prototype mindset, logs, tool-agnostic design), the web-rest-sql specialization, prerequisites, quick start, project structure, slash commands, and a section on building new workflow specializations.
+- `.gitignore` — Ignores project-generated artifacts (`docs/*.md` except `workflow-changelog.md`, session logs, `imported-artifacts/` content, Python bytecode, `settings.local.json`). Preserves folder structure via `.gitkeep` files.
+- Git initialized, initial commit made (54 files), pushed to GitHub.
+**Files:** `README.md` (new), `.gitignore` (new), `PREREQUISITES.md` (Git moved from Planned to Required)
+
+---
+
 ## 2026-02-19: Twelfth audit — Quick Commands slash command list completed
 
 **Problem:** AGENTS.md Quick Commands listed `/start-stage i` but omitted `/start-stage d` and `/start-stage 0`. All three on-demand commands were documented in the On-Demand Stages section, but the Quick Commands list was inconsistent — someone scanning it for "how do I start the diagram assistant?" wouldn't find `/start-stage d` there.
