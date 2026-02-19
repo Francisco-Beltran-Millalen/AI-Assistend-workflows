@@ -2,6 +2,35 @@
 
 ---
 
+## 2026-02-19: Added consolidation-artifacts/ and prototype-code/ folders
+
+**Problem:** The workflow had no clear separation between committed project artifacts and working/intermediate files. All artifacts lived in `docs/`, which was gitignored in the workflow template repo. Starting a real project required no changes to the gitignore but left no clean answer for "what gets committed?" The workflow also had no specified location for the actual project code produced in Phase 4.
+
+**Fix:**
+- Added `consolidation-artifacts/` — home for the four phase-end milestone documents that get committed to git in every project: `phase-1-consolidation.md`, `phase-2-consolidation.md`, `ui-style-guide.md`, `implementation-decisions.md`. These are the canonical outputs of the four dedicated consolidation stages.
+- Added `prototype-code/` — home for the working prototype code produced in Phase 4. All project code (src/, templates/, static/, tests/, etc.) lives here.
+- Updated all stage files to write consolidation docs to `consolidation-artifacts/` and read them from there.
+- Updated Stage 4-1 project structure example and template-copy steps to reference `prototype-code/`.
+- Updated AGENTS.md: stage table outputs, phase handoffs, stage detection, project structure, artifact storage, and project status checklist.
+- Updated README.md project structure.
+
+**Files:**
+- `consolidation-artifacts/` (new folder with `.gitkeep`)
+- `prototype-code/` (new folder with `.gitkeep`)
+- `workflow/web-rest-sql/stages/phase-1/06-consolidation.md`
+- `workflow/web-rest-sql/stages/phase-2/01-entity-ui-sketching.md`
+- `workflow/web-rest-sql/stages/phase-2/02-data-modeling.md`
+- `workflow/web-rest-sql/stages/phase-2/03-endpoint-design.md`
+- `workflow/web-rest-sql/stages/phase-2/04-consolidation.md`
+- `workflow/web-rest-sql/stages/phase-3/01-visual-design.md`
+- `workflow/web-rest-sql/stages/phase-3/05-consolidation.md`
+- `workflow/web-rest-sql/stages/phase-4/01-project-setup.md`
+- `workflow/web-rest-sql/stages/phase-4/02-implementation-loop.md`
+- `AGENTS.md`
+- `README.md`
+
+---
+
 ## 2026-02-19: Published to GitHub + README + .gitignore
 
 **Problem:** The workflow had no README explaining its philosophy, no .gitignore, and was not version controlled — making it impossible to share, back up, or reuse across projects.

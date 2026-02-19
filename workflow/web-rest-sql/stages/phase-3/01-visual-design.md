@@ -22,7 +22,7 @@ Subsequent stages (3-2, 3-3, 3-4) will apply these decisions to the remaining vi
 
 ## Input Artifacts
 
-- `phase-2-consolidation.md`
+- `consolidation-artifacts/phase-2-consolidation.md`
 - `docs/assets/views/` (plain HTML sketches)
 - `view-entity-mapping.md` (what data each view displays)
 

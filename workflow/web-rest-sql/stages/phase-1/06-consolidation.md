@@ -63,7 +63,7 @@ Extract and organize:
 
 ### 3. Create Consolidation Document
 
-Create `phase-1-consolidation.md` with these sections:
+Create `consolidation-artifacts/phase-1-consolidation.md` with these sections:
 
 ```markdown
 # [Project Name] - Discovery Summary
@@ -172,7 +172,7 @@ Present the consolidated document to the user:
 
 ## Output Artifacts
 
-### Artifact: `docs/phase-1-consolidation.md`
+### Artifact: `consolidation-artifacts/phase-1-consolidation.md`
 
 A single document containing:
 - Complete discovery summary
@@ -193,7 +193,7 @@ This document is the **primary input** for Phase 2.
 - [ ] Use cases are prioritized by category
 - [ ] Tech stack is summarized
 - [ ] User has approved the consolidation
-- [ ] Output artifact `phase-1-consolidation.md` is generated
+- [ ] Output artifact `consolidation-artifacts/phase-1-consolidation.md` is generated
 - [ ] Session log exported via `/export-log 1-6`
 
 ---
@@ -204,4 +204,4 @@ This document is the **primary input** for Phase 2.
 
 Proceed to **Phase 2: Sketching & Data Modeling**, starting with **Stage 2-1: Entity & UI Sketching**.
 
-The primary input for Phase 2 is `phase-1-consolidation.md`.
+The primary input for Phase 2 is `consolidation-artifacts/phase-1-consolidation.md`.

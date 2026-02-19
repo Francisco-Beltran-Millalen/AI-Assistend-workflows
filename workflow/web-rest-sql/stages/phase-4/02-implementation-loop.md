@@ -23,7 +23,7 @@ Implement use cases one at a time, in priority order. Each use case is a vertica
 
 By the end: a working prototype with real endpoints, real database queries, and automated tests — built on SQLite with mock data.
 
-## Persistence Document: `docs/implementation-decisions.md`
+## Persistence Document: `consolidation-artifacts/implementation-decisions.md`
 
 **CRITICAL: Read this file at the start of every session.**
 
@@ -38,7 +38,7 @@ This file tracks:
 
 ## Input Artifacts
 
-- `implementation-decisions.md` — **Read first. Resume from where we left off.**
+- `consolidation-artifacts/implementation-decisions.md` — **Read first. Resume from where we left off.**
 - `use-cases.md` (priority order)
 - `api-design.md` (endpoint contracts with JSON examples)
 - `data-model-physical.md` (entity attributes)
@@ -51,7 +51,7 @@ This file tracks:
 
 Every session begins with:
 
-1. Read `implementation-decisions.md`
+1. Read `consolidation-artifacts/implementation-decisions.md`
 2. Check which use cases are done
 3. **If this is the first session (no use cases complete yet):** Scan the full use case list and propose an implementation order based on dependencies — use cases that others depend on (e.g., auth) go first, regardless of their Design Priority label. Present the proposed order to the user and get approval before starting.
 4. Identify the next use case from the approved order
@@ -163,8 +163,8 @@ Once all signatures are approved, implement each function:
 
 **Server-rendered / hybrid — for use cases that render a view:**
 
-1. Check `implementation-decisions.md` → "Pre-converted Templates" section. If this template was already converted in Stage 4-1, verify it and complete any remaining mock data replacement rather than converting from scratch.
-2. Open the corresponding template in `templates/`
+1. Check `consolidation-artifacts/implementation-decisions.md` → "Pre-converted Templates" section. If this template was already converted in Stage 4-1, verify it and complete any remaining mock data replacement rather than converting from scratch.
+2. Open the corresponding template in `prototype-code/templates/`
 3. Replace hardcoded mock data with template variables from the service response
 4. Keep all styling — only swap the data layer (classes, structure, and layout stay as Phase 3 defined them)
 5. Verify the view renders correctly in the browser
@@ -198,7 +198,7 @@ If a test fails:
 
 After the use case is fully implemented and tested:
 
-1. Update `implementation-decisions.md`:
+1. Update `consolidation-artifacts/implementation-decisions.md`:
    - Mark the use case as complete
    - Record any decisions made
    - Record any discoveries
@@ -213,7 +213,7 @@ After the use case is fully implemented and tested:
 
 When ending a session (by choice or context limits):
 
-1. Update `implementation-decisions.md` with current progress
+1. Update `consolidation-artifacts/implementation-decisions.md` with current progress
 2. If mid-use-case, note exactly where you stopped
 3. Export the log via `/export-log 4-2`
 
@@ -248,7 +248,7 @@ A project with:
 - Automated tests (unit + integration) for every implemented use case
 - All tests passing
 
-### Artifact 2: Updated `docs/implementation-decisions.md`
+### Artifact 2: Updated `consolidation-artifacts/implementation-decisions.md`
 
 Complete record of:
 - All completed use cases (checklist)
@@ -270,7 +270,7 @@ Complete record of:
 - [ ] Unit tests written and passing
 - [ ] Integration tests written and passing
 - [ ] All existing tests still passing
-- [ ] `implementation-decisions.md` updated (checkpoint)
+- [ ] `consolidation-artifacts/implementation-decisions.md` updated (checkpoint)
 
 ## Exit Criteria (Stage Complete — All Use Cases Done)
 
@@ -278,7 +278,7 @@ Complete record of:
 - [ ] All Design Priority 2 use cases implemented and tested
 - [ ] All Design Priority 3 use cases implemented and tested
 - [ ] All tests passing
-- [ ] `implementation-decisions.md` is complete
+- [ ] `consolidation-artifacts/implementation-decisions.md` is complete
 - [ ] User confirms the prototype works as expected
 - [ ] Session log exported via `/export-log 4-2`
 

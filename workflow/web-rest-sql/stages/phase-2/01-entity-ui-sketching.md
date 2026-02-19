@@ -21,7 +21,7 @@ Build a conceptual map of the entities in the system AND visualize how they appe
 
 ## Input Artifacts
 
-- `phase-1-consolidation.md` from Phase 1 (contains use cases, scope, data landscape, tech stack)
+- `consolidation-artifacts/phase-1-consolidation.md` from Phase 1 (contains use cases, scope, data landscape, tech stack)
 
 ## Process
 

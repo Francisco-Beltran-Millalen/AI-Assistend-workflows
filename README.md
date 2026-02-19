@@ -180,11 +180,13 @@ project-root/
 │       ├── start-stage/
 │       └── export-log/
 ├── imported-artifacts/          ← Raw imports + adapted *-imported.md files (Stage I)
+├── consolidation-artifacts/     ← Phase milestone documents (committed to git)
+├── prototype-code/              ← Working prototype code (committed to git)
 ├── docs/
 │   ├── logs/                    ← Conversation logs (one per stage session)
 │   ├── assets/                  ← Views (HTML), CSS, SQL schema, diagrams
 │   ├── adrs/                    ← Architecture Decision Records
-│   └── *.md                     ← Design artifacts (project-brief.md, use-cases.md, etc.)
+│   └── *.md                     ← Working design artifacts (project-brief.md, use-cases.md, etc.)
 └── workflow/
     ├── web-rest-sql/            ← The active workflow
     │   └── stages/              ← Stage files (one per stage, organized by phase)

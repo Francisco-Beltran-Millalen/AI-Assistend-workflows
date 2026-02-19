@@ -20,7 +20,7 @@ Create two data models:
 
 - `entity-map.md` from Stage 2-1
 - `view-entity-mapping.md` from Stage 2-1
-- `phase-1-consolidation.md` (for reference, includes tech stack)
+- `consolidation-artifacts/phase-1-consolidation.md` (for reference, includes tech stack)
 
 ## Process
 

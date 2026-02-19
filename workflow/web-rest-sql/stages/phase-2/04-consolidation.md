@@ -48,7 +48,7 @@ docs/assets/
 
 ### 2. Create Consolidation Document
 
-Create `phase-2-consolidation.md` with these sections:
+Create `consolidation-artifacts/phase-2-consolidation.md` with these sections:
 
 ```markdown
 # [Project Name] - Design Summary
@@ -155,7 +155,7 @@ Walk through the consolidation with the user:
 
 ## Output Artifacts
 
-### Artifact 1: `docs/phase-2-consolidation.md`
+### Artifact 1: `consolidation-artifacts/phase-2-consolidation.md`
 
 Summary document containing:
 - Entity model overview
@@ -181,7 +181,7 @@ Organized folder containing:
 - [ ] Consolidation document summarizes all Phase 2 work
 - [ ] All artifacts are cross-referenced
 - [ ] User has approved the consolidation
-- [ ] Output artifacts `phase-2-consolidation.md` and `assets/` folder are generated
+- [ ] Output artifact `consolidation-artifacts/phase-2-consolidation.md` is generated, `assets/` folder verified
 - [ ] Session log exported via `/export-log 2-4`
 
 ---
@@ -193,6 +193,6 @@ Organized folder containing:
 Proceed to **Phase 3: UI Polish**, starting with **Stage 3-1: Design Direction + Main View**.
 
 Input for Phase 3:
-- `phase-2-consolidation.md`
+- `consolidation-artifacts/phase-2-consolidation.md`
 - `docs/assets/` folder (especially `views/`)
 - `view-entity-mapping.md`

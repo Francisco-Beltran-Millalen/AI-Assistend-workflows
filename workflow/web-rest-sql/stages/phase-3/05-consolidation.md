@@ -24,7 +24,7 @@ Consolidate all visual design work into a style guide and verify all views are c
 
 ## Output Artifacts
 
-### Artifact 1: `docs/ui-style-guide.md`
+### Artifact 1: `consolidation-artifacts/ui-style-guide.md`
 
 Comprehensive style guide documenting:
 
@@ -128,7 +128,7 @@ Flag any issues for the user.
 
 ### 2. Create Style Guide
 
-Read `phase-3-design-decisions.md` and all styled views. Produce `ui-style-guide.md` with all patterns documented.
+Read `phase-3-design-decisions.md` and all styled views. Produce `consolidation-artifacts/ui-style-guide.md` with all patterns documented.
 
 ### 3. Update Index Page
 
@@ -146,8 +146,8 @@ Walk through the complete set of styled views with the user:
 ## Exit Criteria
 
 - [ ] All styled views audited for consistency
-- [ ] `ui-style-guide.md` is complete
-- [ ] `ui-style-guide.md` Decision Log captures all key decisions from `phase-3-design-decisions.md` (no information loss)
+- [ ] `consolidation-artifacts/ui-style-guide.md` is complete
+- [ ] `consolidation-artifacts/ui-style-guide.md` Decision Log captures all key decisions from `phase-3-design-decisions.md` (no information loss)
 - [ ] `index.html` is updated as navigation hub
 - [ ] User has approved the style guide
 - [ ] User has approved the overall visual design
@@ -162,14 +162,14 @@ Walk through the complete set of styled views with the user:
 Proceed to **Phase 4: Prototype Implementation**, starting with **Stage 4-1: Project Setup**.
 
 Input for Phase 4:
-- `phase-1-consolidation.md` (scope and use cases)
-- `adrs/` (architecture decisions)
-- `data-model-physical.md` (SQLite schema)
-- `assets/schema.sql` (SQLite with mock data)
-- `api-design.md` (endpoint contracts with JSON examples)
-- `ui-style-guide.md` (component patterns, view inventory)
+- `consolidation-artifacts/phase-1-consolidation.md` (scope and use cases)
+- `docs/adrs/` (architecture decisions)
+- `docs/data-model-physical.md` (SQLite schema)
+- `docs/assets/schema.sql` (SQLite with mock data)
+- `docs/api-design.md` (endpoint contracts with JSON examples)
+- `consolidation-artifacts/ui-style-guide.md` (component patterns, view inventory)
 - Styled views in `docs/assets/views/`
 - `docs/assets/css/styles.css` (base stylesheet)
-- `tech-stack.md` (selected technologies)
+- `docs/tech-stack.md` (selected technologies)
 
 **Note:** The styled views in `docs/assets/views/` become server-side templates in Phase 4. Stage 4-1 copies them to the project's `templates/` folder and converts the main view from mock data to real template variables. Stage 4-2 completes the conversion use case by use case — each implemented use case also updates its corresponding template.

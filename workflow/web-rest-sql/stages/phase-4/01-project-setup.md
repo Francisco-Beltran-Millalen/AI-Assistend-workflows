@@ -26,8 +26,8 @@ This is the foundation that Stage 4-2 will build on, one use case at a time.
 - `data-model-physical.md` (SQLite schema)
 - `assets/schema.sql` (database script with mock data)
 - `api-design.md` (endpoint contracts — for reference, not implementation yet)
-- `phase-1-consolidation.md` (scope and use cases)
-- `ui-style-guide.md` (component patterns, view inventory)
+- `consolidation-artifacts/phase-1-consolidation.md` (scope and use cases)
+- `consolidation-artifacts/ui-style-guide.md` (component patterns, view inventory)
 - `docs/assets/views/` (Phase 3 styled views — become server-side templates in this stage)
 - `docs/assets/css/styles.css` (base stylesheet — copied to `static/css/` in this stage)
 
@@ -50,7 +50,7 @@ Based on the tech stack, propose a folder structure. Keep it minimal — just en
 **Example:**
 
 ```
-project-root/
+prototype-code/
 ├── src/
 │   ├── main entry point
 │   ├── config/
@@ -102,9 +102,9 @@ Add this to the database connection setup code — not just the schema script. V
 
 - **Server-rendered / hybrid:**
   - Add the template engine dependency (from `tech-stack.md`)
-  - Configure the engine to serve templates from the `templates/` folder
-  - Copy all Phase 3 styled views from `docs/assets/views/` to `templates/`
-  - Copy the base stylesheet from `docs/assets/css/styles.css` to `static/css/`
+  - Configure the engine to serve templates from the `prototype-code/templates/` folder
+  - Copy all Phase 3 styled views from `docs/assets/views/` to `prototype-code/templates/`
+  - Copy the base stylesheet from `docs/assets/css/styles.css` to `prototype-code/static/css/`
   - Convert **one view** (the main view from `ui-style-guide.md`) from static mock data to real template variables — proves the template engine works end-to-end
   - Serve that view from a route and verify it renders in the browser with real data from the database
 
@@ -162,7 +162,7 @@ A project that:
 - Has passing tests
 - Has the folder structure for feature implementation
 
-### Artifact 2: `docs/implementation-decisions.md`
+### Artifact 2: `consolidation-artifacts/implementation-decisions.md`
 
 Initialize the persistence document for Phase 4:
 
@@ -206,13 +206,13 @@ Initialize the persistence document for Phase 4:
 - [ ] SQLite database is set up with schema and mock data
 - [ ] GET /health endpoint returns successfully
 - [ ] Template engine is configured (server-rendered / hybrid only)
-- [ ] Phase 3 views are copied to the `templates/` folder (server-rendered / hybrid only)
-- [ ] Static assets (CSS) are copied to the `static/` folder (server-rendered / hybrid only)
+- [ ] Phase 3 views are copied to the `prototype-code/templates/` folder (server-rendered / hybrid only)
+- [ ] Static assets (CSS) are copied to the `prototype-code/static/` folder (server-rendered / hybrid only)
 - [ ] At least one view renders real data from the database via the server (server-rendered / hybrid only)
 - [ ] At least one unit test passes
 - [ ] At least one integration test passes
 - [ ] Folder structure is ready for feature implementation
-- [ ] `implementation-decisions.md` is initialized
+- [ ] `consolidation-artifacts/implementation-decisions.md` is initialized
 - [ ] User has run the project locally
 - [ ] User understands the project structure
 - [ ] Session log exported via `/export-log 4-1`
