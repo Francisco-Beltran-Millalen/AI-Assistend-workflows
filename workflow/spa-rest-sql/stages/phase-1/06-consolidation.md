@@ -19,12 +19,12 @@ Consolidate all discovery artifacts into a single, comprehensive document that s
 ## Input Artifacts
 
 All artifacts from Stages 1-5:
-- `project-brief.md` (Stage 1-1)
-- `knowledge-audit.md` (Stage 1-2)
-- `research-findings.md` (Stage 1-3)
-- `use-cases.md` (Stage 1-4)
-- `tech-stack.md` (Stage 1-5)
-- `adrs/` folder (Stage 1-5)
+- `docs/project-brief.md` (Stage 1-1)
+- `docs/knowledge-audit.md` (Stage 1-2)
+- `docs/research-findings.md` (Stage 1-3)
+- `docs/use-cases.md` (Stage 1-4)
+- `docs/tech-stack.md` (Stage 1-5)
+- `docs/adrs/` folder (Stage 1-5)
 
 ## Process
 

@@ -28,6 +28,8 @@ By the end: a working prototype with real endpoints, real database queries, and 
 **CRITICAL: Read this file at the start of every session.**
 
 This file tracks:
+- The chosen architecture pattern and its rules
+- The approved implementation roadmap (use case order)
 - Which use cases are complete
 - Decisions made during implementation
 - Discoveries that affect the design
@@ -36,13 +38,15 @@ This file tracks:
 
 **Update this file after every completed use case (checkpoint).**
 
+**IMPORTANT: The architectural rules in this file are binding for every function you write.** Before proposing any signature, verify it respects the layer rules (e.g., if using Ports & Adapters: routes call services, services call port interfaces, adapters implement ports — never skip a layer).
+
 ## Input Artifacts
 
 - `consolidation-artifacts/implementation-decisions.md` — **Read first. Resume from where we left off.**
-- `use-cases.md` (priority order)
-- `api-design.md` (endpoint contracts with JSON examples)
-- `data-model-physical.md` (entity attributes)
-- `assets/schema.sql` (database schema)
+- `docs/use-cases.md` (priority order)
+- `docs/api-design.md` (endpoint contracts with JSON examples)
+- `docs/data-model-physical.md` (entity attributes)
+- `docs/assets/schema.sql` (database schema)
 - The working project from Stage 4-1
 
 ## Process
@@ -52,10 +56,9 @@ This file tracks:
 Every session begins with:
 
 1. Read `consolidation-artifacts/implementation-decisions.md`
-2. Check which use cases are done
-3. **If this is the first session (no use cases complete yet):** Scan the full use case list and propose an implementation order based on dependencies — use cases that others depend on (e.g., auth) go first, regardless of their Design Priority label. Present the proposed order to the user and get approval before starting.
-4. Identify the next use case from the approved order
-5. Tell the user: "We're implementing [use case]. Here's what we need to build."
+2. Check which use cases are done and confirm the architectural rules in effect
+3. Identify the next use case from the approved Implementation Roadmap
+4. Tell the user: "We're implementing [use case]. Here's what we need to build."
 
 ### Per Use Case: The Implementation Cycle
 
@@ -77,6 +80,13 @@ Pieces needed:
 4. Route: GET /orders/{id} — returns OrderDetailsResponse as JSON (Bearer token auth)
 5. Tests: unit test for service, integration test for endpoint
 ```
+
+**Before presenting, verify each piece respects the architectural rules from `implementation-decisions.md`:**
+- Routes/handlers → call services only (no repository or DB access)
+- Services → call repositories/port interfaces only (no direct DB access)
+- Repositories/adapters → only layer that touches the database
+
+If any piece in the plan would violate a rule, revise it before presenting.
 
 Present this to the user. Confirm the plan before writing code.
 
@@ -198,7 +208,32 @@ If a test fails:
 
 ---
 
-#### Step 7: Checkpoint
+#### Step 7: Comprehension Check
+
+Before checkpointing, ask the user to explain what was just built — in plain language, without looking at the code:
+
+> "Before we checkpoint: explain what we just built.
+> 1. What functions did we write? Name each one.
+> 2. For each function: what are the inputs and outputs?
+> 3. Why does each function exist? What would break without it?
+> 4. What layer of the architecture does each function belong to, and why?
+> 5. Walk me through the data flow for this use case, from HTTP request to response."
+
+**Evaluation loop — max 3 attempts:**
+
+- If all correct → "Good. Let's checkpoint." Proceed.
+- If errors found → correct each mistake clearly, then ask the user to answer the failed questions again.
+
+After 3 attempts, if errors remain:
+- List the specific concepts the user still got wrong.
+- Say: "Study [concept X] before we start the next use case. For now, let's checkpoint."
+- Proceed to the checkpoint regardless.
+
+**Do not skip this step.**
+
+---
+
+#### Step 8: Checkpoint
 
 After the use case is fully implemented and tested:
 
@@ -209,7 +244,7 @@ After the use case is fully implemented and tested:
    - Note deferred items
    - Update "Next Session" section
 
-2. Tell the user: "Use case [X] is complete. [N] use cases remaining. Ready for the next one?"
+2. Tell the user: "Use case [X] is complete. [N] use cases remaining. Ready for the next one?" (If the comprehension check flagged concepts to study, remind the user here.)
 
 ---
 
@@ -229,7 +264,7 @@ The Design Priority labels in `use-cases.md` reflect **design-phase exploration 
 
 **In Phase 4, implementation order is dependency-driven.** Implement what each use case needs to work, regardless of its Design Priority label. Auth use cases are Design Priority 3 (standard, well-known pattern) but are often prerequisites for core features — implement them when the first use case that requires them is reached, not last.
 
-The implementation order is proposed by the AI and approved by the user at the start of the first session (Session Start, step 3).
+The implementation order is established in Stage 4-1 and recorded in `implementation-decisions.md` under "Implementation Roadmap". By the time Stage 4-2 begins, the order is already approved.
 
 ## When Things Don't Match the Design
 
@@ -273,13 +308,12 @@ Complete record of:
 - [ ] Unit tests written and passing
 - [ ] Integration tests written and passing
 - [ ] All existing tests still passing
+- [ ] Comprehension check completed (user narrated functions, inputs/outputs, layers, data flow — up to 3 attempts)
 - [ ] `consolidation-artifacts/implementation-decisions.md` updated (checkpoint)
 
 ## Exit Criteria (Stage Complete — All Use Cases Done)
 
-- [ ] All Design Priority 1 use cases implemented and tested
-- [ ] All Design Priority 2 use cases implemented and tested
-- [ ] All Design Priority 3 use cases implemented and tested
+- [ ] All use cases from the Implementation Roadmap are implemented and tested
 - [ ] All tests passing
 - [ ] `consolidation-artifacts/implementation-decisions.md` is complete
 - [ ] User confirms the prototype works as expected

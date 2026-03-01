@@ -18,8 +18,8 @@ Create two data models:
 
 ## Input Artifacts
 
-- `entity-map.md` from Stage 2-1
-- `view-entity-mapping.md` from Stage 2-1
+- `docs/entity-map.md` from Stage 2-1
+- `docs/view-entity-mapping.md` from Stage 2-1
 - `consolidation-artifacts/phase-1-consolidation.md` (for reference, includes tech stack)
 
 ## Process

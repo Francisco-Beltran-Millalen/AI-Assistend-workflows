@@ -2,6 +2,213 @@
 
 ---
 
+## 2026-03-01: Full audit — docs/ prefix, persona name, AGENTS.md references
+
+**Problem:** Full audit of all 20 stage files revealed a systemic issue: 14 stages listed input artifacts without the `docs/` prefix, meaning an AI reading those lists could look for files in the project root instead of `docs/`. Additionally, body text "Read X" instructions in Phase 3 and 4-1 had the same omission. Two read instructions in AGENTS.md referenced `phase-3-design-decisions.md` without `docs/`. Stage 2-1 used `&` instead of `+` in the persona name (inconsistent with AGENTS.md table).
+
+**Cause:** The `docs/` prefix issue was identified in the previous audit for two instances (Stage 4-2/4-3, `use-cases.md`) but was not applied systematically across all stages. No prior audit had checked body text or AGENTS.md read instructions.
+
+**Fix:**
+1. **Input Artifacts `docs/` prefix** — Added `docs/` prefix to all affected input artifact lists: stages 1-2, 1-3, 1-4, 1-5, 1-6, 2-2, 2-3, 2-4, 3-2, 3-3, 3-4, 4-1, 4-2, 4-3.
+2. **Body text `docs/` prefix** — Fixed `Read 'phase-3-design-decisions.md'` and navigation-pattern references in stages 3-2, 3-3, 3-4; fixed `Read 'tech-stack.md'` and schema reference in Stage 4-1.
+3. **Exit criteria** — Updated `phase-3-design-decisions.md` references in exit criteria of 3-2, 3-3, 3-4 to include `docs/`.
+4. **AGENTS.md** — Fixed Critical Rule #4 and the Phase 3 detection note to use `docs/phase-3-design-decisions.md`.
+5. **Stage 2-1 persona** — Changed `Domain Modeler & UI Sketcher` → `Domain Modeler + UI Sketcher` (matches AGENTS.md table).
+
+**Files:** stages 1-2, 1-3, 1-4, 1-5, 1-6, 2-1, 2-2, 2-3, 2-4, 3-1, 3-2, 3-3, 3-4, 3-5, 4-1, 4-2, 4-3, `AGENTS.md`
+
+**Follow-up fixes (same session):**
+- Stage 3-1 Input Artifacts: `view-entity-mapping.md` was also missing `docs/`
+- Stage 3-5 Input Artifacts and body text: `phase-3-design-decisions.md` was also missing `docs/`
+- AGENTS.md Phase 2→3 handoff: said "Stage 2-4 produces `view-entity-mapping.md`" which was factually wrong (Stage 2-1 produces it). Reworded to accurately describe what each stage contributes.
+
+---
+
+## 2026-03-01: Add comprehension check at end of each use case (Stage 4-2 and 4-3)
+
+**Problem:** After implementing a use case, the user moved straight to the next one without narrating what was built. No mechanism ensured understanding before continuing.
+
+**Cause:** Stage 4-2 and 4-3 had no explicit comprehension verification step after tests passed.
+
+**Fix:**
+- **Stage 4-2**: Added Step 7 "Comprehension Check" between Verify and Checkpoint. AI asks 5 questions (functions written, inputs/outputs, purpose, architecture layer, data flow). Up to 3 attempts — AI corrects mistakes and asks again. After 3 failed attempts, AI lists the unresolved concepts and tells the user to study them independently, then proceeds to checkpoint. Old Step 7 renumbered to Step 8.
+- **Stage 4-3**: Added Step 6 "End-to-End Narration" between Verify and Checkpoint. Since the user already explained each function before writing it, this step asks for a holistic walkthrough — full data flow from HTTP request to response. Same 3-attempt rule applies. Old Step 6 renumbered to Step 7.
+- Both stages: added corresponding exit criterion.
+
+**Files:**
+- `workflow/spa-rest-sql/stages/phase-4/02-implementation-loop.md`
+- `workflow/spa-rest-sql/stages/phase-4/03-learning-guide.md`
+
+---
+
+## 2026-03-01: Pre-commit audit — 5 fixes in template, Stage 4-2/4-3, and SKILL.md
+
+**Problem:** Pre-commit audit found 5 issues (2 medium, 3 low) introduced or left unresolved by the previous audit session.
+
+**Cause/Fix (by issue):**
+
+1. **M1 — `implementation-decisions.md` template heading mismatch.** Template used `## Next Session Starts With` but Stage 4-1's initialization inline uses `## Next Session`, and Stage 4-2's Checkpoint instructions explicitly say "Update 'Next Session' section." The template heading was wrong relative to the authoritative source. Fix: renamed to `## Next Session`.
+
+2. **M2 — Template section order contradicted Stage 4-1 inline.** Template placed "Next Session Starts With" before Decisions/Discoveries/Deferred. Stage 4-1's inline puts "Next Session" at the end. Fix: reordered template to match Stage 4-1's inline (Decisions → Discoveries → Deferred → Next Session).
+
+3. **L1 — Template had `## Session History` section not created by Stage 4-1.** Stage 4-1's initialization inline didn't include it and Stage 4-2/4-3 don't reference it in their checkpoint instructions — making it a dead section that would never appear in the actual document. Fix: removed from template.
+
+4. **L2 — Stage 4-2 and 4-3 Input Artifacts listed `use-cases.md` without `docs/` prefix.** The previous audit (M2) fixed Stage 4-1 to use `docs/use-cases.md` but missed Stage 4-2 and 4-3. Fix: updated both to `docs/use-cases.md`.
+
+5. **L3 — SKILL.md `(not 0, D, I, T)` used uppercase for on-demand stage identifiers.** Stage identifiers throughout SKILL.md use lowercase (`d`, `i`, `t`). Fix: corrected to `(not 0, d, i, t)`.
+
+6. **L4 — Stage 3-2 Part 2 hardcoded "Tailwind config".** Stages 3-3 and 3-4 say "framework config" (generic). Stage 3-2 said "Tailwind config" (tech-specific). Fix: changed to "framework config".
+
+**Files:**
+- `workflow/templates/ai/implementation-decisions.md`
+- `workflow/spa-rest-sql/stages/phase-4/02-implementation-loop.md`
+- `workflow/spa-rest-sql/stages/phase-4/03-learning-guide.md`
+- `.agent-utils/skills/start-stage/SKILL.md`
+- `workflow/spa-rest-sql/stages/phase-3/02-core-app-views.md`
+
+---
+
+## 2026-02-28: Final stability audit — 7 fixes across Phases 1–4 and templates
+
+**Problem:** Full audit of all 23 stage files, AGENTS.md, skills, templates, and existing artifact protocol revealed 7 issues (2 critical, 3 medium, 2 low).
+
+**Cause/Fix (by issue):**
+
+1. **C1 — `implementation-decisions.md` template outdated.** The template was never updated when Stage 4-1 was expanded (Audit 6) to include Architecture and Implementation Roadmap sections. Template still used P1/P2/P3 Design Priority groupings — directly contradicting Stage 4-2's rule that implementation order is dependency-driven. Fix: rewrote template to match Stage 4-1's initialization format (Architecture section, Architectural Rules, Folder Mapping, Implementation Roadmap, flat use case progress list).
+
+2. **C2 — Stage 1-5 presented JWT vs sessions as a choice.** The workflow's Architectural Assumptions (in AGENTS.md) declare JWT as fixed, but Stage 1-5's fixed-architecture list only included 5 items (no JWT) and its Authentication section said "JWT vs sessions." Fix: added `**JWT authentication**` to the fixed list; reframed Authentication section as "mechanism is fixed, decide the library and expiration strategy."
+
+3. **M1 — AGENTS.md Phase 4 stage detection said "→ Stage 4-2" only.** The "How to Determine Current Stage" entry for an in-progress Phase 4 pointed only to Stage 4-2, ignoring Stage 4-3 as an alternative. Fix: changed to "→ Stage 4-2 or 4-3 (user's choice per use case)."
+
+4. **M2 — Stage 4-1 Input Artifacts missing `docs/use-cases.md`.** Part 2 Step 3 of Stage 4-1 explicitly says to read `docs/use-cases.md` to build the implementation roadmap, but it wasn't listed as an Input Artifact. Fix: added `docs/use-cases.md` to the Input Artifacts section.
+
+5. **M3 — Stage 4-2 and 4-3 stage-complete exit criteria used Design Priority groupings.** Both stages say "All use cases are implemented by dependency order, not Design Priority" — but their stage-complete checklists used P1/P2/P3 groups. Fix: replaced all three priority rows with "All use cases from the Implementation Roadmap are implemented and tested."
+
+6. **L1 — Stages 3-3 and 3-4 missing "Review Reference Implementation" step.** Stage 3-2 had an explicit Part 2 to read the main view before styling. Stages 3-3 and 3-4 only mentioned "already-styled views" in input lists — insufficient to ensure head setup and component patterns are followed. Fix: added Part 2 "Review Reference Implementation" to Stage 3-3 (renumbered Parts 2→3, 3→4); added equivalent Part 2 to Stage 3-4 with auth-specific note (renumbered Parts 2→3, 3→4, 4→5). Added corresponding exit criteria items to both.
+
+7. **L2 — Stage T exit criteria missing optional log export.** Every other stage has a log export item in exit criteria. Stage T only mentioned it in the Logging section. Fix: added `- [ ] Session log optionally exported via /export-log t`.
+
+**Files:**
+- `workflow/templates/ai/implementation-decisions.md`
+- `workflow/spa-rest-sql/stages/phase-1/05-tech-selection.md`
+- `AGENTS.md`
+- `workflow/spa-rest-sql/stages/phase-4/01-project-setup.md`
+- `workflow/spa-rest-sql/stages/phase-4/02-implementation-loop.md`
+- `workflow/spa-rest-sql/stages/phase-4/03-learning-guide.md`
+- `workflow/spa-rest-sql/stages/phase-3/03-user-views.md`
+- `workflow/spa-rest-sql/stages/phase-3/04-auth-views.md`
+- `workflow/spa-rest-sql/stages/phase-0/03-knowledge-tester.md`
+
+---
+
+## 2026-02-28: Audit 6 fixes — Stage 2-4 false protocol trigger, AGENTS.md stale rule and missing Stage 4-1 info
+
+**Problem:** Three issues found during full Phase 1/2 and AGENTS.md audit:
+1. Stage 2-4's Output Artifacts include `docs/assets/` folder, which is created by Stage 2-1 and always pre-exists when Stage 2-4 runs for the first time. The Existing Artifact Protocol would trigger on first run, falsely asking "why are we revisiting this?" — same issue found earlier in Phase 3 stages 3-2/3-3/3-4.
+2. AGENTS.md Critical Rule 3 said "ALWAYS check for existing artifacts in `docs/`" — the old vague instruction that predated the Existing Artifact Protocol. Now stale and potentially confusing.
+3. AGENTS.md Stage 4-1 summary row and the Stage 4-2/4-3 note didn't reflect the new architecture and implementation roadmap additions from earlier in this session.
+
+**Cause:**
+1. Same root cause as Phase 3 issue — stage updates a shared artifact folder that pre-exists from an earlier stage.
+2. Critical Rule 3 was never updated when the Existing Artifact Protocol was introduced.
+3. AGENTS.md Stage 4-1 description was not updated when Stage 4-1 was expanded.
+
+**Fix:**
+- Added Stage 2-4 special case to `00-existing-artifact-protocol.md`: only `consolidation-artifacts/phase-2-consolidation.md` is the trigger indicator — `docs/assets/` pre-exists and should be ignored.
+- Updated AGENTS.md Critical Rule 3 to: "ALWAYS use `/start-stage` — it automatically runs the Existing Artifact Protocol."
+- Updated AGENTS.md Stage 4-1 row to include architecture and roadmap in the output description.
+- Added a new note below the Phase 4 table explaining what Stage 4-1 establishes before code is written.
+
+**Files:**
+- `workflow/spa-rest-sql/stages/00-existing-artifact-protocol.md`
+- `AGENTS.md`
+
+---
+
+## 2026-02-28: Audit 5 fixes — Protocol false trigger for 3-2/3-3/3-4, Stage 3-1 "Other" gap, architecture compliance checkpoint
+
+**Problem:** Three issues found:
+1. Stages 3-2, 3-3, and 3-4 update shared Phase 3 artifacts (`phase-3-design-decisions.md`, `styles.css`, `docs/assets/views/`) that are created by Stage 3-1. The Existing Artifact Protocol would always trigger for these stages even on their first run — asking "why are we revisiting this?" when the user just wants to run Stage 3-2 normally.
+2. Stage 3-1 Part 1 listed four protocol reasons but was missing the fifth ("Other"), leaving it unhandled.
+3. Stage 4-2's architecture enforcement existed only as a note in the persistence document section, not as a formal step in the implementation cycle. An AI could propose a signature that violates layer rules without checking. Stage 4-3 had no architecture check in its code review step either.
+
+**Cause:**
+1. The protocol was designed with standalone-artifact stages in mind. Sequential stages that update shared artifacts were an unanticipated case.
+2. "Other" was omitted when Stage 3-1 Part 1 was written.
+3. The compliance check was positioned as a passive reminder, not an active step.
+
+**Fix:**
+- Added special case to `00-existing-artifact-protocol.md` for Stages 3-2, 3-3, 3-4: skip the protocol entirely — shared artifacts pre-existing means Stage 3-1 ran, not that the current stage ran before.
+- Added "Other" bullet to Stage 3-1 Part 1.
+- Added explicit architecture compliance verification block to Stage 4-2 Step 1 (Plan the Slice): before presenting the plan, verify each piece respects the layer rules and revise if not.
+- Added architecture compliance to Stage 4-3 Step 3 "Things to check" list (code review).
+
+**Files:**
+- `workflow/spa-rest-sql/stages/00-existing-artifact-protocol.md`
+- `workflow/spa-rest-sql/stages/phase-3/01-visual-design.md`
+- `workflow/spa-rest-sql/stages/phase-4/02-implementation-loop.md`
+- `workflow/spa-rest-sql/stages/phase-4/03-learning-guide.md`
+
+---
+
+## 2026-02-28: Audit 4 fixes — Stage 3-1 Part 1 conflict with protocol, protocol missing closing instruction
+
+**Problem:** Two issues found during audit of 2026-02-28 changes:
+1. Stage 3-1 Part 1 only correctly handled the "Iteration" reason from the Existing Artifact Protocol. For "Project direction change" it contradicted the protocol by saying "restore context and respect all decisions." For "Error correction" and "Technology stack change" it had no guidance at all.
+2. `00-existing-artifact-protocol.md` ended without telling the AI to continue with the stage process after completing the protocol, making the handoff implicit.
+
+**Cause:** Stage 3-1 Part 1 was written before the full protocol was designed, so it only anticipated one re-run scenario (Iteration). The protocol file relied on SKILL.md's structure to imply continuation, which is fragile.
+
+**Fix:**
+- Rewrote Stage 3-1 Part 1 to explicitly branch on all four protocol reasons (Iteration, Error correction, Technology stack change, Project direction change), with correct behavior for each.
+- Added closing line to `00-existing-artifact-protocol.md`: "After completing this protocol, continue with the stage process (Step 4 of `start-stage`)."
+
+**Files:**
+- `workflow/spa-rest-sql/stages/phase-3/01-visual-design.md`
+- `workflow/spa-rest-sql/stages/00-existing-artifact-protocol.md`
+
+---
+
+## 2026-02-28: Stage 4-1 — Architecture selection, rules, and implementation roadmap
+
+**Problem:** Phase 4 had no upfront architectural decision. The implementation loop (Stage 4-2/4-3) improvised structure per use case, with no agreed rules (e.g., "never call the database without going through the domain layer"). The implementation order was also deferred to the first session of Stage 4-2, which meant no one had approved it before code was written.
+
+**Cause:** Stage 4-1 focused only on project scaffolding (skeleton + health check). Architecture and planning were omitted.
+
+**Fix:**
+- Added **Part 2: Architecture & Implementation Plan** to Stage 4-1, between stack review and skeleton creation. Covers:
+  - Architecture pattern selection (Ports & Adapters, Layered, Clean Architecture) with options, trade-offs, and pattern-specific rules
+  - Folder structure proposal that reflects the chosen pattern
+  - Implementation roadmap: approved use-case order based on dependencies
+- Updated `implementation-decisions.md` template to include Architecture (pattern + rules + folder mapping) and Implementation Roadmap sections
+- Removed implementation-order step from Stage 4-2 and 4-3 Session Start (now done in 4-1)
+- Added "architectural rules are binding" note to Stage 4-2 and 4-3 persistence document sections, so the AI enforces the chosen pattern during implementation
+
+**Files:**
+- `workflow/spa-rest-sql/stages/phase-4/01-project-setup.md`
+- `workflow/spa-rest-sql/stages/phase-4/02-implementation-loop.md`
+- `workflow/spa-rest-sql/stages/phase-4/03-learning-guide.md`
+
+---
+
+## 2026-02-28: Existing Artifact Protocol — handle stage re-runs and iterations
+
+**Problem:** When a stage's output artifact already exists (e.g., re-running a stage after a project direction change or to iterate on an earlier decision), stages had no defined behavior for how to handle it. The `start-stage` skill said "check `docs/` for existing artifacts" but gave no instructions on what to do. Stage 3-1 had an ad-hoc partial handler but it didn't ask why the stage was being re-run or define different behaviors per reason.
+
+**Cause:** The workflow was originally designed as a linear sequence (each stage runs once). Iteration and re-runs were not explicitly designed for, leaving the AI to improvise — sometimes overwriting existing work, sometimes ignoring it.
+
+**Fix:**
+- Created `workflow/spa-rest-sql/stages/00-existing-artifact-protocol.md` — a shared protocol defining the standard behavior when a stage's output artifacts already exist: read them, show a summary, ask why (iteration / project direction change / technology stack change / error correction / other), and proceed accordingly per reason.
+- Updated `.agent-utils/skills/start-stage/SKILL.md` step 3 to trigger the protocol for Phase 1–4 stages (not on-demand stages 0, D, I, T) whenever output artifacts are found.
+- Simplified Stage 3-1 Part 1 (previously an ad-hoc artifact check) to integrate cleanly with the new protocol instead of duplicating it.
+
+**Files:**
+- `workflow/spa-rest-sql/stages/00-existing-artifact-protocol.md` (new)
+- `.agent-utils/skills/start-stage/SKILL.md`
+- `workflow/spa-rest-sql/stages/phase-3/01-visual-design.md`
+
+---
+
 ## 2026-02-28: Audit 3 fixes — Stage T header case, Stage 4-1 next stage, Stage 3-4 EXCLUDE note
 
 **Problem:** Three issues found during a full workflow audit:

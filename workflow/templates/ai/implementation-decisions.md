@@ -5,32 +5,56 @@
 
 ---
 
-## Stack Reference
+## Tech Stack
 
 See `docs/tech-stack.md`
 
 ---
 
-## Progress
+## Architecture
 
-### P1 Use Cases (Core Business)
-- [ ] [Use case]
-- [ ] [Use case]
+### Pattern
 
-### P2 Use Cases (Supporting)
-- [ ] [Use case]
-- [ ] [Use case]
+[Chosen pattern: Ports & Adapters / Layered / Clean Architecture]
 
-### P3 Use Cases (Standard/Admin)
-- [ ] [Use case] — Login/Logout
-- [ ] [Use case] — Registration
-- [ ] [Use case] — Admin
+### Architectural Rules
+
+[The binding rules for all of Phase 4 — established in Stage 4-1]
+
+- [Rule 1]
+- [Rule 2]
+- [Rule 3]
+
+### Folder Mapping
+
+[How the pattern maps to the actual folder structure]
+
+- `[path]` → [layer]
+- `[path]` → [layer]
 
 ---
 
-## Next Session Starts With
+## Implementation Roadmap
 
-[What to implement next — update after each session]
+### Approved Use Case Order
+
+1. [Use case] — [dependency reason]
+2. [Use case] — [dependency reason]
+3. [Use case] — [dependency reason]
+
+---
+
+## Progress
+
+### Completed Use Cases
+
+- [ ] [Use case 1]
+- [ ] [Use case 2]
+- [ ] [Use case 3]
+
+### Current Session
+
+[Stage and status — update each session]
 
 ---
 
@@ -58,14 +82,6 @@ Things found during implementation that affect the design:
 
 ---
 
-## Session History
+## Next Session
 
-### Session 1 — [Date]
-- Started: Stage 4-1 Project Setup
-- Completed: [What was accomplished]
-- Stopped at: [Where / why]
-
----
-
-*Stage: 4-2 - Implementation Loop*
-*Updated after every completed use case*
+[What to implement next — update after each session]

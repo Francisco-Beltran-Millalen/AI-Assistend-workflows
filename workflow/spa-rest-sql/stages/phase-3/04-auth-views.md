@@ -16,15 +16,15 @@ Style the authentication views. These are **standalone pages** — they don't ha
 
 ## Views in This Stage
 
-**Determined by the view inventory in `phase-3-design-decisions.md`.**
+**Determined by the view inventory in `docs/phase-3-design-decisions.md`.**
 
 Auth views are standalone pages (no app shell). They were identified during Stage 3-1's view inventory. Typical auth views include: `login.html`, `register.html`, `reset-password.html` — but the actual set depends on the project's use cases.
 
-Read `phase-3-design-decisions.md` → "View Decisions" section to find which auth views are in scope for this stage.
+Read `docs/phase-3-design-decisions.md` → "View Decisions" section to find which auth views are in scope for this stage.
 
 ## Input Artifacts
 
-- `phase-3-design-decisions.md` — **Read this first. Follow all current decisions.**
+- `docs/phase-3-design-decisions.md` — **Read this first. Follow all current decisions.**
 - `docs/assets/views/` — Plain HTML sketches + already-styled views as reference
 - `docs/assets/css/styles.css` — Base stylesheet
 
@@ -53,11 +53,20 @@ Any new auth-specific reusable styles.
 
 ### Part 1: Read Design Decisions
 
-Read `phase-3-design-decisions.md` completely. Check for any revisions from previous stages.
+Read `docs/phase-3-design-decisions.md` completely. Check for any revisions from previous stages.
 
 **IMPORTANT:** If a view in this stage is marked as EXCLUDE in the decisions file, skip it and confirm with the user.
 
-### Part 2: Define Auth Layout
+### Part 2: Review Reference Implementation
+
+Read the main view (filename recorded in `docs/phase-3-design-decisions.md`) to understand:
+- The HTML head setup (CDN links, framework config, fonts) — auth views use the same head
+- How form components are styled in practice (inputs, labels, buttons, validation messages)
+- The JavaScript patterns used
+
+**Note:** Auth views do not use the app shell (no sidebar, no top nav). Focus on the head setup and component patterns, not the navigation structure.
+
+### Part 3: Define Auth Layout
 
 Auth views need a different layout than app views:
 - No sidebar
@@ -67,7 +76,7 @@ Auth views need a different layout than app views:
 
 Discuss the layout with the user. Record the auth layout pattern in the decisions file.
 
-### Part 3: Style Each View
+### Part 4: Style Each View
 
 For each view:
 
@@ -77,20 +86,21 @@ For each view:
 4. **Handle view-specific elements** (password strength, multi-step flow in reset-password)
 5. **Show the user** for feedback
 
-### Part 4: Update Decisions (if needed)
+### Part 5: Update Decisions (if needed)
 
-Document any revisions or new patterns in `phase-3-design-decisions.md`.
+Document any revisions or new patterns in `docs/phase-3-design-decisions.md`.
 
 ---
 
 ## Exit Criteria
 
-- [ ] `phase-3-design-decisions.md` read before starting
+- [ ] `docs/phase-3-design-decisions.md` read before starting
+- [ ] Reference implementation reviewed (head setup and component patterns)
 - [ ] Auth views identified from view inventory
 - [ ] Auth layout pattern is defined and documented
 - [ ] Each auth view is styled (or marked EXCLUDE with reason)
 - [ ] All auth views link to each other correctly
-- [ ] Any new decisions documented in `phase-3-design-decisions.md`
+- [ ] Any new decisions documented in `docs/phase-3-design-decisions.md`
 - [ ] User has approved each styled view
 - [ ] Session log exported via `/export-log 3-4`
 

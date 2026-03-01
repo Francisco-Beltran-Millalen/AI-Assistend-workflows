@@ -36,13 +36,15 @@ This file is shared with Stage 4-2. If you've done some use cases in Stage 4-2 a
 
 **Update this file after every completed use case (checkpoint).**
 
+**IMPORTANT: The architectural rules in this file are binding.** When reviewing user-written code, check that it respects the layer rules defined in the Architecture section. Flag any violation before moving on.
+
 ## Input Artifacts
 
 - `consolidation-artifacts/implementation-decisions.md` — **Read first. Resume from where we left off.**
-- `use-cases.md` (priority order)
-- `api-design.md` (endpoint contracts with JSON examples)
-- `data-model-physical.md` (entity attributes)
-- `assets/schema.sql` (database schema)
+- `docs/use-cases.md` (priority order)
+- `docs/api-design.md` (endpoint contracts with JSON examples)
+- `docs/data-model-physical.md` (entity attributes)
+- `docs/assets/schema.sql` (database schema)
 - The working project from Stage 4-1
 
 ## Process
@@ -52,10 +54,9 @@ This file is shared with Stage 4-2. If you've done some use cases in Stage 4-2 a
 Every session begins with:
 
 1. Read `consolidation-artifacts/implementation-decisions.md`
-2. Check which use cases are done
-3. **If this is the first session (no use cases complete yet):** Propose an implementation order based on dependencies (same logic as Stage 4-2). Present it and get approval.
-4. Identify the next use case
-5. Tell the user: "We're implementing [use case]. You'll be writing the code. I'll guide you through it."
+2. Check which use cases are done and confirm the architectural rules in effect
+3. Identify the next use case from the approved Implementation Roadmap
+4. Tell the user: "We're implementing [use case]. You'll be writing the code. I'll guide you through it."
 
 ### Per Use Case: The Learning Cycle
 
@@ -111,6 +112,7 @@ Review what they wrote:
 - Are there logic errors?
 - Is error handling appropriate?
 - Does it follow the patterns already established in the project?
+- **Does it respect the architectural rules?** (correct layer dependencies — no skipped layers, no layer reaching past its boundary)
 
 **Give structured feedback:**
 
@@ -186,7 +188,27 @@ Guide them to the fix.
 
 ---
 
-#### Step 6: Checkpoint
+#### Step 6: End-to-End Narration
+
+The user has explained each function individually before writing it. Now ask for the full picture — how all the pieces connect:
+
+> "You've built each piece. Now walk me through the complete use case — from the HTTP request arriving, through each layer, to the response going back. What happens at each step, and what data is being passed?"
+
+**Evaluation loop — max 3 attempts:**
+
+- If correct and complete → "Good. Let's checkpoint." Proceed.
+- If a layer, step, or data transition is wrong or missing → correct it clearly, then ask the user to narrate again.
+
+After 3 attempts, if errors remain:
+- List the specific concepts the user still got wrong.
+- Say: "Study [concept X] before we start the next use case. For now, let's checkpoint."
+- Proceed to the checkpoint regardless.
+
+**Do not skip this step.**
+
+---
+
+#### Step 7: Checkpoint
 
 After the use case is done:
 
@@ -196,7 +218,7 @@ After the use case is done:
    - Note deferred items
    - Update "Next Session" section
 
-2. Tell the user: "Use case [X] is done — you wrote it. [N] remaining. Ready for the next?"
+2. Tell the user: "Use case [X] is done — you wrote it. [N] remaining. Ready for the next?" (If the narration flagged concepts to study, remind the user here.)
 
 ---
 
@@ -236,13 +258,12 @@ Same persistence document as Stage 4-2.
 - [ ] Test scenarios designed together (user identified scenarios with guidance)
 - [ ] Tests written by the user and passing
 - [ ] All existing tests still passing
+- [ ] End-to-end narration completed (user walked through full data flow — up to 3 attempts)
 - [ ] `consolidation-artifacts/implementation-decisions.md` updated
 
 ## Exit Criteria (Stage Complete — All Use Cases Done)
 
-- [ ] All Design Priority 1 use cases implemented and tested
-- [ ] All Design Priority 2 use cases implemented and tested
-- [ ] All Design Priority 3 use cases implemented and tested
+- [ ] All use cases from the Implementation Roadmap are implemented and tested
 - [ ] All tests passing
 - [ ] `consolidation-artifacts/implementation-decisions.md` is complete
 - [ ] User confirms the prototype works as expected

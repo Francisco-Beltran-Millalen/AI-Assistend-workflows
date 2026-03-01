@@ -22,6 +22,7 @@ The architecture is fixed:
 - **Separated frontend and backend**
 - **SQL database** (relational persistence)
 - **SQLite for prototyping** (always — regardless of production DB choice)
+- **JWT authentication** (Bearer token, stateless — no server-side sessions)
 
 What's open:
 - Programming language
@@ -35,10 +36,10 @@ What's open:
 
 ## Input Artifacts
 
-- `project-brief.md` from Stage 1-1 (constraints, team expertise)
-- `knowledge-audit.md` from Stage 1-2 (technical understanding)
-- `research-findings.md` from Stage 1-3 (if tech was researched)
-- `use-cases.md` from Stage 1-4 (complexity indicators)
+- `docs/project-brief.md` from Stage 1-1 (constraints, team expertise)
+- `docs/knowledge-audit.md` from Stage 1-2 (technical understanding)
+- `docs/research-findings.md` from Stage 1-3 (if tech was researched)
+- `docs/use-cases.md` from Stage 1-4 (complexity indicators)
 
 ## Process
 
@@ -87,9 +88,12 @@ This workflow is **SPA (single-page application) only**. The frontend is a separ
 
 #### Authentication
 
-- JWT vs sessions
-- Library/framework support
-- OAuth needs
+Authentication mechanism is **fixed**: JWT (Bearer token, stateless — no server-side sessions). This is not a decision point.
+
+Decide:
+- JWT library / implementation approach
+- Token expiration strategy (short-lived + refresh, or long-lived)
+- OAuth integration needs (if any)
 
 #### Testing
 

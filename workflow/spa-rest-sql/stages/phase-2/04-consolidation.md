@@ -19,14 +19,14 @@ Consolidate all design artifacts into a structured package that serves as input 
 ## Input Artifacts
 
 All artifacts from Phase 2 Stages 1-3:
-- `entity-map.md` (Stage 2-1)
-- `assets/views/` folder with HTML sketches (Stage 2-1)
-- `view-entity-mapping.md` (Stage 2-1)
-- `document-templates.md` (Stage 2-1, if applicable)
-- `data-model-conceptual.md` (Stage 2-2)
-- `data-model-physical.md` (Stage 2-2)
-- `assets/schema.sql` (Stage 2-2)
-- `api-design.md` (Stage 2-3, with JSON contracts and view-endpoint mapping)
+- `docs/entity-map.md` (Stage 2-1)
+- `docs/assets/views/` folder with HTML sketches (Stage 2-1)
+- `docs/view-entity-mapping.md` (Stage 2-1)
+- `docs/document-templates.md` (Stage 2-1, if applicable)
+- `docs/data-model-conceptual.md` (Stage 2-2)
+- `docs/data-model-physical.md` (Stage 2-2)
+- `docs/assets/schema.sql` (Stage 2-2)
+- `docs/api-design.md` (Stage 2-3, with JSON contracts and view-endpoint mapping)
 
 ## Process
 

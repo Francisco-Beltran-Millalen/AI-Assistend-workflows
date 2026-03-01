@@ -17,9 +17,9 @@ Define how the frontend and backend will communicate via REST JSON endpoints. By
 ## Input Artifacts
 
 - `consolidation-artifacts/phase-1-consolidation.md` (use cases, tech stack)
-- `entity-map.md` (entities and relationships)
-- `data-model-physical.md` (attributes and types)
-- `view-entity-mapping.md` (what data each view needs)
+- `docs/entity-map.md` (entities and relationships)
+- `docs/data-model-physical.md` (attributes and types)
+- `docs/view-entity-mapping.md` (what data each view needs)
 
 ## Process
 

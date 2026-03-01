@@ -97,18 +97,20 @@ Examples:
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
-| 4-1 | `workflow/spa-rest-sql/stages/phase-4/01-project-setup.md` | Senior Developer | `prototype-code/` (working skeleton), `consolidation-artifacts/implementation-decisions.md` |
+| 4-1 | `workflow/spa-rest-sql/stages/phase-4/01-project-setup.md` | Senior Developer | Architecture pattern + rules, implementation roadmap, `prototype-code/` (working skeleton), `consolidation-artifacts/implementation-decisions.md` |
 | 4-2 | `workflow/spa-rest-sql/stages/phase-4/02-implementation-loop.md` | Senior Developer | Working prototype, `implementation-decisions.md` |
 | 4-3 | `workflow/spa-rest-sql/stages/phase-4/03-learning-guide.md` | Code Mentor | Working prototype, `implementation-decisions.md` |
 
-**Stage 4-2 and 4-3 are alternatives** — use 4-2 (AI writes, you review) or 4-3 (you write, AI guides) per use case. Both repeat until all use cases are complete. `implementation-decisions.md` is a shared persistence document — read at the start of every session, updated after every completed use case (checkpoint).
+**Stage 4-1** establishes the architecture pattern (Ports & Adapters, Layered, or Clean Architecture), its binding rules, and the approved use case implementation order — before any code is written.
+
+**Stage 4-2 and 4-3 are alternatives** — use 4-2 (AI writes, you review) or 4-3 (you write, AI guides) per use case. Both repeat until all use cases are complete, following the architectural rules and order established in Stage 4-1. `implementation-decisions.md` is a shared persistence document — read at the start of every session, updated after every completed use case (checkpoint).
 
 ## Critical Rules
 
 1. **ALWAYS read the stage file** before starting work
 2. **ALWAYS adopt the persona** defined in the stage file
-3. **ALWAYS check for existing artifacts** in `docs/`
-4. **In Phase 3: ALWAYS read `phase-3-design-decisions.md` first** — it persists decisions across sessions
+3. **ALWAYS use `/start-stage`** to start stages — it automatically runs the Existing Artifact Protocol, which detects prior runs and asks how to proceed before any work begins
+4. **In Phase 3: ALWAYS read `docs/phase-3-design-decisions.md` first** — it persists decisions across sessions
 5. **In Phase 4: ALWAYS read `implementation-decisions.md` first** — it tracks progress and decisions across sessions
 6. **Follow stage order** within each phase
 7. **Complete each phase before starting the next**
@@ -134,7 +136,7 @@ Stage 1-6 produces `consolidation-artifacts/phase-1-consolidation.md` (includes 
 
 ### Phase 2 → Phase 3
 
-Stage 2-4 produces `consolidation-artifacts/phase-2-consolidation.md`, `view-entity-mapping.md`, and `assets/` folder — input for Phase 3. Includes view-endpoint mapping with JSON contracts.
+Stage 2-4 consolidates Phase 2 work into `consolidation-artifacts/phase-2-consolidation.md` — the primary artifact forwarded to Phase 3. Also forwarded: `docs/view-entity-mapping.md` (Stage 2-1), `docs/api-design.md` (Stage 2-3, includes view-endpoint mapping with JSON contracts), and the `docs/assets/` folder.
 
 ### Phase 3 → Phase 4
 
@@ -174,11 +176,11 @@ Check `docs/` for existing artifacts:
 - Auth views styled → Stage 3-5
 - `consolidation-artifacts/ui-style-guide.md` → Phase 3 complete
 
-> To detect Phase 3 sub-stages: read `phase-3-design-decisions.md` → View Decisions section. First check the **Main View (reference implementation)** entry — if it is still plain HTML, Stage 3-1 is incomplete; continue Stage 3-1. Otherwise, views marked INCLUDE that still have plain HTML (no CSS framework classes applied) indicate the current unfinished stage based on their category: core app views → still in 3-2, user views → still in 3-3, auth views → still in 3-4.
+> To detect Phase 3 sub-stages: read `docs/phase-3-design-decisions.md` → View Decisions section. First check the **Main View (reference implementation)** entry — if it is still plain HTML, Stage 3-1 is incomplete; continue Stage 3-1. Otherwise, views marked INCLUDE that still have plain HTML (no CSS framework classes applied) indicate the current unfinished stage based on their category: core app views → still in 3-2, user views → still in 3-3, auth views → still in 3-4.
 
 **Phase 4 (Prototype Implementation):**
 - `consolidation-artifacts/ui-style-guide.md` exists but no `consolidation-artifacts/implementation-decisions.md` → Stage 4-1
-- `consolidation-artifacts/implementation-decisions.md` exists (use cases not all complete) → Stage 4-2
+- `consolidation-artifacts/implementation-decisions.md` exists (use cases not all complete) → Stage 4-2 or 4-3 (user's choice per use case)
 - `consolidation-artifacts/implementation-decisions.md` with all use cases complete → **Prototype complete**
 
 ## Quick Commands

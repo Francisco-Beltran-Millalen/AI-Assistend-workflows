@@ -20,7 +20,7 @@ Start the specified workflow stage.
    - If `t`: Read `workflow/spa-rest-sql/stages/phase-0/03-knowledge-tester.md`
    - If `<phase>-<stage>`: Read `workflow/spa-rest-sql/stages/phase-<phase>/0<stage>-*.md`
 2. Adopt the persona defined in the stage file
-3. Check `docs/` for existing artifacts
+3. For Phase 1–4 stages only (not 0, d, i, t): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/spa-rest-sql/stages/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
 4. Follow the stage process
 
 ## Stage Mapping

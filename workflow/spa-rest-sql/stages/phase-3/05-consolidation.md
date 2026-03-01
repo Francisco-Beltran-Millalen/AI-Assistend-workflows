@@ -18,7 +18,7 @@ Consolidate all visual design work into a style guide and verify all views are c
 
 ## Input Artifacts
 
-- `phase-3-design-decisions.md` — All decisions (including revisions)
+- `docs/phase-3-design-decisions.md` — All decisions (including revisions)
 - `docs/assets/views/` — All styled HTML views
 - `docs/assets/css/styles.css` — Base stylesheet
 
@@ -164,7 +164,7 @@ Flag any issues for the user.
 
 ### 2. Create Style Guide
 
-Read `phase-3-design-decisions.md` and all styled views. Produce `consolidation-artifacts/ui-style-guide.md` with all patterns documented.
+Read `docs/phase-3-design-decisions.md` and all styled views. Produce `consolidation-artifacts/ui-style-guide.md` with all patterns documented.
 
 ### 3. Update Index Page
 
@@ -184,7 +184,7 @@ Walk through the complete set of styled views with the user:
 - [ ] Edge cases reviewed and documented (handled / needs UI / backend concern / deferred)
 - [ ] All styled views audited for consistency
 - [ ] `consolidation-artifacts/ui-style-guide.md` is complete
-- [ ] `consolidation-artifacts/ui-style-guide.md` Decision Log captures all key decisions from `phase-3-design-decisions.md` (no information loss)
+- [ ] `consolidation-artifacts/ui-style-guide.md` Decision Log captures all key decisions from `docs/phase-3-design-decisions.md` (no information loss)
 - [ ] `index.html` is updated as navigation hub
 - [ ] User has approved the style guide
 - [ ] User has approved the overall visual design

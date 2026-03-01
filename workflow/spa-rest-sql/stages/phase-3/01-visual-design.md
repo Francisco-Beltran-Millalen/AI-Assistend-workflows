@@ -24,7 +24,7 @@ Subsequent stages (3-2, 3-3, 3-4) will apply these decisions to the remaining vi
 
 - `consolidation-artifacts/phase-2-consolidation.md`
 - `docs/assets/views/` (plain HTML sketches)
-- `view-entity-mapping.md` (what data each view displays)
+- `docs/view-entity-mapping.md` (what data each view displays)
 
 ## Output Artifacts
 
@@ -104,14 +104,17 @@ Base stylesheet with:
 
 ## Process
 
-### Part 1: Review Existing Work
+### Part 1: Restore Context (if revisiting)
 
-Check if previous Phase 3 sessions have already produced artifacts:
-- Does `phase-3-design-decisions.md` exist? Read it first.
-- Does `styles.css` exist? Check what's already defined.
-- Are any views already styled? Which ones?
+If `phase-3-design-decisions.md` already exists, the Existing Artifact Protocol has already established how to proceed. Follow its guidance:
 
-**IMPORTANT:** If `phase-3-design-decisions.md` exists, respect all decisions marked as current. Only revise if the user explicitly requests it.
+- **Iteration**: Read `phase-3-design-decisions.md` and restore the full design direction context. Respect all decisions marked as current. If the design direction is already complete, proceed directly to Part 3 (Style the Main View).
+- **Error correction**: Read `phase-3-design-decisions.md`, identify the specific error, fix it in place. Update the file directly.
+- **Technology stack change**: Read `phase-3-design-decisions.md`. Update only the tech-specific sections (Framework & Tools, any component patterns tied to a specific library). Structural and domain decisions remain unless the user changes them.
+- **Project direction change**: Do not restore or respect the existing decisions. Proceed to Part 2 as if starting fresh. Keep the existing file as historical reference only.
+- **Other**: Follow the approach agreed upon in the protocol before continuing.
+
+If `phase-3-design-decisions.md` does not exist, proceed to Part 2.
 
 ### Part 2: Design Direction
 

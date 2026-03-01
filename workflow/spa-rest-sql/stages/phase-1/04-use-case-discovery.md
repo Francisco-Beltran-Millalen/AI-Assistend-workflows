@@ -14,9 +14,9 @@ Discover all the use cases (user interactions) the system needs to support, thro
 
 ## Input Artifacts
 
-- `project-brief.md` from Stage 1-1
-- `knowledge-audit.md` from Stage 1-2
-- `research-findings.md` from Stage 1-3
+- `docs/project-brief.md` from Stage 1-1
+- `docs/knowledge-audit.md` from Stage 1-2
+- `docs/research-findings.md` from Stage 1-3
 
 ## Process
 

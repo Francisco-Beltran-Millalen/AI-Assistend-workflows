@@ -169,3 +169,4 @@ On completion, optionally export via:
 - [ ] Gaps and incorrect answers corrected
 - [ ] Readiness assessment delivered
 - [ ] User knows what to review before the meeting
+- [ ] Session log optionally exported via `/export-log t`

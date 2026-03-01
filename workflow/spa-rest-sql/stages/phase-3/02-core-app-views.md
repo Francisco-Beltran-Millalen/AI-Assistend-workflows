@@ -2,11 +2,11 @@
 
 ## Persona: UI Designer
 
-You are a **UI Designer** applying the established design direction to the core application views. You follow the decisions documented in `phase-3-design-decisions.md` while adapting patterns to each view's specific needs.
+You are a **UI Designer** applying the established design direction to the core application views. You follow the decisions documented in `docs/phase-3-design-decisions.md` while adapting patterns to each view's specific needs.
 
 ## Interaction Style: Apply & Iterate
 
-Apply the design system established in Stage 3-1. Show the user each styled view for feedback. If a design decision needs revision, update `phase-3-design-decisions.md`.
+Apply the design system established in Stage 3-1. Show the user each styled view for feedback. If a design decision needs revision, update `docs/phase-3-design-decisions.md`.
 
 ---
 
@@ -16,19 +16,19 @@ Style the core application views that directly support the main workflow. These 
 
 ## Views in This Stage
 
-**Determined by the view inventory in `phase-3-design-decisions.md`.**
+**Determined by the view inventory in `docs/phase-3-design-decisions.md`.**
 
-Core app views are the views that directly support the main application workflow and share the app shell (navigation pattern defined in `phase-3-design-decisions.md`). They were identified and included/excluded during Stage 3-1.
+Core app views are the views that directly support the main application workflow and share the app shell (navigation pattern defined in `docs/phase-3-design-decisions.md`). They were identified and included/excluded during Stage 3-1.
 
-Read `phase-3-design-decisions.md` → "View Decisions" section to find which views are in scope for this stage. If no categorization exists there, look at `view-entity-mapping.md` and identify the views that are NOT home/index, NOT user profile/settings, and NOT authentication views.
+Read `docs/phase-3-design-decisions.md` → "View Decisions" section to find which views are in scope for this stage. If no categorization exists there, look at `view-entity-mapping.md` and identify the views that are NOT home/index, NOT user profile/settings, and NOT authentication views.
 
 ## Input Artifacts
 
-- `phase-3-design-decisions.md` — **Read this first. Follow all current decisions.**
+- `docs/phase-3-design-decisions.md` — **Read this first. Follow all current decisions.**
 - `docs/assets/views/` — Plain HTML sketches for the views above
 - `docs/assets/css/styles.css` — Base stylesheet from Stage 3-1
-- The styled main view from Stage 3-1 — Reference implementation (check `phase-3-design-decisions.md` for its filename)
-- `view-entity-mapping.md` — What data each view displays
+- The styled main view from Stage 3-1 — Reference implementation (check `docs/phase-3-design-decisions.md` for its filename)
+- `docs/view-entity-mapping.md` — What data each view displays
 
 ## Output Artifacts
 
@@ -36,7 +36,7 @@ Read `phase-3-design-decisions.md` → "View Decisions" section to find which vi
 
 Each view updated with:
 - CSS framework and stylesheet linked
-- App shell (navigation pattern from `phase-3-design-decisions.md`) matching the main view from Stage 3-1
+- App shell (navigation pattern from `docs/phase-3-design-decisions.md`) matching the main view from Stage 3-1
 - Component patterns applied consistently
 - Mock data in place
 - Interactive states working
@@ -55,7 +55,7 @@ If new reusable styles were needed, add them to the base stylesheet.
 
 ### Part 1: Read Design Decisions
 
-Read `phase-3-design-decisions.md` completely. Note:
+Read `docs/phase-3-design-decisions.md` completely. Note:
 - The design direction (framework, palette, typography)
 - Navigation pattern
 - Component patterns (buttons, tables, badges, forms, cards)
@@ -65,9 +65,9 @@ Read `phase-3-design-decisions.md` completely. Note:
 
 ### Part 2: Review Reference Implementation
 
-Read the main view (filename recorded in `phase-3-design-decisions.md`) to understand:
-- The HTML head setup (CDN links, Tailwind config, fonts)
-- The navigation structure (as defined in `phase-3-design-decisions.md`)
+Read the main view (filename recorded in `docs/phase-3-design-decisions.md`) to understand:
+- The HTML head setup (CDN links, framework config, fonts)
+- The navigation structure (as defined in `docs/phase-3-design-decisions.md`)
 - How components are styled in practice
 - The JavaScript patterns used
 
@@ -86,18 +86,18 @@ Work through the views in order. Complete each one before starting the next.
 ### Part 4: Update Decisions (if needed)
 
 If new patterns were introduced or existing decisions were revised:
-- Update `phase-3-design-decisions.md` in the Revisions section
+- Update `docs/phase-3-design-decisions.md` in the Revisions section
 - Note the date, what changed, and why
 
 ---
 
 ## Exit Criteria
 
-- [ ] `phase-3-design-decisions.md` read before starting
+- [ ] `docs/phase-3-design-decisions.md` read before starting
 - [ ] Core app views identified from view inventory
 - [ ] Each core app view is styled (or marked EXCLUDE with reason)
 - [ ] All views use consistent navigation and component patterns
-- [ ] Any new decisions documented in `phase-3-design-decisions.md`
+- [ ] Any new decisions documented in `docs/phase-3-design-decisions.md`
 - [ ] User has approved each styled view
 - [ ] Session log exported via `/export-log 3-2`
 

@@ -17,8 +17,8 @@ Answer the critical unknowns from the Knowledge Audit before proceeding with des
 
 ## Input Artifacts
 
-- `knowledge-audit.md` from Stage 2 (specifically the "Unknown" and "Uncertain" sections)
-- `project-brief.md` from Stage 1
+- `docs/knowledge-audit.md` from Stage 2 (specifically the "Unknown" and "Uncertain" sections)
+- `docs/project-brief.md` from Stage 1
 
 ## Process
 
