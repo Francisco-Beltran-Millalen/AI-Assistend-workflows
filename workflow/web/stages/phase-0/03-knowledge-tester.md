@@ -45,12 +45,14 @@ Priority reading order:
 2. `docs/knowledge-audit.md` — known gaps and assumptions
 3. `docs/use-cases.md` — what the system does
 4. `docs/tech-stack.md` — technology decisions and rationale
-5. `docs/data-model-physical.md` — entities and relationships
-6. `docs/api-design.md` — endpoint contracts
-7. `docs/adrs/` — architecture decision records
-8. `consolidation-artifacts/ui-style-guide.md` — UI decisions
-9. `consolidation-artifacts/implementation-decisions.md` — implementation choices
-10. `prototype-code/` — the actual implemented code (structure, key files, patterns used)
+5. `consolidation-artifacts/phase-1-consolidation.md` — full Phase 1 summary (if Phase 1 complete)
+6. `docs/data-model-physical.md` — entities and relationships
+7. `docs/api-design.md` — endpoint contracts
+8. `docs/adrs/` — architecture decision records
+9. `consolidation-artifacts/phase-2-consolidation.md` — full Phase 2 summary (if Phase 2 complete)
+10. `consolidation-artifacts/ui-style-guide.md` — UI decisions
+11. `consolidation-artifacts/implementation-decisions.md` — implementation choices
+12. `prototype-code/` — the actual implemented code (structure, key files, patterns used)
 
 ## Process
 
@@ -158,7 +160,7 @@ After all questions, give a final assessment:
 
 On completion, optionally export via:
 ```
-/export-log t
+/export-log knowledge
 ```
 
 ## Exit Criteria

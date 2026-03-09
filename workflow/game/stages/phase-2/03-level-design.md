@@ -164,6 +164,12 @@ Cut levels that are too similar or too complex. It's better to have 2 well-desig
 ...
 ```
 
+## Special Cases
+
+**Conditional stage:** This stage may be skipped if the game has no distinct levels. Absence of output artifacts after Phase 2 is expected and not a problem — do not trigger the Existing Artifact Protocol for their absence. Apply the protocol only if artifacts DO exist and this stage is being re-run.
+
+---
+
 ## Exit Criteria
 
 - [ ] Level count and structure are defined

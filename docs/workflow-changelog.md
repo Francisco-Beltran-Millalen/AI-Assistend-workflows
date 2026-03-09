@@ -2,6 +2,206 @@
 
 ---
 
+## 2026-03-09: Audit cleanup — 6 missed fixes (web + game + shared skills)
+
+**Problem:** Six issues missed across previous audit passes.
+**Fix:**
+1. `game/phase-1/03-research.md` — Input Artifacts still used old short-form stage labels ("Stage 2", "Stage 1") instead of full labels ("Stage 1-2", "Stage 1-1"). Web branch was fixed in pass 3; game branch was missed.
+2. `web/phase-0/04-teacher.md` — "Rust, SvelteKit" still hardcoded as example concepts (from old SPA+Rust+Svelte archetype). Game teacher was updated; web teacher was not. Replaced with tech-agnostic examples.
+3. `web/phase-0/00-meta-workflow.md` — "Modified Files" section missing `workflow/shared/`, `AGENTS.md`, and `.agent-utils/skills/**`. Game meta-workflow was updated; web was not.
+4. `.agent-utils/skills/export-log/SKILL.md` — Stage Names section only listed web branch stage names. Game branch uses different names for several stages (e.g., `1-4-mechanic-discovery` vs `1-4-use-case-discovery`, `2-1-core-loop-design` vs `2-1-entity-ui-sketching`, `5-1-distribution` vs `5-1-deployment`). Added full Game Branch section.
+5. `AGENTS.md` — Web Phase 4 description said "3 stages" (wrong — it's 4: setup + loop + learning-guide + refactor). Fixed to "4 stages".
+6. `AGENTS.md` — Critical Rule 4 (`implementation-decisions.md`) was universally stated but `phase-3-design-decisions.md` is web-only. Added clarifying note pointing to WEB-AGENT.md.
+
+**Files:**
+- `workflow/game/stages/phase-1/03-research.md`
+- `workflow/web/stages/phase-0/04-teacher.md`
+- `workflow/web/stages/phase-0/00-meta-workflow.md`
+- `.agent-utils/skills/export-log/SKILL.md`
+- `AGENTS.md`
+
+---
+
+## 2026-03-09: Game branch audit — 4 fixes (inconsistency, naming, omission, clarity)
+
+**Problem:** Full game branch audit found 4 minor issues.
+**Fix:**
+1. `phase-2/04-consolidation.md` — Phase 2→3 handoff listed three artifacts as equals, implying they are co-equal inputs for Phase 3. Clarified in both the Output Artifacts section and the Phase Transition section that `phase-2-consolidation.md` is the **primary** input; `entity-design.md` and `core-loop.md` are supplementary.
+2. `phase-4/02-implementation-loop.md`, `phase-4/03-learning-guide.md`, `phase-4/04-refactor.md` — Comprehension check naming was inconsistent: 4-2 used "Comprehension Check", 4-3 used "End-to-End Narration", 4-4 used "Comprehension Check" for a genuinely different activity. Renamed 4-3's Step 6 to "Comprehension Check" (matching 4-2). Renamed 4-4's section to "Architecture Understanding Check" (distinguishing it — 4-4 tests *why* refactoring changes were made, not per-function understanding). Updated Exit Criteria checklist items to match.
+3. `phase-1/03-research.md` — Input Artifacts section did not mention `consolidation-artifacts/phase-1-consolidation.md` as an optional input for the re-run case. Added as optional artifact.
+4. `phase-3/01-visual-design.md`, `phase-3/02-audio-design.md`, `phase-4/01-project-setup.md` — No explicit "read input artifacts first" instruction in Process sections. Added a "Before Starting" step to each, mirroring the pattern from Phase 4 stages 4-2/4-3/4-4.
+
+**Files:**
+- `workflow/game/stages/phase-2/04-consolidation.md`
+- `workflow/game/stages/phase-4/02-implementation-loop.md` (Exit Criteria checklist only — content was already correct)
+- `workflow/game/stages/phase-4/03-learning-guide.md`
+- `workflow/game/stages/phase-4/04-refactor.md`
+- `workflow/game/stages/phase-1/03-research.md`
+- `workflow/game/stages/phase-3/01-visual-design.md`
+- `workflow/game/stages/phase-3/02-audio-design.md`
+- `workflow/game/stages/phase-4/01-project-setup.md`
+
+---
+
+## 2026-03-09: Web branch audit — 2 fixes (omission, ambiguity)
+
+**Problem:** Full web branch audit found 2 minor issues.
+**Fix:**
+1. `phase-0/03-knowledge-tester.md` — Input Artifacts list was missing `consolidation-artifacts/phase-1-consolidation.md` and `consolidation-artifacts/phase-2-consolidation.md`. Both added in correct priority order (after the individual phase artifacts they summarize).
+2. `phase-3/01-visual-design.md` — Step 5 (View Inventory) told users to record excluded views but gave no guidance on how to categorize included views into the core app / user / auth buckets that stages 3-2, 3-3, and 3-4 depend on. Added explicit categorization instructions and updated the `View Decisions` template to show the expected format with category labels.
+
+**Files:**
+- `workflow/web/stages/phase-0/03-knowledge-tester.md`
+- `workflow/web/stages/phase-3/01-visual-design.md`
+
+---
+
+## 2026-03-09: Split AGENTS.md into branch-specific files (WEB-AGENT.md, GAME-AGENT.md)
+
+**Problem:** AGENTS.md had grown to 575 lines with both Web and Game branch context loaded into every session, regardless of the active branch. A web project session loaded game-specific stage tables, handoffs, and checklists unnecessarily — and vice versa.
+**Cause:** Both branches were added to a single file for convenience; no delegation mechanism existed.
+**Fix:**
+1. Created `WEB-AGENT.md` — full web branch context (stage files, Phase 4 behavior, Critical Rule 4, Architectural Assumptions, Phase Handoffs, How to Determine Current Stage, Artifact Storage, Project Status, Final Output).
+2. Created `GAME-AGENT.md` — full game branch context (same sections, game-specific content).
+3. Stripped `AGENTS.md` to ~160 lines: shared rules, branching table, delegation instruction, phase summaries (names only), Conversation Logging, On-Demand Stages prose, Critical Rules 1–3 + 5–6 (renumbered), Quick Commands, Project Structure, Artifact Storage (shared items only).
+4. Added explicit delegation instruction in `AGENTS.md` (after branching table): read `WEB-AGENT.md` or `GAME-AGENT.md` based on active branch.
+5. Added step 1b to `.agent-utils/skills/start-stage/SKILL.md`: after identifying the active branch, read the branch-specific agent file.
+
+**Files:**
+- `AGENTS.md` (modified — stripped to thin entry point)
+- `WEB-AGENT.md` (created)
+- `GAME-AGENT.md` (created)
+- `.agent-utils/skills/start-stage/SKILL.md` (modified — added step 1b)
+
+---
+
+## 2026-03-09: AGENTS.md game-branch audit — 6 web-only hardcodes fixed
+
+**Problem:** AGENTS.md had 6 sections that were web-branch-only with no game-branch equivalent, causing an AI agent on a game project to get wrong instructions or look for non-existent artifacts.
+**Cause:** These sections were written when only the web branch existed and were never updated when the game branch was added.
+**Fix:**
+1. Critical Rule #4 — `ALWAYS read phase-3-design-decisions.md` applied to both branches. Made it web-branch-only with a note that the game branch has no equivalent.
+2. "Architectural Assumptions" — only described REST/SQL/SQLite/SPA. Added a Game Branch section (game loop, geometric primitives, no persistent DB, engine + architecture pattern decisions).
+3. "Phase Handoffs" — only described web artifact handoffs. Added Game Branch handoffs (mechanics list, core-loop.md, entity-design.md, visual-design.md/audio-design.md, phase-3-consolidation.md).
+4. "How to Determine Current Stage" — only listed web artifact names as stage markers. Added Game Branch section with correct markers (mechanics.md, core-loop.md, entity-design.md, visual-design.md, audio-design.md).
+5. "Artifact Storage" — `Stage files` line hardcoded to `workflow/web/stages/phase-N/`. Added `workflow/game/stages/phase-N/`.
+6. "Project Status" + "Final Output" — checklist and output description were web-only. Added Game Branch Status checklist and game branch Final Output description.
+
+**Files:**
+- `AGENTS.md`
+
+---
+
+## 2026-03-09: Game branch audit — 7 fixes (bugs, hardcodes, inconsistencies, omissions)
+
+**Problem:** Full game branch audit found 7 issues: one bug, one hardcoded engine path, two inconsistencies, and three omissions.
+**Cause:** Combination of copy-paste from web branch without adaptation, authoring oversights.
+**Fix:**
+1. `phase-4/04-refactor.md` — `docs/tech-stack.md` input was annotated "(architecture pattern and rules established in Stage 4-1)"; rules live in `implementation-decisions.md`. Changed to "(engine, language, tools)".
+2. `phase-0/04-teacher.md` — Hardcoded `prototype-code/src/entities/player.py:34` (Python-specific). Replaced with engine-agnostic reference.
+3. `phase-0/04-teacher.md` — Optional export-log was missing from Exit Criteria (present in knowledge-tester, absent here). Added.
+4. `AGENTS.md` — Web stage tables lacked `## Web Branch Stage Files` header, asymmetric with game branch. Header added.
+5. `AGENTS.md` — Log naming convention examples used only web branch stage names. Added game branch examples.
+6. `phase-0/00-meta-workflow.md` — "Modified Files" list omitted `workflow/shared/`, `AGENTS.md`, and `.agent-utils/skills/`. All added.
+7. `phase-3/03-consolidation.md` — Phase transition to Phase 4 was missing `docs/adrs/` (which Stage 4-1 reads). Added.
+
+**Files:**
+- `workflow/game/stages/phase-4/04-refactor.md`
+- `workflow/game/stages/phase-0/04-teacher.md`
+- `workflow/game/stages/phase-0/00-meta-workflow.md`
+- `workflow/game/stages/phase-3/03-consolidation.md`
+- `AGENTS.md`
+
+---
+
+## 2026-03-09: Audit fixes (pass 4) — AGENTS.md Phase 4 labels, missing game branch in tree, unlabeled descriptions
+
+**Problem:** Three bugs found in AGENTS.md during fourth audit pass.
+**Cause:** Original authoring errors.
+**Fix:**
+1. Phase 4 status checklist tracked "Design Priority 1/2/3 use cases implemented" — contradicts Stage 4-2 which says implementation order is dependency-driven, not Design Priority order. Replaced with "All use cases implemented + tested (per Implementation Roadmap order)".
+2. Project Structure tree was missing `workflow/game/` (an Active branch) and `workflow/shared/`. Both added.
+3. Two Phase 4 description blocks (one game, one web) appeared adjacent after the Game Branch table with only a `---` separator and no labels. Added "Game branch —" and "Web branch —" prefixes to each block.
+
+**Files:**
+- `AGENTS.md`
+
+---
+
+## 2026-03-09: Audit fixes (pass 3) — wrong stage references, hardcoded paths, stale log name
+
+**Problem:** Six bugs found during third web-branch audit pass.
+**Cause:** Original authoring errors / stale content from a specific past project.
+**Fix:**
+1. Stage 1-3 input artifacts said "from Stage 2" (wrong — Phase 2 is Sketching). Fixed to "Stage 1-2". Also "from Stage 1" → "Stage 1-1".
+2. Stage 1-2 input artifact said "from Stage 1" → fixed to "Stage 1-1".
+3. Stage 1-1 exit criterion said "Open questions are listed for Stage 2" — ambiguous. Fixed to "Stage 1-2".
+4. Teacher stage (`04-teacher.md`) "Using Project Artifacts" had hardcoded Rust/SvelteKit paths (`prototype-code/backend/src/`, `prototype-code/frontend/src/`). Replaced with generic paths.
+5. Teacher stage Logging section described log filename as `stage-e-teacher-...` — `e` was the old identifier. Fixed to `stage-teacher-...`.
+6. Teacher stage exit criteria was missing `[ ] Session log optionally exported via /export-log teacher`.
+
+**Files:**
+- `workflow/web/stages/phase-1/01-project-definition.md`
+- `workflow/web/stages/phase-1/02-knowledge-audit.md`
+- `workflow/web/stages/phase-1/03-research.md`
+- `workflow/web/stages/phase-0/04-teacher.md`
+
+---
+
+## 2026-03-09: Audit fixes (pass 2) — stale identifiers, missing exit criterion, missing path prefix
+
+**Problem:** Four bugs found during second web-branch audit pass.
+**Cause:** Original authoring errors / stale content from identifier renames.
+**Fix:**
+1. Stage knowledge (`03-knowledge-tester.md`) Logging section had `/export-log t` — `t` was the old teacher stage identifier. Fixed to `/export-log knowledge`.
+2. Stage git (`05-git-assistant.md`) had `/start-stage g` — `g` was the old identifier. Fixed to `/start-stage git` to match `SKILL.md`.
+3. Stage 1-5 exit criteria was missing `[ ] Auth mechanism is selected` — auth mechanism was added as a decision point in the previous audit but its exit criterion was never added.
+4. Stage 2-4 Phase Transition listed `view-entity-mapping.md` without the `docs/` prefix — inconsistent with every other reference in the workflow.
+
+**Files:**
+- `workflow/web/stages/phase-0/03-knowledge-tester.md`
+- `workflow/web/stages/phase-0/05-git-assistant.md`
+- `workflow/web/stages/phase-1/05-tech-selection.md`
+- `workflow/web/stages/phase-2/04-consolidation.md`
+
+---
+
+## 2026-03-09: Audit fixes — wrong input description, missing exit criterion, non-portable path
+
+**Problem:** Three bugs found during web-branch audit.
+**Cause:** Original authoring errors.
+**Fix:**
+1. Stage 4-4 `docs/tech-stack.md` input described as "architecture pattern and rules established in Stage 4-1" — both facts were wrong. Fixed to "language, framework, and dependencies — established in Stage 1-5".
+2. Stage 3-2 exit criteria was missing `[ ] Reference implementation (main view) reviewed before starting`, which was present in 3-3 and 3-4 and required by the 3-2 process.
+3. Stage 2-2 validation command used `/tmp/validate.db` (Unix-only path). Fixed to `validate.db` (project root). Also added a note that `PRAGMA foreign_keys = ON;` must be inside the script, not passed as a CLI argument.
+
+**Files:**
+- `workflow/web/stages/phase-4/04-refactor.md`
+- `workflow/web/stages/phase-3/02-core-app-views.md`
+- `workflow/web/stages/phase-2/02-data-modeling.md`
+
+---
+
+## 2026-03-09: Web workflow generalized — SPA/SSR/hybrid/MPA + flexible auth
+
+**Problem:** The web workflow hardcoded SPA as the only frontend rendering approach and JWT as the only authentication mechanism. This prevented projects that use SSR, hybrid rendering, MPA (HTMX, etc.), session-based auth, or OAuth from using the workflow correctly.
+
+**Cause:** The workflow was originally designed with a fixed SPA + JWT archetype. Tech selection (Stage 1-5) treated these as given constraints rather than decision points.
+
+**Fix:** Removed SPA-only and JWT-only constraints throughout the web workflow. Frontend rendering approach (SPA / SSR / Hybrid / MPA) and authentication mechanism (JWT / Sessions / OAuth / Hybrid) are now real decision points in Stage 1-5. Downstream stages reference `tech-stack.md` rather than hardcoding assumptions.
+
+**Files:**
+- `workflow/web/stages/phase-1/05-tech-selection.md` — Replaced SPA-only Frontend Framework section with a multi-approach decision table; replaced fixed JWT auth section with an auth mechanism decision table; updated scope of decisions; updated stack summary template
+- `workflow/web/stages/phase-1/06-consolidation.md` — Added Frontend Rendering and Auth Mechanism rows to stack summary template; updated Technology Decisions synthesis text
+- `workflow/web/stages/phase-2/03-endpoint-design.md` — Replaced hardcoded Bearer token auth contract with conditional patterns (JWT, Session, OAuth)
+- `workflow/web/stages/phase-3/05-consolidation.md` — Updated Phase Transition note to be conditional on rendering approach
+- `workflow/web/stages/phase-4/01-project-setup.md` — Changed "SPA component development" to "frontend component development"
+- `workflow/web/stages/phase-4/02-implementation-loop.md` — Changed hardcoded "auth uses Bearer token" to reference tech-stack.md; updated route signature example
+- `workflow/web/stages/phase-4/03-learning-guide.md` — Updated route example to say "auth per tech stack"
+- `AGENTS.md` — Removed "separated Backend and Frontend" from workflow description; updated Architectural Assumptions (removed SPA + JWT as fixed); updated Phase 3→4 handoff note; updated project structure comment
+
+---
+
 ## 2026-03-06: Game development branch — full workflow design (Phases 0–5)
 
 **Problem:** The workflow had no game development branch. Only the Web branch (SPA + REST + SQL) existed. The Branching Architecture section listed "Game development" as Planned with no path.

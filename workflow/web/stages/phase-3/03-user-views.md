@@ -45,6 +45,12 @@ Any new reusable styles added.
 
 ---
 
+## Special Cases
+
+**Skip the Existing Artifact Protocol entirely for this stage.** The output artifacts (`docs/phase-3-design-decisions.md`, `docs/assets/css/styles.css`, `docs/assets/views/`) are shared Phase 3 artifacts created by Stage 3-1. Their existence means Stage 3-1 ran, not that this stage ran before. Read the current state of these files in Part 1 of the process below.
+
+---
+
 ## Process
 
 ### Part 1: Read Design Decisions

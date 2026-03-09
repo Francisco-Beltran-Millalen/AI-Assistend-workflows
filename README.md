@@ -1,4 +1,4 @@
-# Web Workflow (SPA + REST + SQL)
+# Web Workflow (REST + SQL)
 
 A structured, AI-collaborative workflow for building web application prototypes — from raw idea to working code, one stage at a time.
 
@@ -10,7 +10,7 @@ This is not a tool. It is a **process**.
 
 A sequence of stages, each with a defined goal, a persona, concrete input artifacts, and concrete output artifacts. You run it with an LLM CLI (Claude Code, Gemini CLI, or any tool that supports `AGENTS.md`). The AI plays a role in each stage — asking questions, proposing designs, writing code — and you approve, adjust, and steer.
 
-The workflow is specialized for a specific type of software: **web applications with REST endpoints, a separated backend and frontend, and a SQL database**. But the underlying philosophy is generic and can be adapted to any domain.
+The workflow is specialized for a specific type of software: **web applications with REST endpoints and a SQL database**. But the underlying philosophy is generic and can be adapted to any domain.
 
 ---
 
@@ -78,16 +78,15 @@ Adding support for a new LLM tool requires:
 
 ---
 
-## This Workflow: Web (SPA + REST + SQL)
+## This Workflow: Web (REST + SQL)
 
 The `web` workflow is a specialization for building web applications with:
-- A **SPA frontend** (single-page application — React, Vue, Svelte, etc.)
-- A **REST API** (JSON over HTTP, stateless)
-- **JWT authentication** (Bearer token — no server-side sessions)
-- A **separated frontend and backend**
+- A **REST API** (JSON over HTTP)
 - A **SQL database** (SQLite for prototyping, any relational DB for production)
 
-**Note:** Server-rendered templates and hybrid approaches (HTMX, etc.) are out of scope for this workflow.
+**Frontend rendering approach** and **authentication mechanism** are chosen in Stage 1-5 (Tech Selection):
+- **Rendering:** SPA, SSR, hybrid, or MPA (HTMX, Hotwire, etc.)
+- **Auth:** JWT (Bearer token), session-based, OAuth, or hybrid
 
 ### The Five Phases
 
@@ -196,7 +195,7 @@ project-root/
 │   ├── adrs/                    ← Architecture Decision Records
 │   └── *.md                     ← Working design artifacts (project-brief.md, use-cases.md, etc.)
 └── workflow/
-    ├── web/                     ← The active workflow (SPA + REST + SQL)
+    ├── web/                     ← The active workflow (REST + SQL)
     │   └── stages/              ← Stage files (one per stage, organized by phase)
     ├── templates/               ← Output templates
     └── scripts/                 ← Automation scripts (log export, auto-export)

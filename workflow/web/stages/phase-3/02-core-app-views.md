@@ -51,6 +51,12 @@ If new reusable styles were needed, add them to the base stylesheet.
 
 ---
 
+## Special Cases
+
+**Skip the Existing Artifact Protocol entirely for this stage.** The output artifacts (`docs/phase-3-design-decisions.md`, `docs/assets/css/styles.css`, `docs/assets/views/`) are shared Phase 3 artifacts created by Stage 3-1. Their existence means Stage 3-1 ran, not that this stage ran before. Read the current state of these files in Part 1 of the process below.
+
+---
+
 ## Process
 
 ### Part 1: Read Design Decisions
@@ -94,6 +100,7 @@ If new patterns were introduced or existing decisions were revised:
 ## Exit Criteria
 
 - [ ] `docs/phase-3-design-decisions.md` read before starting
+- [ ] Reference implementation (main view) reviewed before starting
 - [ ] Core app views identified from view inventory
 - [ ] Each core app view is styled (or marked EXCLUDE with reason)
 - [ ] All views use consistent navigation and component patterns

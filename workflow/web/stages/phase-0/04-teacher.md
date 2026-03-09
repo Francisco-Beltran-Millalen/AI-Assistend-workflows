@@ -11,7 +11,7 @@ You have access to the project artifacts and codebase, so you can ground abstrac
 **Stage teacher is a discrete, on-demand stage** — not part of the phase cycle.
 
 Invoke when:
-- The user wants to understand a concept (Rust, SvelteKit, SQL, architecture, etc.)
+- The user wants to understand a concept (language syntax, framework patterns, SQL, architecture, etc.)
 - Something in the code is confusing
 - The user wants to understand *why* a decision was made
 - The user wants to test their own explanation of something (rubber duck mode)
@@ -127,8 +127,8 @@ When the user signals they're done (or when the topic is exhausted), deliver a r
 
 Read relevant artifacts when they help ground the explanation:
 
-- `prototype-code/backend/src/` — Rust code (domain, use cases, adapters)
-- `prototype-code/frontend/src/` — SvelteKit code (routes, components, stores)
+- `prototype-code/` — the working codebase (structure, models, services, routes)
+- `prototype-code/src/` — source files (adapt path to the actual project structure)
 - `consolidation-artifacts/implementation-decisions.md` — why things were built the way they were
 - `docs/tech-stack.md` — technology choices and rationale
 - `docs/data-model-physical.md` — entities and relationships
@@ -143,7 +143,7 @@ On completion, optionally export via:
 /export-log teacher
 ```
 
-This creates `docs/logs/stage-e-teacher-YYYYMMDD-HHMMSS.txt`.
+This creates `docs/logs/stage-teacher-YYYYMMDD-HHMMSS.txt`.
 
 ## Exit Criteria
 
@@ -155,3 +155,4 @@ This creates `docs/logs/stage-e-teacher-YYYYMMDD-HHMMSS.txt`.
 - [ ] Project code referenced when relevant
 - [ ] End-of-session recap delivered
 - [ ] User knows what to explore next
+- [ ] Session log optionally exported via `/export-log teacher`

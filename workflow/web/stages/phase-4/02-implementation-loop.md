@@ -77,7 +77,7 @@ Pieces needed:
 1. Model: Order (if not already created)
 2. Repository: OrderRepository.find_by_id(id) → Order | null
 3. Service: OrderService.get_order_details(id) → OrderDetailsResponse
-4. Route: GET /orders/{id} — returns OrderDetailsResponse as JSON (Bearer token auth)
+4. Route: GET /orders/{id} — returns OrderDetailsResponse as JSON (auth per tech stack)
 5. Tests: unit test for service, integration test for endpoint
 ```
 
@@ -123,12 +123,12 @@ Service: OrderService
   Approve? [user responds]
 ```
 
-All routes return JSON; auth uses Bearer token.
+Routes follow the API contract from `docs/api-design.md`. Auth uses the mechanism decided in `docs/tech-stack.md` (JWT Bearer, sessions, etc.).
 
 ```
 Route: GET /orders/{id}
 
-  Input:  path param id: int, auth token (Bearer)
+  Input:  path param id: int, auth: [per tech-stack.md]
   Output: 200 → OrderDetailsResponse as JSON
   Errors: 404 → ORDER_NOT_FOUND
 
@@ -173,11 +173,11 @@ Unit test — OrderService.get_order_details
 Integration test — GET /orders/{id}
 
   Scenario: Valid request
-  Input:    GET /orders/1, valid JWT, order exists in DB
+  Input:    GET /orders/1, valid auth, order exists in DB
   Expected: 200 → OrderDetailsResponse JSON with correct data
 
   Scenario: Order not found
-  Input:    GET /orders/999, valid JWT
+  Input:    GET /orders/999, valid auth
   Expected: 404 → { "error": "ORDER_NOT_FOUND" }
 
   Scenario: Unauthenticated
@@ -295,6 +295,12 @@ Complete record of:
 - All discoveries (design gaps, surprises)
 - All deferred items
 - Session history
+
+## Special Cases
+
+**Multi-session stage:** If `consolidation-artifacts/implementation-decisions.md` exists with some but not all use cases complete, skip the Existing Artifact Protocol — this is normal resumption. Use the Session Start process above. Apply the protocol only if all use cases are already marked complete (stage was previously finished).
+
+---
 
 ## Exit Criteria (Per Use Case)
 

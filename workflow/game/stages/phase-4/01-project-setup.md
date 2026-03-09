@@ -28,6 +28,10 @@ Then create a working project skeleton: window opens, game loop runs, player pri
 
 ## Process
 
+### Before Starting
+
+Read all input artifacts listed above: `tech-stack.md`, `adrs/`, and all three consolidation artifacts. The Phase 1 consolidation has the mechanics list and implementation order suggestion; Phase 2 has the game design; Phase 3 has the visual/audio specs that become the constants file. Understanding the full picture before setting up the architecture and roadmap prevents backtracking.
+
 ### Part 1: Review Stack
 
 Read `docs/tech-stack.md` and confirm:

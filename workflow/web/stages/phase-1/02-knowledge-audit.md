@@ -19,7 +19,7 @@ Surface the unknowns, assumptions, and knowledge gaps before they become problem
 
 ## Input Artifacts
 
-- `docs/project-brief.md` from Stage 1
+- `docs/project-brief.md` from Stage 1-1
 
 ## Process
 

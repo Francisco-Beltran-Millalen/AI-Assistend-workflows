@@ -274,6 +274,12 @@ Complete record of:
 - All discoveries (design gaps, surprises)
 - All deferred items
 
+## Special Cases
+
+**Multi-session stage:** If `consolidation-artifacts/implementation-decisions.md` exists with some but not all mechanics complete, skip the Existing Artifact Protocol — this is normal resumption. Use the Session Start process above. Apply the protocol only if all mechanics are already marked complete (stage was previously finished).
+
+---
+
 ## Exit Criteria (Per Mechanic)
 
 - [ ] Slice plan approved by user

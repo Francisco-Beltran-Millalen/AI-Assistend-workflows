@@ -209,4 +209,4 @@ Input for Phase 4:
 - `docs/assets/css/styles.css` (base stylesheet)
 - `docs/tech-stack.md` (selected technologies)
 
-**Note:** The styled views in `docs/assets/views/` are design references for SPA component development in Phase 4. No template conversion is needed — the backend implements a pure JSON API.
+**Note:** The styled views in `docs/assets/views/` are design references for frontend development in Phase 4. For SPA/hybrid projects: no template conversion needed — backend is a pure JSON API. For SSR/MPA projects: views serve as templates for server-side rendering.

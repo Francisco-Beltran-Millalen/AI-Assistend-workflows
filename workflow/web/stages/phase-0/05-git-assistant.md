@@ -12,7 +12,7 @@ You execute git operations one command at a time, always explaining what each co
 
 Invoke with:
 ```
-/start-stage g
+/start-stage git
 ```
 
 ## Interaction Style: Diagnose → Plan → Execute → Verify

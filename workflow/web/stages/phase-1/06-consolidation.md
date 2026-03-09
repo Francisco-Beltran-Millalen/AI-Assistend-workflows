@@ -57,7 +57,7 @@ Extract and organize:
 - Administrative/standard use cases (Design Priority 3)
 
 **Technology Decisions**
-- Selected stack (language, framework, DB, frontend)
+- Selected stack (language, framework, DB, frontend rendering approach, auth mechanism)
 - Key ADRs and their rationale
 - Development environment requirements
 
@@ -132,7 +132,8 @@ Create `consolidation-artifacts/phase-1-consolidation.md` with these sections:
 | Framework | ... | ... |
 | Production DB | ... | ... |
 | Prototype DB | SQLite | 3 |
-| Frontend | ... | ... |
+| Frontend Rendering | [SPA / SSR / Hybrid / MPA] — [framework] | ... |
+| Auth Mechanism | [JWT / Sessions / OAuth] | ... |
 
 ### Key Decisions
 - [ADR-001 summary]

@@ -46,7 +46,7 @@ At the start of Stage 4-4, add a `## Refactoring` section to track:
 
 - `consolidation-artifacts/implementation-decisions.md` — **Read first. Resume from where we left off.**
 - `prototype-code/` — the working prototype
-- `docs/tech-stack.md` (architecture pattern and rules established in Stage 4-1)
+- `docs/tech-stack.md` (engine, language, tools)
 
 ## Process
 
@@ -190,9 +190,9 @@ When ending a session:
 
 ---
 
-### Stage Completion: Comprehension Check
+### Stage Completion: Architecture Understanding Check
 
-When all refactor areas from the roadmap are complete, run the comprehension check.
+When all refactor areas from the roadmap are complete, run the architecture understanding check.
 
 Generate **5 questions** specific to what was actually refactored. Questions should test understanding of *why* the changes were made, not just *what* changed.
 
@@ -243,7 +243,7 @@ A `## Refactoring` section added, containing:
 - [ ] All refactor areas from the approved roadmap are complete
 - [ ] All tests passing
 - [ ] Game plays correctly
-- [ ] Comprehension check completed (5 questions, all wrong answers explained)
+- [ ] Architecture understanding check completed (5 questions on why changes were made, all wrong answers explained)
 - [ ] `consolidation-artifacts/implementation-decisions.md` is updated with full refactor history
 - [ ] User confirms the refactored code makes sense to them
 - [ ] Session log exported via `/export-log 4-4`

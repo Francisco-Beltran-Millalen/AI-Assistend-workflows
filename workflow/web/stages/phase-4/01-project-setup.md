@@ -28,7 +28,7 @@ Then create a working project skeleton that compiles, connects to the database, 
 - `consolidation-artifacts/phase-1-consolidation.md` (scope and use cases)
 - `docs/use-cases.md` (complete use case list for the implementation roadmap)
 - `consolidation-artifacts/ui-style-guide.md` (component patterns, view inventory)
-- `docs/assets/views/` (Phase 3 styled views — design references for SPA component development)
+- `docs/assets/views/` (Phase 3 styled views — design references for frontend component development)
 - `docs/assets/css/styles.css` (base stylesheet)
 
 ## Process

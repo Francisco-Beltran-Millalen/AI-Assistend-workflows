@@ -1,6 +1,6 @@
 # Technology Stack
 
-**Architecture (Fixed):** Web App · REST API · Separated Frontend/Backend · SQL · SQLite for Prototyping
+**Architecture (Fixed):** Web App · REST API · SQL · SQLite for Prototyping
 
 ---
 

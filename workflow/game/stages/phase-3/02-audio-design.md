@@ -26,6 +26,10 @@ Plan the sound design for the game:
 
 ## Process
 
+### Before Starting
+
+Read all input artifacts listed above. The entity interactions in `phase-2-consolidation.md` and `entity-design.md` are the source of truth for what events need sound. The game states in `core-loop.md` determine where music applies.
+
 ### 1. Map Events to Sound Effects
 
 Go through every significant game event and decide if it should have a sound effect.

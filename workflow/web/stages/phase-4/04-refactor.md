@@ -45,7 +45,7 @@ The same persistence document from Stages 4-1 through 4-3. At the start of Stage
 
 - `consolidation-artifacts/implementation-decisions.md` — **Read first. Resume from where we left off.**
 - `prototype-code/` — the working prototype
-- `docs/tech-stack.md` (architecture pattern and rules established in Stage 4-1)
+- `docs/tech-stack.md` (language, framework, and dependencies — established in Stage 1-5)
 
 ## Process
 

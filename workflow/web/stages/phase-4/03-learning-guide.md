@@ -75,7 +75,7 @@ Pieces needed:
 1. Model: Order (if not already created)
 2. Repository: OrderRepository.find_by_id(id)
 3. Service: OrderService.get_order_details(id)
-4. Route: GET /orders/{id} — returns OrderDetailsResponse as JSON (Bearer token auth)
+4. Route: GET /orders/{id} — returns OrderDetailsResponse as JSON (auth per tech stack)
 5. Tests
 ```
 
@@ -248,6 +248,12 @@ Same end result as Stage 4-2 — working endpoints, tests passing. The differenc
 ### Artifact 2: Updated `consolidation-artifacts/implementation-decisions.md`
 
 Same persistence document as Stage 4-2.
+
+## Special Cases
+
+**Multi-session stage:** If `consolidation-artifacts/implementation-decisions.md` exists with some but not all use cases complete, skip the Existing Artifact Protocol — this is normal resumption. Use the Session Start process above. Apply the protocol only if all use cases are already marked complete (stage was previously finished).
+
+---
 
 ## Exit Criteria (Per Use Case)
 

@@ -28,6 +28,10 @@ This stage produces the **visual specification** that Phase 4 implements directl
 
 ## Process
 
+### Before Starting
+
+Read all input artifacts listed above. Understand the entity list, game states, and interaction matrix from `phase-2-consolidation.md` before proposing any visual decisions — the entities and game states drive everything in this stage.
+
 ### Part 1: Color Palette
 
 #### 1. Define the Palette

@@ -262,6 +262,12 @@ These come in later stages.
 - Data sources for each
 - Generation strategy
 
+## Special Cases
+
+**Artifact trigger:** Use `docs/entity-map.md` and `docs/view-entity-mapping.md` as the primary indicators that this stage has run before. The `docs/assets/views/` folder may already contain HTML files from a previous run — this alone does not trigger the Existing Artifact Protocol.
+
+---
+
 ## Exit Criteria
 
 - [ ] All entities are identified

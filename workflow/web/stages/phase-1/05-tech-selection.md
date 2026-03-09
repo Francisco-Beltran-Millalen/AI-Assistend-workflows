@@ -12,25 +12,24 @@ Discuss options with the user, present trade-offs, and make decisions together. 
 
 Select the technology stack for implementation. This happens early (in Discovery) because it informs how artifacts are written in later phases — the data model will have a tech-specific SQL version, the endpoint design will reference framework conventions, etc.
 
-**IMPORTANT:** This workflow assumes a **Web Application with REST endpoints, separated Backend and Frontend, and SQL persistence.** The architecture is already decided. This stage picks the specific technologies within that archetype.
+**IMPORTANT:** This workflow assumes a **Web Application with REST endpoints and SQL persistence.** The core archetype is fixed. This stage picks the specific technologies within it — including the frontend rendering approach and authentication mechanism.
 
 ## Scope of Decisions
 
 The architecture is fixed:
 - **Web application** (browser-based UI)
 - **REST API** (JSON over HTTP)
-- **Separated frontend and backend**
 - **SQL database** (relational persistence)
 - **SQLite for prototyping** (always — regardless of production DB choice)
-- **JWT authentication** (Bearer token, stateless — no server-side sessions)
 
 What's open:
 - Programming language
 - Web framework
 - Production database (PostgreSQL, MySQL, etc.)
 - ORM / database access library
-- SPA framework (React, Vue, Svelte, etc.)
-- Authentication library
+- **Frontend rendering approach** (SPA, SSR, hybrid, MPA — see Frontend section below)
+- **Authentication mechanism** (JWT, sessions, OAuth — see Authentication section below)
+- Frontend framework / library
 - Testing framework
 - Build/dev tools
 
@@ -106,22 +105,37 @@ Present 2–3 options relevant to the project. Tailor to what makes sense given 
 - Migration support
 - Type safety
 
-#### Frontend Framework
+#### Frontend Rendering Approach
 
-This workflow is **SPA (single-page application) only**. The frontend is a separate JavaScript application that communicates with the backend via JSON API.
+Choose the rendering approach that fits the project's needs:
 
-- React, Vue, Svelte, Angular, etc.
-- Consider: team expertise, ecosystem, tooling
+| Approach | Description | Examples |
+|----------|-------------|----------|
+| **SPA** | Separate JS app; backend is a pure JSON API | React, Vue, Svelte, Angular |
+| **SSR** | Server renders HTML; may hydrate on client | Next.js, Nuxt, SvelteKit, Django templates |
+| **Hybrid** | SSR for initial load + SPA-like navigation | Most modern metaframeworks |
+| **MPA** | Traditional server-rendered pages, minimal JS | HTMX, Alpine.js, Hotwire, plain HTML |
 
-**Note:** Server-rendered templates and hybrid approaches (HTMX, etc.) are out of scope for this workflow.
+Consider: SEO requirements, performance needs, offline support, team expertise, hosting constraints.
 
-#### Authentication Library
+**Record the chosen approach** — it affects Phase 3 (UI Polish) and Phase 4 (Project Setup). For SPA/hybrid: backend is a pure JSON API. For SSR/MPA: backend may also serve HTML directly.
 
-Authentication mechanism is **fixed**: JWT (Bearer token, stateless — no server-side sessions). This is not a decision point.
+#### Authentication Mechanism
+
+Choose the authentication approach:
+
+| Approach | Description | Best for |
+|----------|-------------|----------|
+| **JWT (Bearer token)** | Stateless; token in Authorization header | SPA / API-first |
+| **Session-based** | Server-side sessions; cookie-managed | SSR / MPA |
+| **OAuth / OIDC** | Delegate to a third-party provider | Any |
+| **Hybrid** | e.g., OAuth login + JWT for API authorization | Mixed |
+
+Consider: the rendering approach chosen above (SPA favors JWT; SSR/MPA often works better with sessions), team familiarity, and hosting constraints.
 
 Decide:
-- JWT library / implementation approach
-- Token expiration strategy (short-lived + refresh, or long-lived)
+- Auth library / implementation approach
+- Token/session expiration strategy
 - OAuth integration needs (if any)
 
 #### Testing
@@ -181,7 +195,8 @@ Accepted
 ### Frontend
 | Category | Choice | Version |
 |----------|--------|---------|
-| Approach | SPA — [framework choice] | [version] |
+| Rendering | [SPA / SSR / Hybrid / MPA] — [framework choice] | [version] |
+| Auth | [JWT / Sessions / OAuth] | [version] |
 | ...| ... | ... |
 
 ### Dev Tools
@@ -218,6 +233,7 @@ Architecture Decision Records:
 - [ ] Web framework is selected
 - [ ] Production database is selected
 - [ ] Frontend approach is selected
+- [ ] Auth mechanism is selected
 - [ ] All supporting tools are selected
 - [ ] ADRs document key decisions
 - [ ] Development environment is defined

@@ -204,18 +204,39 @@ Establish a consistent error response format:
 
 Document how clients authenticate (contract, not implementation).
 
-This workflow uses **Bearer token authentication** (SPA + stateless JWT).
+**Reference `docs/tech-stack.md`** — the auth mechanism was decided in Stage 1-5. Design the endpoints to match. Common patterns:
 
+**JWT (Bearer token):**
 ```
 Authentication:
   Method: Bearer Token
   Header: Authorization: Bearer {token}
 
 POST /auth/login    → { email, password } → { token, expires_at }
+POST /auth/refresh  → { refresh_token }   → { token, expires_at }
 POST /auth/logout   → (uses current token) → 204 No Content
 ```
 
-Document the token format, expiration, and any refresh token strategy.
+**Session-based:**
+```
+Authentication:
+  Method: Cookie-based sessions (HttpOnly)
+
+POST /auth/login  → { email, password } → sets session cookie → 200 OK
+POST /auth/logout → (uses current session) → clears cookie → 204 No Content
+```
+
+**OAuth / OIDC:**
+```
+Authentication:
+  Flow: Authorization Code
+
+GET  /auth/login    → redirect to provider
+GET  /auth/callback → exchange code → establish session/token
+POST /auth/logout   → revoke session/token
+```
+
+Document the chosen approach's full contract: how the client presents credentials, what the server returns, and the expiration/refresh strategy.
 
 #### 2. Authorization Rules
 

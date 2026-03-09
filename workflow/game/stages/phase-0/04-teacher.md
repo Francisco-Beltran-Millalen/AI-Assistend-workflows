@@ -83,7 +83,7 @@ If the answer shows confusion → try a different analogy, not the same explanat
 ### 4. Connect to the Project (When Relevant)
 
 If the concept being taught is directly tied to the project:
-- Point to the specific file and line: "Look at `prototype-code/src/entities/player.py:34` — this is exactly what we're talking about"
+- Point to the specific file and line: "Look at the player entity file in `prototype-code/` — this is exactly what we're talking about"
 - Explain *why* the project uses this concept, not just *what* it is
 - Reference architectural decisions where relevant: "We chose this approach because..."
 
@@ -153,3 +153,4 @@ On completion, optionally export via:
 - [ ] Project code referenced when relevant
 - [ ] End-of-session recap delivered
 - [ ] User knows what to explore next
+- [ ] Session log optionally exported via `/export-log teacher`

@@ -131,7 +131,7 @@ Present the GDD to the user:
 
 The Game Design Document — a single implementation-ready reference for all Phase 2 work.
 
-Also forward to Phase 3:
+**`consolidation-artifacts/phase-2-consolidation.md` is the primary input for Phase 3.** The individual artifacts below are referenced within it and forwarded as supplementary detail:
 - `docs/entity-design.md` — visual representation specs (Phase 3 expands on these)
 - `docs/core-loop.md` — game states referenced in visual design (menus, HUD)
 
@@ -154,7 +154,4 @@ Also forward to Phase 3:
 
 Proceed to **Phase 3: Visual & Audio Design**, starting with **Stage 3-1: Visual Design**.
 
-The primary inputs for Phase 3 are:
-- `consolidation-artifacts/phase-2-consolidation.md`
-- `docs/entity-design.md`
-- `docs/core-loop.md`
+The **primary input** for Phase 3 is `consolidation-artifacts/phase-2-consolidation.md`. The individual artifacts (`docs/entity-design.md`, `docs/core-loop.md`) are supplementary — they provide additional detail referenced by the GDD.

@@ -21,6 +21,9 @@ Start the specified workflow stage.
    - If **Web** is active: use base path `workflow/web/stages/`
    - If **Game** is active: use base path `workflow/game/stages/`
    - If multiple branches are Active or unclear: ask the user which branch to use
+1b. Read the branch-specific agent file:
+   - Web branch active → read `WEB-AGENT.md`
+   - Game branch active → read `GAME-AGENT.md`
 2. Parse the stage identifier using the determined base path `{base}`:
    - If `0`: Read `{base}/phase-0/00-meta-workflow.md`
    - If `diagram`: Read `{base}/phase-0/01-diagram-assistant.md`
@@ -30,7 +33,7 @@ Start the specified workflow stage.
    - If `git`: Read `{base}/phase-0/05-git-assistant.md`
    - If `<phase>-<stage>`: Read `{base}/phase-<phase>/0<stage>-*.md`
 3. Adopt the persona defined in the stage file
-4. For Phase 1–4 stages only (not 0, diagram, import, knowledge, teacher, git): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `{base}/00-existing-artifact-protocol.md` and follow it before proceeding to step 5.
+4. For Phase 1–4 stages only (not 0, diagram, import, knowledge, teacher, git): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 5.
 5. Follow the stage process
 
 ## Stage Mapping

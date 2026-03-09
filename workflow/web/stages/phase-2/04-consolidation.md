@@ -172,6 +172,12 @@ Organized folder containing:
 - `diagrams/` - Entity diagram(s)
 - `templates/` - Document templates (if any)
 
+## Special Cases
+
+**Artifact trigger:** The `docs/assets/` folder (Artifact 2) is created in Stage 2-1 and always pre-exists when this stage runs. Do not treat it as a trigger. Use only `consolidation-artifacts/phase-2-consolidation.md` to determine whether this stage has run before.
+
+---
+
 ## Exit Criteria
 
 - [ ] Assets folder is organized and complete
@@ -195,4 +201,4 @@ Proceed to **Phase 3: UI Polish**, starting with **Stage 3-1: Design Direction +
 Input for Phase 3:
 - `consolidation-artifacts/phase-2-consolidation.md`
 - `docs/assets/` folder (especially `views/`)
-- `view-entity-mapping.md`
+- `docs/view-entity-mapping.md`

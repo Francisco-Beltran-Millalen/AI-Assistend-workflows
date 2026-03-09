@@ -188,7 +188,8 @@ Run the script to verify:
 **IMPORTANT — SQLite foreign key gotcha:** SQLite disables foreign key enforcement by default. To validate FK constraints, enable them before running the script:
 
 ```bash
-sqlite3 /tmp/validate.db "PRAGMA foreign_keys = ON;" < docs/assets/schema.sql
+sqlite3 validate.db < docs/assets/schema.sql
+# then delete validate.db
 ```
 
 Or interactively:
@@ -198,6 +199,8 @@ PRAGMA foreign_keys = ON;
 ```
 
 Also add `PRAGMA foreign_keys = ON;` as a comment at the top of `schema.sql` as a reminder for application code — every connection must set this or FKs are silently ignored at runtime.
+
+**Note:** `PRAGMA foreign_keys = ON;` must be inside the script (or run before importing it) — it cannot be passed as a command-line argument and applied to a redirected script.
 
 ---
 

@@ -75,7 +75,10 @@ Format:
 
 ### View Decisions
 - **Main View (reference implementation)**: [filename]
-- [View name]: [INCLUDE/EXCLUDE] — [rationale]
+- [View name]: INCLUDE — core app view — [rationale]
+- [View name]: INCLUDE — user view — [rationale]
+- [View name]: INCLUDE — auth view — [rationale]
+- [View name]: EXCLUDE — [rationale]
 - ...
 
 ## Revisions
@@ -99,6 +102,12 @@ Base stylesheet with:
 - Base/reset styles
 - Component styles (buttons, tables, badges, forms)
 - Utility classes
+
+---
+
+## Special Cases
+
+**Living document:** `docs/phase-3-design-decisions.md` spans all Phase 3 stages. If it exists, the Existing Artifact Protocol applies — this stage created it and may have run before.
 
 ---
 
@@ -162,7 +171,13 @@ Review all views from Phase 2 and decide:
 - Which can be merged or removed?
 - What's the main view?
 
-**Record any views excluded and why.**
+For each view that stays, categorize it — these categories map directly to the remaining stages:
+- **Main view** — the reference implementation (styled in this stage)
+- **Core app views** — the primary workflow screens (styled in Stage 3-2)
+- **User views** — profile, settings, account screens (styled in Stage 3-3)
+- **Auth views** — login, register, password reset screens (styled in Stage 3-4)
+
+**Record every view with INCLUDE/EXCLUDE, its category (if included), and rationale.** Excluded views get a brief reason.
 
 ### Part 3: Style the Main View
 

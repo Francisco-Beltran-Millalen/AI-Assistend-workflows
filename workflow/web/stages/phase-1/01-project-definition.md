@@ -85,7 +85,7 @@ A structured document containing:
 - [ ] Target users are identified
 - [ ] Scope boundaries are defined
 - [ ] Known constraints are documented
-- [ ] Open questions are listed for Stage 2
+- [ ] Open questions are listed for Stage 1-2
 - [ ] Output artifact `project-brief.md` is generated
 - [ ] Session log exported via `/export-log 1-1`
 

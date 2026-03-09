@@ -127,6 +127,9 @@ Append-only log of workflow changes:
 
 Any workflow files that were patched:
 - `workflow/game/stages/*.md`
+- `workflow/shared/*.md`
+- `AGENTS.md`
+- `.agent-utils/skills/**`
 - `.claude/settings.json`
 - `CLAUDE.md`
 

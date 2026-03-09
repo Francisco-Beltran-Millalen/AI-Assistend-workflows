@@ -183,7 +183,7 @@ Guide them to the fix.
 
 ---
 
-#### Step 6: End-to-End Narration
+#### Step 6: Comprehension Check
 
 The user explained each function individually before writing it. Now ask for the full picture:
 
@@ -244,6 +244,12 @@ Same end result as Stage 4-2 — fully playable game with mechanics implemented.
 
 Same persistence document as Stage 4-2.
 
+## Special Cases
+
+**Multi-session stage:** If `consolidation-artifacts/implementation-decisions.md` exists with some but not all mechanics complete, skip the Existing Artifact Protocol — this is normal resumption. Use the Session Start process above. Apply the protocol only if all mechanics are already marked complete (stage was previously finished).
+
+---
+
 ## Exit Criteria (Per Mechanic)
 
 - [ ] User explained what each function does before writing it
@@ -255,7 +261,7 @@ Same persistence document as Stage 4-2.
 - [ ] Tests written by the user and passing (where applicable)
 - [ ] All existing tests still passing
 - [ ] Mechanic works in the running game
-- [ ] End-to-end narration completed (user traced full data flow — up to 3 attempts)
+- [ ] Comprehension check completed (user traced full data flow — up to 3 attempts)
 - [ ] `consolidation-artifacts/implementation-decisions.md` updated
 
 ## Exit Criteria (Stage Complete — All Mechanics Done)

@@ -164,3 +164,4 @@ The primary inputs for Phase 4 are:
 - `consolidation-artifacts/phase-2-consolidation.md` (game design document)
 - `consolidation-artifacts/phase-1-consolidation.md` (mechanics, engine, scope)
 - `docs/tech-stack.md` (engine, language, tools)
+- `docs/adrs/` (architecture decisions)

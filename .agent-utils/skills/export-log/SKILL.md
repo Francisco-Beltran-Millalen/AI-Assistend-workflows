@@ -35,7 +35,9 @@ Examples:
 - teacher → `teacher`
 - git → `git-assistant`
 
-### Phase 1: Discovery + Tech Selection
+### Web Branch
+
+#### Phase 1: Discovery + Tech Selection
 - 1-1 → `1-1-project-definition`
 - 1-2 → `1-2-knowledge-audit`
 - 1-3 → `1-3-research`
@@ -43,24 +45,54 @@ Examples:
 - 1-5 → `1-5-tech-selection`
 - 1-6 → `1-6-consolidation`
 
-### Phase 2: Sketching & Data Modeling
+#### Phase 2: Sketching & Data Modeling
 - 2-1 → `2-1-entity-ui-sketching`
 - 2-2 → `2-2-data-modeling`
 - 2-3 → `2-3-endpoint-design`
 - 2-4 → `2-4-consolidation`
 
-### Phase 3: UI Polish
+#### Phase 3: UI Polish
 - 3-1 → `3-1-visual-design`
 - 3-2 → `3-2-core-app-views`
 - 3-3 → `3-3-user-views`
 - 3-4 → `3-4-auth-views`
 - 3-5 → `3-5-consolidation`
 
-### Phase 4: Prototype Implementation
+#### Phase 4: Prototype Implementation
 - 4-1 → `4-1-project-setup`
 - 4-2 → `4-2-implementation-loop`
 - 4-3 → `4-3-learning-guide`
 - 4-4 → `4-4-refactor`
 
-### Phase 5: Deployment
+#### Phase 5: Deployment
 - 5-1 → `5-1-deployment`
+
+### Game Branch
+
+#### Phase 1: Discovery + Tech Selection
+- 1-1 → `1-1-project-definition`
+- 1-2 → `1-2-knowledge-audit`
+- 1-3 → `1-3-research`
+- 1-4 → `1-4-mechanic-discovery`
+- 1-5 → `1-5-tech-selection`
+- 1-6 → `1-6-consolidation`
+
+#### Phase 2: Game Design
+- 2-1 → `2-1-core-loop-design`
+- 2-2 → `2-2-entity-design`
+- 2-3 → `2-3-level-design`
+- 2-4 → `2-4-consolidation`
+
+#### Phase 3: Visual & Audio Design
+- 3-1 → `3-1-visual-design`
+- 3-2 → `3-2-audio-design`
+- 3-3 → `3-3-consolidation`
+
+#### Phase 4: Prototype Implementation
+- 4-1 → `4-1-project-setup`
+- 4-2 → `4-2-implementation-loop`
+- 4-3 → `4-3-learning-guide`
+- 4-4 → `4-4-refactor`
+
+#### Phase 5: Distribution
+- 5-1 → `5-1-distribution`

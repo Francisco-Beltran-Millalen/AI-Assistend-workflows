@@ -2,7 +2,7 @@
 
 When starting a Phase 1–4 stage, the `start-stage` skill checks whether the stage's output artifacts already exist. This protocol defines what to do when they do.
 
-**Does not apply to on-demand stages (0, D, I, T).**
+**Does not apply to on-demand stages (0, diagram, import, knowledge, teacher, git).**
 
 ---
 
@@ -10,13 +10,7 @@ When starting a Phase 1–4 stage, the `start-stage` skill checks whether the st
 
 Look at the stage file's `## Output Artifacts` section. Check if any of the listed files (or folders) already exist.
 
-**Special cases:**
-
-- **Stages 4-2 and 4-3** are designed for multiple sessions. If `consolidation-artifacts/implementation-decisions.md` exists with **some but not all use cases complete**, this is normal resumption — skip this protocol entirely and use the stage's own Session Start process. Apply this protocol only if **all use cases are already marked complete** (stage was previously finished).
-- **Stages 3-2, 3-3, and 3-4** update shared Phase 3 artifacts (`phase-3-design-decisions.md`, `styles.css`, `docs/assets/views/`) that are created by Stage 3-1. These files pre-existing is normal and expected — it means Stage 3-1 ran, not that the current stage ran before. **Skip this protocol entirely for these stages.** Each stage reads the current state of those shared files in its own Part 1 process.
-- **Stage 2-4**: The `docs/assets/` folder (Artifact 2) is created in Stage 2-1 and always pre-exists when Stage 2-4 runs. Do not treat it as a trigger indicator. Use only `consolidation-artifacts/phase-2-consolidation.md` to determine whether Stage 2-4 has run before.
-- **Stage 3-1**: `phase-3-design-decisions.md` is a living document that spans all Phase 3 stages. If it exists, this protocol applies.
-- **Stage 2-1**: Check for `docs/entity-map.md` and `docs/view-entity-mapping.md` as primary indicators. The `docs/assets/views/` folder may already contain HTML files from a previous run.
+**Check for special cases first:** Some stages have special behavior when their artifacts already exist — check the stage file's `## Special Cases` section before proceeding. If the stage defines special handling, follow it. It may instruct you to skip this protocol entirely, use a different trigger artifact, or handle partial completion differently.
 
 ---
 
@@ -55,4 +49,4 @@ Ask the user why this stage is being run again, and present these options:
 
 ---
 
-After completing this protocol, continue with the stage process (Step 4 of `start-stage`).
+After completing this protocol, continue with the stage process (Step 5 of `start-stage`).
