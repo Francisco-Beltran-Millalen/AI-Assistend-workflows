@@ -57,7 +57,7 @@ Every workflow improvement is documented. The system gets better over time and t
 
 The workflow produces a **working prototype** — not production code. The goal is to validate the design by building something real. Speed and correctness are in tension; this workflow resolves it by choosing speed first.
 
-Phase 5 deploys the prototype. A separate "Correctness Workflow" (not included here) takes it to production quality.
+Phase 5 deploys the prototype.
 
 This separation matters because prototyping decisions (SQLite instead of Postgres, no caching, no deployment config) are different from production decisions. Mixing them slows the prototype phase without improving the design.
 
@@ -143,9 +143,9 @@ echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
 
 ## Quick Start
 
-1. **Clone this repo** into your new project directory
+1. **Clone this branch** into your new project directory
    ```bash
-   git clone <repo-url> my-project
+   git clone --branch web --single-branch <repo-url> my-project
    cd my-project
    ```
 
@@ -172,6 +172,7 @@ echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
 
 ```
 project-root/
+├── BRANCH-INFORMATION.md        ← Branch metadata (name, objective, path)
 ├── AGENTS.md                    ← Canonical workflow instructions (read by all LLM tools)
 ├── CLAUDE.md                    ← Claude Code redirect → AGENTS.md
 ├── GEMINI.md                    ← Gemini CLI redirect → AGENTS.md
@@ -195,8 +196,8 @@ project-root/
 │   ├── adrs/                    ← Architecture Decision Records
 │   └── *.md                     ← Working design artifacts (project-brief.md, use-cases.md, etc.)
 └── workflow/
-    ├── web/                     ← The active workflow (REST + SQL)
-    │   └── stages/              ← Stage files (one per stage, organized by phase)
+    ├── stages/                  ← Stage files (one per stage, organized by phase)
+    ├── shared/                  ← Shared protocols (Existing Artifact Protocol)
     ├── templates/               ← Output templates
     └── scripts/                 ← Automation scripts (log export, auto-export)
 ```

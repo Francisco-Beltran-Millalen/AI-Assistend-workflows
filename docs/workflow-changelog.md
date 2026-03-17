@@ -2,6 +2,30 @@
 
 ---
 
+## 2026-03-15: Fix hook scripts failing when CWD is not the project root
+
+**Problem:** `SessionStart` and `SessionEnd` hooks failed during Phase 4-3 when the working directory changed (e.g., `cd prototype-code/`). The hook commands used `./workflow/scripts/...` — a relative path — so they broke whenever the CWD wasn't the project root.
+
+**Cause:** Hook commands in `.claude/settings.json` were relative paths. If Claude Code is launched from a subdirectory, or the agent `cd`s during a session, the path `./workflow/scripts/` doesn't resolve.
+
+**Fix:** Changed both hook commands to use `git rev-parse --show-toplevel` to anchor the script path to the git root, making them CWD-independent.
+
+**Files:** `.claude/settings.json`
+
+---
+
+## 2026-03-15: Remove all "Correctness Workflow" references
+
+**Problem:** Stage 4-3 persona was telling the user that bad architecture would be fixed by a future "Correctness Workflow," which no longer exists as a concept.
+
+**Cause:** 7 references to the Correctness Workflow remained across workflow files after Stage 4-4 (Refactor) replaced it. The changelog entry from 2026-03-06 noted the replacement but didn't clean up the stale references.
+
+**Fix:** Removed all 7 references. The out-of-scope sentence in `04-refactor.md` was deleted entirely (option chosen: don't define what the stage doesn't cover). Trailing mentions in `AGENTS.md`, `README.md`, `WEB-AGENT.md`, and `phase-5/01-deployment.md` were removed or trimmed.
+
+**Files:** `AGENTS.md`, `README.md`, `WEB-AGENT.md`, `workflow/web/stages/phase-4/04-refactor.md`, `workflow/web/stages/phase-5/01-deployment.md`
+
+---
+
 ## 2026-03-09: Audit cleanup — 6 missed fixes (web + game + shared skills)
 
 **Problem:** Six issues missed across previous audit passes.

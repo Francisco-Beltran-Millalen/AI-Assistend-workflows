@@ -27,7 +27,6 @@ Take the working prototype from Stages 4-2/4-3 and make it architecturally sound
 - **Code organization** — extract repeated patterns, remove dead code, improve naming, enforce layer rules
 - **Configuration** — no hardcoded values, all config via environment variables
 
-This stage does **not** cover: performance optimization, deployment config, observability/monitoring, or full production security hardening. Those belong to the Correctness Workflow (future).
 
 ## Persistence Document: `consolidation-artifacts/implementation-decisions.md`
 

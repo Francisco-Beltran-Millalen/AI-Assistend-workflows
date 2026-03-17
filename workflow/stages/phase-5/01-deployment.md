@@ -67,4 +67,4 @@ Likely candidates:
 
 ## Next Steps
 
-After Phase 5, the prototype is deployed. The **Correctness Workflow** (future, separate) takes it to production quality.
+After Phase 5, the prototype is deployed.
