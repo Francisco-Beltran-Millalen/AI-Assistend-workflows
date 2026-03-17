@@ -12,12 +12,8 @@ This is the **Web Workflow** — a structured, AI-collaborative process for buil
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
-| 0 | `workflow/stages/phase-0/00-meta-workflow.md` | Workflow Engineer | `workflow-changelog.md` |
-| diagram | `workflow/stages/phase-0/01-diagram-assistant.md` | Visual Communicator | `assets/diagrams/*.md` |
-| import | `workflow/stages/phase-0/02-import-artifact.md` | Artifact Importer | `imported-artifacts/*-imported.md` |
-| knowledge | `workflow/stages/phase-0/03-knowledge-tester.md` | Interview Coach | No artifacts (preparation only) |
-| teacher | `workflow/stages/phase-0/04-teacher.md` | Patient Teacher | No artifacts (learning sessions) |
-| git | `workflow/stages/phase-0/05-git-assistant.md` | Version Control Engineer | No artifacts (operational) |
+| 0 | `workflow/stages/phase-0/00-meta-workflow.md` | Workflow Engineer | `workflow-changelog.md`, `imported-artifacts/*-imported.md` |
+| teacher | `workflow/stages/phase-0/04-teacher.md` | Patient Teacher | `assets/diagrams/*.md` (diagram mode); no artifacts otherwise |
 
 ### Phase 1: Discovery + Tech Selection
 
@@ -187,12 +183,8 @@ Examples:
 ## On-Demand Stages
 
 **On-demand stages** are not part of the phase cycle. Invoke them anytime:
-- **Stage 0** (`/start-stage 0`) — Fix workflow issues
-- **Stage diagram** (`/start-stage diagram`) — Generate diagrams and visual aids from artifacts
-- **Stage import** (`/start-stage import`) — Import external artifacts and adapt them to workflow format
-- **Stage knowledge** (`/start-stage knowledge`) — Pre-meeting knowledge check (quiz yourself on all decisions)
-- **Stage teacher** (`/start-stage teacher`) — Socratic teaching sessions (explain concepts, rubber duck mode)
-- **Stage git** (`/start-stage git`) — Git and version control operations
+- **Stage 0** (`/start-stage 0`) — Workflow maintenance, git operations, and artifact import
+- **Stage teacher** (`/start-stage teacher`) — Teaching (Socratic), rubber duck mode, pre-meeting knowledge test, diagrams
 
 ---
 
@@ -213,12 +205,8 @@ Examples:
 ### Slash Commands (Skills)
 
 - `/start-stage <phase>-<stage>` → Start a specific stage (e.g., `/start-stage 2-1`)
-- `/start-stage 0` → Meta-Workflow (fix workflow issues)
-- `/start-stage diagram` → Diagram Assistant (visualize artifacts)
-- `/start-stage import` → Import an external artifact into workflow format
-- `/start-stage knowledge` → Knowledge Tester (pre-meeting quiz)
-- `/start-stage teacher` → Teacher (Socratic learning sessions)
-- `/start-stage git` → Git Assistant (version control operations)
+- `/start-stage 0` → Workflow Engineer (workflow fixes, git ops, artifact import)
+- `/start-stage teacher` → Teacher (teaching, rubber duck, knowledge test, diagrams)
 - `/export-log <phase>-<stage>` → Export conversation to docs/logs/
 
 ### Natural Language

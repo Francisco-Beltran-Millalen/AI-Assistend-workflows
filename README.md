@@ -100,16 +100,12 @@ The `web` workflow is a specialization for building web applications with:
 
 ### On-Demand Stages
 
-Six stages run outside the phase cycle, whenever needed:
+Two stages run outside the phase cycle, whenever needed:
 
 | Stage | Purpose |
 |-------|---------|
-| **Stage 0** — Meta-Workflow | Fix the workflow itself |
-| **Stage diagram** — Diagram Assistant | Visualize any artifact as a Mermaid diagram |
-| **Stage import** — Artifact Importer | Bring in an external artifact (Swagger spec, SQL schema, project doc) and adapt it to the workflow's format |
-| **Stage knowledge** — Knowledge Tester | Pre-meeting quiz on all decisions made so far |
-| **Stage teacher** — Teacher | Socratic learning sessions and rubber duck debugging |
-| **Stage git** — Git Assistant | Version control operations |
+| **Stage 0** — Meta-Workflow | Fix the workflow itself, run git operations, import external artifacts |
+| **Stage teacher** — Teacher | Socratic learning sessions, rubber duck debugging, pre-meeting knowledge tests, diagrams |
 
 ### What It Produces
 
@@ -187,7 +183,7 @@ project-root/
 │   └── skills/                  ← Canonical, tool-agnostic skill content
 │       ├── start-stage/
 │       └── export-log/
-├── imported-artifacts/          ← Raw imports + adapted *-imported.md files (Stage I)
+├── imported-artifacts/          ← Raw imports + adapted *-imported.md files (Stage 0)
 ├── consolidation-artifacts/     ← Phase milestone documents (committed to git)
 ├── prototype-code/              ← Working prototype code (committed to git)
 ├── docs/
@@ -209,9 +205,8 @@ project-root/
 | Command | What it does |
 |---------|-------------|
 | `/start-stage 1-1` | Start a specific stage (Phase 1, Stage 1) |
-| `/start-stage 0` | Start the Meta-Workflow (fix workflow issues) |
-| `/start-stage diagram` | Start the Diagram Assistant |
-| `/start-stage import` | Start the Artifact Importer |
+| `/start-stage 0` | Start the Meta-Workflow (workflow fixes, git ops, artifact import) |
+| `/start-stage teacher` | Start the Teacher (teaching, rubber duck, knowledge test, diagrams) |
 | `/export-log 1-1` | Export the current session log for Stage 1-1 |
 
 ---

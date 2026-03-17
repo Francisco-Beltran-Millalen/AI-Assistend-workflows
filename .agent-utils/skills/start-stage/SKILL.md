@@ -6,36 +6,24 @@ Start the specified workflow stage.
 
 - Stage identifier:
   - `0` for meta-workflow
-  - `diagram` for diagram-assistant
-  - `import` for import-artifact
-  - `knowledge` for knowledge-tester
   - `teacher` for teacher
-  - `git` for git-assistant
   - `<phase>-<stage>` for regular stages (e.g., `2-1` for Phase 2 Stage 1)
 
 ## Instructions
 
 1. Parse the stage identifier and build the file path using base `workflow/stages/`:
    - If `0`: Read `workflow/stages/phase-0/00-meta-workflow.md`
-   - If `diagram`: Read `workflow/stages/phase-0/01-diagram-assistant.md`
-   - If `import`: Read `workflow/stages/phase-0/02-import-artifact.md`
-   - If `knowledge`: Read `workflow/stages/phase-0/03-knowledge-tester.md`
    - If `teacher`: Read `workflow/stages/phase-0/04-teacher.md`
-   - If `git`: Read `workflow/stages/phase-0/05-git-assistant.md`
    - If `<phase>-<stage>`: Read `workflow/stages/phase-<phase>/0<stage>-*.md`
 2. Adopt the persona defined in the stage file
-3. For Phase 1–4 stages only (not 0, diagram, import, knowledge, teacher, git): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
+3. For Phase 1–4 stages only (not 0 or teacher): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
 4. Follow the stage process
 
 ## Stage Mapping
 
 ### On-Demand Stages
-- 0: meta-workflow (fix workflow issues)
-- diagram: diagram-assistant (visualize artifacts)
-- import: import-artifact (import and adapt external artifacts)
-- knowledge: knowledge-tester (pre-meeting knowledge check)
-- teacher: teacher (Socratic teaching sessions)
-- git: git-assistant (version control operations)
+- 0: meta-workflow (workflow fixes, git ops, artifact import)
+- teacher: teacher (teaching, rubber duck, knowledge test, diagrams)
 
 ### Phase 1: Discovery + Tech Selection
 - 1-1: project-definition
@@ -72,7 +60,12 @@ Start the specified workflow stage.
 ```
 /start-stage 0
 ```
-Starts Stage 0 (Meta-Workflow) with the Workflow Engineer persona.
+Starts Stage 0 (Workflow Engineer) — handles workflow fixes, git operations, and artifact imports.
+
+```
+/start-stage teacher
+```
+Starts Stage teacher (Patient Teacher) — handles teaching, rubber duck mode, pre-meeting knowledge tests, and diagrams.
 
 ```
 /start-stage 2-1

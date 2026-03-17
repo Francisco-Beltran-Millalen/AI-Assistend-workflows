@@ -6,11 +6,7 @@ Export the current conversation to a log file in `docs/logs/`.
 
 - Stage identifier:
   - `0` for meta-workflow
-  - `diagram` for diagram-assistant
-  - `import` for import-artifact
-  - `knowledge` for knowledge-tester
   - `teacher` for teacher
-  - `git` for git-assistant
   - `<phase>-<stage>` for regular stages (e.g., `2-1` for Phase 2 Stage 1)
 
 ## Process
@@ -29,11 +25,7 @@ Examples:
 
 ### On-Demand Stages
 - 0 → `00-meta-workflow`
-- diagram → `diagram-assistant`
-- import → `import-artifact`
-- knowledge → `knowledge-tester`
 - teacher → `teacher`
-- git → `git-assistant`
 
 ### Phase 1: Discovery + Tech Selection
 - 1-1 → `1-1-project-definition`

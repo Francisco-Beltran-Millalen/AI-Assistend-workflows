@@ -2,6 +2,48 @@
 
 ---
 
+## 2026-03-17: Full audit — README stale on-demand stage references (3 fixes)
+
+**Problem:** README.md still listed the 4 deleted on-demand stages (diagram, import, knowledge, git) in two places after the Phase-0 persona fusion. Also referenced "Stage I" (import) in a folder comment.
+
+**Cause:** README was not updated when the 4 stages were deleted and merged into Stage 0 and Stage teacher.
+
+**Fix:**
+1. On-Demand Stages table — replaced 6-row table with 2-row table (Stage 0, Stage teacher); updated count from "Six" to "Two"; updated Stage 0 description to list all three modes.
+2. Slash Commands table — removed `/start-stage diagram` and `/start-stage import`; added `/start-stage teacher`.
+3. Project Structure comment — changed `(Stage I)` → `(Stage 0)` for `imported-artifacts/`.
+
+**Files:** `README.md`
+
+---
+
+## 2026-03-17: Phase-0 persona fusion — 6 stages collapsed to 2
+
+**Problem:** Phase-0 had 6 separate on-demand stages (Workflow Engineer, Diagram Assistant, Artifact Importer, Knowledge Tester, Teacher, Git Assistant). This created unnecessary friction: switching personas for related work (e.g., fixing a workflow issue then committing the fix required two separate stage invocations), and the proliferation of stages made the on-demand menu harder to reason about.
+
+**Cause:** Workflow design issue — personas were split too granularly. Related capabilities (workflow maintenance + git + import; teaching + knowledge testing + diagrams) were siloed into separate stages even though they serve the same user intent and benefit from each other's context.
+
+**Fix:**
+- Merged `05-git-assistant.md` and `02-import-artifact.md` into `00-meta-workflow.md` (Stage 0: Workflow Engineer). Stage 0 now has three modes: workflow maintenance, git operations, artifact import.
+- Merged `03-knowledge-tester.md` and `01-diagram-assistant.md` into `04-teacher.md` (Stage teacher: Patient Teacher). Teacher now has four modes: teaching, rubber duck, knowledge test, diagram.
+- Deleted the four absorbed stage files.
+- Updated `AGENTS.md` on-demand stages table, On-Demand Stages section, and Quick Commands section.
+- Updated `.agent-utils/skills/start-stage/SKILL.md` stage mapping and instructions.
+- Fixed hardcoded Rust file path example in `04-teacher.md:86` (`.rs` path from game branch leaked in).
+
+**Files:**
+- `workflow/stages/phase-0/00-meta-workflow.md` — rewritten (absorbs git + import)
+- `workflow/stages/phase-0/04-teacher.md` — rewritten (absorbs knowledge tester + diagram)
+- `workflow/stages/phase-0/01-diagram-assistant.md` — deleted
+- `workflow/stages/phase-0/02-import-artifact.md` — deleted
+- `workflow/stages/phase-0/03-knowledge-tester.md` — deleted
+- `workflow/stages/phase-0/05-git-assistant.md` — deleted
+- `AGENTS.md` — on-demand stages updated
+- `.agent-utils/skills/start-stage/SKILL.md` — stage mapping updated
+- `.agent-utils/skills/export-log/SKILL.md` — stage identifiers updated
+
+---
+
 ## 2026-03-15: Fix hook scripts failing when CWD is not the project root
 
 **Problem:** `SessionStart` and `SessionEnd` hooks failed during Phase 4-3 when the working directory changed (e.g., `cd prototype-code/`). The hook commands used `./workflow/scripts/...` — a relative path — so they broke whenever the CWD wasn't the project root.
