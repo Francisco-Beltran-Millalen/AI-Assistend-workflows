@@ -61,7 +61,7 @@ If uncertain between two stages, present both options to the user and ask which 
 
 ### 3. Read the Target Stage File
 
-Read the relevant stage file from `workflow/web/stages/` to understand:
+Read the relevant stage file from `workflow/stages/` to understand:
 - The exact output format and section structure required
 - Which sections are mandatory
 - What the complete artifact should look like

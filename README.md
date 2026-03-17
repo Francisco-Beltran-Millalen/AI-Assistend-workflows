@@ -218,7 +218,7 @@ project-root/
 
 ## Building Your Own Workflow
 
-The `web` specialization lives in `workflow/web/`. The philosophy it runs on is generic.
+The `web` specialization lives in `workflow/stages/`. The philosophy it runs on is generic.
 
 If you wanted to build a `game` workflow or a `cli` workflow, the structure would be the same:
 
