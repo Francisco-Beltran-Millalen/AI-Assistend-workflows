@@ -2,6 +2,52 @@
 
 ---
 
+## 2026-03-19: Fourth audit — README, PREREQUISITES, BRANCH-INFORMATION, and teacher Diagram Mode
+
+**Problem:** Four files still contained web-workflow or stale content missed by previous audit passes.
+**Cause:** README, PREREQUISITES, and BRANCH-INFORMATION had not been audited in previous passes; teacher Diagram Mode code examples used web entities and flows.
+**Fix:**
+- `README.md`: full rewrite — replaced old 5-phase structure with correct 4-phase game workflow (gameconcept/graybox/asset/sound); removed deleted on-demand stages (diagram, import, knowledge, git); updated personas, artifact names, project structure, quick start commands, slash commands table, and prerequisites
+- `PREREQUISITES.md`: full rewrite — removed web-specific tools (SQLite CLI, web browser for HTML views, Phase 2/3 UI references); added game-specific prerequisites (Rust/Cargo for Bevy, Krita for 2D art, Blender for 3D, Material Maker, Audacity)
+- `BRANCH-INFORMATION.md`: fixed `/start-stage 1-1` → `/start-stage gameconcept-1`
+- `workflow/stages/phase-0/04-teacher.md` Diagram Mode: replaced Diagram Type Guide table rows (web terms → game terms); replaced both example recommendations (entity map/order flow → mechanic dependencies/player attack flow); replaced all five Mermaid code examples (Customer/Order/API/Frontend → Player/Enemy/InputSystem/CombatSystem); replaced save directory example filenames (entity-diagram/order-state → mechanic-dependencies/player-state)
+**Files:** `README.md`, `PREREQUISITES.md`, `BRANCH-INFORMATION.md`, `workflow/stages/phase-0/04-teacher.md`
+
+---
+
+## 2026-03-19: Third audit — remove remaining web and stale references across all workflow files
+
+**Problem:** Six files still contained web-workflow artifacts, stale stage identifiers for deleted stages, or wrong project directory paths.
+**Cause:** Previous two audits cleaned the main files but missed the teacher stage, shared protocol, export-log skill, git-commit skill, and run-tests skills.
+**Fix:**
+- `04-teacher.md` Knowledge Test Mode: replaced priority reading list (removed 9 web-only files, added 11 game workflow artifacts), replaced 8 web question categories with 7 game-specific categories (Game Concept & Vision, Genre & References, Mechanics & Feel Contracts, Technology Decisions, Visual Language & Graybox, Art Direction, Sound Design, Bevy Implementation), fixed Diagram Mode prompt, fixed "Using Project Artifacts" section (removed 4 web-only references), fixed `prototype-code/` → `graybox-prototype/`
+- `00-existing-artifact-protocol.md`: removed `diagram, import, knowledge, git` from excluded stages list
+- `export-log/SKILL.md`: removed 4 deleted stage identifiers (`diagram`, `import`, `knowledge`, `git`) from arguments and stage names
+- `git-commit/SKILL.md`: removed `consolidation-artifacts/implementation-decisions.md` reference, updated file examples and commit format to game workflow conventions
+- `run-all-tests/SKILL.md`: rewrote for Bevy/Cargo — removed multi-framework table and `prototype-code/`
+- `run-stage-tests/SKILL.md`: rewrote for game workflow — replaced use-case/implementation-decisions.md pattern with mechanic/mechanic-spec.md, `prototype-code/` → `graybox-prototype/`
+**Files:** `workflow/stages/phase-0/04-teacher.md`, `workflow/shared/00-existing-artifact-protocol.md`, `.agent-utils/skills/export-log/SKILL.md`, `.agent-utils/skills/git-commit/SKILL.md`, `.agent-utils/skills/run-all-tests/SKILL.md`, `.agent-utils/skills/run-stage-tests/SKILL.md`
+
+---
+
+## 2026-03-19: Replace web-workflow artifact references in Mode 3 (Artifact Import)
+
+**Problem:** `00-meta-workflow.md` Mode 3 detection heuristics table and examples contained web-workflow artifacts (Stage 1-1 through 3-5, REST endpoints, SQL schemas, CSS frameworks, Swagger) with no game workflow equivalents.
+**Cause:** Mode 3 was ported from a web workflow and never updated for the game context.
+**Fix:** Replaced heuristics table with game workflow mappings (gameconcept-1 through sound-2); updated input/save examples, placeholder notation, and stage identifier format.
+**Files:** `workflow/stages/phase-0/00-meta-workflow.md`
+
+---
+
+## 2026-03-19: Full workflow audit — remove unused stages and dead references
+
+**Problem:** Phase-0 had been trimmed to 2 stages (0 and teacher) but AGENTS.md, SKILL.md, and the file system still referenced 4 deleted stages (diagram, import, knowledge, git). Additionally, 5 old phase directories (phase-1 through phase-5), an orphaned `graybox/04-mechanic-loop.md`, and a full set of web-workflow templates in `workflow/templates/ai/` were still present.
+**Cause:** Incremental changes without a coordinated audit pass.
+**Fix:** Deleted orphaned directories and files; updated all references in AGENTS.md and start-stage SKILL.md to reflect the 2-stage phase-0 reality.
+**Files:** `AGENTS.md`, `.agent-utils/skills/start-stage/SKILL.md`, deleted `workflow/stages/phase-1/` through `phase-5/`, `workflow/stages/graybox/04-mechanic-loop.md`, `workflow/templates/ai/`
+
+---
+
 ## 2026-03-09: Audit cleanup — 6 missed fixes (web + game + shared skills)
 
 **Problem:** Six issues missed across previous audit passes.

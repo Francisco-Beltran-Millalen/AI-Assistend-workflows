@@ -6,11 +6,7 @@ Export the current conversation to a log file in `docs/logs/`.
 
 - Stage identifier:
   - `0` for meta-workflow
-  - `diagram` for diagram-assistant
-  - `import` for import-artifact
-  - `knowledge` for knowledge-tester
   - `teacher` for teacher
-  - `git` for git-assistant
   - `<phase-name>-<stage-number>` for regular stages (e.g., `graybox-1`, `gameconcept-2`)
   - `<phase-name>-<stage-number>-<variant>` for variant stages (e.g., `graybox-4-generative`, `asset-4-2d`)
 
@@ -24,7 +20,7 @@ Export the current conversation to a log file in `docs/logs/`.
 
 Examples:
 - `stage-00-meta-workflow-20260319-091500.txt`
-- `stage-git-assistant-20260319-143022.txt`
+- `stage-teacher-20260319-091500.txt`
 - `stage-gameconcept-1-brief-20260319-143022.txt`
 - `stage-graybox-4-generative-mechanic-loop-20260319-143022.txt`
 
@@ -32,11 +28,7 @@ Examples:
 
 ### On-Demand Stages
 - 0 → `00-meta-workflow`
-- diagram → `diagram-assistant`
-- import → `import-artifact`
-- knowledge → `knowledge-tester`
 - teacher → `teacher`
-- git → `git-assistant`
 
 ### gameconcept: Game Concept
 - gameconcept-1 → `gameconcept-1-brief`

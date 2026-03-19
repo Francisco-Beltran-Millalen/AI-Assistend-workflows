@@ -13,11 +13,7 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
 | 0 | `workflow/stages/phase-0/00-meta-workflow.md` | Workflow Engineer | `workflow-changelog.md` |
-| diagram | `workflow/stages/phase-0/01-diagram-assistant.md` | Visual Communicator | `docs/assets/diagrams/*.md` |
-| import | `workflow/stages/phase-0/02-import-artifact.md` | Artifact Importer | `imported-artifacts/*-imported.md` |
-| knowledge | `workflow/stages/phase-0/03-knowledge-tester.md` | Interview Coach | No artifacts |
 | teacher | `workflow/stages/phase-0/04-teacher.md` | Patient Teacher | No artifacts |
-| git | `workflow/stages/phase-0/05-git-assistant.md` | Version Control Engineer | No artifacts |
 
 ### gameconcept: Game Concept
 
@@ -126,11 +122,7 @@ This creates: `docs/logs/stage-graybox-1-mechanic-spec-20260319-143022.txt`
 
 **On-demand stages** are not part of the phase cycle. Invoke them anytime:
 - **Stage 0** (`/start-stage 0`) — Fix workflow issues
-- **Stage diagram** (`/start-stage diagram`) — Generate diagrams from artifacts
-- **Stage import** (`/start-stage import`) — Import external artifacts
-- **Stage knowledge** (`/start-stage knowledge`) — Quiz yourself on all decisions
 - **Stage teacher** (`/start-stage teacher`) — Socratic teaching sessions
-- **Stage git** (`/start-stage git`) — Git and version control operations
 
 ---
 
@@ -151,11 +143,7 @@ This creates: `docs/logs/stage-graybox-1-mechanic-spec-20260319-143022.txt`
 
 - `/start-stage <stage-identifier>` → Start a stage (e.g., `/start-stage graybox-1`)
 - `/start-stage 0` → Meta-Workflow (fix workflow issues)
-- `/start-stage diagram` → Diagram Assistant
-- `/start-stage import` → Import an external artifact
-- `/start-stage knowledge` → Knowledge Tester
 - `/start-stage teacher` → Teacher
-- `/start-stage git` → Git Assistant
 - `/export-log <stage-identifier>` → Export conversation to `docs/logs/`
 
 ### Natural Language

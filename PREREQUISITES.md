@@ -40,25 +40,24 @@ Required to run the workflow hook scripts.
 
 Verify: `bash --version`
 
-### 4. Web browser
+### 4. Rust + Cargo
 
-Used to review HTML views produced in Phase 2 (UI Sketching) and Phase 3 (UI Polish).
+Used to build and run the Bevy graybox prototype (graybox phase onward).
 
-Any modern browser works (Chrome, Firefox, Safari, Edge).
+Install via **rustup** (manages Rust versions and toolchains):
 
-### 5. SQLite CLI
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
 
-Used in Stage 2-2 to validate the database schema and mock data by running the generated `schema.sql` script.
+| OS | Notes |
+|----|-------|
+| Linux / macOS | Install via rustup (above) |
+| Windows | Use rustup-init.exe from https://rustup.rs |
 
-| OS | Status | Install |
-|----|--------|---------|
-| Linux (Debian/Ubuntu) | Not always included | `sudo apt install sqlite3` |
-| macOS | Pre-installed | Available via `sqlite3` |
-| Windows | Not included | https://sqlite.org/download.html or use WSL |
+Verify: `rustc --version && cargo --version`
 
-Verify: `sqlite3 --version`
-
-### 6. Git
+### 5. Git
 
 Required to clone the workflow, version control your project, and push to GitHub.
 
@@ -72,14 +71,42 @@ Verify: `git --version`
 
 ---
 
-## Planned (not yet required)
+## Required for Asset Phase
 
-<!--
-  - Docker: planned for standardizing the development and deployment environment
-    in Phase 4 (Prototype Implementation), so the project runs consistently
-    across machines without manual dependency setup.
-    Install: https://docs.docker.com/get-docker/
--->
+Install these when you reach the asset phase. Not needed before then.
+
+### Krita (2D art)
+
+Used for concept sketching, line art, coloring, and sprite sheet production.
+
+- Download: https://krita.org/en/download/
+- Available on Linux, macOS, Windows
+
+### Blender (3D modeling)
+
+Required only if your art direction decision is 3D or Mixed pipeline.
+
+- Download: https://www.blender.org/download/
+- Available on Linux, macOS, Windows
+
+### Material Maker (procedural textures)
+
+Optional. Used for generating PBR texture maps procedurally (metal, fabric, stone, etc.).
+
+- Download: https://www.materialmaker.org
+
+---
+
+## Required for Sound Phase
+
+Install when you reach the sound phase.
+
+### Audacity
+
+Used for trimming, normalizing, pitch-shifting, EQ, and layering SFX recordings.
+
+- Download: https://www.audacityteam.org/download/
+- Available on Linux, macOS, Windows
 
 ---
 
@@ -90,6 +117,7 @@ Run this to check all required tools at once:
 ```bash
 echo "Python 3:  $(python3 --version 2>/dev/null || echo 'NOT FOUND')"
 echo "bash:      $(bash --version 2>/dev/null | head -1 || echo 'NOT FOUND')"
-echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
+echo "Rust:      $(rustc --version 2>/dev/null || echo 'NOT FOUND')"
+echo "Cargo:     $(cargo --version 2>/dev/null || echo 'NOT FOUND')"
 echo "git:       $(git --version 2>/dev/null || echo 'NOT FOUND')"
 ```

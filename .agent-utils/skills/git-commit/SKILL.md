@@ -34,11 +34,8 @@ Run this? [yes / no / explain more]
 
 ### Step 2: Determine Stage Context
 
-Read `consolidation-artifacts/implementation-decisions.md` to identify:
-- Current stage (4-2, 4-3, etc.)
-- Use case just completed (e.g., "UC-3: User can view order list")
+Use the stage identifier and context from the current session to determine what was just completed — e.g., "graybox-1 mechanic spec" or "implement player movement mechanic".
 
-If the file doesn't exist, use the stage identifier from the session context.
 If context is unclear, ask: "What should I use as the commit message context?"
 
 ---
@@ -50,18 +47,18 @@ Based on `git status` output, propose adding files relevant to the completed wor
 For each logical group, show one `git add` command:
 
 ```bash
-git add prototype-code/src/orders/ prototype-code/tests/test_orders.py
+git add graybox-prototype/src/ docs/mechanic-spec.md
 ```
-> Stages the Order service, repository, route, and tests for UC-3.
+> Stages the Bevy source changes and updated mechanic spec for the completed mechanic.
 
 Run this? [yes / no / explain more]
 
-If there are workflow artifacts that changed (e.g., `consolidation-artifacts/implementation-decisions.md`):
+If there are workflow artifacts that changed (e.g., `docs/mechanic-spec.md`, stage files):
 
 ```bash
-git add consolidation-artifacts/implementation-decisions.md
+git add docs/mechanic-spec.md
 ```
-> Stages the updated implementation decisions log.
+> Stages the updated mechanic spec.
 
 Run this? [yes / no / explain more]
 
@@ -83,16 +80,16 @@ Run this? [yes / no / explain more]
 Propose a commit message based on the stage context:
 
 **Format:**
-- Stage 4-2 or 4-3 (per use case): `feat: implement [use case name]`
-- Stage 4-1 (project setup): `chore: project setup and scaffolding`
-- Stage 3-x (UI): `design: [what was done]`
-- Stage 2-x (modeling): `docs: [artifact name]`
-- Stage 1-x (discovery): `docs: [artifact name]`
-- Stage 0 (meta): `workflow: [what was fixed or added]`
+- Mechanic implementation (graybox-4): `graybox: implement [mechanic name]`
+- Asset added (asset-4): `asset: add [asset-name] + Bevy integration`
+- Sound added (sound-3): `sound: add [event-name] sfx`
+- Design artifact (gameconcept, graybox-1/2, asset-1/2, sound-1/2): `docs: [stage] [artifact name]`
+- Scaffold / setup (graybox-3): `chore: scaffold Bevy project`
+- Meta / workflow (stage 0): `workflow: [what was fixed or added]`
 
 Example:
 ```bash
-git commit -m "feat: implement UC-3 (user can view order list)"
+git commit -m "graybox: implement player movement"
 ```
 > Creates a commit with all staged changes and this message.
 

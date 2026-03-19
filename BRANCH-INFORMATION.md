@@ -20,7 +20,7 @@ Clone this branch only:
 git clone --branch game --single-branch <repo-url> my-game
 cd my-game
 claude  # or: gemini, etc.
-/start-stage 1-1
+/start-stage gameconcept-1
 ```
 
 ## Cross-branch decisions

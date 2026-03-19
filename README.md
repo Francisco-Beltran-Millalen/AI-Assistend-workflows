@@ -10,7 +10,7 @@ This is not a tool. It is a **process**.
 
 A sequence of stages, each with a defined goal, a persona, concrete input artifacts, and concrete output artifacts. You run it with an LLM CLI (Claude Code, Gemini CLI, or any tool that supports `AGENTS.md`). The AI plays a role in each stage — asking questions, proposing designs, writing code — and you approve, adjust, and steer.
 
-The workflow is specialized for **game development with geometric primitive visuals** (rectangles, circles, triangles). The underlying philosophy is generic and can be adapted to any domain.
+The workflow is specialized for **game development with Bevy/Rust**, producing a graybox prototype using geometric primitives, then replacing them with real assets and sound.
 
 ---
 
@@ -18,28 +18,32 @@ The workflow is specialized for **game development with geometric primitive visu
 
 ### 1. Collaborative by Design — AI Proposes, You Approve
 
-Every significant decision goes through a propose-approve loop. The AI suggests a core loop, an entity structure, a mechanic implementation. You say yes, no, or adjust. Nothing is implemented without your sign-off.
+Every significant decision goes through a propose-approve loop. The AI suggests a mechanic implementation, a visual language, an asset pipeline approach. You say yes, no, or adjust. Nothing is implemented without your sign-off.
 
 ### 2. Personas Per Stage — Not a Generic Assistant
 
 Each stage has a defined persona with a specific responsibility:
-- **Project Initiator** — asks questions until the idea is clear
-- **Mechanic Analyst** — surfaces and prioritizes core game mechanics
-- **Game Designer** — designs the core loop and entity system
-- **Senior Developer** — implements one mechanic at a time
+- **Creative Director** — asks questions until the game idea is clear
+- **Knowledge Auditor** — maps what you know and what needs research
+- **Research Analyst** — fills knowledge gaps with targeted research
+- **Game Designer** — identifies mechanics and writes feel contracts
+- **Technical Designer** — defines the graybox visual language
+- **Senior Rust/Bevy Developer** — implements mechanics and scaffolding
+- **Code Mentor** — guides you through implementing mechanics yourself
+- **Art Director / Sound Designer** — define and produce assets
 - **Workflow Engineer** — fixes the workflow itself
 
 ### 3. Artifacts as Context Bridges
 
 Every stage consumes specific input artifacts and produces specific output artifacts. The output of one stage is the input of the next. Sessions can end at any time — the artifacts capture the state.
 
-### 4. Phase 0 — The Workflow Improves Itself
+### 4. Stage 0 — The Workflow Improves Itself
 
 Stage 0 (Meta-Workflow) is a dedicated stage for fixing the workflow itself.
 
 ### 5. Prototype Mindset
 
-The workflow produces a **playable prototype** using geometric primitives — not a finished game. The goal is to validate mechanics by building something real.
+The workflow produces a **playable graybox prototype** using Bevy primitive meshes (Cuboid, Sphere, Capsule, Cylinder, Plane) before any real assets exist. Mechanics are validated first; polish comes after.
 
 ### 6. Logs as Institutional Memory
 
@@ -51,44 +55,29 @@ The canonical workflow instructions live in `AGENTS.md`. Tool-specific configura
 
 ---
 
-## This Workflow: Game (Prototype)
+## The Four Phases
 
-The `game` workflow is a specialization for building game prototypes with:
-- **Geometric primitive visuals** (rectangles, circles, triangles — no external assets in the prototype)
-- **A game loop** (update/render cycle)
-- **No persistent database** (game state in memory)
-
-**Engine and language** are chosen in Stage 1-5 (Tech Selection).
-**Architecture pattern** (Simple OOP or ECS) is chosen in Stage 4-1.
-
-### The Five Phases
-
-| Phase | Goal | Stages |
-|-------|------|--------|
-| **Phase 1: Discovery + Tech Selection** | Understand what to build and pick the engine | 6 stages |
-| **Phase 2: Game Design** | Design core loop, entities, and level structure | 4 stages |
-| **Phase 3: Visual & Audio Design** | Spec primitive shapes, colors, canvas, audio events | 3 stages |
-| **Phase 4: Prototype Implementation** | Build it, mechanic by mechanic, then refactor | 4 stages |
-| **Phase 5: Distribution** | Package and share the prototype | 1 stage (skeleton) |
+| Phase | Goal | Key Outputs |
+|-------|------|-------------|
+| **gameconcept** | Clarify the game idea, audit knowledge, fill gaps | `game-brief.md`, `knowledge-audit.md`, `research-findings.md` |
+| **graybox** | Spec mechanics, build a Bevy prototype with geometric primitives | `mechanic-spec.md`, `graybox-visual-language.md`, `graybox-prototype/` |
+| **asset** | Define art direction, produce 2D/3D assets, integrate into Bevy | `art-direction.md`, `asset-list.md`, sprite sheets / GLTF models |
+| **sound** | Define sonic identity, produce SFX, integrate into Bevy | `sound-direction.md`, `sound-event-list.md`, `.ogg` files |
 
 ### On-Demand Stages
 
 | Stage | Purpose |
 |-------|---------|
 | **Stage 0** — Meta-Workflow | Fix the workflow itself |
-| **Stage diagram** — Diagram Assistant | Visualize any artifact as a Mermaid diagram |
-| **Stage import** — Artifact Importer | Bring in an external artifact and adapt it to the workflow's format |
-| **Stage knowledge** — Knowledge Tester | Pre-meeting quiz on all decisions made so far |
-| **Stage teacher** — Teacher | Socratic learning sessions and rubber duck debugging |
-| **Stage git** — Git Assistant | Version control operations |
+| **Stage teacher** — Teacher | Socratic learning sessions, rubber duck mode, and knowledge testing |
 
 ### What It Produces
 
-- A playable prototype with all mechanics implemented using geometric primitives
-- Tests for logic functions (where applicable)
-- Architecturally clean codebase
-- Complete game design documentation (`project-brief.md`, `mechanics.md`, `core-loop.md`, `entity-design.md`, and more)
-- Packaged for distribution
+- A playable Bevy/Rust prototype with all core mechanics implemented
+- Graybox prototype with geometric primitives (validated before asset production)
+- 2D sprites, 3D models, or mixed assets — integrated and animating in Bevy
+- SFX suite sourced, edited, and integrated into Bevy
+- Complete game design documentation (`game-brief.md`, `mechanic-spec.md`, `art-direction.md`, `sound-direction.md`, and more)
 
 ---
 
@@ -98,12 +87,23 @@ The `game` workflow is a specialization for building game prototypes with:
 - An LLM CLI that supports `AGENTS.md` (Claude Code recommended)
 - Python 3 (workflow scripts)
 - bash (hook scripts)
-- Your chosen game engine/framework
+- Rust + Cargo (game engine — see [rustup.rs](https://rustup.rs))
+- Git
+
+**Required for asset phase:**
+- Krita (2D art) — [krita.org](https://krita.org)
+- Blender (3D modeling) — [blender.org](https://blender.org) *(3D/mixed track only)*
+- Material Maker (procedural textures) *(optional)*
+
+**Required for sound phase:**
+- Audacity (audio editing) — [audacityteam.org](https://www.audacityteam.org)
 
 **Quick check:**
 ```bash
 echo "Python 3:  $(python3 --version 2>/dev/null || echo 'NOT FOUND')"
 echo "bash:      $(bash --version 2>/dev/null | head -1 || echo 'NOT FOUND')"
+echo "Rust:      $(rustc --version 2>/dev/null || echo 'NOT FOUND')"
+echo "git:       $(git --version 2>/dev/null || echo 'NOT FOUND')"
 ```
 
 ---
@@ -121,14 +121,14 @@ echo "bash:      $(bash --version 2>/dev/null | head -1 || echo 'NOT FOUND')"
    claude  # or: gemini, etc.
    ```
 
-3. **Start Stage 1-1** to begin Discovery
+3. **Start the first stage** to begin the game concept phase
    ```bash
-   /start-stage 1-1
+   /start-stage gameconcept-1
    ```
 
-4. **Follow the stage**. The AI will adopt the Project Initiator persona and ask about your game idea. Answer, discuss, and at the end of the session, export the log:
+4. **Follow the stage**. The AI will adopt the Creative Director persona and ask about your game idea. Answer, discuss, and at the end of the session, export the log:
    ```bash
-   /export-log 1-1
+   /export-log gameconcept-1
    ```
 
 5. **Continue stage by stage.** Each stage reads the outputs of the previous one. The workflow guides you.
@@ -147,23 +147,23 @@ project-root/
 ├── .claude/
 │   ├── settings.json            ← Hook configuration (auto-export, session start)
 │   └── skills/                  ← Claude Code slash commands (thin wrappers)
-│       ├── start-stage/
-│       └── export-log/
 ├── .agent-utils/
 │   └── skills/                  ← Canonical, tool-agnostic skill content
-│       ├── start-stage/
-│       └── export-log/
-├── imported-artifacts/          ← Raw imports + adapted *-imported.md files (Stage I)
-├── consolidation-artifacts/     ← Phase milestone documents (committed to git)
-├── prototype-code/              ← Working prototype code (committed to git)
+├── imported-artifacts/          ← Raw imports + adapted *-imported.md files
+├── graybox-prototype/           ← Bevy graybox prototype code
 ├── docs/
 │   ├── logs/                    ← Conversation logs (one per stage session)
-│   ├── assets/                  ← Diagrams, design specs
+│   ├── assets/                  ← Diagrams, concept art, textures
 │   ├── adrs/                    ← Architecture Decision Records
 │   └── *.md                     ← Working design artifacts
 └── workflow/
-    ├── stages/                  ← Stage files (one per stage, organized by phase)
-    ├── shared/                  ← Shared protocols (Existing Artifact Protocol)
+    ├── stages/
+    │   ├── phase-0/             ← On-demand stages (meta-workflow, teacher)
+    │   ├── gameconcept/         ← Game Concept stages
+    │   ├── graybox/             ← Graybox Prototype stages
+    │   ├── asset/               ← Asset Pipeline stages
+    │   └── sound/               ← Sound Pipeline stages
+    ├── shared/                  ← Shared protocols
     ├── templates/               ← Output templates
     └── scripts/                 ← Automation scripts (log export, auto-export)
 ```
@@ -174,11 +174,10 @@ project-root/
 
 | Command | What it does |
 |---------|-------------|
-| `/start-stage 1-1` | Start a specific stage (Phase 1, Stage 1) |
+| `/start-stage gameconcept-1` | Start a specific stage |
 | `/start-stage 0` | Start the Meta-Workflow (fix workflow issues) |
-| `/start-stage diagram` | Start the Diagram Assistant |
-| `/start-stage import` | Start the Artifact Importer |
-| `/export-log 1-1` | Export the current session log for Stage 1-1 |
+| `/start-stage teacher` | Start a teaching / knowledge-test session |
+| `/export-log gameconcept-1` | Export the current session log |
 
 ---
 

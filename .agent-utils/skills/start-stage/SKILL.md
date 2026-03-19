@@ -6,37 +6,25 @@ Start the specified workflow stage.
 
 - Stage identifier:
   - `0` for meta-workflow
-  - `diagram` for diagram-assistant
-  - `import` for import-artifact
-  - `knowledge` for knowledge-tester
   - `teacher` for teacher
-  - `git` for git-assistant
   - `<phase-name>-<stage-number>` for regular stages (e.g., `graybox-1`, `gameconcept-2`)
 
 ## Instructions
 
 1. Parse the stage identifier and build the file path using base `workflow/stages/`:
    - If `0`: Read `workflow/stages/phase-0/00-meta-workflow.md`
-   - If `diagram`: Read `workflow/stages/phase-0/01-diagram-assistant.md`
-   - If `import`: Read `workflow/stages/phase-0/02-import-artifact.md`
-   - If `knowledge`: Read `workflow/stages/phase-0/03-knowledge-tester.md`
    - If `teacher`: Read `workflow/stages/phase-0/04-teacher.md`
-   - If `git`: Read `workflow/stages/phase-0/05-git-assistant.md`
    - If `<phase-name>-<stage-number>`: Read `workflow/stages/<phase-name>/0<stage-number>-*.md`
    - If `<phase-name>-<stage-number>-<variant>` (e.g., `graybox-4-generative`, `asset-4-2d`): Read `workflow/stages/<phase-name>/0<stage-number>-*-<variant>.md`
 2. Adopt the persona defined in the stage file
-3. For all named phase stages (not 0, diagram, import, knowledge, teacher, git): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
+3. For all named phase stages (not 0 or teacher): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
 4. Follow the stage process
 
 ## Stage Mapping
 
 ### On-Demand Stages
 - 0: meta-workflow (fix workflow issues)
-- diagram: diagram-assistant (visualize artifacts)
-- import: import-artifact (import and adapt external artifacts)
-- knowledge: knowledge-tester (pre-meeting knowledge check)
 - teacher: teacher (Socratic teaching sessions)
-- git: git-assistant (version control operations)
 
 ### gameconcept: Game Concept
 - gameconcept-1: brief (raw concept, genre, tone, references)
