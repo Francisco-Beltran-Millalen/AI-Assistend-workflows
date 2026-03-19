@@ -11,7 +11,7 @@ Start the specified workflow stage.
   - `knowledge` for knowledge-tester
   - `teacher` for teacher
   - `git` for git-assistant
-  - `<phase>-<stage>` for regular stages (e.g., `2-1` for Phase 2 Stage 1)
+  - `<phase-name>-<stage-number>` for regular stages (e.g., `graybox-1`, `gameconcept-2`)
 
 ## Instructions
 
@@ -22,9 +22,10 @@ Start the specified workflow stage.
    - If `knowledge`: Read `workflow/stages/phase-0/03-knowledge-tester.md`
    - If `teacher`: Read `workflow/stages/phase-0/04-teacher.md`
    - If `git`: Read `workflow/stages/phase-0/05-git-assistant.md`
-   - If `<phase>-<stage>`: Read `workflow/stages/phase-<phase>/0<stage>-*.md`
+   - If `<phase-name>-<stage-number>`: Read `workflow/stages/<phase-name>/0<stage-number>-*.md`
+   - If `<phase-name>-<stage-number>-<variant>` (e.g., `graybox-4-generative`, `asset-4-2d`): Read `workflow/stages/<phase-name>/0<stage-number>-*-<variant>.md`
 2. Adopt the persona defined in the stage file
-3. For Phase 1–4 stages only (not 0, diagram, import, knowledge, teacher, git): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
+3. For all named phase stages (not 0, diagram, import, knowledge, teacher, git): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
 4. Follow the stage process
 
 ## Stage Mapping
@@ -37,33 +38,30 @@ Start the specified workflow stage.
 - teacher: teacher (Socratic teaching sessions)
 - git: git-assistant (version control operations)
 
-### Phase 1: Discovery + Tech Selection
-- 1-1: project-definition
-- 1-2: knowledge-audit
-- 1-3: research
-- 1-4: mechanic-discovery
-- 1-5: tech-selection
-- 1-6: consolidation
+### gameconcept: Game Concept
+- gameconcept-1: brief (raw concept, genre, tone, references)
+- gameconcept-2: knowledge-audit (what you know, what you don't)
+- gameconcept-3: research (fill the gaps, reference game analysis, audience)
 
-### Phase 2: Game Design
-- 2-1: core-loop-design
-- 2-2: entity-design
-- 2-3: level-design (optional — skip if no distinct levels)
-- 2-4: consolidation
+### graybox: Graybox Prototype
+- graybox-1: mechanic-spec (identify mechanics + feel contracts)
+- graybox-2: visual-language (geometry/color per entity, camera setup)
+- graybox-3: scaffold (Bevy project setup, one-time)
+- graybox-4-generative: mechanic-loop-generative (AI implements, user reviews — repeating per mechanic)
+- graybox-4-assisted: mechanic-loop-assisted (user implements, AI guides and teaches — repeating per mechanic)
 
-### Phase 3: Visual & Audio Design
-- 3-1: visual-design (primitives: shapes, colors, sizes, HUD, menus)
-- 3-2: audio-design (SFX list, music plan — skeleton)
-- 3-3: consolidation
+### asset: Asset Pipeline
+- asset-1: art-direction (style, palette, 2D/3D/mixed decision)
+- asset-2: asset-list (enumerate and prioritize all assets)
+- asset-3: concept (concept sketch per asset before production)
+- asset-4-2d: production-loop-2d (Krita pipeline, sprite sheets, Bevy integration)
+- asset-4-3d: production-loop-3d (Blender pipeline, GLTF, Bevy integration)
+- asset-4-mixed: production-loop-mixed (both tracks, cohesion rules, Bevy integration)
 
-### Phase 4: Prototype Implementation
-- 4-1: project-setup
-- 4-2: implementation-loop (repeats per mechanic; AI implements, user reviews)
-- 4-3: learning-guide (repeats per mechanic; user implements, AI guides)
-- 4-4: refactor (once, after all mechanics done; plan-first, comprehension check at end)
-
-### Phase 5: Distribution
-- 5-1: distribution (skeleton — process defined per project)
+### sound: Sound Pipeline
+- sound-1: sound-direction (sonic identity, tonal rules, references)
+- sound-2: sound-event-list (enumerate every SFX event from mechanics + animations + UI)
+- sound-3: production-loop (library → record → synthesize fallback, Audacity edit, Bevy integration)
 
 ## Example Usage
 
@@ -73,11 +71,16 @@ Start the specified workflow stage.
 Starts Stage 0 (Meta-Workflow) with the Workflow Engineer persona.
 
 ```
-/start-stage 2-1
+/start-stage graybox-1
 ```
-Starts Phase 2, Stage 1 (Core Loop Design) with the Game Designer persona.
+Starts the Graybox Mechanic Spec stage with the Game Designer persona.
 
 ```
-/start-stage 4-2
+/start-stage graybox-4-generative
 ```
-Starts Phase 4, Stage 2 (Implementation Loop) with the Senior Developer persona.
+Starts the Graybox Mechanic Loop (AI implements) with the Senior Rust/Bevy Developer persona.
+
+```
+/start-stage graybox-4-assisted
+```
+Starts the Graybox Mechanic Loop (user implements) with the Code Mentor persona.
