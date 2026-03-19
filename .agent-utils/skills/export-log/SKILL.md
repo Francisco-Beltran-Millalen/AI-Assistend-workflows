@@ -11,7 +11,8 @@ Export the current conversation to a log file in `docs/logs/`.
   - `knowledge` for knowledge-tester
   - `teacher` for teacher
   - `git` for git-assistant
-  - `<phase>-<stage>` for regular stages (e.g., `2-1` for Phase 2 Stage 1)
+  - `<phase-name>-<stage-number>` for regular stages (e.g., `graybox-1`, `gameconcept-2`)
+  - `<phase-name>-<stage-number>-<variant>` for variant stages (e.g., `graybox-4-generative`, `asset-4-2d`)
 
 ## Process
 
@@ -22,8 +23,10 @@ Export the current conversation to a log file in `docs/logs/`.
 **Naming format:** `stage-<identifier>-<name>-<YYYYMMDD>-<HHMMSS>.txt`
 
 Examples:
-- `stage-00-meta-workflow-20260203-091500.txt`
-- `stage-2-1-core-loop-design-20260203-143022.txt`
+- `stage-00-meta-workflow-20260319-091500.txt`
+- `stage-git-assistant-20260319-143022.txt`
+- `stage-gameconcept-1-brief-20260319-143022.txt`
+- `stage-graybox-4-generative-mechanic-loop-20260319-143022.txt`
 
 ## Stage Names
 
@@ -35,30 +38,27 @@ Examples:
 - teacher → `teacher`
 - git → `git-assistant`
 
-### Phase 1: Discovery + Tech Selection
-- 1-1 → `1-1-project-definition`
-- 1-2 → `1-2-knowledge-audit`
-- 1-3 → `1-3-research`
-- 1-4 → `1-4-mechanic-discovery`
-- 1-5 → `1-5-tech-selection`
-- 1-6 → `1-6-consolidation`
+### gameconcept: Game Concept
+- gameconcept-1 → `gameconcept-1-brief`
+- gameconcept-2 → `gameconcept-2-knowledge-audit`
+- gameconcept-3 → `gameconcept-3-research`
 
-### Phase 2: Game Design
-- 2-1 → `2-1-core-loop-design`
-- 2-2 → `2-2-entity-design`
-- 2-3 → `2-3-level-design`
-- 2-4 → `2-4-consolidation`
+### graybox: Graybox Prototype
+- graybox-1 → `graybox-1-mechanic-spec`
+- graybox-2 → `graybox-2-visual-language`
+- graybox-3 → `graybox-3-scaffold`
+- graybox-4-generative → `graybox-4-generative-mechanic-loop`
+- graybox-4-assisted → `graybox-4-assisted-mechanic-loop`
 
-### Phase 3: Visual & Audio Design
-- 3-1 → `3-1-visual-design`
-- 3-2 → `3-2-audio-design`
-- 3-3 → `3-3-consolidation`
+### asset: Asset Pipeline
+- asset-1 → `asset-1-art-direction`
+- asset-2 → `asset-2-asset-list`
+- asset-3 → `asset-3-concept`
+- asset-4-2d → `asset-4-2d-production`
+- asset-4-3d → `asset-4-3d-production`
+- asset-4-mixed → `asset-4-mixed-production`
 
-### Phase 4: Prototype Implementation
-- 4-1 → `4-1-project-setup`
-- 4-2 → `4-2-implementation-loop`
-- 4-3 → `4-3-learning-guide`
-- 4-4 → `4-4-refactor`
-
-### Phase 5: Distribution
-- 5-1 → `5-1-distribution`
+### sound: Sound Pipeline
+- sound-1 → `sound-1-sound-direction`
+- sound-2 → `sound-2-sound-event-list`
+- sound-3 → `sound-3-production-loop`
