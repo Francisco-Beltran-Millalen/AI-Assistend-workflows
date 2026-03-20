@@ -130,4 +130,4 @@ Present the full list. Confirm scope — cut anything that isn't needed for the 
 - [ ] Complexity estimated for each asset
 - [ ] Production order agreed with user
 - [ ] Scope cut confirmed
-- [ ] `docs/asset-list.md` written and committed
+- [ ] `docs/asset-list.md` written

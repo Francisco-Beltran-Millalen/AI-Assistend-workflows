@@ -31,14 +31,21 @@ Examples:
 - teacher → `teacher`
 
 ### gameconcept: Game Concept
-- gameconcept-1 → `gameconcept-1-brief`
-- gameconcept-2 → `gameconcept-2-knowledge-audit`
-- gameconcept-3 → `gameconcept-3-research`
+- gameconcept-1 → `gameconcept-1-references-analysis`
+- gameconcept-2 → `gameconcept-2-references-art`
+- gameconcept-3 → `gameconcept-3-references-feel`
+- gameconcept-4 → `gameconcept-4-game-description`
+- gameconcept-5 → `gameconcept-5-art-direction`
+- gameconcept-6 → `gameconcept-6-feel-direction`
+- gameconcept-7 → `gameconcept-7-roadmap`
+- gameconcept-8 → `gameconcept-8-knowledge-research`
+- gameconcept-9 → `gameconcept-9-architecture-consolidation`
 
-### graybox: Graybox Prototype
+### graybox: Graybox Prototype (Godot)
 - graybox-1 → `graybox-1-mechanic-spec`
 - graybox-2 → `graybox-2-visual-language`
 - graybox-3 → `graybox-3-scaffold`
+- graybox-4-designed → `graybox-4-designed-mechanic-loop`
 - graybox-4-generative → `graybox-4-generative-mechanic-loop`
 - graybox-4-assisted → `graybox-4-assisted-mechanic-loop`
 
@@ -54,3 +61,11 @@ Examples:
 - sound-1 → `sound-1-sound-direction`
 - sound-2 → `sound-2-sound-event-list`
 - sound-3 → `sound-3-production-loop`
+
+### feel: Feel & Details
+- feel-1 → `feel-1-graybox-feel`
+- feel-2 → `feel-2-asset-feel`
+- feel-3 → `feel-3-sound-feel`
+
+### fusion: Fusion
+- fusion-1 → `fusion-1-integration`

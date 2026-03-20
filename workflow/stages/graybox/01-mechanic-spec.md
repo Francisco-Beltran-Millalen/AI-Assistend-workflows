@@ -10,18 +10,22 @@ Translate the game concept into a concrete, testable list of mechanics. Each mec
 
 ## Input Artifacts
 
-- Game concept artifacts from the `gameconcept` phase (game brief, character motivations, niche, target audience)
+- Game concept artifacts from the `gameconcept` phase (`docs/game-concept-foundation.md` or earlier artifacts)
 
 ## Process
 
-### 1. Review Game Concept
+### 1. Check for Existing Mechanic Spec
+
+If `docs/mechanic-spec.md` exists, read it and present it to the user. Ask whether to reuse it or revise it. If reusing, skip to the Exit Criteria — the artifact is already done.
+
+### 2. Review Game Concept
 
 Read the gameconcept artifacts. Identify:
 - What does the player *do*? (verbs: move, shoot, jump, build, dodge...)
 - What are the core interactions? (player ↔ world, player ↔ enemies, player ↔ objects)
 - What makes this game distinct from others in its niche?
 
-### 2. Extract Mechanics
+### 3. Extract Mechanics
 
 List every discrete mechanic implied by the concept. A mechanic is a specific, implementable behavior — not a vibe or a theme.
 
@@ -31,21 +35,18 @@ Examples:
 - "Player dashes with a cooldown" ✓
 - "Enemies patrol a fixed path" ✓
 
-### 3. Write Feel Contracts
+### 4. Write Feel Contracts
 
 For each mechanic, write a feel contract: one to three sentences describing what it feels like when this mechanic is *working*. Be specific. Avoid vague words like "smooth" or "satisfying" without grounding them.
 
 Good example:
 > **Player movement:** Moving feels immediate — no input lag. Stopping feels deliberate, not floaty. The player should feel in control at all times.
 
-Bad example:
-> **Player movement:** It feels good to move around.
+### 5. Prioritize
 
-### 4. Prioritize
+Order the mechanics from most fundamental to least. The Mechanic Loop implements them in this order.
 
-Order the mechanics from most fundamental to least. The Mechanic Loop implements them in this order. Ask: "If I had to cut half the mechanics, which ones make the game still recognizable?"
-
-### 5. Confirm with User
+### 6. Confirm with User
 
 Present the full mechanic list with feel contracts and priority order. Discuss and adjust until the user approves.
 
@@ -73,4 +74,4 @@ Present the full mechanic list with feel contracts and priority order. Discuss a
 - [ ] Each mechanic has a clear feel contract
 - [ ] Mechanics are ordered by priority
 - [ ] User has approved the mechanic list
-- [ ] `docs/mechanic-spec.md` written and committed
+- [ ] `docs/mechanic-spec.md` written

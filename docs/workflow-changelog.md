@@ -2,6 +2,133 @@
 
 ---
 
+## 2026-03-20: Add feel and fusion phases
+
+**Problem:** No phase existed for adding game feel (juice) or for final integration of all components per mechanic.
+
+**Cause:** The workflow had production phases (graybox, asset, sound) but nothing for the "making it feel alive" layer or for assembling everything into production-ready mechanics.
+
+**Fix:**
+- Added **feel phase** (on-demand, complementary): 3 independently invocable stages for engine effects, asset effect upgrades, and audio detail. Can be invoked at any point during implementation — not sequential.
+- Added **fusion phase** (final): 1 loop stage for per-mechanic integration — wire up all components, replace placeholders, verify everything plays together. A mechanic is complete when code + assets + feel + sound all work together.
+
+**Files:**
+- `workflow/stages/feel/01-graybox-feel.md` (new)
+- `workflow/stages/feel/02-asset-feel.md` (new)
+- `workflow/stages/feel/03-sound-feel.md` (new)
+- `workflow/stages/fusion/01-integration-loop.md` (new)
+- `AGENTS.md` (updated — feel + fusion phase tables, stage routing, project status)
+- `.agent-utils/skills/start-stage/SKILL.md` (updated — feel + fusion stage entries)
+- `.agent-utils/skills/export-log/SKILL.md` (updated — feel + fusion log slugs)
+
+---
+
+## 2026-03-20: Redesign gameconcept phase — 9 stages replacing 4
+
+**Problem:** The old gameconcept phase (brief → knowledge-audit → research → consolidation) felt like structured analysis, not the creative, conversational, dream-and-discuss phase it should be. It also didn't produce a roadmap that downstream phases could work from.
+
+**Cause:** The phase was designed top-down as a checklist. The new design is conversation-first, organized around what actually needs to be discussed before any production work begins.
+
+**Fix:** Replaced 4 old stages with 9 new stages organized in 4 blocks:
+- Block 1 (1–3): Reference study — analyze reference games by mechanics, art, and feel
+- Block 2 (4–6): What we really want — mirror of reference study but for our game
+- Block 3 (7): Roadmap — collaborative ping-pong discovery, all deliverables tagged by phase
+- Block 4 (8–9): Knowledge-research + architecture-consolidation
+
+**Files:**
+- `workflow/stages/gameconcept/01-references-analysis.md` (new)
+- `workflow/stages/gameconcept/02-references-art.md` (new)
+- `workflow/stages/gameconcept/03-references-feel.md` (new)
+- `workflow/stages/gameconcept/04-game-description.md` (new)
+- `workflow/stages/gameconcept/05-art-direction.md` (new)
+- `workflow/stages/gameconcept/06-feel-direction.md` (new)
+- `workflow/stages/gameconcept/07-roadmap.md` (new)
+- `workflow/stages/gameconcept/08-knowledge-research.md` (new)
+- `workflow/stages/gameconcept/09-architecture-consolidation.md` (new)
+- `workflow/stages/gameconcept/01-brief.md` (deleted)
+- `workflow/stages/gameconcept/02-knowledge-audit.md` (deleted)
+- `workflow/stages/gameconcept/03-research.md` (deleted)
+- `workflow/stages/gameconcept/04-consolidation.md` (deleted)
+- `AGENTS.md` — stage table, stage detection, project status all updated
+- `.agent-utils/skills/start-stage/SKILL.md` — gameconcept mapping updated
+- `.agent-utils/skills/export-log/SKILL.md` — gameconcept log slugs updated
+
+---
+
+## 2026-03-20: Add graybox-4-designed — 6-level design-first mechanic loop
+
+**Problem:** No stage existed that gave the user architectural control without requiring them to write code. graybox-4-generative is too hands-off; graybox-4-assisted requires the user to write code.
+
+**Cause:** User wanted a middle ground — design the mechanic through a natural-language conversation, then have AI generate all the code at once.
+
+**Fix:** Created `workflow/stages/graybox/04-mechanic-loop-designed.md`. The stage runs a 6-level design conversation (player experience → entity list → composition → state → behavior → Godot mapping), followed by a reflect-before-code step, then full code generation. Recovery is iterative by default; user explicitly escalates to rethink the mechanic or the spec.
+
+**Files:**
+- `workflow/stages/graybox/04-mechanic-loop-designed.md` (new)
+- `AGENTS.md` — added graybox-4-designed to stage table and stage detection
+- `.agent-utils/skills/start-stage/SKILL.md` — added graybox-4-designed entry
+- `.agent-utils/skills/export-log/SKILL.md` — added graybox-4-designed log slug
+
+---
+
+## 2026-03-20: Replace Bevy with Godot — graybox is now Godot-only
+
+**Problem:** User tested both engines and decided Godot is more mature and easier to work with at this stage. The Bevy track is deferred to a future branch (when Bevy's stable version releases). The `graybox-godot` parallel track is now the canonical `graybox`.
+
+**Cause:** Engine decision based on practical experience. Bevy's instability made iteration harder.
+
+**Fix:** Replaced all 5 `workflow/stages/graybox/` files with Godot/GDScript versions (previously the `graybox-godot/` content). Removed `workflow/stages/graybox-godot/` entirely. Updated all downstream stage files (asset, sound) to replace Bevy code and references with Godot equivalents. Updated AGENTS.md and start-stage SKILL.md to remove graybox-godot references.
+
+**Files:**
+- `workflow/stages/graybox/01-mechanic-spec.md` — rewritten (Godot, no Bevy reuse note)
+- `workflow/stages/graybox/02-visual-language.md` — rewritten (Godot node types, 2D/3D decision)
+- `workflow/stages/graybox/03-scaffold.md` — rewritten (Godot project setup)
+- `workflow/stages/graybox/04-mechanic-loop-generative.md` — rewritten (GDScript, Senior Godot Developer persona)
+- `workflow/stages/graybox/04-mechanic-loop-assisted.md` — rewritten (GDScript teaching)
+- `workflow/stages/graybox-godot/` — deleted (entire directory)
+- `workflow/stages/asset/04-production-2d.md` — Bevy integration replaced with Godot (AnimatedSprite2D, GDScript)
+- `workflow/stages/asset/04-production-3d.md` — Bevy integration replaced with Godot (GLTF load, AnimationPlayer)
+- `workflow/stages/asset/04-production-mixed.md` — Bevy integration replaced with Godot (Sprite3D billboard, CanvasLayer UI)
+- `workflow/stages/sound/03-production-loop.md` — Bevy audio replaced with Godot (AudioStreamPlayer, volume_db)
+- `AGENTS.md` — engine → Godot, personas updated, graybox-godot section removed, project structure updated
+- `.agent-utils/skills/start-stage/SKILL.md` — graybox-godot entries removed, graybox updated to Godot
+- `.agent-utils/skills/export-log/SKILL.md` — graybox-godot section removed, graybox relabeled Godot
+- `.agent-utils/skills/run-all-tests/SKILL.md` — rewritten for Godot (no longer cargo test)
+- `.agent-utils/skills/run-stage-tests/SKILL.md` — rewritten for Godot
+- `.agent-utils/skills/git-commit/SKILL.md` — Bevy references replaced with Godot
+- `workflow/stages/phase-0/04-teacher.md` — Bevy/Rust references updated to Godot/GDScript
+- `workflow/stages/gameconcept/02-knowledge-audit.md` — Bevy/Rust skill level → Godot/GDScript
+
+---
+
+## 2026-03-19: Four workflow tweaks — latest-tools assumption, no auto-commits, gameconcept consolidation stage, Godot clarification pending
+
+**Problem:** Four friction points identified by user.
+
+**Changes:**
+
+### 1. Latest tools assumption
+**Fix:** Added explicit assumption to `AGENTS.md` Architectural Assumptions: always use the latest stable version of all tools/libraries/engines unless otherwise specified.
+**Files:** `AGENTS.md`
+
+### 2. No automatic commits
+**Problem:** Stage exit criteria prompted for git commits at the end of stages, causing the AI to initiate commits without user instruction.
+**Cause:** "written and committed" wording in exit criteria, and explicit commit steps in graybox-3/4 stage files.
+**Fix:** Removed all "and committed" from exit criteria across all stage files. Removed the Commit step from graybox-3 (scaffold) and graybox-4 (mechanic loop) stages. Commits only happen when the user explicitly requests them.
+**Files:** `gameconcept/01-brief.md`, `gameconcept/02-knowledge-audit.md`, `gameconcept/03-research.md`, `graybox/01-mechanic-spec.md`, `graybox/02-visual-language.md`, `graybox/03-scaffold.md`, `graybox/04-mechanic-loop-generative.md`, `graybox/04-mechanic-loop-assisted.md`, `asset/01-art-direction.md`, `asset/02-asset-list.md`, `sound/01-sound-direction.md`, `sound/02-sound-event-list.md`
+
+### 3. gameconcept consolidation stage (gameconcept-4)
+**Problem:** The gameconcept phase had no synthesis step — three separate artifacts (brief, knowledge audit, research) with no single consolidated reference before moving to graybox.
+**Fix:** Created `workflow/stages/gameconcept/04-consolidation.md` (Creative Director persona). Output artifact: `docs/game-concept-foundation.md`. Updated `AGENTS.md` (stage table, how-to-determine-stage, project status) and `start-stage/SKILL.md`.
+**Files:** `workflow/stages/gameconcept/04-consolidation.md` (new), `AGENTS.md`, `.agent-utils/skills/start-stage/SKILL.md`
+
+### 4. graybox-godot phase (Godot/GDScript parallel track)
+**Problem:** User wanted to explore Godot as an alternative to Bevy without losing the existing Bevy graybox track.
+**Fix:** Created a `graybox-godot` phase that mirrors the `graybox` phase using Godot/GDScript. Five stage files created in `workflow/stages/graybox-godot/`. Stage 1 reuses `docs/mechanic-spec.md` (engine-agnostic). Stage 2 outputs `docs/graybox-godot-visual-language.md` (2D/3D decision, Godot node types). Stage 3 scaffolds `graybox-godot-prototype/`. Stages 4-generative/4-assisted use GDScript patterns. Updated `AGENTS.md`, `start-stage/SKILL.md` (including parsing fix for compound phase name `graybox-godot`).
+**Files:** `workflow/stages/graybox-godot/01-mechanic-spec.md` (new), `workflow/stages/graybox-godot/02-visual-language.md` (new), `workflow/stages/graybox-godot/03-scaffold.md` (new), `workflow/stages/graybox-godot/04-mechanic-loop-generative.md` (new), `workflow/stages/graybox-godot/04-mechanic-loop-assisted.md` (new), `AGENTS.md`, `.agent-utils/skills/start-stage/SKILL.md`
+
+---
+
 ## 2026-03-19: Fourth audit — README, PREREQUISITES, BRANCH-INFORMATION, and teacher Diagram Mode
 
 **Problem:** Four files still contained web-workflow or stale content missed by previous audit passes.

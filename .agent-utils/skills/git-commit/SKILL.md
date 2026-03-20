@@ -47,9 +47,9 @@ Based on `git status` output, propose adding files relevant to the completed wor
 For each logical group, show one `git add` command:
 
 ```bash
-git add graybox-prototype/src/ docs/mechanic-spec.md
+git add graybox-prototype/ docs/mechanic-spec.md
 ```
-> Stages the Bevy source changes and updated mechanic spec for the completed mechanic.
+> Stages the Godot project changes and updated mechanic spec for the completed mechanic.
 
 Run this? [yes / no / explain more]
 
@@ -81,10 +81,10 @@ Propose a commit message based on the stage context:
 
 **Format:**
 - Mechanic implementation (graybox-4): `graybox: implement [mechanic name]`
-- Asset added (asset-4): `asset: add [asset-name] + Bevy integration`
+- Asset added (asset-4): `asset: add [asset-name] + Godot integration`
 - Sound added (sound-3): `sound: add [event-name] sfx`
 - Design artifact (gameconcept, graybox-1/2, asset-1/2, sound-1/2): `docs: [stage] [artifact name]`
-- Scaffold / setup (graybox-3): `chore: scaffold Bevy project`
+- Scaffold / setup (graybox-3): `chore: scaffold Godot project`
 - Meta / workflow (stage 0): `workflow: [what was fixed or added]`
 
 Example:

@@ -12,20 +12,19 @@ Look for the mechanic marked `[~] In progress`, or if none is in-progress, the m
 
 If unclear, ask the user: "Which mechanic should I run tests for?"
 
-### 2. Run the Filtered Test
+### 2. Run the Test
 
-Derive a keyword from the mechanic name (e.g., "player movement" → `movement` or `player`).
+Godot does not have a built-in test runner. If a test framework (e.g., GUT) is set up:
 
 ```bash
-cd graybox-prototype && cargo test <mechanic_keyword>
+godot --headless --path graybox-prototype res://tests/run_tests.tscn
 ```
 
-If the keyword is ambiguous or uncertain, scan `graybox-prototype/src/` for test modules matching the mechanic name and run those files directly.
+Otherwise, tell the user to run the project (F5) and manually verify the mechanic against its feel contract in `docs/mechanic-spec.md`.
 
 ### 3. Report
 
 Report:
 - Which mechanic was tested
-- How many tests passed / failed / skipped
-- If any failed: show failure names and error messages
-- If all passed: confirm clearly
+- Whether it matches the feel contract
+- Any issues observed

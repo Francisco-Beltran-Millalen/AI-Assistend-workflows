@@ -108,4 +108,4 @@ Present the sound direction document. Ask: "If you heard a sound that followed t
 - [ ] At least 2 audio references with notes
 - [ ] Forbidden sounds listed
 - [ ] User has approved the sound direction
-- [ ] `docs/sound-direction.md` written and committed
+- [ ] `docs/sound-direction.md` written

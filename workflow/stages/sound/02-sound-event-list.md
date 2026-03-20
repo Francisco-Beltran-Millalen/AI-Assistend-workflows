@@ -121,4 +121,4 @@ Present the full list. Cut anything that isn't needed for the prototype.
 - [ ] UI events covered
 - [ ] Environmental sounds flagged as optional or cut
 - [ ] Production order agreed with user
-- [ ] `docs/sound-event-list.md` written and committed
+- [ ] `docs/sound-event-list.md` written

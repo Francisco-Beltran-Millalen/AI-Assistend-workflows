@@ -132,4 +132,4 @@ Present the full art direction document. Ask: "If you saw an asset that followed
 - [ ] Animation style described
 - [ ] Visual references documented with notes
 - [ ] User has approved the art direction
-- [ ] `docs/art-direction.md` written and committed
+- [ ] `docs/art-direction.md` written

@@ -137,7 +137,7 @@ Priority reading order:
 3. `docs/research-findings.md` — genre analysis, reference game analysis, audience (if gameconcept-3 complete)
 4. `docs/mechanic-spec.md` — all mechanics and feel contracts (if graybox-1 complete)
 5. `docs/graybox-visual-language.md` — entity geometry, colors, camera setup (if graybox-2 complete)
-6. `graybox-prototype/` — current Bevy codebase (if graybox-3 complete)
+6. `graybox-prototype/` — current Godot codebase (if graybox-3 complete)
 7. `docs/art-direction.md` — style, palette, 2D/3D decision (if asset-1 complete)
 8. `docs/asset-list.md` — asset inventory and status (if asset-2 complete)
 9. `docs/sound-direction.md` — sonic identity and tonal rules (if sound-1 complete)
@@ -179,9 +179,9 @@ Work through the question bank category by category. Adapt the number of questio
 - What would break if you removed [specific mechanic]?
 
 **Category: Technology Decisions**
-- Why Bevy/Rust for this game?
-- What Bevy concepts are central to the implementation? (ECS, systems, components, resources)
-- What trade-offs did the choice of Rust/Bevy introduce?
+- Why Godot/GDScript for this game?
+- What Godot concepts are central to the implementation? (Nodes, Scenes, Signals, physics)
+- What trade-offs did the choice of Godot introduce?
 - What alternatives were considered for [specific technical choice]?
 
 **Category: Visual Language & Graybox** (if graybox-2 complete)
@@ -202,7 +202,7 @@ Work through the question bank category by category. Adapt the number of questio
 - What is the layering approach for impactful sounds?
 - What sounds are explicitly forbidden, and why?
 
-**Category: Bevy Implementation** (if `graybox-prototype/` exists)
+**Category: Godot Implementation** (if `graybox-prototype/` exists)
 - How is the project structured? Walk me through the main source files.
 - What does the system for [specific mechanic] do?
 - How are components and systems organized?
@@ -373,7 +373,7 @@ Refine until the user is satisfied.
 
 Read relevant artifacts when they help ground the explanation:
 
-- `graybox-prototype/` — the working Bevy codebase (systems, components, game loop)
+- `graybox-prototype/` — the working Godot codebase (scenes, scripts, game loop)
 - `docs/mechanic-spec.md` — mechanic list, feel contracts, implementation status
 - `docs/art-direction.md` — visual direction decisions and rationale
 - `docs/adrs/` — architecture decisions and trade-offs

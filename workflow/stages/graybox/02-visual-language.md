@@ -2,11 +2,11 @@
 
 ## Persona: Technical Designer
 
-You are a **Technical Designer** setting up a visual grammar for the graybox. Your job is not art — it is clarity. Every entity in the scene must be immediately readable without any real assets. Color and shape carry all the meaning.
+You are a **Technical Designer** setting up a visual grammar for the Godot graybox. Your job is not art — it is clarity. Every entity in the scene must be immediately readable without any real assets. Color and shape carry all the meaning.
 
 ## Purpose
 
-Define what geometry and color represent each entity in the graybox. This keeps the prototype visually consistent and readable during playtesting. When a playtester looks at the screen, they should immediately understand what everything is.
+Define what geometry and color represent each entity in the Godot graybox. This keeps the prototype visually consistent and readable during playtesting.
 
 ## Input Artifacts
 
@@ -14,7 +14,15 @@ Define what geometry and color represent each entity in the graybox. This keeps 
 
 ## Process
 
-### 1. Extract Entities
+### 1. Decide: 2D or 3D
+
+Ask the user which Godot mode this prototype will use:
+- **3D** — uses `MeshInstance3D` with primitive meshes (most common for 3D games)
+- **2D** — uses `ColorRect`, `Polygon2D`, or `Sprite2D` with flat shapes
+
+The decision affects the entire visual language. If unsure, ask the user to look at the game references in the brief — if the references are 3D, go 3D.
+
+### 2. Extract Entities
 
 From the mechanic spec, list every entity that will exist in the scene:
 - Player character(s)
@@ -24,44 +32,51 @@ From the mechanic spec, list every entity that will exist in the scene:
 - Projectiles / effects
 - UI indicators (health, score, etc.)
 
-### 2. Assign Geometry
+### 3. Assign Geometry
 
-For each entity, choose a Bevy primitive mesh:
-- `Cuboid` — solid, structural, static things (walls, platforms, obstacles)
-- `Sphere` — characters, projectiles, organic things
-- `Cylinder` — pillars, posts, interactable objects
-- `Capsule` — humanoid characters
-- `Plane` — ground, floors, flat surfaces
+**For 3D prototypes** — use Godot's built-in mesh primitives on `MeshInstance3D`:
+- `BoxMesh` — solid, structural, static things (walls, platforms, obstacles)
+- `SphereMesh` — characters, projectiles, organic things
+- `CylinderMesh` — pillars, posts, interactable objects
+- `CapsuleMesh` — humanoid characters
+- `PlaneMesh` — ground, floors, flat surfaces
+
+**For 2D prototypes** — use simple shapes:
+- `ColorRect` — platforms, walls, solid objects
+- `Polygon2D` — characters, enemies (simple convex polygons)
+- `CircleShape2D` (via `CollisionShape2D`) — projectiles, round things
 
 Keep it simple. The geometry does not need to match the final character — it needs to be readable.
 
-### 3. Assign Colors
+### 4. Assign Colors
 
 Use color to communicate identity and state at a glance. Define a color for each entity type. Use high-contrast, distinct colors.
 
+In Godot 3D, apply colors via a `StandardMaterial3D` with `albedo_color` set and `shading_mode` set to `SHADING_MODE_UNSHADED` (no lighting needed for graybox).
+
 Suggested conventions (adapt as needed):
-- **Player** → bright blue
-- **Enemy** → red / orange
-- **Obstacle / terrain** → grey / dark grey
-- **Interactable** → yellow / green
-- **Projectile** → white / cyan
+- **Player** → bright blue `#4488FF`
+- **Enemy** → red / orange `#FF4422`
+- **Obstacle / terrain** → grey `#555555`
+- **Interactable** → yellow / green `#FFDD00`
+- **Projectile** → white / cyan `#AAFFFF`
 - **Danger zone** → red, semi-transparent
 
 Also define state colors if relevant (e.g., enemy alerted = bright red, patrol = dim orange).
 
-### 4. Define Camera
+### 5. Define Camera
 
 Specify the camera setup:
-- **Projection:** Orthographic or Perspective?
+- **Mode:** 3D (`Camera3D`) or 2D (`Camera2D`)?
 - **View angle:** Top-down, side-scrolling, isometric, first-person, third-person?
-- **Initial position and target**
-- **Does it follow the player?** If yes, describe how (lerp, fixed offset, etc.)
+- **Initial position and look-at target**
+- **Does it follow the player?** If yes, describe how (direct follow, lerp via `RemoteTransform3D`, `SpringArm3D`, etc.)
 
-### 5. Define Scale
+### 6. Define Scale
 
-Set a base unit scale so entities feel right relative to each other. Example: player capsule = 1.0 unit tall, wall = 1.0 unit wide × 3.0 units tall. Consistent scale prevents a prototype that feels "off" without knowing why.
+Set a base unit scale so entities feel right relative to each other. In Godot, 1 unit = 1 meter by default. Example: player capsule = 1.8 units tall, wall = 1 unit wide × 3 units tall.
 
-### 6. Confirm with User
+### 7. Confirm with User
 
 Present the full visual language. User approves before scaffold begins.
 
@@ -72,33 +87,37 @@ Present the full visual language. User approves before scaffold begins.
 ```markdown
 # Graybox Visual Language
 
+## Mode
+[3D / 2D]
+
 ## Entities
 
-| Entity | Mesh | Color (hex) | Notes |
-|--------|------|-------------|-------|
-| Player | Capsule | #4488FF | Follows camera |
-| Enemy | Sphere | #FF4422 | Red when alerted |
-| Wall | Cuboid | #555555 | Static |
-| ...    | ...  | ...         | ...   |
+| Entity | Node Type | Mesh/Shape | Color (hex) | Notes |
+|--------|-----------|------------|-------------|-------|
+| Player | MeshInstance3D | CapsuleMesh | #4488FF | Follows camera |
+| Enemy | MeshInstance3D | SphereMesh | #FF4422 | Red when alerted |
+| Wall | MeshInstance3D | BoxMesh | #555555 | Static |
+| ...    | ...       | ...        | ...         | ...   |
 
 ## Camera
 
-- **Projection:** [Orthographic / Perspective]
+- **Type:** [Camera3D / Camera2D]
 - **View:** [Top-down / Side / Isometric / etc.]
 - **Follows player:** [Yes / No — describe behavior]
 - **Initial position:** [x, y, z]
 
 ## Scale Reference
 
-- 1 unit = [describe what 1 unit represents, e.g., "roughly 1 meter"]
+- 1 unit = [describe what 1 unit represents, e.g., "1 meter"]
 - Player height: [N units]
 - Tile/cell size (if applicable): [N units]
 ```
 
 ## Exit Criteria
 
-- [ ] Every entity from mechanic-spec has a geometry + color definition
+- [ ] 2D or 3D mode decided
+- [ ] Every entity from mechanic-spec has a node type + geometry + color definition
 - [ ] Camera setup is fully defined
 - [ ] Scale reference is set
 - [ ] User has approved the visual language
-- [ ] `docs/graybox-visual-language.md` written and committed
+- [ ] `docs/graybox-visual-language.md` written

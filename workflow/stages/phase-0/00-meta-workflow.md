@@ -304,9 +304,15 @@ If uncertain between two stages, present both options to the user and ask which 
 
 | Artifact contains | Target stage |
 |-------------------|-------------|
-| Game title/concept, genre, tone, player fantasy, references | gameconcept-1 (`docs/game-brief.md`) |
-| Known/uncertain/unknown categories, skill gaps, assumptions | gameconcept-2 (`docs/knowledge-audit.md`) |
-| Research questions, reference game analysis, audience findings | gameconcept-3 (`docs/research-findings.md`) |
+| Reference game analysis — main loops, mechanics, what makes them work | gameconcept-1 (`docs/references-analysis.md`) |
+| Visual style analysis of reference games — art style, palette, UI | gameconcept-2 (`docs/references-art.md`) |
+| Feel analysis of reference games — input response, effects, sensation | gameconcept-3 (`docs/references-feel.md`) |
+| Our game's description — main loop, core mechanics, pitch | gameconcept-4 (`docs/game-description.md`) |
+| Our game's visual identity — art style, color philosophy | gameconcept-5 (`docs/game-art-direction.md`) |
+| Our game's feel direction — feedback systems, VFX intent, audio feel | gameconcept-6 (`docs/game-feel-direction.md`) |
+| Production roadmap — all deliverables tagged by phase and priority | gameconcept-7 (`docs/roadmap.md`) |
+| Knowledge gaps and research findings tied to roadmap items | gameconcept-8 (`docs/knowledge-research.md`) |
+| Architecture frame — cross-cutting decisions and phase constraints | gameconcept-9 (`docs/game-architecture.md`) |
 | Mechanic list, feel contracts, input mappings, loop structure | graybox-1 (`docs/mechanic-spec.md`) |
 | Entity geometry, color assignments, camera setup, visual rules | graybox-2 (`docs/graybox-visual-language.md`) |
 | Art style description, palette, 2D/3D/mixed decision, references | asset-1 (`docs/art-direction.md`) |
