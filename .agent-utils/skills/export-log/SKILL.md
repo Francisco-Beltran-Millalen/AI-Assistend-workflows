@@ -51,6 +51,7 @@ Examples:
 ### Phase 4: Prototype Implementation
 - 4-1 → `4-1-project-setup`
 - 4-2 → `4-2-implementation-loop`
+- 4-2b → `4-2b-design-first`
 - 4-3 → `4-3-learning-guide`
 - 4-4 → `4-4-refactor`
 

@@ -2,6 +2,21 @@
 
 ---
 
+## 2026-03-20: New stage 4-2b — Design-First Implementation
+
+**Problem:** Gap between Stage 4-2 (AI writes, user reviews) and Stage 4-3 (user writes, AI guides). User wanted a mode where they own the design but don't have to type the implementation.
+
+**Cause:** Workflow only offered two extremes — full AI authorship or full user authorship.
+
+**Fix:** Added Stage 4-2b (Design-First Implementation) with persona "Design-First Developer". Process: (1) User describes architecture map — all modules, responsibilities, connections, type names; (2) AI reviews dependency directions; (3) User defines module contracts — name, path, input, output, errors, responsibility; (4) Green light sign-off; (5) AI writes code module by module. Comprehension check and checkpoint same as 4-2/4-3.
+
+**Files:**
+- `workflow/stages/phase-4/02b-design-first.md` — new stage file
+- `AGENTS.md` — added 4-2b to Phase 4 table, updated alternatives description, updated How to Determine Current Stage
+- `.agent-utils/skills/start-stage/SKILL.md` — added 4-2b to Phase 4 stage mapping
+
+---
+
 ## 2026-03-17: Full audit — README stale on-demand stage references (3 fixes)
 
 **Problem:** README.md still listed the 4 deleted on-demand stages (diagram, import, knowledge, git) in two places after the Phase-0 persona fusion. Also referenced "Stage I" (import) in a folder comment.

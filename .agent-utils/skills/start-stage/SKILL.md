@@ -49,6 +49,7 @@ Start the specified workflow stage.
 ### Phase 4: Prototype Implementation
 - 4-1: project-setup
 - 4-2: implementation-loop (repeats per use case; AI writes, user reviews)
+- 4-2b: design-first (repeats per use case; user designs modules+contracts, AI writes)
 - 4-3: learning-guide (repeats per use case; user writes, AI guides)
 - 4-4: refactor (once, after all use cases done; plan-first, comprehension check at end)
 

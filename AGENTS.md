@@ -53,12 +53,18 @@ This is the **Web Workflow** — a structured, AI-collaborative process for buil
 |-------|------|---------|--------|
 | 4-1 | `workflow/stages/phase-4/01-project-setup.md` | Senior Developer | Architecture pattern + rules, implementation roadmap, `prototype-code/` (working skeleton), `consolidation-artifacts/implementation-decisions.md` |
 | 4-2 | `workflow/stages/phase-4/02-implementation-loop.md` | Senior Developer | Working prototype, `implementation-decisions.md` |
+| 4-2b | `workflow/stages/phase-4/02b-design-first.md` | Design-First Developer | Working prototype, `implementation-decisions.md` |
 | 4-3 | `workflow/stages/phase-4/03-learning-guide.md` | Code Mentor | Working prototype, `implementation-decisions.md` |
 | 4-4 | `workflow/stages/phase-4/04-refactor.md` | Senior Architect | Refactored prototype, `implementation-decisions.md` (refactoring section) |
 
 **Stage 4-1** establishes the architecture pattern (Ports & Adapters, Layered, or Clean Architecture), its binding rules, and the approved use case implementation order — before any code is written.
 
-**Stages 4-2 and 4-3 are alternatives** — use 4-2 (AI writes, you review) or 4-3 (you write, AI guides) per use case. Both repeat until all use cases are complete, following the architectural rules and order established in Stage 4-1. `implementation-decisions.md` is a shared persistence document — read at the start of every session, updated after every completed use case (checkpoint).
+**Stages 4-2, 4-2b, and 4-3 are alternatives** — choose per use case:
+- **4-2** — AI writes, you review (fastest)
+- **4-2b** — You design the modules and contracts, AI writes the code (middle ground)
+- **4-3** — You write the code, AI guides and reviews (deepest learning)
+
+All three repeat until all use cases are complete, following the architectural rules and order established in Stage 4-1. `implementation-decisions.md` is a shared persistence document — read at the start of every session, updated after every completed use case (checkpoint).
 
 **Stage 4-4** runs once after all use cases are implemented. It audits the codebase, proposes a refactor roadmap (error handling, input validation, security basics, layer enforcement), then refactors one area at a time with a plan approved before each change. Ends with a 5-question comprehension check on what was changed and why.
 
@@ -142,7 +148,7 @@ Check `docs/` for existing artifacts:
 
 **Phase 4 (Prototype Implementation):**
 - `consolidation-artifacts/ui-style-guide.md` exists but no `consolidation-artifacts/implementation-decisions.md` → Stage 4-1
-- `consolidation-artifacts/implementation-decisions.md` exists (use cases not all complete) → Stage 4-2 or 4-3 (user's choice per use case)
+- `consolidation-artifacts/implementation-decisions.md` exists (use cases not all complete) → Stage 4-2, 4-2b, or 4-3 (user's choice per use case)
 - `consolidation-artifacts/implementation-decisions.md` with all use cases complete but no `## Refactoring` section → Stage 4-4
 - `consolidation-artifacts/implementation-decisions.md` with `## Refactoring` section and refactoring incomplete → Stage 4-4 (resume)
 - `consolidation-artifacts/implementation-decisions.md` with all refactor areas complete → **Prototype refactored → Stage 5-1**
