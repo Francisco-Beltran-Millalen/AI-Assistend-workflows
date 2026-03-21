@@ -40,25 +40,7 @@ Required to run the workflow hook scripts.
 
 Verify: `bash --version`
 
-### 4. Web browser
-
-Used to review HTML views produced in Phase 2 (UI Sketching) and Phase 3 (UI Polish).
-
-Any modern browser works (Chrome, Firefox, Safari, Edge).
-
-### 5. SQLite CLI
-
-Used in Stage 2-2 to validate the database schema and mock data by running the generated `schema.sql` script.
-
-| OS | Status | Install |
-|----|--------|---------|
-| Linux (Debian/Ubuntu) | Not always included | `sudo apt install sqlite3` |
-| macOS | Pre-installed | Available via `sqlite3` |
-| Windows | Not included | https://sqlite.org/download.html or use WSL |
-
-Verify: `sqlite3 --version`
-
-### 6. Git
+### 4. Git
 
 Required to clone the workflow, version control your project, and push to GitHub.
 
@@ -72,24 +54,24 @@ Verify: `git --version`
 
 ---
 
-## Planned (not yet required)
+## Optional
 
-<!--
-  - Docker: planned for standardizing the development and deployment environment
-    in Phase 4 (Prototype Implementation), so the project runs consistently
-    across machines without manual dependency setup.
-    Install: https://docs.docker.com/get-docker/
--->
+### Image viewer / browser
+
+Useful for reviewing mood board images referenced in Phase 3 (Visual Identity) and Phase 6 (Session Setup). Any image viewer works; a browser handles HTML-embedded references.
+
+### Music player
+
+Phase 3 (Soundscape) and Phase 6 (Session Setup) produce playlist and audio references for scene moods. Any music player or streaming service works.
 
 ---
 
 ## Quick verification
 
-Run this to check all required tools at once:
+Run this to check required tools:
 
 ```bash
 echo "Python 3:  $(python3 --version 2>/dev/null || echo 'NOT FOUND')"
 echo "bash:      $(bash --version 2>/dev/null | head -1 || echo 'NOT FOUND')"
-echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
 echo "git:       $(git --version 2>/dev/null || echo 'NOT FOUND')"
 ```

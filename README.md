@@ -1,6 +1,6 @@
-# Web Workflow (REST + SQL)
+# Writing Workflow
 
-A structured, AI-collaborative workflow for building web application prototypes — from raw idea to working code, one stage at a time.
+A structured, AI-collaborative workflow for developing stories — from raw idea to written chapters, one stage at a time.
 
 ---
 
@@ -8,131 +8,98 @@ A structured, AI-collaborative workflow for building web application prototypes 
 
 This is not a tool. It is a **process**.
 
-A sequence of stages, each with a defined goal, a persona, concrete input artifacts, and concrete output artifacts. You run it with an LLM CLI (Claude Code, Gemini CLI, or any tool that supports `AGENTS.md`). The AI plays a role in each stage — asking questions, proposing designs, writing code — and you approve, adjust, and steer.
+A sequence of stages, each with a defined goal, a persona, concrete input artifacts, and concrete output artifacts. You run it with an LLM CLI (Claude Code, Gemini CLI, or any tool that supports `AGENTS.md`). The AI plays a role in each stage — asking questions, proposing designs, writing alongside you — and you approve, adjust, and steer.
 
-The workflow is specialized for a specific type of software: **web applications with REST endpoints and a SQL database**. But the underlying philosophy is generic and can be adapted to any domain.
+The workflow is designed for **long-form story development**: web novels, traditional novels, manga scripts, screenplays, game narratives. The philosophy is generic and can be adapted to any narrative format.
 
 ---
 
 ## Core Philosophies
 
-These are the ideas that make this workflow work. They are transferable to any workflow you build on top of this foundation.
+### 1. Collaborative by Design — AI Asks, You Answer, You Write
 
-### 1. Collaborative by Design — AI Proposes, You Approve
+The AI's primary role is to help you think — not to write for you. In the design phases (1–5), the AI asks questions to help you discover and articulate your story. In the writing phase (6), the AI asks structured questions to help you see a scene clearly before you write it.
 
-Every significant decision goes through a propose-approve loop. The AI suggests a data model, an endpoint signature, a function contract, a design direction. You say yes, no, or adjust. Nothing is implemented without your sign-off.
+You are always in control. The AI keeps you oriented and unstuck.
 
-This keeps you in control without requiring you to drive every detail. You stay oriented — you understand every piece of the system being built — without doing all the work.
-
-### 2. Personas Per Stage — Not a Generic Assistant
+### 2. Personas Per Stage
 
 Each stage has a defined persona with a specific responsibility:
 
-- **Project Initiator** — asks questions until the idea is clear
-- **Knowledge Auditor** — surfaces what you know and what you don't
-- **Data Architect** — turns entities into database schemas
-- **Senior Developer** — implements one use case at a time
-- **Workflow Engineer** — fixes the workflow itself
+- **Format Analyst** — determines the target medium and its constraints
+- **Story Conceiver** — helps crystallize the emotional core
+- **World Builder** — designs the systems and rules of the world
+- **Writing Companion** — asks the questions that clarify scenes before you write them
+- **Story Editor** — reviews and improves what's already written
 
-The persona frames what the AI pays attention to and what it ignores. A Knowledge Auditor does not write code. A Senior Developer does not redesign the data model. The role prevents scope creep and keeps sessions focused.
+The persona frames what the AI pays attention to and what it ignores. An editor does not redesign the world. A world builder does not draft chapters.
 
 ### 3. Artifacts as Context Bridges
 
 Every stage consumes specific input artifacts and produces specific output artifacts. The output of one stage is the input of the next.
 
-This means:
-- Sessions can end at any time — the artifacts capture the state
-- New sessions start by reading artifacts, not by relying on conversation memory
-- Handoffs between phases are explicit and verifiable
+Sessions can end at any time. New sessions start by reading artifacts. The workflow does not depend on conversation memory — it depends on files.
 
-The workflow does not depend on a continuous conversation thread. It depends on files.
+### 4. General to Specific — The Writing Method
 
-### 4. Phase 0 — The Workflow Improves Itself
+In Phase 6, every chapter starts with a rough description and drills down to scene-level clarity through structured questions. The AI presents a burst of targeted questions drawn from the design artifacts, then continues conversationally if needed. You write once you're clear on the scene.
 
-Stage 0 (Meta-Workflow) is a dedicated stage for fixing the workflow itself. When a stage instruction is unclear, a script fails, or the AI behaves unexpectedly, you invoke Stage 0. A Workflow Engineer persona diagnoses the problem, applies a fix, and logs the change to `docs/workflow-changelog.md`.
+### 5. Multi-Level Review
 
-Every workflow improvement is documented. The system gets better over time and the history of changes is searchable.
+Phase 7 operates at three scopes:
+- **Chapter** — make this chapter better
+- **Book** — does the whole book flow? Are there structural problems?
+- **Series** — does the series hold together? Are cross-book arcs satisfying?
 
-### 5. Prototype Mindset
+Each scope has a distinct persona and process.
 
-The workflow produces a **working prototype** — not production code. The goal is to validate the design by building something real. Speed and correctness are in tension; this workflow resolves it by choosing speed first.
+### 6. Phase 0 — The Workflow Improves Itself
 
-Phase 5 deploys the prototype.
-
-This separation matters because prototyping decisions (SQLite instead of Postgres, no caching, no deployment config) are different from production decisions. Mixing them slows the prototype phase without improving the design.
-
-### 6. Logs as Institutional Memory
-
-Every stage session is exported as a human-readable transcript. The log captures what was discussed, what was decided, and why. Over the course of a project, the logs become a record of the design process — not just the design.
-
-Auto-export runs every 5 minutes during a session (crash protection). A final export is made at the end of each stage.
+Stage 0 (Meta-Workflow) is a dedicated stage for fixing the workflow itself. Diagnose, fix, document. Every improvement is logged to `docs/workflow-changelog.md`.
 
 ### 7. Tool-Agnostic by Design
 
-The canonical workflow instructions live in `AGENTS.md` — the standard adopted by Claude Code, Gemini CLI, GitHub Copilot, Cursor, and others (Linux Foundation / Agentic AI Foundation, December 2025). Tool-specific configuration (`.claude/`, `.gemini/`) contains only thin wrappers that delegate to the canonical layer in `.agent-utils/`.
-
-Adding support for a new LLM tool requires:
-1. A tool-specific skill wrapper for `start-stage`
-2. A tool-specific skill wrapper for `export-log` (with the tool's transcript path and a converter script)
-3. A converter script extending `workflow/scripts/convert_transcript_generic.py`
+Canonical instructions live in `AGENTS.md`. Tool-specific configuration (`.claude/`, `.gemini/`) contains only thin wrappers delegating to `.agent-utils/`.
 
 ---
 
-## This Workflow: Web (REST + SQL)
+## The Seven Phases
 
-The `web` workflow is a specialization for building web applications with:
-- A **REST API** (JSON over HTTP)
-- A **SQL database** (SQLite for prototyping, any relational DB for production)
-
-**Frontend rendering approach** and **authentication mechanism** are chosen in Stage 1-5 (Tech Selection):
-- **Rendering:** SPA, SSR, hybrid, or MPA (HTMX, Hotwire, etc.)
-- **Auth:** JWT (Bearer token), session-based, OAuth, or hybrid
-
-### The Five Phases
-
-| Phase | Goal | Stages |
-|-------|------|--------|
-| **Phase 1: Discovery + Tech Selection** | Understand what to build and pick the stack *(generic — applies to any workflow branch)* | 6 stages |
-| **Phase 2: Sketching & Data Modeling** | Design entities, data model, endpoints, and UI sketches | 4 stages |
-| **Phase 3: UI Polish** | Style the plain HTML views into a working interface | 5 stages |
-| **Phase 4: Prototype Implementation** | Build it, refactor it | 4 stages (setup + alternating loop + refactor) |
-| **Phase 5: Deployment** | Deploy the prototype to a real environment | 1 stage (skeleton) |
+| Phase | Name | Goal | Stages |
+|-------|------|------|--------|
+| **1** | Concept & Foundation | Define the story's core, protagonist, world states, antagonists, key events | 8 stages |
+| **2** | World & Rules | Build the world's systems, cultures, politics, and narrative voice | 9 stages |
+| **3** | Sensory & Identity | Define how the world looks, sounds, feels, and how characters speak | 7 stages |
+| **4** | Narrative Arcs | Design the thematic conflict, story arcs, progression, and world consequences | 5 stages |
+| **5** | Chapter Planning | Define chapter format, outline all chapters, describe scenes, compile the design package | 4 stages |
+| **6** | Writing *(cyclical)* | Write chapters one at a time — session setup, scene expansion, writing, close, design sync | 5 stages per chapter |
+| **7** | Review *(on-demand)* | Review at chapter, book, or series level | 3 stages |
 
 ### On-Demand Stages
-
-Two stages run outside the phase cycle, whenever needed:
 
 | Stage | Purpose |
 |-------|---------|
 | **Stage 0** — Meta-Workflow | Fix the workflow itself, run git operations, import external artifacts |
-| **Stage teacher** — Teacher | Socratic learning sessions, rubber duck debugging, pre-meeting knowledge tests, diagrams |
 
-### What It Produces
+---
 
-- A working prototype with real endpoints and a real database
-- Automated tests (unit + integration) for every implemented use case
-- Styled HTML views
-- Complete design documentation (`project-brief.md`, `use-cases.md`, `api-design.md`, `ui-style-guide.md`, and more)
-- Architecture Decision Records for all significant tech choices
+## Multiple Stories
+
+Each story is its own isolated entity within this project. All story-specific artifacts live under `docs/<story-name>/`. Multiple stories can coexist without interfering.
 
 ---
 
 ## Prerequisites
 
-See [`PREREQUISITES.md`](PREREQUISITES.md) for the full list with installation instructions.
+See [`PREREQUISITES.md`](PREREQUISITES.md) for the full list.
 
-**Required:**
-- An LLM CLI that supports `AGENTS.md` (Claude Code recommended)
-- Python 3 (workflow scripts)
-- bash (hook scripts)
-- SQLite CLI (schema validation in Phase 2)
-- A web browser (reviewing HTML views in Phases 2 and 3)
+**Required:** LLM CLI (Claude Code recommended), Python 3, bash, Git
 
 **Quick check:**
 ```bash
 echo "Python 3:  $(python3 --version 2>/dev/null || echo 'NOT FOUND')"
 echo "bash:      $(bash --version 2>/dev/null | head -1 || echo 'NOT FOUND')"
-echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
+echo "git:       $(git --version 2>/dev/null || echo 'NOT FOUND')"
 ```
 
 ---
@@ -141,8 +108,8 @@ echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
 
 1. **Clone this branch** into your new project directory
    ```bash
-   git clone --branch web --single-branch <repo-url> my-project
-   cd my-project
+   git clone --branch writing --single-branch <repo-url> my-story
+   cd my-story
    ```
 
 2. **Open the project** in your LLM CLI
@@ -150,17 +117,17 @@ echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
    claude  # or: gemini, cursor, etc.
    ```
 
-3. **Start Stage 1-1** to begin Discovery
+3. **Start Stage 1-1** to define the format and medium
    ```bash
    /start-stage 1-1
    ```
 
-4. **Follow the stage**. The AI will adopt the Project Initiator persona and ask about your idea. Answer, discuss, and at the end of the session, export the log:
+4. **Follow the stage.** Export the log at the end of each session:
    ```bash
    /export-log 1-1
    ```
 
-5. **Continue stage by stage.** Each stage reads the outputs of the previous one. The workflow guides you.
+5. **Continue stage by stage.**
 
 ---
 
@@ -168,34 +135,40 @@ echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
 
 ```
 project-root/
-├── BRANCH-INFORMATION.md        ← Branch metadata (name, objective, path)
-├── AGENTS.md                    ← Canonical workflow instructions (read by all LLM tools)
+├── BRANCH-INFORMATION.md        ← Branch metadata
+├── AGENTS.md                    ← Canonical workflow instructions
 ├── CLAUDE.md                    ← Claude Code redirect → AGENTS.md
 ├── GEMINI.md                    ← Gemini CLI redirect → AGENTS.md
 ├── README.md                    ← You are here
 ├── PREREQUISITES.md             ← Tool installation requirements
 ├── .claude/
-│   ├── settings.json            ← Hook configuration (auto-export, session start)
-│   └── skills/                  ← Claude Code slash commands (thin wrappers)
-│       ├── start-stage/
-│       └── export-log/
+│   ├── settings.json            ← Hook configuration
+│   └── skills/                  ← Claude Code slash commands
 ├── .agent-utils/
 │   └── skills/                  ← Canonical, tool-agnostic skill content
-│       ├── start-stage/
-│       └── export-log/
-├── imported-artifacts/          ← Raw imports + adapted *-imported.md files (Stage 0)
-├── consolidation-artifacts/     ← Phase milestone documents (committed to git)
-├── prototype-code/              ← Working prototype code (committed to git)
+├── imported-artifacts/          ← Raw imports + adapted files (Stage 0)
 ├── docs/
-│   ├── logs/                    ← Conversation logs (one per stage session)
-│   ├── assets/                  ← Views (HTML), CSS, SQL schema, diagrams
-│   ├── adrs/                    ← Architecture Decision Records
-│   └── *.md                     ← Working design artifacts (project-brief.md, use-cases.md, etc.)
+│   ├── logs/                    ← Conversation logs
+│   ├── workflow-changelog.md    ← Workflow improvement log
+│   └── <story-name>/            ← All artifacts for a specific story
+│       ├── format-medium.md
+│       ├── story-seed.md
+│       ├── main-character.md
+│       ├── ... (all phase 1–5 artifacts)
+│       ├── phase-N-consolidation.md
+│       ├── story-design-package/
+│       │   └── ... (final compiled package)
+│       ├── assets/
+│       │   ├── images/          ← Mood board / visual references
+│       │   └── audio/           ← Playlist / audio references
+│       └── chapters/
+│           ├── chapter-01.md
+│           └── chapter-02.md
 └── workflow/
-    ├── stages/                  ← Stage files (one per stage, organized by phase)
-    ├── shared/                  ← Shared protocols (Existing Artifact Protocol)
+    ├── stages/                  ← Stage files organized by phase
+    ├── shared/                  ← Shared protocols
     ├── templates/               ← Output templates
-    └── scripts/                 ← Automation scripts (log export, auto-export)
+    └── scripts/                 ← Automation scripts
 ```
 
 ---
@@ -204,38 +177,8 @@ project-root/
 
 | Command | What it does |
 |---------|-------------|
-| `/start-stage 1-1` | Start a specific stage (Phase 1, Stage 1) |
-| `/start-stage 0` | Start the Meta-Workflow (workflow fixes, git ops, artifact import) |
-| `/start-stage teacher` | Start the Teacher (teaching, rubber duck, knowledge test, diagrams) |
-| `/export-log 1-1` | Export the current session log for Stage 1-1 |
-
----
-
-## Building Your Own Workflow
-
-The `web` specialization lives in `workflow/stages/`. The philosophy it runs on is generic.
-
-If you wanted to build a `game` workflow or a `cli` workflow, the structure would be the same:
-
-1. **Define your phases** — what are the natural checkpoints from idea to working prototype?
-2. **Define stages within each phase** — what is the goal, the persona, the inputs, the outputs?
-3. **Write stage files** following the same pattern: Persona → Purpose → Input Artifacts → Process → Output Artifacts → Exit Criteria → Next Stage
-4. **Keep Stage 0** — the Meta-Workflow is universal. Every workflow needs a way to fix itself.
-5. **Keep the log strategy** — export every session, auto-export for crash protection.
-
-The core ideas that transfer to any workflow:
-- Phases create clean checkpoints (you finish one before starting the next)
-- Artifacts eliminate dependency on conversation memory
-- The propose-approve loop keeps you oriented
-- Personas prevent scope creep
-- Stage 0 makes the workflow self-correcting
-
-The `web` specialization is one application of these ideas. Build the next one on the same foundation.
-
----
-
-## The Workflow Changelog
-
-Every change to the workflow itself is logged in [`docs/workflow-changelog.md`](docs/workflow-changelog.md). This file is the record of how the workflow evolved — what problems were found, what was fixed, and why.
-
-If you fork this workflow and improve it, the changelog is where you track those improvements.
+| `/start-stage 1-1` | Start Stage 1-1: Format & Medium |
+| `/start-stage 6-2` | Start Stage 6-2: Chapter Expansion |
+| `/start-stage 7-1` | Start Stage 7-1: Chapter Review |
+| `/start-stage 0` | Start the Meta-Workflow |
+| `/export-log 1-1` | Export the session log for Stage 1-1 |

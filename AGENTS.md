@@ -1,10 +1,12 @@
-# AGENTS.md — Web Workflow (REST + SQL)
+# AGENTS.md — Writing Workflow
 
-This is the **Web Workflow** — a structured, AI-collaborative process for building web application prototypes with REST endpoints and SQL persistence.
+This is the **Writing Workflow** — a structured, AI-collaborative process for developing stories from raw idea to written chapters.
 
-**Branch:** `web` — See `BRANCH-INFORMATION.md` for branch metadata.
+**Branch:** `writing` — See `BRANCH-INFORMATION.md` for branch metadata.
 
-**Before doing any work, identify which stage we're in and read the corresponding stage file.**
+**Before doing any work, identify which story and stage we're in, and read the corresponding stage file.**
+
+---
 
 ## Stage Files
 
@@ -13,84 +15,101 @@ This is the **Web Workflow** — a structured, AI-collaborative process for buil
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
 | 0 | `workflow/stages/phase-0/00-meta-workflow.md` | Workflow Engineer | `workflow-changelog.md`, `imported-artifacts/*-imported.md` |
-| teacher | `workflow/stages/phase-0/04-teacher.md` | Patient Teacher | `assets/diagrams/*.md` (diagram mode); no artifacts otherwise |
 
-### Phase 1: Discovery + Tech Selection
-
-| Stage | File | Persona | Output |
-|-------|------|---------|--------|
-| 1-1 | `workflow/stages/phase-1/01-project-definition.md` | Project Initiator | `project-brief.md` |
-| 1-2 | `workflow/stages/phase-1/02-knowledge-audit.md` | Knowledge Auditor | `knowledge-audit.md` |
-| 1-3 | `workflow/stages/phase-1/03-research.md` | Research Analyst | `research-findings.md` |
-| 1-4 | `workflow/stages/phase-1/04-use-case-discovery.md` | Use Case Analyst | `use-cases.md` |
-| 1-5 | `workflow/stages/phase-1/05-tech-selection.md` | Tech Lead | `tech-stack.md`, `adrs/` |
-| 1-6 | `workflow/stages/phase-1/06-consolidation.md` | Technical Writer | **`consolidation-artifacts/phase-1-consolidation.md`** |
-
-### Phase 2: Sketching & Data Modeling
+### Phase 1: Concept & Foundation
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
-| 2-1 | `workflow/stages/phase-2/01-entity-ui-sketching.md` | Domain Modeler + UI Sketcher | `entity-map.md`, `assets/views/*.html`, `view-entity-mapping.md` |
-| 2-2 | `workflow/stages/phase-2/02-data-modeling.md` | Data Architect | `data-model-conceptual.md`, `data-model-physical.md`, `assets/schema.sql`, `assets/diagrams/entity-diagram.md` |
-| 2-3 | `workflow/stages/phase-2/03-endpoint-design.md` | API Designer | `api-design.md` (with JSON contracts + view-endpoint mapping) |
-| 2-4 | `workflow/stages/phase-2/04-consolidation.md` | Technical Writer | **`consolidation-artifacts/phase-2-consolidation.md`**, `assets/` |
+| 1-1 | `workflow/stages/phase-1/01-format-medium.md` | Format Analyst | `docs/<story>/format-medium.md` |
+| 1-2 | `workflow/stages/phase-1/02-story-seed.md` | Story Conceiver | `docs/<story>/story-seed.md` |
+| 1-3 | `workflow/stages/phase-1/03-main-character.md` | Character Creator | `docs/<story>/main-character.md` |
+| 1-4 | `workflow/stages/phase-1/04-world-initial-state.md` | World Setter | `docs/<story>/world-initial-state.md` |
+| 1-5 | `workflow/stages/phase-1/05-world-end-state.md` | Vision Definer | `docs/<story>/world-end-state.md` |
+| 1-6 | `workflow/stages/phase-1/06-antagonists.md` | Antagonist Designer | `docs/<story>/antagonists.md` |
+| 1-7 | `workflow/stages/phase-1/07-key-events.md` | Story Mapper | `docs/<story>/key-events.md` |
+| 1-8 | `workflow/stages/phase-1/08-consolidation.md` | Story Editor | **`docs/<story>/phase-1-consolidation.md`** |
 
-### Phase 3: UI Polish
-
-| Stage | File | Persona | Output |
-|-------|------|---------|--------|
-| 3-1 | `workflow/stages/phase-3/01-visual-design.md` | UI Designer | Main view styled, `phase-3-design-decisions.md`, `assets/css/styles.css` |
-| 3-2 | `workflow/stages/phase-3/02-core-app-views.md` | UI Designer | Core app views styled |
-| 3-3 | `workflow/stages/phase-3/03-user-views.md` | UI Designer | User views styled |
-| 3-4 | `workflow/stages/phase-3/04-auth-views.md` | UI Designer | Auth views styled |
-| 3-5 | `workflow/stages/phase-3/05-consolidation.md` | Technical Writer | **`consolidation-artifacts/ui-style-guide.md`**, updated `index.html` |
-
-**`phase-3-design-decisions.md`** is a living artifact shared across all Phase 3 stages.
-
-### Phase 4: Prototype Implementation
+### Phase 2: World & Rules
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
-| 4-1 | `workflow/stages/phase-4/01-project-setup.md` | Senior Developer | Architecture pattern + rules, implementation roadmap, `prototype-code/` (working skeleton), `consolidation-artifacts/implementation-decisions.md` |
-| 4-2 | `workflow/stages/phase-4/02-implementation-loop.md` | Senior Developer | Working prototype, `implementation-decisions.md` |
-| 4-2b | `workflow/stages/phase-4/02b-design-first.md` | Design-First Developer | Working prototype, `implementation-decisions.md` |
-| 4-3 | `workflow/stages/phase-4/03-learning-guide.md` | Code Mentor | Working prototype, `implementation-decisions.md` |
-| 4-4 | `workflow/stages/phase-4/04-refactor.md` | Senior Architect | Refactored prototype, `implementation-decisions.md` (refactoring section) |
+| 2-1 | `workflow/stages/phase-2/01-world-rules.md` | System Designer | `docs/<story>/world-rules.md` |
+| 2-2 | `workflow/stages/phase-2/02-geography.md` | Cartographer | `docs/<story>/geography.md` |
+| 2-3 | `workflow/stages/phase-2/03-races-cultures.md` | Cultural Anthropologist | `docs/<story>/races-cultures.md` |
+| 2-4 | `workflow/stages/phase-2/04-religions-mythology.md` | Lore Keeper | `docs/<story>/religions-mythology.md` |
+| 2-5 | `workflow/stages/phase-2/05-politics-power.md` | Political Architect | `docs/<story>/politics-power.md` |
+| 2-6 | `workflow/stages/phase-2/06-supporting-characters.md` | Character Weaver | `docs/<story>/supporting-characters.md` |
+| 2-7 | `workflow/stages/phase-2/07-narrative-style.md` | Literary Stylist | `docs/<story>/narrative-style.md` |
+| 2-8 | `workflow/stages/phase-2/08-anti-patterns.md` | Critical Reviewer | `docs/<story>/anti-patterns.md` |
+| 2-9 | `workflow/stages/phase-2/09-consolidation.md` | World Editor | **`docs/<story>/phase-2-consolidation.md`** |
 
-**Stage 4-1** establishes the architecture pattern (Ports & Adapters, Layered, or Clean Architecture), its binding rules, and the approved use case implementation order — before any code is written.
-
-**Stages 4-2, 4-2b, and 4-3 are alternatives** — choose per use case:
-- **4-2** — AI writes, you review (fastest)
-- **4-2b** — You design the modules and contracts, AI writes the code (middle ground)
-- **4-3** — You write the code, AI guides and reviews (deepest learning)
-
-All three repeat until all use cases are complete, following the architectural rules and order established in Stage 4-1. `implementation-decisions.md` is a shared persistence document — read at the start of every session, updated after every completed use case (checkpoint).
-
-**Stage 4-4** runs once after all use cases are implemented. It audits the codebase, proposes a refactor roadmap (error handling, input validation, security basics, layer enforcement), then refactors one area at a time with a plan approved before each change. Ends with a 5-question comprehension check on what was changed and why.
-
-### Phase 5: Deployment
+### Phase 3: Sensory & Identity
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
-| 5-1 | `workflow/stages/phase-5/01-deployment.md` | Deployment Engineer | Deployed prototype |
+| 3-1 | `workflow/stages/phase-3/01-visual-identity.md` | Visual Artist | `docs/<story>/visual-identity.md`, `docs/<story>/assets/images/` |
+| 3-2 | `workflow/stages/phase-3/02-soundscape.md` | Sound Designer | `docs/<story>/soundscape.md`, `docs/<story>/assets/audio/` |
+| 3-3 | `workflow/stages/phase-3/03-sensory-palette.md` | Sensory Writer | `docs/<story>/sensory-palette.md` |
+| 3-4 | `workflow/stages/phase-3/04-mood-guide.md` | Mood Architect | `docs/<story>/mood-guide.md` |
+| 3-5 | `workflow/stages/phase-3/05-character-voices.md` | Dialogue Specialist | `docs/<story>/character-voices.md` |
+| 3-6 | `workflow/stages/phase-3/06-character-dynamics.md` | Relationship Mapper | `docs/<story>/character-dynamics.md` |
+| 3-7 | `workflow/stages/phase-3/07-consolidation.md` | Sensory Editor | **`docs/<story>/phase-3-consolidation.md`** |
 
-**Phase 5 is a skeleton** — the process is minimal and will be expanded as deployment experience grows.
+### Phase 4: Narrative Arcs
+
+| Stage | File | Persona | Output |
+|-------|------|---------|--------|
+| 4-1 | `workflow/stages/phase-4/01-central-conflict.md` | Thematic Architect | `docs/<story>/central-conflict.md` |
+| 4-2 | `workflow/stages/phase-4/02-major-arcs.md` | Plot Architect | `docs/<story>/major-arcs.md` |
+| 4-3 | `workflow/stages/phase-4/03-progression-map.md` | Progression Designer | `docs/<story>/progression-map.md` |
+| 4-4 | `workflow/stages/phase-4/04-consequence-map.md` | Consequence Mapper | `docs/<story>/consequence-map.md` |
+| 4-5 | `workflow/stages/phase-4/05-consolidation.md` | Arc Editor | **`docs/<story>/phase-4-consolidation.md`** |
+
+### Phase 5: Chapter Planning
+
+| Stage | File | Persona | Output |
+|-------|------|---------|--------|
+| 5-1 | `workflow/stages/phase-5/01-format-architecture.md` | Serial Architect | `docs/<story>/chapter-format.md` |
+| 5-2 | `workflow/stages/phase-5/02-chapter-outline.md` | Chapter Planner | `docs/<story>/chapter-outline.md` |
+| 5-3 | `workflow/stages/phase-5/03-scene-descriptions.md` | Scene Designer | `docs/<story>/scene-descriptions.md` |
+| 5-4 | `workflow/stages/phase-5/04-story-design-package.md` | Story Compiler | **`docs/<story>/story-design-package/`** |
+
+### Phase 6: Writing *(cyclical — one pass per chapter)*
+
+| Stage | File | Persona | Output |
+|-------|------|---------|--------|
+| 6-1 | `workflow/stages/phase-6/01-session-setup.md` | Writing Companion | Session context loaded |
+| 6-2 | `workflow/stages/phase-6/02-chapter-expansion.md` | Story Analyst | Chapter blueprint |
+| 6-3 | `workflow/stages/phase-6/03-writing-session.md` | Writing Companion | `docs/<story>/chapters/chapter-<N>.md` |
+| 6-4 | `workflow/stages/phase-6/04-chapter-close.md` | Continuity Editor | Chapter close notes, `chapter-outline.md` updated |
+| 6-5 | `workflow/stages/phase-6/05-design-sync.md` | Story Editor | Updated design docs *(conditional)* |
+
+**Phase 6 repeats for every chapter.** Each chapter goes through the full 6-1 → 6-4 cycle (and 6-5 if design issues were flagged in 6-4). After closing a chapter, return to 6-1 for the next.
+
+### Phase 7: Review *(on-demand — invoke at any time)*
+
+| Stage | File | Persona | Output |
+|-------|------|---------|--------|
+| 7-1 | `workflow/stages/phase-7/01-chapter-review.md` | Chapter Editor | Revised `chapter-<N>.md` + review notes |
+| 7-2 | `workflow/stages/phase-7/02-book-review.md` | Story Architect | `docs/<story>/book-review.md` |
+| 7-3 | `workflow/stages/phase-7/03-series-review.md` | Series Architect | `docs/<story>/series-review.md` |
+
+**Phase 7 scopes:**
+- **7-1 Chapter Review** — invoke anytime on any chapter: "How do I make this chapter better?"
+- **7-2 Book Review** — invoke when all chapters of a book/volume are drafted: pacing, flow, structure
+- **7-3 Series Review** — invoke when multiple books/volumes or installments are complete: cross-book consistency, series arcs
 
 ---
 
-## Architectural Assumptions
+## Story Identification
 
-This workflow is scoped to a specific application type:
-- **Web application** (browser-based UI)
-- **REST API** (JSON over HTTP)
-- **SQL database** (relational persistence)
-- **SQLite for prototyping** (always, regardless of production DB)
+This workflow supports **multiple stories in one project**. Each story's artifacts live under `docs/<story-name>/`.
 
-Decided in Stage 1-5 (Tech Selection):
-- **Frontend rendering approach** — SPA, SSR, hybrid, or MPA
-- **Authentication mechanism** — JWT, sessions, OAuth, or hybrid
-
-These are real decision points, not fixed constraints. The chosen approach is recorded in `docs/tech-stack.md` and shapes Phase 3 and Phase 4.
+**Before starting any stage:**
+1. Check what stories exist — look for directories in `docs/` (ignore `logs/`)
+2. If multiple stories exist, ask the user which story they're working on
+3. If no story exists yet, Stage 1-1 will establish the story name
+4. Use the story name consistently as the directory name (lowercase, hyphenated, e.g. `iron-throne-chronicles`)
 
 ---
 
@@ -98,60 +117,91 @@ These are real decision points, not fixed constraints. The chosen approach is re
 
 ### Phase 1 → Phase 2
 
-Stage 1-6 produces `consolidation-artifacts/phase-1-consolidation.md` (includes tech stack summary) — the **primary input** for Phase 2.
+Stage 1-8 produces `docs/<story>/phase-1-consolidation.md` — the **primary input** for Phase 2. It contains the complete story foundation: format/medium, emotional core, protagonist, world states, antagonists, and key events.
 
 ### Phase 2 → Phase 3
 
-Stage 2-4 consolidates Phase 2 work into `consolidation-artifacts/phase-2-consolidation.md` — the primary artifact forwarded to Phase 3. Also forwarded: `docs/view-entity-mapping.md` (Stage 2-1), `docs/api-design.md` (Stage 2-3, includes view-endpoint mapping with JSON contracts), and the `docs/assets/` folder.
+Stage 2-9 produces `docs/<story>/phase-2-consolidation.md` — the primary input for Phase 3. It contains the complete world: rules, geography, cultures, politics, supporting characters, and narrative voice.
 
 ### Phase 3 → Phase 4
 
-Stage 3-5 consolidates all Phase 3 work into `consolidation-artifacts/ui-style-guide.md` — a comprehensive style guide whose Decision Log captures everything from `phase-3-design-decisions.md` (the Phase 3 working document, which is not forwarded to Phase 4). Phase 4 uses all prior artifacts: styled views, endpoint contracts, SQLite schema, and tech stack.
-
-The styled HTML views from Phase 3 are **design references** for frontend development in Phase 4. For SPA/hybrid projects: no template conversion needed — backend is a pure JSON API. For SSR/MPA projects: views serve as templates for server-side rendering.
+Stage 3-7 produces `docs/<story>/phase-3-consolidation.md` — the primary input for Phase 4. It contains the complete sensory and identity layer: visual identity, soundscape, sensory palette, mood guide, character voices, and character dynamics.
 
 ### Phase 4 → Phase 5
 
-Phase 4 produces a refactored working prototype: all use cases implemented, all tests passing, architecture cleaned up (Stage 4-4). Phase 5 deploys it to a real environment. The process is minimal now and will be expanded as deployment experience grows.
+Stage 4-5 produces `docs/<story>/phase-4-consolidation.md` — the primary input for Phase 5. It contains the complete narrative architecture: central conflict, major arcs, progression milestones, and world consequences.
+
+### Phase 5 → Phase 6
+
+Stage 5-4 compiles all outputs into `docs/<story>/story-design-package/` — the **reference package** for the writing phase. Phase 6 reads from this package at the start of every writing session.
+
+### Phase 6 → Phase 6 (cyclical)
+
+After completing a chapter (6-4 close, 6-5 sync if needed), return to 6-1 for the next chapter. The chapter outline tracks which chapters are drafted.
 
 ---
 
 ## How to Determine Current Stage
 
-Check `docs/` for existing artifacts:
+### Step 1: Identify the story
 
-**Phase 1 (Discovery + Tech Selection):**
-- No artifacts → Stage 1-1
-- `project-brief.md` → Stage 1-2
-- `knowledge-audit.md` → Stage 1-3
-- `research-findings.md` → Stage 1-4
-- `use-cases.md` → Stage 1-5
-- `tech-stack.md` → Stage 1-6
-- `consolidation-artifacts/phase-1-consolidation.md` → Phase 1 complete
+Check `docs/` for story directories. If multiple exist, ask the user.
 
-**Phase 2 (Sketching & Data Modeling):**
-- `consolidation-artifacts/phase-1-consolidation.md` exists but no `entity-map.md` → Stage 2-1
-- `entity-map.md` → Stage 2-2
-- `data-model-physical.md` → Stage 2-3
-- `api-design.md` → Stage 2-4
-- `consolidation-artifacts/phase-2-consolidation.md` → Phase 2 complete
+### Step 2: Check artifacts within `docs/<story>/`
 
-**Phase 3 (UI Polish):**
-- `consolidation-artifacts/phase-2-consolidation.md` exists but no `phase-3-design-decisions.md` → Stage 3-1
-- `phase-3-design-decisions.md` + styled main view → Stage 3-2
-- Core app views styled → Stage 3-3
-- User views styled → Stage 3-4
-- Auth views styled → Stage 3-5
-- `consolidation-artifacts/ui-style-guide.md` → Phase 3 complete
+**Phase 1 (Concept & Foundation):**
+- No story directory → Stage 1-1
+- `format-medium.md` exists → Stage 1-2
+- `story-seed.md` exists → Stage 1-3
+- `main-character.md` exists → Stage 1-4
+- `world-initial-state.md` exists → Stage 1-5
+- `world-end-state.md` exists → Stage 1-6
+- `antagonists.md` exists → Stage 1-7
+- `key-events.md` exists → Stage 1-8
+- `phase-1-consolidation.md` exists → Phase 1 complete
 
-> To detect Phase 3 sub-stages: read `docs/phase-3-design-decisions.md` → View Decisions section. First check the **Main View (reference implementation)** entry — if it is still plain HTML, Stage 3-1 is incomplete; continue Stage 3-1. Otherwise, views marked INCLUDE that still have plain HTML (no CSS framework classes applied) indicate the current unfinished stage based on their category: core app views → still in 3-2, user views → still in 3-3, auth views → still in 3-4.
+**Phase 2 (World & Rules):**
+- `phase-1-consolidation.md` exists, no `world-rules.md` → Stage 2-1
+- `world-rules.md` → Stage 2-2
+- `geography.md` → Stage 2-3
+- `races-cultures.md` → Stage 2-4
+- `religions-mythology.md` → Stage 2-5
+- `politics-power.md` → Stage 2-6
+- `supporting-characters.md` → Stage 2-7
+- `narrative-style.md` → Stage 2-8
+- `anti-patterns.md` → Stage 2-9
+- `phase-2-consolidation.md` → Phase 2 complete
 
-**Phase 4 (Prototype Implementation):**
-- `consolidation-artifacts/ui-style-guide.md` exists but no `consolidation-artifacts/implementation-decisions.md` → Stage 4-1
-- `consolidation-artifacts/implementation-decisions.md` exists (use cases not all complete) → Stage 4-2, 4-2b, or 4-3 (user's choice per use case)
-- `consolidation-artifacts/implementation-decisions.md` with all use cases complete but no `## Refactoring` section → Stage 4-4
-- `consolidation-artifacts/implementation-decisions.md` with `## Refactoring` section and refactoring incomplete → Stage 4-4 (resume)
-- `consolidation-artifacts/implementation-decisions.md` with all refactor areas complete → **Prototype refactored → Stage 5-1**
+**Phase 3 (Sensory & Identity):**
+- `phase-2-consolidation.md` exists, no `visual-identity.md` → Stage 3-1
+- `visual-identity.md` → Stage 3-2
+- `soundscape.md` → Stage 3-3
+- `sensory-palette.md` → Stage 3-4
+- `mood-guide.md` → Stage 3-5
+- `character-voices.md` → Stage 3-6
+- `character-dynamics.md` → Stage 3-7
+- `phase-3-consolidation.md` → Phase 3 complete
+
+**Phase 4 (Narrative Arcs):**
+- `phase-3-consolidation.md` exists, no `central-conflict.md` → Stage 4-1
+- `central-conflict.md` → Stage 4-2
+- `major-arcs.md` → Stage 4-3
+- `progression-map.md` → Stage 4-4
+- `consequence-map.md` → Stage 4-5
+- `phase-4-consolidation.md` → Phase 4 complete
+
+**Phase 5 (Chapter Planning):**
+- `phase-4-consolidation.md` exists, no `chapter-format.md` → Stage 5-1
+- `chapter-format.md` → Stage 5-2
+- `chapter-outline.md` → Stage 5-3
+- `scene-descriptions.md` → Stage 5-4
+- `story-design-package/` exists → Phase 5 complete
+
+**Phase 6 (Writing):**
+- `story-design-package/` exists → Writing phase active. Read `chapter-outline.md` to find the next undrafted chapter → Stage 6-1.
+
+**Phase 7 (Review):**
+- On-demand. Ask the user what scope they want to review (chapter / book / series) → stage 7-1, 7-2, or 7-3.
 
 ---
 
@@ -161,36 +211,26 @@ Each stage session should produce one final log file.
 
 ### Logging Strategy
 
-- **During session**: Auto-export runs every 5 minutes for crash protection (temporary)
+- **During session**: Auto-export runs every 5 minutes for crash protection
 - **On stage completion**: Export the final log using `/export-log <phase>-<stage>`
-- **Off-stage conversations**: No logs kept (can be reviewed manually if needed)
 
 ### Exporting Logs
 
-At the end of each stage session:
-
 ```bash
-/export-log 2-1
+/export-log 2-3
 ```
 
-This creates: `docs/logs/stage-2-1-entity-ui-sketching-20260203-143022.txt`
+Creates: `docs/logs/stage-2-3-races-cultures-20260321-143022.txt`
 
-### Log Naming Convention
-
-Format: `stage-<phase>-<stage>-<name>-<YYYYMMDD>-<HHMMSS>.txt`
-
-Examples:
-- `stage-00-meta-workflow-20260203-091500.txt`
-- `stage-1-4-use-case-discovery-20260203-143022.txt`
-- `stage-2-1-entity-ui-sketching-20260204-101530.txt`
+For Phase 6, include chapter number in the log name:
+- `stage-6-3-writing-session-ch03-20260321-143022.txt`
 
 ---
 
 ## On-Demand Stages
 
-**On-demand stages** are not part of the phase cycle. Invoke them anytime:
-- **Stage 0** (`/start-stage 0`) — Workflow maintenance, git operations, and artifact import
-- **Stage teacher** (`/start-stage teacher`) — Teaching (Socratic), rubber duck mode, pre-meeting knowledge test, diagrams
+- **Stage 0** (`/start-stage 0`) — Workflow maintenance, git operations, artifact import
+- **Stage 7-1/7-2/7-3** — Review at chapter, book, or series scope (anytime)
 
 ---
 
@@ -198,35 +238,35 @@ Examples:
 
 1. **ALWAYS read the stage file** before starting work
 2. **ALWAYS adopt the persona** defined in the stage file
-3. **ALWAYS use `/start-stage`** to start stages — it automatically runs the Existing Artifact Protocol, which detects prior runs and asks how to proceed before any work begins
-4. **In Phase 3: ALWAYS read `docs/phase-3-design-decisions.md` first** — it persists decisions across sessions
-5. **In Phase 4: ALWAYS read `implementation-decisions.md` first** — it tracks progress and decisions across sessions
-6. **Follow stage order** within each phase
-7. **Complete each phase before starting the next**
+3. **ALWAYS use `/start-stage`** to start stages — it automatically runs the Existing Artifact Protocol
+4. **ALWAYS identify the story first** — check `docs/` for story directories before any stage work
+5. **In Phase 6: ALWAYS read the story design package** at the start of each session
+6. **In Phase 6: ALWAYS read the chapter outline** to confirm which chapter is next
+7. **Follow stage order** within phases 1–5
+8. **Complete each design phase before starting the next** (phases 1–5 are sequential)
+9. **Phase 6 is cyclical** — repeat for every chapter; return to 6-1 after closing each chapter
+10. **Phase 7 is on-demand** — invoke at any scope, at any time
 
 ---
 
 ## Quick Commands
 
-### Slash Commands (Skills)
+### Slash Commands
 
 - `/start-stage <phase>-<stage>` → Start a specific stage (e.g., `/start-stage 2-1`)
-- `/start-stage 0` → Workflow Engineer (workflow fixes, git ops, artifact import)
-- `/start-stage teacher` → Teacher (teaching, rubber duck, knowledge test, diagrams)
-- `/export-log <phase>-<stage>` → Export conversation to docs/logs/
+- `/start-stage 0` → Workflow Engineer
+- `/export-log <phase>-<stage>` → Export conversation log
 
 ### Natural Language
 
-- "Start stage 2-1" → Entity & UI Sketching
-- "What stage are we in?" → Check docs/ for artifacts
-- "Export the log" → Save conversation
+- "Start stage 3-4" → Mood Guide
+- "What stage are we in?" → Check `docs/<story>/` for artifacts
+- "Review chapter 5" → Stage 7-1
 
-### Built-in Claude Code Commands
+### Built-in Commands
 
 - `/export <file>` → Export conversation
 - `/compact` → Compress long conversations
-- `/context` → See context usage
-- `/cost` → See token usage
 
 ---
 
@@ -234,109 +274,140 @@ Examples:
 
 ```
 project-root/
-├── BRANCH-INFORMATION.md        ← Branch metadata (name, objective, path)
-├── AGENTS.md                    ← You are here (canonical workflow instructions)
-├── CLAUDE.md                    ← Claude Code redirect to AGENTS.md
-├── GEMINI.md                    ← Gemini redirect to AGENTS.md
+├── AGENTS.md                    ← You are here
+├── BRANCH-INFORMATION.md
+├── CLAUDE.md
+├── GEMINI.md
 ├── .claude/
-│   ├── settings.json            ← Hooks configuration
-│   └── skills/                  ← Custom slash commands
+│   ├── settings.json
+│   └── skills/
 │       ├── start-stage/
 │       └── export-log/
 ├── .agent-utils/
-│   └── skills/                  ← Canonical, tool-agnostic skill content
+│   └── skills/
 │       ├── start-stage/
 │       └── export-log/
-├── imported-artifacts/          ← Raw imports + adapted *-imported.md files (Stage I)
-├── consolidation-artifacts/     ← Phase milestone documents (committed to git)
-├── prototype-code/              ← Working prototype code (committed to git)
+├── imported-artifacts/
 ├── docs/
-│   ├── logs/                    ← Conversation logs
-│   ├── assets/                  ← Views, CSS, SQL, diagrams
-│   ├── adrs/                    ← Architecture Decision Records
-│   └── *.md                     ← Working design artifacts
+│   ├── logs/
+│   ├── workflow-changelog.md
+│   └── <story-name>/
+│       ├── format-medium.md
+│       ├── story-seed.md
+│       ├── main-character.md
+│       ├── world-initial-state.md
+│       ├── world-end-state.md
+│       ├── antagonists.md
+│       ├── key-events.md
+│       ├── phase-1-consolidation.md
+│       ├── world-rules.md
+│       ├── geography.md
+│       ├── races-cultures.md
+│       ├── religions-mythology.md
+│       ├── politics-power.md
+│       ├── supporting-characters.md
+│       ├── narrative-style.md
+│       ├── anti-patterns.md
+│       ├── phase-2-consolidation.md
+│       ├── visual-identity.md
+│       ├── soundscape.md
+│       ├── sensory-palette.md
+│       ├── mood-guide.md
+│       ├── character-voices.md
+│       ├── character-dynamics.md
+│       ├── phase-3-consolidation.md
+│       ├── central-conflict.md
+│       ├── major-arcs.md
+│       ├── progression-map.md
+│       ├── consequence-map.md
+│       ├── phase-4-consolidation.md
+│       ├── chapter-format.md
+│       ├── chapter-outline.md
+│       ├── scene-descriptions.md
+│       ├── story-design-package/
+│       ├── assets/
+│       │   ├── images/
+│       │   └── audio/
+│       └── chapters/
+│           ├── chapter-01.md
+│           └── chapter-02.md
 └── workflow/
-    ├── stages/                  ← Stage files organized by phase
-    │   ├── phase-0/             ← On-demand stages
-    │   ├── phase-1/             ← Discovery + Tech Selection
-    │   ├── phase-2/             ← Sketching & Data Modeling
-    │   ├── phase-3/             ← UI Polish
-    │   ├── phase-4/             ← Prototype Implementation
-    │   └── phase-5/             ← Deployment (skeleton)
-    ├── shared/                  ← Shared protocols (Existing Artifact Protocol)
-    ├── templates/               ← Output templates
-    └── scripts/                 ← Automation scripts
+    ├── stages/
+    │   ├── phase-0/
+    │   ├── phase-1/
+    │   ├── phase-2/
+    │   ├── phase-3/
+    │   ├── phase-4/
+    │   ├── phase-5/
+    │   ├── phase-6/
+    │   └── phase-7/
+    ├── shared/
+    ├── templates/
+    └── scripts/
 ```
-
----
-
-## Artifact Storage
-
-- Phase milestone documents: `consolidation-artifacts/`
-- Working prototype code: `prototype-code/`
-- Working design artifacts: `docs/`
-- Assets (views, CSS, SQL): `docs/assets/`
-- Architecture decisions: `docs/adrs/`
-- Conversation logs: `docs/logs/`
-- Workflow changelog: `docs/workflow-changelog.md`
 
 ---
 
 ## Project Status
 
-> Current phase and stage are determined by checking `docs/` for existing artifacts — see "How to Determine Current Stage" above.
+> Identify the story first. Check `docs/<story-name>/` for existing artifacts.
 
 ### Meta Artifacts
-- [ ] `workflow-changelog.md` ← Workflow fixes log
+- [ ] `workflow-changelog.md`
 
-### Phase 1: Discovery + Tech Selection
-- [ ] `project-brief.md`
-- [ ] `knowledge-audit.md`
-- [ ] `research-findings.md`
-- [ ] `use-cases.md`
-- [ ] `tech-stack.md`
-- [ ] `adrs/` (decision records)
-- [ ] **`consolidation-artifacts/phase-1-consolidation.md`** ← Phase 1 complete
+### Phase 1: Concept & Foundation
+- [ ] `format-medium.md`
+- [ ] `story-seed.md`
+- [ ] `main-character.md`
+- [ ] `world-initial-state.md`
+- [ ] `world-end-state.md`
+- [ ] `antagonists.md`
+- [ ] `key-events.md`
+- [ ] **`phase-1-consolidation.md`** ← Phase 1 complete
 
-### Phase 2: Sketching & Data Modeling
-- [ ] `entity-map.md`
-- [ ] `assets/views/` (plain HTML)
-- [ ] `view-entity-mapping.md`
-- [ ] `data-model-conceptual.md` (agnostic)
-- [ ] `data-model-physical.md` (SQLite)
-- [ ] `assets/schema.sql` (SQLite with mock data)
-- [ ] `assets/diagrams/entity-diagram.md`
-- [ ] `api-design.md` (with JSON contracts + view-endpoint mapping)
-- [ ] **`consolidation-artifacts/phase-2-consolidation.md`** ← Phase 2 complete
+### Phase 2: World & Rules
+- [ ] `world-rules.md`
+- [ ] `geography.md`
+- [ ] `races-cultures.md`
+- [ ] `religions-mythology.md`
+- [ ] `politics-power.md`
+- [ ] `supporting-characters.md`
+- [ ] `narrative-style.md`
+- [ ] `anti-patterns.md`
+- [ ] **`phase-2-consolidation.md`** ← Phase 2 complete
 
-### Phase 3: UI Polish
-- [ ] `phase-3-design-decisions.md` ← Living decisions file (all stages read/update)
-- [ ] `assets/css/styles.css`
-- [ ] Styled main view ← Stage 3-1 complete
-- [ ] Styled core app views ← Stage 3-2 complete
-- [ ] Styled user views ← Stage 3-3 complete
-- [ ] Styled auth views ← Stage 3-4 complete
-- [ ] **`consolidation-artifacts/ui-style-guide.md`** ← Phase 3 complete
+### Phase 3: Sensory & Identity
+- [ ] `visual-identity.md`
+- [ ] `soundscape.md`
+- [ ] `sensory-palette.md`
+- [ ] `mood-guide.md`
+- [ ] `character-voices.md`
+- [ ] `character-dynamics.md`
+- [ ] **`phase-3-consolidation.md`** ← Phase 3 complete
 
-### Phase 4: Prototype Implementation
-- [ ] `prototype-code/` created ← Stage 4-1 complete
-- [ ] `consolidation-artifacts/implementation-decisions.md` initialized ← Stage 4-1 complete
-- [ ] All use cases implemented + tested (per Implementation Roadmap order)
-- [ ] **All tests passing** ← Prototype complete (4-2/4-3 done)
-- [ ] Refactor roadmap approved ← Stage 4-4 started
-- [ ] All refactor areas complete + comprehension check passed ← Stage 4-4 complete
+### Phase 4: Narrative Arcs
+- [ ] `central-conflict.md`
+- [ ] `major-arcs.md`
+- [ ] `progression-map.md`
+- [ ] `consequence-map.md`
+- [ ] **`phase-4-consolidation.md`** ← Phase 4 complete
 
-### Phase 5: Deployment
-- [ ] Prototype deployed to a real environment ← Phase 5 complete
+### Phase 5: Chapter Planning
+- [ ] `chapter-format.md`
+- [ ] `chapter-outline.md`
+- [ ] `scene-descriptions.md`
+- [ ] **`story-design-package/`** ← Phase 5 complete
+
+### Phase 6: Writing
+- [ ] Chapter 01 drafted
+- [ ] *(add rows as chapters are planned in Stage 5-2)*
+
+### Phase 7: Review *(on-demand)*
+- [ ] Book review complete
+- [ ] Series review complete *(if applicable)*
 
 ---
 
 ## Final Output
 
-The **Web Workflow** produces a **deployed working prototype** with:
-- Implemented REST endpoints for all use cases
-- SQLite database with mock data
-- Automated tests (unit + integration)
-- Styled HTML views
-- Complete design documentation
-- Deployment to a real environment
+The **Writing Workflow** produces **written chapters** — the actual story text — grounded in a comprehensive design package. Each chapter is developed through a structured cooperative process: design first, scene clarity second, writing third, review on-demand.
