@@ -20,6 +20,16 @@ When you change a shared concept in one branch, document it here so you know to 
 
 ---
 
+## 2026-03-21: New branch — game-bevy (Bevy/Rust variant of game)
+
+**Scope:** `game-bevy` (new branch)
+**Stage(s):** all
+**Change:** Created `game-bevy` branch from `game`. All engine-specific stage files adapted from Godot/GDScript to Bevy/Rust: graybox-2 (visual language), graybox-3 (scaffold), graybox-4 (all three mechanic loop variants), feel-1/2/3, asset-4-2d/3d/mixed, sound-3, fusion-1. Retained 2D support via Bevy 2D mesh primitives. Stable tool choices: `bevy_hanabi` (particles), `bevy_tweening` (tweens), built-in `bevy_audio` (audio). Engine-agnostic stages (gameconcept 1–9, asset 1–3, sound 1–2, phase-0) kept as-is.
+**Reason:** Users who prefer Bevy/Rust over Godot/GDScript needed a dedicated branch. The `game` branch now targets Godot; `game-bevy` targets Bevy.
+**Applied to:** `game-bevy`, `main` (README updated with new branch row)
+
+---
+
 ## 2026-03-20: Game — Bevy/Rust → Godot/GDScript migration; gameconcept phase expanded; feel + fusion phases added
 
 **Scope:** `game`

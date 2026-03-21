@@ -19,7 +19,8 @@ Each workflow branch is **self-contained and isolated** from the others.
 | Branch | Domain | Clone command |
 |--------|--------|---------------|
 | `web` | Web applications (REST + SQL) | `git clone --branch web --single-branch <url> my-project` |
-| `game` | Game development (geometric prototype) | `git clone --branch game --single-branch <url> my-game` |
+| `game` | Game development (Godot/GDScript) | `git clone --branch game --single-branch <url> my-game` |
+| `game-bevy` | Game development (Bevy/Rust) | `git clone --branch game-bevy --single-branch <url> my-game` |
 
 Each branch contains its own `BRANCH-INFORMATION.md` with the branch name, objective, and workflow path.
 
