@@ -112,7 +112,7 @@ echo "git:       $(git --version 2>/dev/null || echo 'NOT FOUND')"
 
 1. **Clone this branch** into your new project directory
    ```bash
-   git clone --branch game --single-branch <repo-url> my-game
+   git clone --branch game-bevy --single-branch <repo-url> my-game
    cd my-game
    ```
 

@@ -2,7 +2,7 @@
 
 This is the **Game Workflow** — a structured, AI-collaborative process for building playable game prototypes.
 
-**Branch:** `game` — See `BRANCH-INFORMATION.md` for branch metadata.
+**Branch:** `game-bevy` — See `BRANCH-INFORMATION.md` for branch metadata.
 
 **Before doing any work, identify which stage we're in and read the corresponding stage file.**
 
@@ -29,15 +29,15 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 | gameconcept-8 | `workflow/stages/gameconcept/08-knowledge-research.md` | Research Analyst | `docs/knowledge-research.md` |
 | gameconcept-9 | `workflow/stages/gameconcept/09-architecture-consolidation.md` | Systems Architect | `docs/game-architecture.md` |
 
-### graybox: Graybox Prototype (Godot/GDScript)
+### graybox: Graybox Prototype (Bevy/Rust)
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
 | graybox-1 | `workflow/stages/graybox/01-mechanic-spec.md` | Game Designer | `docs/mechanic-spec.md` |
 | graybox-2 | `workflow/stages/graybox/02-visual-language.md` | Technical Designer | `docs/graybox-visual-language.md` |
-| graybox-3 | `workflow/stages/graybox/03-scaffold.md` | Senior Godot Developer | `graybox-prototype/` |
+| graybox-3 | `workflow/stages/graybox/03-scaffold.md` | Senior Rust/Bevy Developer | `graybox-prototype/` |
 | graybox-4-designed | `workflow/stages/graybox/04-mechanic-loop-designed.md` | Systems Designer | Updated prototype + `docs/mechanic-spec.md` |
-| graybox-4-generative | `workflow/stages/graybox/04-mechanic-loop-generative.md` | Senior Godot Developer | Updated prototype + `docs/mechanic-spec.md` |
+| graybox-4-generative | `workflow/stages/graybox/04-mechanic-loop-generative.md` | Senior Rust/Bevy Developer | Updated prototype + `docs/mechanic-spec.md` |
 | graybox-4-assisted | `workflow/stages/graybox/04-mechanic-loop-assisted.md` | Code Mentor | Updated prototype + `docs/mechanic-spec.md` |
 
 ### asset: Asset Pipeline
@@ -47,9 +47,9 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 | asset-1 | `workflow/stages/asset/01-art-direction.md` | Art Director | `docs/art-direction.md` |
 | asset-2 | `workflow/stages/asset/02-asset-list.md` | Production Manager | `docs/asset-list.md` |
 | asset-3 | `workflow/stages/asset/03-concept.md` | Concept Artist | `docs/assets/concepts/` |
-| asset-4-2d | `workflow/stages/asset/04-production-2d.md` | Senior 2D Artist | Sprite sheets + Godot integration |
-| asset-4-3d | `workflow/stages/asset/04-production-3d.md` | Senior 3D Artist | GLTF models + Godot integration |
-| asset-4-mixed | `workflow/stages/asset/04-production-mixed.md` | Senior Artist | Mixed assets + Godot integration |
+| asset-4-2d | `workflow/stages/asset/04-production-2d.md` | Senior 2D Artist | Sprite sheets + Bevy integration |
+| asset-4-3d | `workflow/stages/asset/04-production-3d.md` | Senior 3D Artist | GLTF models + Bevy integration |
+| asset-4-mixed | `workflow/stages/asset/04-production-mixed.md` | Senior Artist | Mixed assets + Bevy integration |
 
 ### sound: Sound Pipeline
 
@@ -57,7 +57,7 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 |-------|------|---------|--------|
 | sound-1 | `workflow/stages/sound/01-sound-direction.md` | Sound Designer | `docs/sound-direction.md` |
 | sound-2 | `workflow/stages/sound/02-sound-event-list.md` | Sound Designer | `docs/sound-event-list.md` |
-| sound-3 | `workflow/stages/sound/03-production-loop.md` | Sound Designer | SFX files + Godot integration |
+| sound-3 | `workflow/stages/sound/03-production-loop.md` | Sound Designer | SFX files + Bevy integration |
 
 ### feel: Feel & Details (on-demand, complementary)
 
@@ -80,8 +80,11 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 ## Architectural Assumptions
 
 - **Tool versions:** Always use the latest stable version of all tools, libraries, and engines unless the project explicitly specifies otherwise.
-- **Engine:** Godot (GDScript)
-- **Visuals (graybox):** Godot primitive meshes — BoxMesh, SphereMesh, CylinderMesh, CapsuleMesh, PlaneMesh
+- **Engine:** Bevy (Rust)
+- **Visuals (graybox 3D):** Bevy built-in mesh primitives — `Cuboid`, `Sphere`, `Cylinder`, `Capsule3d`, `Plane3d`
+- **Visuals (graybox 2D):** Bevy 2D mesh primitives — `Rectangle`, `Circle`, `Capsule2d`, `Triangle2d`
+- **Feel:** `bevy_hanabi` (particles), `bevy_tweening` (tweens/animations)
+- **Audio:** `bevy_audio` (built-in Bevy)
 - **No persistent database** — game state lives in memory
 - **Asset tools:** Krita, Blender, Inkscape, Material Maker *(asset phase — TBD)*
 - **Audio tools:** Audacity — SFX only (music deferred)
@@ -104,7 +107,7 @@ Check `docs/` for existing artifacts:
 - `docs/knowledge-research.md` exists → gameconcept-9
 - `docs/game-architecture.md` exists → gameconcept phase complete → graybox-1
 
-**graybox phase (Godot):**
+**graybox phase (Bevy/Rust):**
 - `docs/mechanic-spec.md` does not exist → graybox-1
 - `docs/mechanic-spec.md` exists, `docs/graybox-visual-language.md` does not → graybox-2
 - `docs/graybox-visual-language.md` exists, `graybox-prototype/` does not → graybox-3
@@ -210,7 +213,7 @@ project-root/
 ├── .agent-utils/
 │   └── skills/                  ← Canonical, tool-agnostic skill content
 ├── imported-artifacts/          ← Raw imports + adapted files
-├── graybox-prototype/           ← Godot graybox prototype code
+├── graybox-prototype/           ← Bevy graybox prototype code
 ├── docs/
 │   ├── logs/                    ← Conversation logs
 │   ├── assets/                  ← Diagrams, design specs
@@ -220,7 +223,7 @@ project-root/
     ├── stages/
     │   ├── phase-0/             ← On-demand stages
     │   ├── gameconcept/         ← Game Concept stages
-    │   ├── graybox/             ← Graybox Prototype stages (Godot)
+    │   ├── graybox/             ← Graybox Prototype stages (Bevy/Rust)
     │   ├── asset/               ← Asset Pipeline stages
     │   ├── sound/               ← Sound Pipeline stages
     │   ├── feel/                ← Feel & Details stages (on-demand)
@@ -260,7 +263,7 @@ project-root/
 - [ ] `docs/knowledge-research.md` ← gameconcept-8 complete
 - [ ] `docs/game-architecture.md` ← gameconcept-9 complete
 
-### graybox phase (Godot)
+### graybox phase (Bevy/Rust)
 - [ ] `docs/mechanic-spec.md` ← graybox-1 complete
 - [ ] `docs/graybox-visual-language.md` ← graybox-2 complete
 - [ ] `graybox-prototype/` created ← graybox-3 complete

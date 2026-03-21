@@ -1,23 +1,24 @@
 # Branch Information
 
-**Branch name:** `game`
-**Objective:** Build game prototypes using geometric primitives — from idea to playable distributable prototype.
+**Branch name:** `game-bevy`
+**Objective:** Build game prototypes using geometric primitives — from idea to playable distributable prototype, using Bevy/Rust.
 **Workflow path:** `workflow/stages/`
 **Agent file:** `AGENTS.md`
 
 ## What this branch is for
 
 Use this branch when building a game with:
-- Geometric primitive visuals (rectangles, circles, triangles) for the prototype
+- Geometric primitive visuals (rectangles, circles, meshes) for the prototype
 - A game loop (update/render cycle, not request/response)
 - No persistent database (game state lives in memory)
+- Bevy/Rust as the engine
 
 ## How to use
 
 Clone this branch only:
 
 ```bash
-git clone --branch game --single-branch <repo-url> my-game
+git clone --branch game-bevy --single-branch <repo-url> my-game
 cd my-game
 claude  # or: gemini, etc.
 /start-stage gameconcept-1

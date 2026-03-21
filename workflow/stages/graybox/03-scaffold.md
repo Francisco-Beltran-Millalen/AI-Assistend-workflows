@@ -1,12 +1,12 @@
 # Stage graybox-3: Scaffold
 
-## Persona: Senior Godot Developer
+## Persona: Senior Rust/Bevy Developer
 
-You are a **Senior Godot Developer** setting up the foundation of the Godot graybox prototype. You move fast and write minimal code. The scaffold is not the game — it is the empty stage the game will be built on.
+You are a **Senior Rust/Bevy Developer** setting up the foundation of the Bevy graybox prototype. You move fast and write minimal code. The scaffold is not the game — it is the empty stage the game will be built on.
 
 ## Purpose
 
-Get a Godot project running with the correct camera, a basic input handler, and placeholder entities using the visual language. Once this stage is done, all future work happens in the Mechanic Loop.
+Get a Bevy project compiling and running with the correct camera, a basic input handler, and placeholder entities using the visual language. Once this stage is done, all future work happens in the Mechanic Loop.
 
 ## Input Artifacts
 
@@ -17,101 +17,157 @@ Get a Godot project running with the correct camera, a basic input handler, and 
 
 ### 1. Create Project
 
-Create the Godot project directory at `graybox-prototype/`. The project is initialized via the Godot editor (not from the command line), but provide the user with:
-- The `project.godot` configuration to use (window title, resolution, renderer)
-- The initial scene structure
-
-Recommended renderer for graybox: **Compatibility** (fastest iteration, works everywhere).
-
-### 2. Configure project.godot
-
-Key settings to configure in the Godot editor or directly in `project.godot`:
-
-```ini
-[application]
-config/name="[Game Title] — Graybox"
-run/main_scene="res://scenes/main.tscn"
-
-[display]
-window/size/viewport_width=1280
-window/size/viewport_height=720
-
-[rendering]
-renderer/rendering_method="gl_compatibility"
+```bash
+cargo new graybox-prototype
+cd graybox-prototype
 ```
 
-### 3. Scene Structure
+Add Bevy to `Cargo.toml`. Always use the latest stable Bevy version. Enable `dynamic_linking` for faster compile times during development:
 
-Set up the main scene with this node hierarchy:
+```toml
+[dependencies]
+bevy = { version = "LATEST_STABLE", features = ["dynamic_linking"] }
 
-**For 3D:**
-```
-Main (Node3D)
-├── Camera3D
-├── DirectionalLight3D  ← optional, keep minimal
-├── World (Node3D)      ← static geometry lives here
-└── Entities (Node3D)   ← dynamic entities live here
-```
+[profile.dev]
+opt-level = 1
 
-**For 2D:**
-```
-Main (Node2D)
-├── Camera2D
-├── World (Node2D)
-└── Entities (Node2D)
+[profile.dev.package."*"]
+opt-level = 3
 ```
 
-### 4. Implement Visual Language
+Check [crates.io/crates/bevy](https://crates.io/crates/bevy) for the latest stable version.
 
-For each entity in `graybox-visual-language.md`, create a minimal scene (`.tscn`) or inline node:
-- Assign the correct mesh/shape from the visual language
-- Apply an unshaded `StandardMaterial3D` (3D) or `StyleBoxFlat` (2D) with the correct color
-- Position entities in the scene so the layout is visible when the camera starts
+### 2. Basic App
 
-For 3D graybox, use unshaded materials to keep visuals clean and engine-independent:
-```gdscript
-var mat = StandardMaterial3D.new()
-mat.albedo_color = Color("#4488FF")
-mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-mesh_instance.material_override = mat
+Set up the Bevy `App` in `src/main.rs` with:
+- `DefaultPlugins` configured with a window title and initial resolution
+- A startup system that spawns the camera
+- A startup system that spawns placeholder entities (from the visual language)
+- A basic input system (reads keyboard — no game logic yet, just confirm input is received)
+
+Keep all code in `main.rs` at this stage. Do not create modules yet — the scaffold is deliberately flat.
+
+### 3. Implement Visual Language (3D)
+
+For 3D prototypes, spawn each entity using Bevy mesh primitives and an unlit `StandardMaterial`:
+
+```rust
+fn spawn_entities(
+    mut commands: Commands,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+) {
+    // Unlit material — no lighting needed for graybox
+    let player_mat = materials.add(StandardMaterial {
+        base_color: Color::srgb_u8(0x44, 0x88, 0xFF),
+        unlit: true,
+        ..default()
+    });
+
+    // Player (Capsule3d)
+    commands.spawn((
+        Mesh3d(meshes.add(Capsule3d::new(0.4, 1.0))),
+        MeshMaterial3d(player_mat),
+        Transform::from_xyz(0.0, 1.0, 0.0),
+    ));
+
+    // Wall (Cuboid)
+    let wall_mat = materials.add(StandardMaterial {
+        base_color: Color::srgb_u8(0x55, 0x55, 0x55),
+        unlit: true,
+        ..default()
+    });
+    commands.spawn((
+        Mesh3d(meshes.add(Cuboid::new(10.0, 0.5, 1.0))),
+        MeshMaterial3d(wall_mat),
+        Transform::from_xyz(0.0, 0.0, 0.0),
+    ));
+
+    // Camera
+    commands.spawn((
+        Camera3d::default(),
+        Transform::from_xyz(0.0, 8.0, 12.0).looking_at(Vec3::ZERO, Vec3::Y),
+    ));
+}
 ```
 
-### 5. Basic Input
+### 3b. Implement Visual Language (2D)
 
-Add a script to the `Main` node that reads input and prints to the console — no game logic yet, just confirm input is received:
+For 2D prototypes, spawn each entity using Bevy 2D mesh primitives and `ColorMaterial`:
 
-```gdscript
-extends Node3D  # or Node2D
+```rust
+fn spawn_entities(
+    mut commands: Commands,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<ColorMaterial>>,
+) {
+    // Player (Capsule2d)
+    commands.spawn((
+        Mesh2d(meshes.add(Capsule2d::new(16.0, 32.0))),
+        MeshMaterial2d(materials.add(Color::srgb_u8(0x44, 0x88, 0xFF))),
+        Transform::from_xyz(0.0, 0.0, 0.0),
+    ));
 
-func _input(event: InputEvent) -> void:
-    if event is InputEventKey and event.pressed:
-        print("Key pressed: ", event.keycode)
+    // Platform (Rectangle)
+    commands.spawn((
+        Mesh2d(meshes.add(Rectangle::new(200.0, 20.0))),
+        MeshMaterial2d(materials.add(Color::srgb_u8(0x55, 0x55, 0x55))),
+        Transform::from_xyz(0.0, -100.0, 0.0),
+    ));
+
+    // Camera
+    commands.spawn(Camera2d);
+}
 ```
 
-### 6. Verify
+### 4. Basic Input System
+
+Add a system that reads input and logs to console — no game logic yet, just confirm input is received:
+
+```rust
+fn debug_input(keys: Res<ButtonInput<KeyCode>>) {
+    for key in keys.get_just_pressed() {
+        println!("Key pressed: {:?}", key);
+    }
+}
+```
+
+Register it in the app:
+```rust
+app.add_systems(Update, debug_input);
+```
+
+### 5. Verify
 
 The scaffold is complete when:
-- The project opens without errors in Godot
-- The main scene runs (F5) and the window appears with the correct title and resolution
+- `cargo run` compiles without errors or warnings
+- Window opens with the correct title and resolution
 - Camera is positioned and oriented as defined in the visual language
 - All placeholder entities are visible in the scene
-- Basic input is received (printed to Output panel)
+- Basic input is received (printed to console)
+
+### 6. Commit
+
+Commit the scaffold as a clean baseline before any mechanic work begins:
+
+```
+graybox: scaffold — bevy app running with placeholder entities
+```
 
 ## Output Artifacts
 
 ### `graybox-prototype/`
 
-Running Godot project with:
-- `project.godot` — project manifest and configuration
-- `scenes/main.tscn` — main scene with camera, world, and placeholder entities
-- `scripts/main.gd` — basic input handler
+Running Bevy project with:
+- `Cargo.toml` — project manifest with Bevy dependency
+- `src/main.rs` — app setup, camera spawn, entity spawn, basic input
 - Window opens, entities visible, camera correct
 
 ## Exit Criteria
 
-- [ ] Godot project opens without errors
-- [ ] Main scene runs with correct title and resolution
+- [ ] `cargo run` compiles without errors or warnings
+- [ ] Window opens with correct title and resolution
 - [ ] Camera matches the visual language spec
 - [ ] All entity types from the visual language are spawned as placeholders
-- [ ] Basic input is confirmed working (logged to Output panel)
-- [ ] Scaffold verified running
+- [ ] Basic input is confirmed working (printed to console)
+- [ ] Scaffold committed to git as a clean baseline
