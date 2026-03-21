@@ -77,3 +77,21 @@ When you change a shared concept in one branch, document it here so you know to 
 **Change:** Each workflow (web, game) moved to its own isolated git branch. Paths simplified from `workflow/<branch>/stages/` to `workflow/stages/`. `WEB-AGENT.md` and `GAME-AGENT.md` merged into `AGENTS.md` per branch. `BRANCH-INFORMATION.md` added to each branch. `start-stage` skill simplified (no branch detection). `main` branch stripped to meta-only (README + this file + shared sources of truth).
 **Reason:** Web and game contexts are too different to share a branch. Cloning the full repo for a web project would pollute the agent context with game workflow files and terminology, and vice versa.
 **Applied to:** `web`, `game`, `main`
+
+---
+
+## 2026-03-21: Writing branch created
+
+**Scope:** `writing` (new branch)
+**Stage(s):** all
+**Change:** New `writing` branch created from `web` base. Full 7-phase story development workflow replacing all web-specific stages:
+- Phase 1 (8 stages): Format & Medium, Story Seed, Main Character, World Initial/End State, Antagonists, Key Events, Consolidation
+- Phase 2 (9 stages): World Rules, Geography, Races & Cultures, Religions, Politics, Supporting Characters, Narrative Style, Anti-Patterns, Consolidation
+- Phase 3 (7 stages): Visual Identity, Soundscape, Sensory Palette, Mood Guide, Character Voices, Character Dynamics, Consolidation
+- Phase 4 (5 stages): Central Conflict, Major Arcs, Progression Map, Consequence Map, Consolidation
+- Phase 5 (4 stages): Format Architecture, Chapter Outline, Scene Descriptions, Story Design Package
+- Phase 6 (5 stages, cyclical per chapter): Session Setup, Chapter Expansion, Writing Session, Chapter Close, Design Sync
+- Phase 7 (3 stages, on-demand): Chapter Review, Book Review, Series Review
+**Reason:** Long-form fiction development requires a fundamentally different process: no code, no tech stack, instead deep story design (sensory palettes, mood recipes, character voices) followed by cooperative writing (user writes, AI clarifies with structured question bursts) and multi-scope review (chapter / book / series).
+**Key design decisions:** Multiple stories per project (docs/<story-name>/), Phases 1–5 sequential, Phase 6 cyclical (repeats per chapter), Phase 7 on-demand at any scope. Multimedia references (images, audio) supported in Phase 3 and Phase 6. Supports novels, web novels, manga, screenplays, game narratives, multibook/multi-game series.
+**Applied to:** `writing`, `main`
