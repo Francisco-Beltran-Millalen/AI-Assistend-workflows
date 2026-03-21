@@ -20,6 +20,46 @@ When you change a shared concept in one branch, document it here so you know to 
 
 ---
 
+## 2026-03-20: Game — Bevy/Rust → Godot/GDScript migration; gameconcept phase expanded; feel + fusion phases added
+
+**Scope:** `game`
+**Stage(s):** all
+**Change:** Engine migrated from Bevy/Rust to Godot/GDScript throughout all stage files and AGENTS.md. `gameconcept` phase expanded from 4 to 9 stages: references-analysis, references-art, references-feel, game-description, art-direction, feel-direction, roadmap, knowledge-research, architecture-consolidation. Two new complementary on-demand phases added: `feel` (game feel polish on graybox) and `fusion` (art + feel integration).
+**Reason:** Switched engine based on project needs. gameconcept expanded to produce richer pre-production artifacts before graybox work begins.
+**Applied to:** `game`
+
+---
+
+## 2026-03-20: Web — Stage 4-2b (design-first implementation) added
+
+**Scope:** `web`
+**Stage(s):** Phase 4
+**Change:** Added `4-2b` (`workflow/stages/phase-4/02b-design-first.md`) as an alternative to `4-2`. Persona: Design-First Developer. It front-loads design decisions before writing implementation code, as opposed to the standard implementation loop.
+**Reason:** Some projects benefit from designing the full approach before touching code.
+**Applied to:** `web`
+
+---
+
+## 2026-03-19: Game — redesigned to 4 named phases with full stage files
+
+**Scope:** `game`
+**Stage(s):** all
+**Change:** Game branch restructured from numbered phases (1–4) to 4 domain-named phases: `gameconcept`, `graybox`, `asset`, `sound`. Each phase has a dedicated `workflow/stages/<phase>/` directory with full stage files. On-demand stages reduced to `0` (meta-workflow) and `teacher`.
+**Reason:** Named phases are more intuitive for game development than generic phase numbers. The structure better reflects the natural sequence of game production.
+**Applied to:** `game`
+
+---
+
+## 2026-03-17: Web — Phase-0 persona fusion
+
+**Scope:** `web`
+**Stage(s):** Phase 0 (on-demand stages)
+**Change:** Phase-0 stage personas updated to use fused/combined personas rather than single-role personas.
+**Reason:** Fused personas allow on-demand stages to handle broader scope without switching contexts.
+**Applied to:** `web`
+
+---
+
 ## 2026-03-17: Repository restructured to per-branch architecture
 
 **Scope:** all
