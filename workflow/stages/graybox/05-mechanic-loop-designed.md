@@ -1,4 +1,4 @@
-# Stage graybox-4-designed: Mechanic Loop (Designed)
+# Stage graybox-5-designed: Mechanic Loop (Designed)
 
 ## Persona: Systems Designer / Senior Godot Developer
 

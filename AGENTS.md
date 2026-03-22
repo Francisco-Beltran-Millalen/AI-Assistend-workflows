@@ -36,9 +36,10 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 | graybox-1 | `workflow/stages/graybox/01-mechanic-spec.md` | Game Designer | `docs/mechanic-spec.md` |
 | graybox-2 | `workflow/stages/graybox/02-visual-language.md` | Technical Designer | `docs/graybox-visual-language.md` |
 | graybox-3 | `workflow/stages/graybox/03-scaffold.md` | Senior Godot Developer | `graybox-prototype/` |
-| graybox-4-designed | `workflow/stages/graybox/04-mechanic-loop-designed.md` | Systems Designer | Updated prototype + `docs/mechanic-spec.md` |
-| graybox-4-generative | `workflow/stages/graybox/04-mechanic-loop-generative.md` | Senior Godot Developer | Updated prototype + `docs/mechanic-spec.md` |
-| graybox-4-assisted | `workflow/stages/graybox/04-mechanic-loop-assisted.md` | Code Mentor | Updated prototype + `docs/mechanic-spec.md` |
+| graybox-4 | `workflow/stages/graybox/04-debug-indicators.md` | Senior Godot Developer | Debug overlay system in `graybox-prototype/` |
+| graybox-5-designed | `workflow/stages/graybox/05-mechanic-loop-designed.md` | Systems Designer | Updated prototype + `docs/mechanic-spec.md` |
+| graybox-5-generative | `workflow/stages/graybox/05-mechanic-loop-generative.md` | Senior Godot Developer | Updated prototype + `docs/mechanic-spec.md` |
+| graybox-5-assisted | `workflow/stages/graybox/05-mechanic-loop-assisted.md` | Code Mentor | Updated prototype + `docs/mechanic-spec.md` |
 
 ### asset: Asset Pipeline
 
@@ -108,7 +109,8 @@ Check `docs/` for existing artifacts:
 - `docs/mechanic-spec.md` does not exist → graybox-1
 - `docs/mechanic-spec.md` exists, `docs/graybox-visual-language.md` does not → graybox-2
 - `docs/graybox-visual-language.md` exists, `graybox-prototype/` does not → graybox-3
-- `graybox-prototype/` exists, mechanics not all done → graybox-4-designed, graybox-4-generative, or graybox-4-assisted (user's choice per mechanic)
+- `graybox-prototype/` exists, `graybox-prototype/scripts/debug_manager.gd` does not → graybox-4
+- `graybox-prototype/scripts/debug_manager.gd` exists, mechanics not all done → graybox-5-designed, graybox-5-generative, or graybox-5-assisted (user's choice per mechanic)
 - All mechanics in `mechanic-spec.md` marked `[x] Done` → graybox phase complete
 
 **asset phase:**
@@ -172,7 +174,7 @@ This creates: `docs/logs/stage-graybox-1-mechanic-spec-20260319-143022.txt`
 1. **ALWAYS read the stage file** before starting work
 2. **ALWAYS adopt the persona** defined in the stage file
 3. **ALWAYS use `/start-stage`** to start stages — it runs the Existing Artifact Protocol when artifacts already exist
-4. **In graybox-4: ALWAYS read `docs/mechanic-spec.md` first** — it tracks progress across sessions
+4. **In graybox-5: ALWAYS read `docs/mechanic-spec.md` first** — it tracks progress across sessions
 5. **Follow stage order** within each phase (gameconcept is strictly sequential; graybox/asset/sound are loosely ordered)
 6. **feel is on-demand** — invoke anytime, in any order, per mechanic or per interaction
 7. **fusion is final** — invoke when a mechanic is ready for integration
@@ -264,7 +266,8 @@ project-root/
 - [ ] `docs/mechanic-spec.md` ← graybox-1 complete
 - [ ] `docs/graybox-visual-language.md` ← graybox-2 complete
 - [ ] `graybox-prototype/` created ← graybox-3 complete
-- [ ] All mechanics `[x] Done` in `mechanic-spec.md` ← graybox-4 complete
+- [ ] Debug overlay system set up ← graybox-4 complete
+- [ ] All mechanics `[x] Done` in `mechanic-spec.md` ← graybox-5 complete
 
 ### asset phase
 - [ ] `docs/art-direction.md` ← asset-1 complete
