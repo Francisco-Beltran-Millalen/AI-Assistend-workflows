@@ -20,6 +20,16 @@ When you change a shared concept in one branch, document it here so you know to 
 
 ---
 
+## 2026-03-22: Graybox — add debug indicators stage (graybox-4), shift mechanic loop to graybox-5
+
+**Scope:** `game`, `game-bevy`
+**Stage(s):** `graybox/04-debug-indicators` (new), `graybox/05-mechanic-loop-*` (renamed from 04)
+**Change:** New stage `graybox-4` added between scaffold (graybox-3) and mechanic loop. Sets up a toggleable debug overlay system (F1 key) before any mechanic work begins. Mechanic loop stages shifted from `04-*` to `05-*`. AGENTS.md updated: table, phase detection logic, critical rule, and progress checklist. Godot version uses `DebugManager` autoload + `Label3D`/`Line2D`/`ProgressBar` overlays. Bevy version uses `DebugPlugin` + `Gizmos` for collision outlines, velocity arrows, and health bars.
+**Reason:** Debug visibility during the mechanic loop pays for itself immediately. Building the infrastructure once before the loop begins means every mechanic can expose its own debug indicators without setting up the toggle system from scratch.
+**Applied to:** `game`, `game-bevy`
+
+---
+
 ## 2026-03-22: Add .workflow-root marker + update hooks to walk up from CWD
 
 **Scope:** all
