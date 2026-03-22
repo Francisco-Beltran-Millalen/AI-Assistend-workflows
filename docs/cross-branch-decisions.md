@@ -20,6 +20,16 @@ When you change a shared concept in one branch, document it here so you know to 
 
 ---
 
+## 2026-03-22: Add .workflow-root marker + update hooks to walk up from CWD
+
+**Scope:** all
+**Stage(s):** infrastructure (scripts + hooks)
+**Change:** Added `.workflow-root` file to each branch root. Updated `SessionStart` and `SessionEnd` hooks in `.claude/settings.json` to walk up the directory tree looking for `.workflow-root` instead of using `git rev-parse --show-toplevel`. The hook command is now: `bash -c 'dir="$PWD"; while [ "$dir" != "/" ]; do [ -f "$dir/.workflow-root" ] && exec bash "$dir/workflow/scripts/<script>.sh"; dir=$(dirname "$dir"); done; ...'`
+**Reason:** When working deep inside subdirectories (e.g. `docs/chapter-1/scenes/`), the hooks failed to find the project root. `.workflow-root` is a portable, git-independent marker that works at any nesting depth.
+**Applied to:** `web`, `game`, `game-bevy`, `writing`, `main`
+
+---
+
 ## 2026-03-21: New branch — game-bevy (Bevy/Rust variant of game)
 
 **Scope:** `game-bevy` (new branch)
