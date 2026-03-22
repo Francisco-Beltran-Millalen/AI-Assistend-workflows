@@ -2,6 +2,26 @@
 
 ---
 
+## 2026-03-22: New phase — Research & Exploration (r-1, r-2)
+
+**Problem:** No dedicated space for pre-story creative work or reference study. Idea exploration happened informally before Phase 1, and reference analysis had no structured home.
+
+**Cause:** Workflow started at Phase 1 (format/medium), skipping the looser, exploratory work that often precedes structured story development.
+
+**Fix:** Added a new on-demand **Research & Exploration** phase with two stages:
+- **r-1 Idea Exploration** — conversational idea development before Phase 1. Story Dreamer persona. One question at a time, following the user's energy. Artifact: `docs/ideas/<working-title>.md`.
+- **r-2 Reference Analysis** — extract transferable lessons from any reference work (novel, film, game, etc.). Reference Analyst persona. Covers what worked, what didn't, anti-patterns, and transferable lessons. Artifact: `docs/references/<reference-slug>.md` (cross-workflow, not story-specific).
+
+Both stages are on-demand, invoked with `/start-stage r-1` and `/start-stage r-2`.
+
+**Files:**
+- `workflow/stages/phase-r/r1-idea-exploration.md` — new stage file
+- `workflow/stages/phase-r/r2-reference-analysis.md` — new stage file
+- `AGENTS.md` — added Research & Exploration phase table, updated On-Demand Stages section, project structure
+- `.agent-utils/skills/start-stage/SKILL.md` — added r-1/r-2 path resolution, stage mapping, examples
+
+---
+
 ## 2026-03-20: New stage 4-2b — Design-First Implementation
 
 **Problem:** Gap between Stage 4-2 (AI writes, user reviews) and Stage 4-3 (user writes, AI guides). User wanted a mode where they own the design but don't have to type the implementation.

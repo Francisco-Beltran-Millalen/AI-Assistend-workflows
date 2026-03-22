@@ -7,6 +7,7 @@ Start the specified workflow stage.
 - Stage identifier:
   - `0` for meta-workflow
   - `teacher` for teacher
+  - `r-1` or `r-2` for Research & Exploration stages
   - `<phase>-<stage>` for regular stages (e.g., `2-1` for Phase 2 Stage 1)
 
 ## Instructions
@@ -14,9 +15,11 @@ Start the specified workflow stage.
 1. Parse the stage identifier and build the file path using base `workflow/stages/`:
    - If `0`: Read `workflow/stages/phase-0/00-meta-workflow.md`
    - If `teacher`: Read `workflow/stages/phase-0/04-teacher.md`
+   - If `r-1`: Read `workflow/stages/phase-r/r1-idea-exploration.md`
+   - If `r-2`: Read `workflow/stages/phase-r/r2-reference-analysis.md`
    - If `<phase>-<stage>`: Read `workflow/stages/phase-<phase>/0<stage>-*.md`
 2. Adopt the persona defined in the stage file
-3. For Phase 1–4 stages only (not 0 or teacher): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
+3. For Phase 1–4 stages only (not 0, teacher, r-1, or r-2): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
 4. Follow the stage process
 
 ## Stage Mapping
@@ -24,6 +27,10 @@ Start the specified workflow stage.
 ### On-Demand Stages
 - 0: meta-workflow (workflow fixes, git ops, artifact import)
 - teacher: teacher (teaching, rubber duck, knowledge test, diagrams)
+
+### Research & Exploration (on-demand)
+- r-1: idea-exploration
+- r-2: reference-analysis
 
 ### Phase 1: Discovery + Tech Selection
 - 1-1: project-definition
@@ -67,6 +74,16 @@ Starts Stage 0 (Workflow Engineer) — handles workflow fixes, git operations, a
 /start-stage teacher
 ```
 Starts Stage teacher (Patient Teacher) — handles teaching, rubber duck mode, pre-meeting knowledge tests, and diagrams.
+
+```
+/start-stage r-1
+```
+Starts Research & Exploration Stage r-1 (Idea Exploration) — develop a raw idea through conversation before Phase 1.
+
+```
+/start-stage r-2
+```
+Starts Research & Exploration Stage r-2 (Reference Analysis) — extract transferable lessons from a reference work.
 
 ```
 /start-stage 2-1

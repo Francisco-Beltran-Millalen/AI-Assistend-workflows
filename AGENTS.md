@@ -16,6 +16,17 @@ This is the **Writing Workflow** — a structured, AI-collaborative process for 
 |-------|------|---------|--------|
 | 0 | `workflow/stages/phase-0/00-meta-workflow.md` | Workflow Engineer | `workflow-changelog.md`, `imported-artifacts/*-imported.md` |
 
+### Research & Exploration *(on-demand — invoke anytime)*
+
+| Stage | File | Persona | Output |
+|-------|------|---------|--------|
+| r-1 | `workflow/stages/phase-r/r1-idea-exploration.md` | Story Dreamer | `docs/ideas/<working-title>.md` |
+| r-2 | `workflow/stages/phase-r/r2-reference-analysis.md` | Reference Analyst | `docs/references/<reference-slug>.md` |
+
+**Research & Exploration scopes:**
+- **r-1 Idea Exploration** — invoke before or alongside Phase 1 to develop a raw idea through conversation before committing to structure
+- **r-2 Reference Analysis** — invoke anytime to extract transferable lessons from a reference work (novel, film, game, manga, etc.)
+
 ### Phase 1: Concept & Foundation
 
 | Stage | File | Persona | Output |
@@ -230,6 +241,8 @@ For Phase 6, include chapter number in the log name:
 ## On-Demand Stages
 
 - **Stage 0** (`/start-stage 0`) — Workflow maintenance, git operations, artifact import
+- **Stage r-1** (`/start-stage r-1`) — Idea Exploration: develop a raw idea through conversation before Phase 1
+- **Stage r-2** (`/start-stage r-2`) — Reference Analysis: extract lessons from any reference work
 - **Stage 7-1/7-2/7-3** — Review at chapter, book, or series scope (anytime)
 
 ---
@@ -291,6 +304,8 @@ project-root/
 ├── docs/
 │   ├── logs/
 │   ├── workflow-changelog.md
+│   ├── ideas/                       ← Stage r-1 outputs (pre-story idea captures)
+│   ├── references/                  ← Stage r-2 outputs (cross-workflow reference analyses)
 │   └── <story-name>/
 │       ├── format-medium.md
 │       ├── story-seed.md
@@ -334,6 +349,7 @@ project-root/
 └── workflow/
     ├── stages/
     │   ├── phase-0/
+    │   ├── phase-r/
     │   ├── phase-1/
     │   ├── phase-2/
     │   ├── phase-3/
