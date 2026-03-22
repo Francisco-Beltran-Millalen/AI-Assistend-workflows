@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'ROOT=$(git rev-parse --show-toplevel) && bash \"$ROOT/workflow/scripts/session-start.sh\"'"
+            "command": "bash -c 'dir=\"$PWD\"; while [ \"$dir\" != \"/\" ]; do [ -f \"$dir/.workflow-root\" ] && exec bash \"$dir/workflow/scripts/session-start.sh\"; dir=$(dirname \"$dir\"); done; echo \".workflow-root not found\" >&2; exit 1'"
           }
         ]
       }
@@ -15,7 +15,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'ROOT=$(git rev-parse --show-toplevel) && bash \"$ROOT/workflow/scripts/session-export.sh\"'"
+            "command": "bash -c 'dir=\"$PWD\"; while [ \"$dir\" != \"/\" ]; do [ -f \"$dir/.workflow-root\" ] && exec bash \"$dir/workflow/scripts/session-export.sh\"; dir=$(dirname \"$dir\"); done; echo \".workflow-root not found\" >&2; exit 1'"
           }
         ]
       }
