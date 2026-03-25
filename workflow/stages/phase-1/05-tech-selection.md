@@ -180,6 +180,8 @@ Accepted
 
 ### 4. Create Stack Summary
 
+**IMPORTANT:** Always use the latest stable version of each tool, library, or framework unless the user explicitly specifies otherwise.
+
 ```markdown
 ## Technology Stack
 

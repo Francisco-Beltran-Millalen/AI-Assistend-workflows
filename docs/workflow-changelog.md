@@ -2,6 +2,93 @@
 
 ---
 
+## 2026-03-25: Stage 4-guided — domain failures + edge case sweep with contextual examples
+
+**Problem:** Level 5 (Business Logic) didn't capture domain-level failures (valid input, authorized user, but still rejected due to data state). No structured moment to surface edge cases before module contracts were locked.
+
+**Cause:** Domain failures (state conflicts, quota limits, time windows, concurrent writes) are a distinct failure class that falls between validation errors and business logic. Edge cases are hard to think of on the spot without prompting examples.
+
+**Fix:**
+- Added domain failure check to Level 5: AI generates 3–5 contextual examples from the use case (entity state conflicts, related-entity deletion, quotas, time windows, concurrent conflicts) using actual names from the data model, then asks which apply. Result is documented in the design document under a "Domain failures" sub-section with error codes.
+- Added Edge Case Sweep section between Level 9 and Module Contracts: AI generates 2–3 contextual edge cases per module (using its responsibility and entity) drawn from standard patterns (null/not-found, empty collection, concurrent modification, FK violation, external service failure). Any surfaced cases that aren't handled get added to the relevant level before contracts are locked.
+- Test coverage updated to include domain failures and edge cases from the sweep.
+- Exit criteria updated with both checks.
+
+**Files:** `workflow/stages/phase-4/programming-loop-guided.md`
+
+---
+
+## 2026-03-25: Stage 4-guided — 9-level design conversation + design journal
+
+**Problem:** Stage 4-guided (formerly 4-2b) had a single "Business Rules" level that mixed validations, authorization, business logic, and side effects. The design sign-off document lived only in conversation — no artifact captured the design in a way another agent could implement from.
+
+**Cause:** Level 3 was too coarse for the kinds of questions that naturally arise during design (especially for validations, which warrant a dedicated conversation). No persistent design artifact was produced per use case.
+
+**Fix:**
+- Expanded from 6 levels to 9: split former Level 3 into Level 3 (Validation Rules), Level 4 (Authorization), Level 5 (Business Logic), Level 6 (Side Effects); renumbered Data Operations as Level 7, Module Map as Level 8, Tech Mapping as Level 9
+- Added concrete examples on Levels 1–4 (example scenario, example JSON, example validation failure, example auth failure)
+- Added ASCII call-flow diagrams on Level 8
+- Added typed code stubs on Level 9
+- Added design journal: `consolidation-artifacts/designs/[use-case-slug].md` created as a shell at the start of each use case, filled in section by section as each level is confirmed
+- Green Light now includes a self-containment check (all paths qualified, all types defined, all rules precise) before asking for approval
+- Design document marked Approved at Green Light and Implemented at checkpoint
+- Any agent can implement from the design document without conversation context
+
+**Files:** `workflow/stages/phase-4/programming-loop-guided.md` (process section rewritten)
+
+---
+
+## 2026-03-25: Consolidation artifact refactor + stage 4-guided rename
+
+**Problem:** Three related issues:
+1. Phase 4 stages referenced individual `docs/` files scattered across multiple folders — the consolidation stages existed but weren't treated as the source of truth.
+2. Stage 4-2b (Design-First) lacked a semantic name and filename.
+3. Phase 4 had no explicit authority to update consolidation artifacts when implementation revealed design changes.
+
+**Cause:** Consolidation stages were designed as summaries-with-pointers rather than self-contained documents. Phase 4 therefore had to read 7+ separate files, some of which duplicated or contradicted each other after implementation began.
+
+**Fix:**
+
+*Consolidation artifacts redesigned as the sole source of truth:*
+- Stage 1-6 now produces three files: `project-summary.md` (summarized), `use-cases-consolidation.md` (full), `tech-stack-consolidation.md` (full with ADR content)
+- Stage 2-4 now produces two files: `data-model-consolidation.md` (full physical model + embedded SQL), `api-design-consolidation.md` (full contracts with JSON)
+- All consolidation files use "minimum necessary" principle: complete where Phase 4 needs it (data model, API, use cases, tech stack), summarized where Phase 4 needs context only (project overview, scope)
+- Phase 4 stages (4-1, 4-2, 4-3, 4-4, 4-guided) now reference only `consolidation-artifacts/` — no `docs/` files
+
+*Phase 4 artifact authority:*
+- New shared protocol `workflow/shared/01-phase-4-artifact-authority.md` defines when/how Phase 4 personas update consolidation artifacts
+- `implementation-decisions.md` gains a `## Design Changes` section to record every update with rationale
+- All Phase 4 stage files reference this protocol
+
+*Stage rename:*
+- Stage 4-2b (Design-First Implementation) renamed to Stage 4-guided (Guided Implementation)
+- File renamed from `02b-design-first.md` to `programming-loop-guided.md`
+- Persona renamed from "Design-First Developer" to "Guided Developer"
+
+**Files:**
+- `workflow/shared/01-phase-4-artifact-authority.md` (new)
+- `workflow/stages/phase-1/06-consolidation.md` (rewritten)
+- `workflow/stages/phase-2/04-consolidation.md` (rewritten)
+- `workflow/stages/phase-3/05-consolidation.md` (Phase Transition section updated)
+- `workflow/stages/phase-4/programming-loop-guided.md` (renamed + updated, replaces `02b-design-first.md`)
+- `workflow/stages/phase-4/01-project-setup.md` (input artifacts, template, next stage)
+- `workflow/stages/phase-4/02-implementation-loop.md` (input artifacts + authority reference)
+- `workflow/stages/phase-4/03-learning-guide.md` (input artifacts + authority reference)
+- `workflow/stages/phase-4/04-refactor.md` (input artifacts + authority reference)
+- `AGENTS.md` (stage tables, phase handoffs, detection logic, project status)
+- `.agent-utils/skills/start-stage/SKILL.md` (4-guided mapping)
+
+---
+
+## 2026-03-21: Always use latest stable versions
+
+**Problem:** No instruction existed about which version to use when selecting tools, libraries, or frameworks — leaving it ambiguous.
+**Cause:** Missing rule; not previously documented anywhere in the workflow.
+**Fix:** Added rule to always use the latest stable version unless the user explicitly specifies otherwise.
+**Files:** `AGENTS.md` (Critical Rules, item 8), `workflow/stages/phase-1/05-tech-selection.md` (before stack summary step)
+
+---
+
 ## 2026-03-20: New stage 4-2b — Design-First Implementation
 
 **Problem:** Gap between Stage 4-2 (AI writes, user reviews) and Stage 4-3 (user writes, AI guides). User wanted a mode where they own the design but don't have to type the implementation.

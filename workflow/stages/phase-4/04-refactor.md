@@ -44,7 +44,11 @@ The same persistence document from Stages 4-1 through 4-3. At the start of Stage
 
 - `consolidation-artifacts/implementation-decisions.md` — **Read first. Resume from where we left off.**
 - `prototype-code/` — the working prototype
-- `docs/tech-stack.md` (language, framework, and dependencies — established in Stage 1-5)
+- `consolidation-artifacts/tech-stack-consolidation.md` — language, framework, and dependencies
+
+## Artifact Update Authority
+
+When refactoring reveals that a consolidation artifact needs to change, follow the protocol in `workflow/shared/01-phase-4-artifact-authority.md`. Record every change in `implementation-decisions.md` under `## Design Changes`.
 
 ## Process
 

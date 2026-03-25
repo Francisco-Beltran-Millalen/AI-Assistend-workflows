@@ -14,6 +14,7 @@ Start the specified workflow stage.
 1. Parse the stage identifier and build the file path using base `workflow/stages/`:
    - If `0`: Read `workflow/stages/phase-0/00-meta-workflow.md`
    - If `teacher`: Read `workflow/stages/phase-0/04-teacher.md`
+   - If `4-guided`: Read `workflow/stages/phase-4/programming-loop-guided.md`
    - If `<phase>-<stage>`: Read `workflow/stages/phase-<phase>/0<stage>-*.md`
 2. Adopt the persona defined in the stage file
 3. For Phase 1–4 stages only (not 0 or teacher): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
@@ -49,7 +50,7 @@ Start the specified workflow stage.
 ### Phase 4: Prototype Implementation
 - 4-1: project-setup
 - 4-2: implementation-loop (repeats per use case; AI writes, user reviews)
-- 4-2b: design-first (repeats per use case; user designs modules+contracts, AI writes)
+- 4-guided: guided (see `workflow/stages/phase-4/programming-loop-guided.md`) (repeats per use case; user designs modules+contracts, AI writes)
 - 4-3: learning-guide (repeats per use case; user writes, AI guides)
 - 4-4: refactor (once, after all use cases done; plan-first, comprehension check at end)
 

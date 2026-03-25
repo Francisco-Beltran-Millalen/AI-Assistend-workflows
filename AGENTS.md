@@ -24,7 +24,7 @@ This is the **Web Workflow** — a structured, AI-collaborative process for buil
 | 1-3 | `workflow/stages/phase-1/03-research.md` | Research Analyst | `research-findings.md` |
 | 1-4 | `workflow/stages/phase-1/04-use-case-discovery.md` | Use Case Analyst | `use-cases.md` |
 | 1-5 | `workflow/stages/phase-1/05-tech-selection.md` | Tech Lead | `tech-stack.md`, `adrs/` |
-| 1-6 | `workflow/stages/phase-1/06-consolidation.md` | Technical Writer | **`consolidation-artifacts/phase-1-consolidation.md`** |
+| 1-6 | `workflow/stages/phase-1/06-consolidation.md` | Technical Writer | **`consolidation-artifacts/project-summary.md`**, **`consolidation-artifacts/use-cases-consolidation.md`**, **`consolidation-artifacts/tech-stack-consolidation.md`** |
 
 ### Phase 2: Sketching & Data Modeling
 
@@ -33,7 +33,7 @@ This is the **Web Workflow** — a structured, AI-collaborative process for buil
 | 2-1 | `workflow/stages/phase-2/01-entity-ui-sketching.md` | Domain Modeler + UI Sketcher | `entity-map.md`, `assets/views/*.html`, `view-entity-mapping.md` |
 | 2-2 | `workflow/stages/phase-2/02-data-modeling.md` | Data Architect | `data-model-conceptual.md`, `data-model-physical.md`, `assets/schema.sql`, `assets/diagrams/entity-diagram.md` |
 | 2-3 | `workflow/stages/phase-2/03-endpoint-design.md` | API Designer | `api-design.md` (with JSON contracts + view-endpoint mapping) |
-| 2-4 | `workflow/stages/phase-2/04-consolidation.md` | Technical Writer | **`consolidation-artifacts/phase-2-consolidation.md`**, `assets/` |
+| 2-4 | `workflow/stages/phase-2/04-consolidation.md` | Technical Writer | **`consolidation-artifacts/data-model-consolidation.md`**, **`consolidation-artifacts/api-design-consolidation.md`** |
 
 ### Phase 3: UI Polish
 
@@ -53,18 +53,18 @@ This is the **Web Workflow** — a structured, AI-collaborative process for buil
 |-------|------|---------|--------|
 | 4-1 | `workflow/stages/phase-4/01-project-setup.md` | Senior Developer | Architecture pattern + rules, implementation roadmap, `prototype-code/` (working skeleton), `consolidation-artifacts/implementation-decisions.md` |
 | 4-2 | `workflow/stages/phase-4/02-implementation-loop.md` | Senior Developer | Working prototype, `implementation-decisions.md` |
-| 4-2b | `workflow/stages/phase-4/02b-design-first.md` | Design-First Developer | Working prototype, `implementation-decisions.md` |
+| 4-guided | `workflow/stages/phase-4/programming-loop-guided.md` | Guided Developer | Working prototype, `implementation-decisions.md` |
 | 4-3 | `workflow/stages/phase-4/03-learning-guide.md` | Code Mentor | Working prototype, `implementation-decisions.md` |
 | 4-4 | `workflow/stages/phase-4/04-refactor.md` | Senior Architect | Refactored prototype, `implementation-decisions.md` (refactoring section) |
 
 **Stage 4-1** establishes the architecture pattern (Ports & Adapters, Layered, or Clean Architecture), its binding rules, and the approved use case implementation order — before any code is written.
 
-**Stages 4-2, 4-2b, and 4-3 are alternatives** — choose per use case:
+**Stages 4-2, 4-guided, and 4-3 are alternatives** — choose per use case:
 - **4-2** — AI writes, you review (fastest)
-- **4-2b** — You design the modules and contracts, AI writes the code (middle ground)
+- **4-guided** — You design the modules and contracts, AI writes the code (middle ground)
 - **4-3** — You write the code, AI guides and reviews (deepest learning)
 
-All three repeat until all use cases are complete, following the architectural rules and order established in Stage 4-1. `implementation-decisions.md` is a shared persistence document — read at the start of every session, updated after every completed use case (checkpoint).
+All three repeat until all use cases are complete, following the architectural rules and order established in Stage 4-1. `implementation-decisions.md` is a shared persistence document — read at the start of every session, updated after every completed use case (checkpoint). All Phase 4 personas have authority to update consolidation artifacts when implementation requires it — see `workflow/shared/01-phase-4-artifact-authority.md`.
 
 **Stage 4-4** runs once after all use cases are implemented. It audits the codebase, proposes a refactor roadmap (error handling, input validation, security basics, layer enforcement), then refactors one area at a time with a plan approved before each change. Ends with a 5-question comprehension check on what was changed and why.
 
@@ -98,15 +98,35 @@ These are real decision points, not fixed constraints. The chosen approach is re
 
 ### Phase 1 → Phase 2
 
-Stage 1-6 produces `consolidation-artifacts/phase-1-consolidation.md` (includes tech stack summary) — the **primary input** for Phase 2.
+Stage 1-6 produces three consolidation artifacts:
+- `consolidation-artifacts/project-summary.md` — project overview and scope (summarized)
+- `consolidation-artifacts/use-cases-consolidation.md` — complete use case list (full)
+- `consolidation-artifacts/tech-stack-consolidation.md` — complete stack + ADR decisions (full)
+
+Phase 2 reads only these three files.
 
 ### Phase 2 → Phase 3
 
-Stage 2-4 consolidates Phase 2 work into `consolidation-artifacts/phase-2-consolidation.md` — the primary artifact forwarded to Phase 3. Also forwarded: `docs/view-entity-mapping.md` (Stage 2-1), `docs/api-design.md` (Stage 2-3, includes view-endpoint mapping with JSON contracts), and the `docs/assets/` folder.
+Stage 2-4 produces two consolidation artifacts:
+- `consolidation-artifacts/data-model-consolidation.md` — physical data model + embedded SQL (full)
+- `consolidation-artifacts/api-design-consolidation.md` — all endpoint contracts with JSON (full)
+
+Phase 3 reads these plus the `docs/assets/` folder (HTML views, CSS).
 
 ### Phase 3 → Phase 4
 
-Stage 3-5 consolidates all Phase 3 work into `consolidation-artifacts/ui-style-guide.md` — a comprehensive style guide whose Decision Log captures everything from `phase-3-design-decisions.md` (the Phase 3 working document, which is not forwarded to Phase 4). Phase 4 uses all prior artifacts: styled views, endpoint contracts, SQLite schema, and tech stack.
+Stage 3-5 consolidates all Phase 3 work into `consolidation-artifacts/ui-style-guide.md` — a comprehensive style guide whose Decision Log captures everything from `phase-3-design-decisions.md` (the Phase 3 working document, which is not forwarded to Phase 4).
+
+Phase 4 reads only consolidation artifacts:
+- `consolidation-artifacts/project-summary.md`
+- `consolidation-artifacts/use-cases-consolidation.md`
+- `consolidation-artifacts/tech-stack-consolidation.md`
+- `consolidation-artifacts/data-model-consolidation.md`
+- `consolidation-artifacts/api-design-consolidation.md`
+- `consolidation-artifacts/ui-style-guide.md`
+- `consolidation-artifacts/implementation-decisions.md` (initialized in Stage 4-1)
+
+The `docs/assets/views/` and `docs/assets/css/` folders are also used as design references for frontend development.
 
 The styled HTML views from Phase 3 are **design references** for frontend development in Phase 4. For SPA/hybrid projects: no template conversion needed — backend is a pure JSON API. For SSR/MPA projects: views serve as templates for server-side rendering.
 
@@ -122,23 +142,23 @@ Check `docs/` for existing artifacts:
 
 **Phase 1 (Discovery + Tech Selection):**
 - No artifacts → Stage 1-1
-- `project-brief.md` → Stage 1-2
-- `knowledge-audit.md` → Stage 1-3
-- `research-findings.md` → Stage 1-4
-- `use-cases.md` → Stage 1-5
-- `tech-stack.md` → Stage 1-6
-- `consolidation-artifacts/phase-1-consolidation.md` → Phase 1 complete
+- `docs/project-brief.md` → Stage 1-2
+- `docs/knowledge-audit.md` → Stage 1-3
+- `docs/research-findings.md` → Stage 1-4
+- `docs/use-cases.md` → Stage 1-5
+- `docs/tech-stack.md` → Stage 1-6
+- `consolidation-artifacts/tech-stack-consolidation.md` → Phase 1 complete
 
 **Phase 2 (Sketching & Data Modeling):**
-- `consolidation-artifacts/phase-1-consolidation.md` exists but no `entity-map.md` → Stage 2-1
-- `entity-map.md` → Stage 2-2
-- `data-model-physical.md` → Stage 2-3
-- `api-design.md` → Stage 2-4
-- `consolidation-artifacts/phase-2-consolidation.md` → Phase 2 complete
+- `consolidation-artifacts/tech-stack-consolidation.md` exists but no `docs/entity-map.md` → Stage 2-1
+- `docs/entity-map.md` → Stage 2-2
+- `docs/data-model-physical.md` → Stage 2-3
+- `docs/api-design.md` → Stage 2-4
+- `consolidation-artifacts/api-design-consolidation.md` → Phase 2 complete
 
 **Phase 3 (UI Polish):**
-- `consolidation-artifacts/phase-2-consolidation.md` exists but no `phase-3-design-decisions.md` → Stage 3-1
-- `phase-3-design-decisions.md` + styled main view → Stage 3-2
+- `consolidation-artifacts/api-design-consolidation.md` exists but no `docs/phase-3-design-decisions.md` → Stage 3-1
+- `docs/phase-3-design-decisions.md` + styled main view → Stage 3-2
 - Core app views styled → Stage 3-3
 - User views styled → Stage 3-4
 - Auth views styled → Stage 3-5
@@ -148,7 +168,7 @@ Check `docs/` for existing artifacts:
 
 **Phase 4 (Prototype Implementation):**
 - `consolidation-artifacts/ui-style-guide.md` exists but no `consolidation-artifacts/implementation-decisions.md` → Stage 4-1
-- `consolidation-artifacts/implementation-decisions.md` exists (use cases not all complete) → Stage 4-2, 4-2b, or 4-3 (user's choice per use case)
+- `consolidation-artifacts/implementation-decisions.md` exists (use cases not all complete) → Stage 4-2, 4-guided, or 4-3 (user's choice per use case)
 - `consolidation-artifacts/implementation-decisions.md` with all use cases complete but no `## Refactoring` section → Stage 4-4
 - `consolidation-artifacts/implementation-decisions.md` with `## Refactoring` section and refactoring incomplete → Stage 4-4 (resume)
 - `consolidation-artifacts/implementation-decisions.md` with all refactor areas complete → **Prototype refactored → Stage 5-1**
@@ -203,6 +223,7 @@ Examples:
 5. **In Phase 4: ALWAYS read `implementation-decisions.md` first** — it tracks progress and decisions across sessions
 6. **Follow stage order** within each phase
 7. **Complete each phase before starting the next**
+8. **ALWAYS use the latest stable version of any tool, library, or framework** unless the user explicitly specifies otherwise
 
 ---
 
@@ -273,6 +294,7 @@ project-root/
 ## Artifact Storage
 
 - Phase milestone documents: `consolidation-artifacts/`
+- Per-use-case design specs (Stage 4-guided): `consolidation-artifacts/designs/`
 - Working prototype code: `prototype-code/`
 - Working design artifacts: `docs/`
 - Assets (views, CSS, SQL): `docs/assets/`
@@ -290,28 +312,31 @@ project-root/
 - [ ] `workflow-changelog.md` ← Workflow fixes log
 
 ### Phase 1: Discovery + Tech Selection
-- [ ] `project-brief.md`
-- [ ] `knowledge-audit.md`
-- [ ] `research-findings.md`
-- [ ] `use-cases.md`
-- [ ] `tech-stack.md`
-- [ ] `adrs/` (decision records)
-- [ ] **`consolidation-artifacts/phase-1-consolidation.md`** ← Phase 1 complete
+- [ ] `docs/project-brief.md`
+- [ ] `docs/knowledge-audit.md`
+- [ ] `docs/research-findings.md`
+- [ ] `docs/use-cases.md`
+- [ ] `docs/tech-stack.md`
+- [ ] `docs/adrs/` (decision records)
+- [ ] **`consolidation-artifacts/project-summary.md`**
+- [ ] **`consolidation-artifacts/use-cases-consolidation.md`**
+- [ ] **`consolidation-artifacts/tech-stack-consolidation.md`** ← Phase 1 complete
 
 ### Phase 2: Sketching & Data Modeling
-- [ ] `entity-map.md`
-- [ ] `assets/views/` (plain HTML)
-- [ ] `view-entity-mapping.md`
-- [ ] `data-model-conceptual.md` (agnostic)
-- [ ] `data-model-physical.md` (SQLite)
-- [ ] `assets/schema.sql` (SQLite with mock data)
-- [ ] `assets/diagrams/entity-diagram.md`
-- [ ] `api-design.md` (with JSON contracts + view-endpoint mapping)
-- [ ] **`consolidation-artifacts/phase-2-consolidation.md`** ← Phase 2 complete
+- [ ] `docs/entity-map.md`
+- [ ] `docs/assets/views/` (plain HTML)
+- [ ] `docs/view-entity-mapping.md`
+- [ ] `docs/data-model-conceptual.md` (agnostic)
+- [ ] `docs/data-model-physical.md` (SQLite)
+- [ ] `docs/assets/schema.sql` (SQLite with mock data)
+- [ ] `docs/assets/diagrams/entity-diagram.md`
+- [ ] `docs/api-design.md` (with JSON contracts + view-endpoint mapping)
+- [ ] **`consolidation-artifacts/data-model-consolidation.md`**
+- [ ] **`consolidation-artifacts/api-design-consolidation.md`** ← Phase 2 complete
 
 ### Phase 3: UI Polish
-- [ ] `phase-3-design-decisions.md` ← Living decisions file (all stages read/update)
-- [ ] `assets/css/styles.css`
+- [ ] `docs/phase-3-design-decisions.md` ← Living decisions file (all stages read/update)
+- [ ] `docs/assets/css/styles.css`
 - [ ] Styled main view ← Stage 3-1 complete
 - [ ] Styled core app views ← Stage 3-2 complete
 - [ ] Styled user views ← Stage 3-3 complete

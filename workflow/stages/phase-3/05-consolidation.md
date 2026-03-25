@@ -199,14 +199,13 @@ Walk through the complete set of styled views with the user:
 Proceed to **Phase 4: Prototype Implementation**, starting with **Stage 4-1: Project Setup**.
 
 Input for Phase 4:
-- `consolidation-artifacts/phase-1-consolidation.md` (scope and use cases)
-- `docs/adrs/` (architecture decisions)
-- `docs/data-model-physical.md` (SQLite schema)
-- `docs/assets/schema.sql` (SQLite with mock data)
-- `docs/api-design.md` (endpoint contracts with JSON examples)
+- `consolidation-artifacts/project-summary.md` (project overview and scope)
+- `consolidation-artifacts/use-cases-consolidation.md` (complete use case list)
+- `consolidation-artifacts/tech-stack-consolidation.md` (stack, decisions, dependencies)
+- `consolidation-artifacts/data-model-consolidation.md` (physical model + SQL schema)
+- `consolidation-artifacts/api-design-consolidation.md` (endpoint contracts with JSON)
 - `consolidation-artifacts/ui-style-guide.md` (component patterns, view inventory)
-- Styled views in `docs/assets/views/`
+- `docs/assets/views/` (styled HTML views — design references for frontend)
 - `docs/assets/css/styles.css` (base stylesheet)
-- `docs/tech-stack.md` (selected technologies)
 
 **Note:** The styled views in `docs/assets/views/` are design references for frontend development in Phase 4. For SPA/hybrid projects: no template conversion needed — backend is a pure JSON API. For SSR/MPA projects: views serve as templates for server-side rendering.

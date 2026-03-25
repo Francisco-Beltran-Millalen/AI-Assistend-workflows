@@ -20,16 +20,18 @@ Then create a working project skeleton that compiles, connects to the database, 
 
 ## Input Artifacts
 
-- `docs/tech-stack.md` (language, framework, dependencies)
-- `docs/adrs/` (architecture decisions)
-- `docs/data-model-physical.md` (SQLite schema)
-- `docs/assets/schema.sql` (database script with mock data)
-- `docs/api-design.md` (endpoint contracts — for reference, not implementation yet)
-- `consolidation-artifacts/phase-1-consolidation.md` (scope and use cases)
-- `docs/use-cases.md` (complete use case list for the implementation roadmap)
-- `consolidation-artifacts/ui-style-guide.md` (component patterns, view inventory)
-- `docs/assets/views/` (Phase 3 styled views — design references for frontend component development)
-- `docs/assets/css/styles.css` (base stylesheet)
+- `consolidation-artifacts/implementation-decisions.md` — if resuming; initialize it here otherwise
+- `consolidation-artifacts/tech-stack-consolidation.md` — language, framework, dependencies
+- `consolidation-artifacts/use-cases-consolidation.md` — complete use case list for the implementation roadmap
+- `consolidation-artifacts/data-model-consolidation.md` — physical schema + embedded SQL
+- `consolidation-artifacts/api-design-consolidation.md` — endpoint contracts (reference, not implementation yet)
+- `consolidation-artifacts/ui-style-guide.md` — component patterns, view inventory
+- `docs/assets/views/` — Phase 3 styled views (design references for frontend)
+- `docs/assets/css/styles.css` — base stylesheet
+
+## Artifact Update Authority
+
+When setup reveals that a consolidation artifact needs to change, follow the protocol in `workflow/shared/01-phase-4-artifact-authority.md`. Record every change in `implementation-decisions.md` under `## Design Changes`.
 
 ## Process
 
@@ -37,7 +39,7 @@ Then create a working project skeleton that compiles, connects to the database, 
 
 #### 1. Review Tech Stack
 
-Read `docs/tech-stack.md` and confirm:
+Read `consolidation-artifacts/tech-stack-consolidation.md` and confirm:
 - Language and version
 - Framework and version
 - Key dependencies
@@ -170,7 +172,7 @@ Discuss with the user and confirm before proceeding.
 
 #### 3. Define Implementation Roadmap
 
-Read `consolidation-artifacts/phase-1-consolidation.md` and `docs/use-cases.md`. Propose an implementation order for all use cases based on **dependencies, not Design Priority**.
+Read `consolidation-artifacts/use-cases-consolidation.md`. Propose an implementation order for all use cases based on **dependencies, not Design Priority**.
 
 **Rules for ordering:**
 - Use cases that other use cases depend on go first (e.g., auth before any feature that requires authentication)
@@ -203,7 +205,7 @@ Get user approval before proceeding. Adjust if the user disagrees with any order
 
 #### 2. Database Setup
 
-- Copy or reference `docs/assets/schema.sql` from Phase 2
+- The SQL schema is embedded in `consolidation-artifacts/data-model-consolidation.md` and the file is at `docs/assets/schema.sql`
 - Set up database connection to SQLite
 - Run the schema to create tables with mock data
 - Verify: can the app query the database?
@@ -280,7 +282,7 @@ Initialize the persistence document for Phase 4:
 > It tracks progress, decisions, and discoveries during implementation.
 
 ## Tech Stack
-[Reference to tech-stack.md — brief summary]
+[Reference to tech-stack-consolidation.md — one-line summary of language, framework, DB]
 
 ## Architecture
 
@@ -327,6 +329,10 @@ Initialize the persistence document for Phase 4:
 
 ## Next Session
 Start with use case #1 from the Implementation Roadmap.
+
+## Design Changes
+
+(none yet — changes to consolidation artifacts are recorded here)
 ```
 
 ## Exit Criteria
@@ -347,8 +353,9 @@ Start with use case #1 from the Implementation Roadmap.
 
 ## Next Stage
 
-Proceed to either:
+Proceed to one of:
 - **Stage 4-2: Implementation Loop** — AI writes the code, you review and approve
+- **Stage 4-guided: Guided Implementation** — you design the modules and contracts, AI writes the code
 - **Stage 4-3: Learning Guide** — you write the code, AI guides you
 
-Choose per use case. Both stages share `implementation-decisions.md` and follow the architectural rules established here.
+Choose per use case. All three stages share `implementation-decisions.md` and follow the architectural rules established here.

@@ -43,11 +43,14 @@ This file tracks:
 ## Input Artifacts
 
 - `consolidation-artifacts/implementation-decisions.md` — **Read first. Resume from where we left off.**
-- `docs/use-cases.md` (priority order)
-- `docs/api-design.md` (endpoint contracts with JSON examples)
-- `docs/data-model-physical.md` (entity attributes)
-- `docs/assets/schema.sql` (database schema)
+- `consolidation-artifacts/use-cases-consolidation.md` — use case list with priorities
+- `consolidation-artifacts/api-design-consolidation.md` — endpoint contracts with JSON examples
+- `consolidation-artifacts/data-model-consolidation.md` — entity attributes and SQL schema
 - The working project from Stage 4-1
+
+## Artifact Update Authority
+
+When implementation reveals that a consolidation artifact needs to change, follow the protocol in `workflow/shared/01-phase-4-artifact-authority.md`. Record every change in `implementation-decisions.md` under `## Design Changes`.
 
 ## Process
 
@@ -123,7 +126,7 @@ Service: OrderService
   Approve? [user responds]
 ```
 
-Routes follow the API contract from `docs/api-design.md`. Auth uses the mechanism decided in `docs/tech-stack.md` (JWT Bearer, sessions, etc.).
+Routes follow the API contract from `consolidation-artifacts/api-design-consolidation.md`. Auth uses the mechanism decided in `consolidation-artifacts/tech-stack-consolidation.md` (JWT Bearer, sessions, etc.).
 
 ```
 Route: GET /orders/{id}
@@ -260,7 +263,7 @@ The next session will read the persistence document and pick up from there.
 
 ## Use Case Priority
 
-The Design Priority labels in `use-cases.md` reflect **design-phase exploration priority** — what was worth discovering and documenting first in Phases 1–3. They are not implementation sequence.
+The Design Priority labels in `use-cases-consolidation.md` reflect **design-phase exploration priority** — what was worth discovering and documenting first in Phases 1–3. They are not implementation sequence.
 
 **In Phase 4, implementation order is dependency-driven.** Implement what each use case needs to work, regardless of its Design Priority label. Auth use cases are Design Priority 3 (standard, well-known pattern) but are often prerequisites for core features — implement them when the first use case that requires them is reached, not last.
 

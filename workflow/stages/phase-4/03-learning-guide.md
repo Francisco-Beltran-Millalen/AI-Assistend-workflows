@@ -41,11 +41,14 @@ This file is shared with Stage 4-2. If you've done some use cases in Stage 4-2 a
 ## Input Artifacts
 
 - `consolidation-artifacts/implementation-decisions.md` — **Read first. Resume from where we left off.**
-- `docs/use-cases.md` (priority order)
-- `docs/api-design.md` (endpoint contracts with JSON examples)
-- `docs/data-model-physical.md` (entity attributes)
-- `docs/assets/schema.sql` (database schema)
+- `consolidation-artifacts/use-cases-consolidation.md` — use case list with priorities
+- `consolidation-artifacts/api-design-consolidation.md` — endpoint contracts with JSON examples
+- `consolidation-artifacts/data-model-consolidation.md` — entity attributes and SQL schema
 - The working project from Stage 4-1
+
+## Artifact Update Authority
+
+When implementation reveals that a consolidation artifact needs to change, follow the protocol in `workflow/shared/01-phase-4-artifact-authority.md`. Record every change in `implementation-decisions.md` under `## Design Changes`.
 
 ## Process
 
