@@ -20,12 +20,11 @@ The architecture is fixed:
 - **Web application** (browser-based UI)
 - **REST API** (JSON over HTTP)
 - **SQL database** (relational persistence)
-- **SQLite for prototyping** (always — regardless of production DB choice)
 
 What's open:
 - Programming language
 - Web framework
-- Production database (PostgreSQL, MySQL, etc.)
+- Database (PostgreSQL, MySQL, etc.)
 - ORM / database access library
 - **Frontend rendering approach** (SPA, SSR, hybrid, MPA — see Frontend section below)
 - **Authentication mechanism** (JWT, sessions, OAuth — see Authentication section below)
@@ -93,11 +92,10 @@ Work through these categories in order:
 
 Present 2–3 options relevant to the project. Tailor to what makes sense given the user's background.
 
-#### Production Database
+#### Database
 
-**Reminder:** SQLite is always used for prototyping. This choice is for production.
-- PostgreSQL, MySQL, MariaDB, etc.
-- Consider: hosting availability, team familiarity, feature needs
+- PostgreSQL is the default recommendation — mature, feature-rich, production-ready
+- Consider: hosting availability, team familiarity, managed service options
 
 #### ORM / Database Access
 
@@ -190,8 +188,7 @@ Accepted
 |----------|--------|---------|
 | Language | [choice] | [version] |
 | Framework | [choice] | [version] |
-| Production DB | [choice] | [version] |
-| Prototype DB | SQLite | 3 |
+| Database | [choice] | [version] |
 | DB Access | [choice] | [version] |
 
 ### Frontend
@@ -206,12 +203,6 @@ Accepted
 |----------|--------|
 | ...| ... |
 ```
-
-### 5. Define Development Environment
-
-- Required tools and versions
-- Environment variables template
-- Local setup steps
 
 ## Output Artifacts
 
@@ -233,7 +224,7 @@ Architecture Decision Records:
 
 - [ ] Programming language is selected
 - [ ] Web framework is selected
-- [ ] Production database is selected
+- [ ] Database is selected
 - [ ] Frontend approach is selected
 - [ ] Auth mechanism is selected
 - [ ] All supporting tools are selected

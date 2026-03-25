@@ -2,7 +2,7 @@
 
 When starting a Phase 1–4 stage, the `start-stage` skill checks whether the stage's output artifacts already exist. This protocol defines what to do when they do.
 
-**Does not apply to on-demand stages (0, diagram, import, knowledge, teacher, git).**
+**Does not apply to on-demand stages (0, teacher).**
 
 ---
 

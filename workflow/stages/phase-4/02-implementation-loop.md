@@ -21,7 +21,7 @@ This is intentionally slow. The user must understand every piece of the system b
 
 Implement use cases one at a time, in priority order. Each use case is a vertical slice through the entire stack: model → repository → service → handler/route → tests.
 
-By the end: a working prototype with real endpoints, real database queries, and automated tests — built on SQLite with mock data.
+By the end: a working prototype with real endpoints, real database queries, and automated tests — built on PostgreSQL with mock data.
 
 ## Persistence Document: `consolidation-artifacts/implementation-decisions.md`
 
@@ -131,7 +131,7 @@ Routes follow the API contract from `consolidation-artifacts/api-design-consolid
 ```
 Route: GET /orders/{id}
 
-  Input:  path param id: int, auth: [per tech-stack.md]
+  Input:  path param id: int, auth: [per tech-stack-consolidation.md]
   Output: 200 → OrderDetailsResponse as JSON
   Errors: 404 → ORDER_NOT_FOUND
 
@@ -286,7 +286,7 @@ During implementation, you may discover that the design (data model, API, etc.) 
 
 A project with:
 - Implemented endpoints for completed use cases
-- SQLite database with mock data
+- PostgreSQL database with mock data
 - Automated tests (unit + integration) for every implemented use case
 - All tests passing
 

@@ -1,6 +1,6 @@
 # Technology Stack
 
-**Architecture (Fixed):** Web App · REST API · SQL · SQLite for Prototyping
+**Architecture (Fixed):** Web App · REST API · PostgreSQL
 
 ---
 
@@ -12,8 +12,7 @@
 |----------|--------|---------|
 | Language | [choice] | [version] |
 | Framework | [choice] | [version] |
-| Production DB | [choice] | [version] |
-| Prototype DB | SQLite | 3 |
+| Database | PostgreSQL | [version] |
 | ORM | [choice] | [version] |
 | Auth | [choice] | [version] |
 | Testing | [choice] | [version] |
@@ -44,7 +43,7 @@
 ### Environment Variables
 
 ```
-DATABASE_URL=sqlite:///./prototype.db
+DATABASE_URL=postgresql://localhost:5432/[project]_dev
 SECRET_KEY=your-secret-key
 ENVIRONMENT=development
 ```

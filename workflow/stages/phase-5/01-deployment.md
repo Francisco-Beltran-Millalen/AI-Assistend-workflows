@@ -21,7 +21,7 @@ Deployment for a web prototype typically means addressing these dimensions:
 1. **Containerization** — Package the app so it runs the same anywhere (Docker, docker-compose)
 2. **Hosting** — Where does the app actually run? (PaaS, VPS, cloud, local server)
 3. **Environment configuration** — Secrets, API keys, database paths, environment variables
-4. **Database** — SQLite file persistence strategy in a deployed environment
+4. **Database** — PostgreSQL connection configuration and database provisioning in the target environment
 5. **CI/CD** — Automating deployment when code changes (future concern)
 
 ## Process

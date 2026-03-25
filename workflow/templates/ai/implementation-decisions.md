@@ -7,7 +7,7 @@
 
 ## Tech Stack
 
-See `docs/tech-stack.md`
+See `consolidation-artifacts/tech-stack-consolidation.md`
 
 ---
 
@@ -79,6 +79,17 @@ Things found during implementation that affect the design:
 | Item | Reason | Priority |
 |------|--------|----------|
 | [Item] | [Why deferred] | [High/Medium/Low] |
+
+---
+
+## Design Changes
+
+When implementation reveals the design needs to change, record every approved change here per `workflow/shared/01-phase-4-artifact-authority.md`:
+
+### YYYY-MM-DD — [one-line summary]
+Artifact: [filename]
+Change: [what changed precisely]
+Rationale: [what implementation discovered that required this change]
 
 ---
 

@@ -22,7 +22,8 @@ Subsequent stages (3-2, 3-3, 3-4) will apply these decisions to the remaining vi
 
 ## Input Artifacts
 
-- `consolidation-artifacts/phase-2-consolidation.md`
+- `consolidation-artifacts/data-model-consolidation.md` (what data views must display)
+- `consolidation-artifacts/api-design-consolidation.md` (view-endpoint mapping)
 - `docs/assets/views/` (plain HTML sketches)
 - `docs/view-entity-mapping.md` (what data each view displays)
 

@@ -46,17 +46,27 @@ Used to review HTML views produced in Phase 2 (UI Sketching) and Phase 3 (UI Pol
 
 Any modern browser works (Chrome, Firefox, Safari, Edge).
 
-### 5. SQLite CLI
+### 5. Docker
 
-Used in Stage 2-2 to validate the database schema and mock data by running the generated `schema.sql` script.
+Used to run the PostgreSQL database (no native PostgreSQL install needed). Also used in Phase 4 to run the prototype in a consistent environment.
 
 | OS | Status | Install |
 |----|--------|---------|
-| Linux (Debian/Ubuntu) | Not always included | `sudo apt install sqlite3` |
-| macOS | Pre-installed | Available via `sqlite3` |
-| Windows | Not included | https://sqlite.org/download.html or use WSL |
+| Linux | Not always included | https://docs.docker.com/engine/install/ |
+| macOS | Not included | https://docs.docker.com/desktop/install/mac-install/ |
+| Windows | Not included | https://docs.docker.com/desktop/install/windows-install/ |
 
-Verify: `sqlite3 --version`
+Verify:
+```bash
+docker --version
+docker compose version
+```
+
+**PostgreSQL via Docker:** All `psql` commands in the workflow are run inside the Docker container:
+```bash
+docker exec -i <container_name> psql -U <db_user> -d <db_name> < schema.sql
+```
+The container name, user, and database are defined in the project's `docker-compose.yml`, set up during Stage 4-1.
 
 ### 6. Git
 
@@ -74,12 +84,6 @@ Verify: `git --version`
 
 ## Planned (not yet required)
 
-<!--
-  - Docker: planned for standardizing the development and deployment environment
-    in Phase 4 (Prototype Implementation), so the project runs consistently
-    across machines without manual dependency setup.
-    Install: https://docs.docker.com/get-docker/
--->
 
 ---
 
@@ -90,6 +94,6 @@ Run this to check all required tools at once:
 ```bash
 echo "Python 3:  $(python3 --version 2>/dev/null || echo 'NOT FOUND')"
 echo "bash:      $(bash --version 2>/dev/null | head -1 || echo 'NOT FOUND')"
-echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
+echo "docker:    $(docker --version 2>/dev/null || echo 'NOT FOUND')"
 echo "git:       $(git --version 2>/dev/null || echo 'NOT FOUND')"
 ```

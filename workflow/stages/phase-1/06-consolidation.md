@@ -163,8 +163,7 @@ Synthesize from `docs/tech-stack.md` and all files in `docs/adrs/`.
 |----------|--------|---------|
 | Language | ... | ... |
 | Framework | ... | ... |
-| DB — prototype | SQLite | 3 |
-| DB — production | ... | ... |
+| Database | ... | ... |
 | Frontend rendering | [SPA / SSR / Hybrid / MPA] — [framework] | ... |
 | Auth mechanism | [JWT / Sessions / OAuth] | ... |
 
@@ -195,15 +194,7 @@ Synthesize from `docs/tech-stack.md` and all files in `docs/adrs/`.
 
 ---
 
-### 5. Validate Completeness
-
-Check that Phase 2 can proceed using **only** these three files:
-
-- [ ] A Phase 2 persona reading only `project-summary.md` can understand what the system does and what's in scope
-- [ ] A Phase 2 persona reading only `use-cases-consolidation.md` can identify all actors and use cases to model
-- [ ] A Phase 2 persona reading only `tech-stack-consolidation.md` knows the exact stack for creating tech-specific artifacts
-
-### 6. User Review
+### 5. User Review
 
 Present each document. Confirm:
 - Nothing important was lost from the originals

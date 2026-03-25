@@ -114,30 +114,6 @@ After research is complete:
 - Update "Uncertain" items with new information
 - Document any new questions that emerged
 
-## Research Tips
-
-### Good Search Strategies
-
-- Start broad, then narrow down
-- Search for "[technology] vs [alternative]" for comparisons
-- Search for "[problem] best practices" for patterns
-- Search for "[domain] case study" for real examples
-- Search official documentation first for technical questions
-
-### Red Flags in Sources
-
-- Very old content (check dates)
-- No author or anonymous
-- Promotional content disguised as advice
-- Single source with no corroboration
-
-### When to Stop Researching
-
-- You have a clear, validated answer
-- Multiple credible sources agree
-- User says "good enough, let's decide"
-- Diminishing returns (same info keeps appearing)
-
 ## Output Artifacts
 
 ### Artifact: `docs/research-findings.md`

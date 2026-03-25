@@ -80,7 +80,7 @@ Transcribe from `docs/data-model-physical.md` and `docs/assets/schema.sql`.
 
 | Column | Type | Constraints | Notes |
 |--------|------|-------------|-------|
-| id | INTEGER | PRIMARY KEY AUTOINCREMENT | |
+| id | SERIAL | PRIMARY KEY | |
 | [column] | [type] | [NOT NULL / UNIQUE / FK ref] | [purpose if not obvious] |
 
 [Repeat for each entity]
@@ -91,7 +91,7 @@ Transcribe from `docs/data-model-physical.md` and `docs/assets/schema.sql`.
 |------|-------------|-----|-----------------|
 | [Entity] | one-to-many | [Entity] | [fk_column] |
 
-## SQLite Schema
+## PostgreSQL Schema
 
 Schema file: `docs/assets/schema.sql`
 
@@ -102,7 +102,11 @@ Schema file: `docs/assets/schema.sql`
 ## Database Setup
 
 ```bash
-sqlite3 app.db < docs/assets/schema.sql
+# Docker (recommended):
+docker exec -i <container_name> psql -U <db_user> -d <db_name> < docs/assets/schema.sql
+
+# Native psql:
+psql $DATABASE_URL < docs/assets/schema.sql
 ```
 ```
 
@@ -175,22 +179,13 @@ Transcribe from `docs/api-design.md` — complete and accurate, no endpoints dro
 
 ---
 
-### 4. Validate Completeness
-
-Check that Phase 3 and Phase 4 can proceed using **only** these two files plus the Phase 1 consolidations:
-
-- [ ] A Phase 3 persona reading only `data-model-consolidation.md` knows what data each view must display
-- [ ] A Phase 4 persona reading only `data-model-consolidation.md` can create the full database schema
-- [ ] A Phase 4 persona reading only `api-design-consolidation.md` can implement every endpoint
-- [ ] The view-endpoint mapping connects views to their API calls
-
-### 5. Validate Assets
+### 4. Validate Assets
 
 Verify the assets work:
 - [ ] Open `docs/assets/views/index.html` — links work
-- [ ] Run `schema.sql` in SQLite — executes without errors
+- [ ] Run `schema.sql` in PostgreSQL — executes without errors
 
-### 6. User Review
+### 5. User Review
 
 Walk through both documents with the user:
 - Confirm all design work is captured
@@ -203,7 +198,7 @@ Walk through both documents with the user:
 - [ ] `consolidation-artifacts/data-model-consolidation.md` created — all entities, relationships, full SQL embedded
 - [ ] `consolidation-artifacts/api-design-consolidation.md` created — all endpoints with JSON, view-endpoint mapping
 - [ ] Completeness check passed
-- [ ] SQLite schema executes without errors
+- [ ] PostgreSQL schema executes without errors
 - [ ] User has approved both documents
 - [ ] Session log exported via `/export-log 2-4`
 
@@ -219,5 +214,4 @@ Phase 3 reads:
 - `consolidation-artifacts/data-model-consolidation.md` (what data views must display)
 - `consolidation-artifacts/api-design-consolidation.md` (view-endpoint mapping)
 - `docs/assets/views/` (HTML sketches to style)
-- `docs/assets/css/` (CSS files)
 - `docs/view-entity-mapping.md` (entity-to-view mapping)

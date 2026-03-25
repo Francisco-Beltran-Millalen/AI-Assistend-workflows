@@ -68,7 +68,7 @@ Domain layer (center)
 
 Infrastructure layer (outside)
   ├── Adapters — port implementations
-  │     e.g., SQLiteOrderRepository implements OrderRepository
+  │     e.g., PostgresOrderRepository implements OrderRepository
   └── HTTP layer — routes/handlers, call services only
 ```
 
@@ -136,7 +136,7 @@ prototype-code/
 │   │   ├── ports/          ← repository interfaces, service interfaces
 │   │   └── services/       ← business logic
 │   ├── infrastructure/
-│   │   ├── db/             ← SQLite adapters (port implementations)
+│   │   ├── db/             ← PostgreSQL adapters (port implementations)
 │   │   └── http/           ← routes, handlers, middleware
 │   └── main entry point
 ├── tests/
@@ -206,13 +206,9 @@ Get user approval before proceeding. Adjust if the user disagrees with any order
 #### 2. Database Setup
 
 - The SQL schema is embedded in `consolidation-artifacts/data-model-consolidation.md` and the file is at `docs/assets/schema.sql`
-- Set up database connection to SQLite
+- Set up database connection to PostgreSQL
 - Run the schema to create tables with mock data
 - Verify: can the app query the database?
-
-**IMPORTANT — SQLite foreign key enforcement:** SQLite disables foreign key constraints by default. The application must run `PRAGMA foreign_keys = ON;` on every new connection, or FK constraints are silently ignored.
-
-Add this to the database connection setup code — not just the schema script. Verify it's applied before the health check passes.
 
 #### 3. Health Check Endpoint
 
@@ -266,7 +262,7 @@ Walk through the skeleton:
 
 A project that:
 - Compiles and starts
-- Connects to SQLite with mock data
+- Connects to PostgreSQL with mock data
 - Serves GET /health
 - Has passing tests
 - Has the folder structure for feature implementation, reflecting the chosen architecture
@@ -342,7 +338,7 @@ Start with use case #1 from the Implementation Roadmap.
 - [ ] Folder structure reflects the chosen architecture and is approved by user
 - [ ] Implementation roadmap (use case order) is proposed and approved
 - [ ] Project compiles and runs
-- [ ] SQLite database is set up with schema and mock data
+- [ ] PostgreSQL database is set up with schema and mock data
 - [ ] GET /health endpoint returns successfully
 - [ ] At least one unit test passes
 - [ ] At least one integration test passes

@@ -59,7 +59,7 @@ The workflow produces a **working prototype** — not production code. The goal 
 
 Phase 5 deploys the prototype.
 
-This separation matters because prototyping decisions (SQLite instead of Postgres, no caching, no deployment config) are different from production decisions. Mixing them slows the prototype phase without improving the design.
+This separation matters because prototyping decisions (no caching, simplified auth, no deployment config) are different from production decisions. Mixing them slows the prototype phase without improving the design.
 
 ### 6. Logs as Institutional Memory
 
@@ -82,7 +82,7 @@ Adding support for a new LLM tool requires:
 
 The `web` workflow is a specialization for building web applications with:
 - A **REST API** (JSON over HTTP)
-- A **SQL database** (SQLite for prototyping, any relational DB for production)
+- A **SQL database** (PostgreSQL)
 
 **Frontend rendering approach** and **authentication mechanism** are chosen in Stage 1-5 (Tech Selection):
 - **Rendering:** SPA, SSR, hybrid, or MPA (HTMX, Hotwire, etc.)
@@ -125,14 +125,15 @@ See [`PREREQUISITES.md`](PREREQUISITES.md) for the full list with installation i
 - An LLM CLI that supports `AGENTS.md` (Claude Code recommended)
 - Python 3 (workflow scripts)
 - bash (hook scripts)
-- SQLite CLI (schema validation in Phase 2)
+- Docker (PostgreSQL database + prototype runtime)
 - A web browser (reviewing HTML views in Phases 2 and 3)
 
 **Quick check:**
 ```bash
 echo "Python 3:  $(python3 --version 2>/dev/null || echo 'NOT FOUND')"
 echo "bash:      $(bash --version 2>/dev/null | head -1 || echo 'NOT FOUND')"
-echo "sqlite3:   $(sqlite3 --version 2>/dev/null || echo 'NOT FOUND')"
+echo "docker:    $(docker --version 2>/dev/null || echo 'NOT FOUND')"
+echo "git:       $(git --version 2>/dev/null || echo 'NOT FOUND')"
 ```
 
 ---

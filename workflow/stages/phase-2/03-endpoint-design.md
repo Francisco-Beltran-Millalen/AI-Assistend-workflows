@@ -16,7 +16,8 @@ Define how the frontend and backend will communicate via REST JSON endpoints. By
 
 ## Input Artifacts
 
-- `consolidation-artifacts/phase-1-consolidation.md` (use cases, tech stack)
+- `consolidation-artifacts/use-cases-consolidation.md` (use cases to drive endpoint derivation)
+- `consolidation-artifacts/tech-stack-consolidation.md` (auth mechanism and stack decisions)
 - `docs/entity-map.md` (entities and relationships)
 - `docs/data-model-physical.md` (attributes and types)
 - `docs/view-entity-mapping.md` (what data each view needs)
@@ -204,7 +205,7 @@ Establish a consistent error response format:
 
 Document how clients authenticate (contract, not implementation).
 
-**Reference `docs/tech-stack.md`** — the auth mechanism was decided in Stage 1-5. Design the endpoints to match. Common patterns:
+**Reference `consolidation-artifacts/tech-stack-consolidation.md`** — the auth mechanism was decided in Stage 1-5. Design the endpoints to match. Common patterns:
 
 **JWT (Bearer token):**
 ```

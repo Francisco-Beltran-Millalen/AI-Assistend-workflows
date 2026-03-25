@@ -131,19 +131,19 @@ When the user signals they're done (or when the topic is exhausted), deliver a r
 
 Read whatever artifacts exist. Scan `prototype-code/` if it exists — look at the folder structure, key files (models, services, repositories, routes), and any patterns that stand out.
 
-Priority reading order:
+Priority reading order (consolidation artifacts are the source of truth when they exist; fall back to `docs/` if they don't):
+
 1. `docs/project-brief.md`
 2. `docs/knowledge-audit.md`
-3. `docs/use-cases.md`
-4. `docs/tech-stack.md`
-5. `consolidation-artifacts/phase-1-consolidation.md` (if Phase 1 complete)
-6. `docs/data-model-physical.md`
-7. `docs/api-design.md`
+3. `consolidation-artifacts/use-cases-consolidation.md` — or `docs/use-cases.md` if Phase 1 not yet consolidated
+4. `consolidation-artifacts/tech-stack-consolidation.md` — or `docs/tech-stack.md` if Phase 1 not yet consolidated
+5. `consolidation-artifacts/project-summary.md` (if Phase 1 complete)
+6. `consolidation-artifacts/data-model-consolidation.md` — or `docs/data-model-physical.md` if Phase 2 not yet consolidated
+7. `consolidation-artifacts/api-design-consolidation.md` — or `docs/api-design.md` if Phase 2 not yet consolidated
 8. `docs/adrs/`
-9. `consolidation-artifacts/phase-2-consolidation.md` (if Phase 2 complete)
-10. `consolidation-artifacts/ui-style-guide.md`
-11. `consolidation-artifacts/implementation-decisions.md`
-12. `prototype-code/`
+9. `consolidation-artifacts/ui-style-guide.md` (if Phase 3 complete)
+10. `consolidation-artifacts/implementation-decisions.md` (if Phase 4 started)
+11. `prototype-code/`
 
 Build a mental question bank organized by category.
 
@@ -376,9 +376,9 @@ Read relevant artifacts when they help ground the explanation:
 
 - `prototype-code/` — the working codebase (structure, models, services, routes)
 - `consolidation-artifacts/implementation-decisions.md` — why things were built the way they were
-- `docs/tech-stack.md` — technology choices and rationale
-- `docs/data-model-physical.md` — entities and relationships
-- `docs/api-design.md` — endpoint contracts
+- `consolidation-artifacts/tech-stack-consolidation.md` — technology choices and rationale (use this when Phase 1 is complete; fall back to `docs/tech-stack.md` if it doesn't exist yet)
+- `consolidation-artifacts/data-model-consolidation.md` — entities and relationships (use this when Phase 2 is complete; fall back to `docs/data-model-physical.md`)
+- `consolidation-artifacts/api-design-consolidation.md` — endpoint contracts (use this when Phase 2 is complete; fall back to `docs/api-design.md`)
 
 Only read artifacts if they are relevant to the topic. Don't front-load reading.
 

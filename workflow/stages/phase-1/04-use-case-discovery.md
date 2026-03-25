@@ -120,21 +120,6 @@ Based on the Design Priority labels, suggest an exploration order for Phases 2 a
 
 **Note:** This is the design exploration order, not the Phase 4 implementation sequence. Phase 4 uses dependency-driven ordering — use cases are implemented in the order they need to be built for others to work (e.g., auth before features that require it), regardless of their Design Priority label.
 
-## Use Case Format
-
-Keep use cases in this simple format during discovery:
-
-```
-[Actor] can [action]
-```
-
-Examples:
-- Customer can search for products by category
-- Vendor can upload product images
-- System can send order confirmation email
-
-**Don't add details yet** — that comes in later stages.
-
 ## Output Artifacts
 
 ### Artifact: `docs/use-cases.md`

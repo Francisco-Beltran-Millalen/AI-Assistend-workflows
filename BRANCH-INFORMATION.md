@@ -10,7 +10,7 @@
 Use this branch when building a web application with:
 - A browser-based UI
 - A REST API (JSON over HTTP)
-- A SQL database (SQLite for prototyping)
+- A SQL database (PostgreSQL)
 
 ## How to use
 

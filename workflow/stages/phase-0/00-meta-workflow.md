@@ -37,7 +37,7 @@ Identify which mode applies from context. If unclear, ask the user.
 
 1. **Observe** — What happened? What was expected?
 2. **Diagnose** — Why did it happen? (LLM limitation, unclear prompt, missing context, broken script?)
-3. **Fix** — Patch the workflow (edit stage file, fix script, update CLAUDE.md)
+3. **Fix** — Patch the workflow (edit stage file, fix script, update AGENTS.md)
 4. **Document** — Log the change for future reference
 
 ### Process
@@ -82,7 +82,7 @@ Common categories:
 
 Depending on the issue:
 - Edit the relevant stage file (`workflow/stages/`)
-- Update CLAUDE.md
+- Update AGENTS.md
 - Fix or create scripts (`workflow/scripts/`)
 - Adjust hook configuration (`.claude/settings.json`)
 
@@ -309,7 +309,7 @@ If uncertain between two stages, present both options to the user and ask which 
 | Research questions, findings with sources, confidence levels | Stage 1-3 (`research-findings.md`) |
 | Actors, use cases grouped by category with Design Priority labels | Stage 1-4 (`use-cases.md`) |
 | Technology choices, ADRs, stack tables | Stage 1-5 (`tech-stack.md`) |
-| Discovery summary, scope, data landscape, use case priorities, tech summary | Stage 1-6 (`phase-1-consolidation.md`) |
+| Discovery summary, scope, data landscape, use case priorities, tech summary | Stage 1-6 (splits into `project-summary.md`, `use-cases-consolidation.md`, `tech-stack-consolidation.md`) |
 | Entity list, relationships, cardinality, core vs supporting classification | Stage 2-1 (`entity-map.md`) |
 | SQL CREATE TABLE statements, physical data model with types and constraints | Stage 2-2 (`data-model-physical.md`) |
 | REST endpoint definitions, JSON request/response examples, auth mechanism | Stage 2-3 (`api-design.md`) |
@@ -403,7 +403,7 @@ Any workflow files that were patched:
 - `AGENTS.md`
 - `.agent-utils/skills/**`
 - `.claude/settings.json`
-- `CLAUDE.md`
+- `AGENTS.md`
 
 ## Exit Criteria
 

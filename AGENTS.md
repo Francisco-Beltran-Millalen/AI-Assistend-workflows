@@ -39,7 +39,7 @@ This is the **Web Workflow** — a structured, AI-collaborative process for buil
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
-| 3-1 | `workflow/stages/phase-3/01-visual-design.md` | UI Designer | Main view styled, `phase-3-design-decisions.md`, `assets/css/styles.css` |
+| 3-1 | `workflow/stages/phase-3/01-visual-design.md` | UI Designer | Main view styled, `docs/phase-3-design-decisions.md`, `docs/assets/css/styles.css` |
 | 3-2 | `workflow/stages/phase-3/02-core-app-views.md` | UI Designer | Core app views styled |
 | 3-3 | `workflow/stages/phase-3/03-user-views.md` | UI Designer | User views styled |
 | 3-4 | `workflow/stages/phase-3/04-auth-views.md` | UI Designer | Auth views styled |
@@ -52,10 +52,10 @@ This is the **Web Workflow** — a structured, AI-collaborative process for buil
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
 | 4-1 | `workflow/stages/phase-4/01-project-setup.md` | Senior Developer | Architecture pattern + rules, implementation roadmap, `prototype-code/` (working skeleton), `consolidation-artifacts/implementation-decisions.md` |
-| 4-2 | `workflow/stages/phase-4/02-implementation-loop.md` | Senior Developer | Working prototype, `implementation-decisions.md` |
-| 4-guided | `workflow/stages/phase-4/programming-loop-guided.md` | Guided Developer | Working prototype, `implementation-decisions.md` |
-| 4-3 | `workflow/stages/phase-4/03-learning-guide.md` | Code Mentor | Working prototype, `implementation-decisions.md` |
-| 4-4 | `workflow/stages/phase-4/04-refactor.md` | Senior Architect | Refactored prototype, `implementation-decisions.md` (refactoring section) |
+| 4-2 | `workflow/stages/phase-4/02-implementation-loop.md` | Senior Developer | Working prototype, `consolidation-artifacts/implementation-decisions.md` |
+| 4-guided | `workflow/stages/phase-4/programming-loop-guided.md` | Guided Developer | Working prototype, `consolidation-artifacts/implementation-decisions.md` |
+| 4-3 | `workflow/stages/phase-4/03-learning-guide.md` | Code Mentor | Working prototype, `consolidation-artifacts/implementation-decisions.md` |
+| 4-4 | `workflow/stages/phase-4/04-refactor.md` | Senior Architect | Refactored prototype, `consolidation-artifacts/implementation-decisions.md` (refactoring section) |
 
 **Stage 4-1** establishes the architecture pattern (Ports & Adapters, Layered, or Clean Architecture), its binding rules, and the approved use case implementation order — before any code is written.
 
@@ -84,7 +84,6 @@ This workflow is scoped to a specific application type:
 - **Web application** (browser-based UI)
 - **REST API** (JSON over HTTP)
 - **SQL database** (relational persistence)
-- **SQLite for prototyping** (always, regardless of production DB)
 
 Decided in Stage 1-5 (Tech Selection):
 - **Frontend rendering approach** — SPA, SSR, hybrid, or MPA
@@ -111,7 +110,7 @@ Stage 2-4 produces two consolidation artifacts:
 - `consolidation-artifacts/data-model-consolidation.md` — physical data model + embedded SQL (full)
 - `consolidation-artifacts/api-design-consolidation.md` — all endpoint contracts with JSON (full)
 
-Phase 3 reads these plus the `docs/assets/` folder (HTML views, CSS).
+Phase 3 reads these plus `docs/assets/views/` (HTML sketches) and `docs/view-entity-mapping.md` (what data each view displays). CSS is created during Stage 3-1.
 
 ### Phase 3 → Phase 4
 
@@ -268,7 +267,7 @@ project-root/
 │   └── skills/                  ← Canonical, tool-agnostic skill content
 │       ├── start-stage/
 │       └── export-log/
-├── imported-artifacts/          ← Raw imports + adapted *-imported.md files (Stage I)
+├── imported-artifacts/          ← Raw imports + adapted *-imported.md files (Stage 0)
 ├── consolidation-artifacts/     ← Phase milestone documents (committed to git)
 ├── prototype-code/              ← Working prototype code (committed to git)
 ├── docs/
@@ -327,8 +326,8 @@ project-root/
 - [ ] `docs/assets/views/` (plain HTML)
 - [ ] `docs/view-entity-mapping.md`
 - [ ] `docs/data-model-conceptual.md` (agnostic)
-- [ ] `docs/data-model-physical.md` (SQLite)
-- [ ] `docs/assets/schema.sql` (SQLite with mock data)
+- [ ] `docs/data-model-physical.md` (PostgreSQL)
+- [ ] `docs/assets/schema.sql` (PostgreSQL with mock data)
 - [ ] `docs/assets/diagrams/entity-diagram.md`
 - [ ] `docs/api-design.md` (with JSON contracts + view-endpoint mapping)
 - [ ] **`consolidation-artifacts/data-model-consolidation.md`**
@@ -360,7 +359,7 @@ project-root/
 
 The **Web Workflow** produces a **deployed working prototype** with:
 - Implemented REST endpoints for all use cases
-- SQLite database with mock data
+- PostgreSQL database with mock data
 - Automated tests (unit + integration)
 - Styled HTML views
 - Complete design documentation
