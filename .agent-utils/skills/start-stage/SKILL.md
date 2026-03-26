@@ -41,7 +41,7 @@ Start the specified workflow stage.
 - graybox-1: mechanic-spec (identify mechanics + feel contracts)
 - graybox-2: visual-language (Godot node types, 2D/3D decision, color per entity, camera setup)
 - graybox-3: scaffold (Godot project setup, one-time)
-- graybox-4-designed: mechanic-loop-designed (user designs in natural language across 6 levels, AI generates code — repeating per mechanic)
+- graybox-4-designed: mechanic-loop-designed (user designs in natural language across 9 levels, AI generates code — repeating per mechanic)
 - graybox-4-generative: mechanic-loop-generative (AI implements in GDScript, user reviews — repeating per mechanic)
 - graybox-4-assisted: mechanic-loop-assisted (user implements, AI guides and teaches Godot/GDScript — repeating per mechanic)
 

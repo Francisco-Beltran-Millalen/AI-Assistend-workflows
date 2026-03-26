@@ -36,7 +36,7 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 | graybox-1 | `workflow/stages/graybox/01-mechanic-spec.md` | Game Designer | `docs/mechanic-spec.md` |
 | graybox-2 | `workflow/stages/graybox/02-visual-language.md` | Technical Designer | `docs/graybox-visual-language.md` |
 | graybox-3 | `workflow/stages/graybox/03-scaffold.md` | Senior Godot Developer | `graybox-prototype/` |
-| graybox-4-designed | `workflow/stages/graybox/04-mechanic-loop-designed.md` | Systems Designer | Updated prototype + `docs/mechanic-spec.md` |
+| graybox-4-designed | `workflow/stages/graybox/04-mechanic-loop-designed.md` | Systems Designer | Updated prototype + `docs/mechanic-spec.md` + `docs/mechanic-designs/` |
 | graybox-4-generative | `workflow/stages/graybox/04-mechanic-loop-generative.md` | Senior Godot Developer | Updated prototype + `docs/mechanic-spec.md` |
 | graybox-4-assisted | `workflow/stages/graybox/04-mechanic-loop-assisted.md` | Code Mentor | Updated prototype + `docs/mechanic-spec.md` |
 
@@ -215,6 +215,7 @@ project-root/
 │   ├── logs/                    ← Conversation logs
 │   ├── assets/                  ← Diagrams, design specs
 │   ├── adrs/                    ← Architecture Decision Records
+│   ├── mechanic-designs/        ← Per-mechanic design journals (graybox-4-designed)
 │   └── *.md                     ← Working design artifacts
 └── workflow/
     ├── stages/
