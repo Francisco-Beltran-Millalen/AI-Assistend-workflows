@@ -10,7 +10,8 @@ Translate the game concept into a concrete, testable list of mechanics. Each mec
 
 ## Input Artifacts
 
-- Game concept artifacts from the `gameconcept` phase (`docs/game-concept-foundation.md` or earlier artifacts)
+- `docs/game-description.md` — game concept, core mechanics, core fantasy (gameconcept-4)
+- `docs/game-architecture.md` — cross-cutting decisions and constraints (gameconcept-9, if complete)
 
 ## Process
 

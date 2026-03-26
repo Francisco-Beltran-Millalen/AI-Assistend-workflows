@@ -132,9 +132,9 @@ When the user signals they're done (or when the topic is exhausted), deliver a r
 Read whatever artifacts exist. Scan `graybox-prototype/` if it exists — look at the folder structure, key source files (systems, components, game loop), and any patterns that stand out.
 
 Priority reading order:
-1. `docs/game-brief.md` — game concept, genre, references, unique angle
-2. `docs/knowledge-audit.md` — knowledge gaps and research priorities (if gameconcept-2 complete)
-3. `docs/research-findings.md` — genre analysis, reference game analysis, audience (if gameconcept-3 complete)
+1. `docs/game-description.md` — game concept, genre, references, unique angle (gameconcept-4)
+2. `docs/knowledge-research.md` — knowledge gaps and research findings (gameconcept-8, if complete)
+3. `docs/references-analysis.md` — genre analysis, reference game analysis (gameconcept-1, if complete)
 4. `docs/mechanic-spec.md` — all mechanics and feel contracts (if graybox-1 complete)
 5. `docs/graybox-visual-language.md` — entity geometry, colors, camera setup (if graybox-2 complete)
 6. `graybox-prototype/` — current Godot codebase (if graybox-3 complete)

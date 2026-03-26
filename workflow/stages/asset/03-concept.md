@@ -14,7 +14,7 @@ Create a concept sketch or annotated reference for every asset in the asset list
 
 - `docs/asset-list.md` — every asset, in production order
 - `docs/art-direction.md` — style rules, palette, form language
-- `docs/game-brief.md` — tone, world, character motivations
+- `docs/game-description.md` — tone, world, character motivations (gameconcept-4)
 
 ## Process
 

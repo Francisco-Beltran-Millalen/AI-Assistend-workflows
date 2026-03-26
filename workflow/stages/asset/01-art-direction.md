@@ -12,9 +12,10 @@ Establish the visual language of the game and make the 2D/3D/mixed decision. Eve
 
 ## Input Artifacts
 
-- `docs/game-brief.md` — tone, references, core fantasy
-- `docs/research-findings.md` — reference games and what made them work visually
-- `docs/graybox-visual-language.md` — entity types that need assets
+- `docs/game-description.md` — tone, core fantasy, what the game is (gameconcept-4)
+- `docs/game-art-direction.md` — concept-level visual identity defined in gameconcept-5
+- `docs/references-art.md` — reference games and what made them work visually (gameconcept-2)
+- `docs/graybox-visual-language.md` — entity types that need assets (graybox-2)
 
 ## Process
 
@@ -74,6 +75,11 @@ This is the most consequential decision in this stage. Walk the user through the
 Ask: "Given the feel of this game and your production capacity, which direction fits best?"
 
 Confirm the decision before proceeding.
+
+> **Note:** This decision gates which production stage runs later. When asset-4 begins, use:
+> - `/start-stage asset-4-2d` for Full 2D
+> - `/start-stage asset-4-3d` for Full 3D
+> - `/start-stage asset-4-mixed` for Mixed
 
 ### 4. Define the Style Guide
 

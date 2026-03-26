@@ -12,7 +12,7 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
-| 0 | `workflow/stages/phase-0/00-meta-workflow.md` | Workflow Engineer | `workflow-changelog.md` |
+| 0 | `workflow/stages/phase-0/00-meta-workflow.md` | Workflow Engineer | `docs/workflow-changelog.md` |
 | teacher | `workflow/stages/phase-0/04-teacher.md` | Patient Teacher | No artifacts |
 
 ### gameconcept: Game Concept
@@ -23,7 +23,7 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 | gameconcept-2 | `workflow/stages/gameconcept/02-references-art.md` | Art Analyst | `docs/references-art.md` |
 | gameconcept-3 | `workflow/stages/gameconcept/03-references-feel.md` | Game Feel Analyst | `docs/references-feel.md` |
 | gameconcept-4 | `workflow/stages/gameconcept/04-game-description.md` | Creative Director | `docs/game-description.md` |
-| gameconcept-5 | `workflow/stages/gameconcept/05-art-direction.md` | Art Director | `docs/game-art-direction.md` |
+| gameconcept-5 | `workflow/stages/gameconcept/05-art-direction.md` | Art Director | `docs/game-art-direction.md` *(concept-level visual identity)* |
 | gameconcept-6 | `workflow/stages/gameconcept/06-feel-direction.md` | Game Feel Designer | `docs/game-feel-direction.md` |
 | gameconcept-7 | `workflow/stages/gameconcept/07-roadmap.md` | Production Designer | `docs/roadmap.md` |
 | gameconcept-8 | `workflow/stages/gameconcept/08-knowledge-research.md` | Research Analyst | `docs/knowledge-research.md` |
@@ -45,7 +45,7 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
-| asset-1 | `workflow/stages/asset/01-art-direction.md` | Art Director | `docs/art-direction.md` |
+| asset-1 | `workflow/stages/asset/01-art-direction.md` | Art Director | `docs/art-direction.md` *(production-level style guide + 2D/3D/mixed decision)* |
 | asset-2 | `workflow/stages/asset/02-asset-list.md` | Production Manager | `docs/asset-list.md` |
 | asset-3 | `workflow/stages/asset/03-concept.md` | Concept Artist | `docs/assets/concepts/` |
 | asset-4-2d | `workflow/stages/asset/04-production-2d.md` | Senior 2D Artist | Sprite sheets + Godot integration |
@@ -250,7 +250,7 @@ project-root/
 > Current phase and stage are determined by checking `docs/` for existing artifacts.
 
 ### Meta Artifacts
-- [ ] `workflow-changelog.md`
+- [ ] `docs/workflow-changelog.md`
 
 ### gameconcept phase
 - [ ] `docs/references-analysis.md` ← gameconcept-1 complete

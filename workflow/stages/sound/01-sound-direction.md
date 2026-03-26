@@ -12,7 +12,7 @@ Establish the tonal vocabulary of the game's SFX. Every sound produced after thi
 
 ## Input Artifacts
 
-- `docs/game-brief.md` — tone, setting, core fantasy, references
+- `docs/game-description.md` — tone, setting, core fantasy, references (gameconcept-4)
 - `docs/art-direction.md` — visual style (sound should complement it)
 - `docs/mechanic-spec.md` — what kind of actions happen in this game
 

@@ -15,7 +15,7 @@ Produce a complete, prioritized list of every asset that needs to be made before
 - `docs/art-direction.md` — pipeline track (2D/3D/mixed), style guide
 - `docs/mechanic-spec.md` — every entity that exists in the game
 - `docs/graybox-visual-language.md` — the graybox geometry for each entity (these are what get replaced)
-- `docs/game-brief.md` — setting, tone, any mentioned characters or environments
+- `docs/game-description.md` — setting, tone, any mentioned characters or environments (gameconcept-4)
 
 ## Process
 

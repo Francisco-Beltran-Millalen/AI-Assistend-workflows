@@ -2,6 +2,46 @@
 
 ---
 
+## 2026-03-26: AGENTS.md — workflow-changelog.md path missing docs/ prefix
+
+**Problem:** AGENTS.md listed the stage-0 output as `workflow-changelog.md` (project root) in two places — the stage table and the project status checklist. The actual file lives at `docs/workflow-changelog.md`.
+
+**Cause:** Oversight — the path was never given a `docs/` prefix in the stage registry.
+
+**Fix:** Updated both references in AGENTS.md to `docs/workflow-changelog.md`.
+
+**Files:** `AGENTS.md`
+
+---
+
+## 2026-03-26: Full workflow audit — broken artifact references and medium design gaps
+
+**Problem:** Full audit revealed 7 stages referencing non-existent artifact names (`docs/game-brief.md`, `docs/game-concept-foundation.md`, `docs/research-findings.md`, `docs/knowledge-audit.md`). These names predated the gameconcept redesign into a 9-stage structure and were never updated in downstream stages. Additionally: asset-1 didn't explain how the 2D/3D/mixed decision gates asset-4 variant selection; AGENTS.md had two "Art Direction" stages with confusingly similar names but different outputs and purposes.
+
+**Cause:** gameconcept phase was redesigned (split into 9 stages, new artifact names) but the update wasn't propagated to graybox-1, asset-1/2/3, sound-1/2, and the teacher stage.
+
+**Fix:**
+- Updated `graybox/01-mechanic-spec.md` input: `game-concept-foundation.md` → `game-description.md` + `game-architecture.md`
+- Updated `asset/01-art-direction.md` inputs: `game-brief.md` → `game-description.md`, `research-findings.md` → `references-art.md`; added `game-art-direction.md` as explicit input; added asset-4 track selection gating note
+- Updated `asset/02-asset-list.md` input: `game-brief.md` → `game-description.md`
+- Updated `asset/03-concept.md` input: `game-brief.md` → `game-description.md`
+- Updated `sound/01-sound-direction.md` input: `game-brief.md` → `game-description.md`
+- Updated `sound/02-sound-event-list.md` input: `game-brief.md` → `game-description.md`
+- Updated `phase-0/04-teacher.md` knowledge test mode reading list: `game-brief.md` → `game-description.md`, `knowledge-audit.md` → `knowledge-research.md`, `research-findings.md` → `references-analysis.md`
+- Updated `AGENTS.md` stage table to distinguish `docs/game-art-direction.md` (concept-level, gameconcept-5) from `docs/art-direction.md` (production-level, asset-1)
+
+**Files:**
+- `workflow/stages/graybox/01-mechanic-spec.md`
+- `workflow/stages/asset/01-art-direction.md`
+- `workflow/stages/asset/02-asset-list.md`
+- `workflow/stages/asset/03-concept.md`
+- `workflow/stages/sound/01-sound-direction.md`
+- `workflow/stages/sound/02-sound-event-list.md`
+- `workflow/stages/phase-0/04-teacher.md`
+- `AGENTS.md`
+
+---
+
 ## 2026-03-26: graybox-5-designed — 9-level conversation, design journal, architecture enforcement
 
 **Problem:** The 6-level design conversation was too coarse — Behavior mixed logic, edge cases, and signals into one level. No persistent design artifact existed. No architecture enforcement during code generation. No evaluation of user understanding.
