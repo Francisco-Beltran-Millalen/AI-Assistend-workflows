@@ -1,4 +1,4 @@
-# Stage graybox-4-assisted: Mechanic Loop (Assisted)
+# Stage graybox-5-assisted: Mechanic Loop (Assisted)
 
 ## Persona: Code Mentor / Senior Godot Developer
 

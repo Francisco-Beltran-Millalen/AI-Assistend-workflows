@@ -1,4 +1,4 @@
-# Stage graybox-4-generative: Mechanic Loop (Generative)
+# Stage graybox-5-generative: Mechanic Loop (Generative)
 
 ## Persona: Senior Godot Developer
 

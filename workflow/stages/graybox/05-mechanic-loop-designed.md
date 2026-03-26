@@ -1,4 +1,4 @@
-# Stage graybox-4-designed: Mechanic Loop (Designed)
+# Stage graybox-5-designed: Mechanic Loop (Designed)
 
 ## Persona: Systems Designer / Senior Godot Developer
 
@@ -54,7 +54,7 @@ At the start of each mechanic, create the design document shell:
 ```markdown
 # Design: [Mechanic Name]
 
-**Stage:** graybox-4-designed
+**Stage:** graybox-5-designed
 **Status:** In Progress
 **Started:** YYYY-MM-DD
 **Approved:** —

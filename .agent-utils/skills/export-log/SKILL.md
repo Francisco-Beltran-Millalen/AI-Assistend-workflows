@@ -22,7 +22,7 @@ Examples:
 - `stage-00-meta-workflow-20260319-091500.txt`
 - `stage-teacher-20260319-091500.txt`
 - `stage-gameconcept-1-brief-20260319-143022.txt`
-- `stage-graybox-4-generative-mechanic-loop-20260319-143022.txt`
+- `stage-graybox-5-generative-mechanic-loop-20260319-143022.txt`
 
 ## Stage Names
 
@@ -45,9 +45,10 @@ Examples:
 - graybox-1 → `graybox-1-mechanic-spec`
 - graybox-2 → `graybox-2-visual-language`
 - graybox-3 → `graybox-3-scaffold`
-- graybox-4-designed → `graybox-4-designed-mechanic-loop`
-- graybox-4-generative → `graybox-4-generative-mechanic-loop`
-- graybox-4-assisted → `graybox-4-assisted-mechanic-loop`
+- graybox-4 → `graybox-4-debug-indicators`
+- graybox-5-designed → `graybox-5-designed-mechanic-loop`
+- graybox-5-generative → `graybox-5-generative-mechanic-loop`
+- graybox-5-assisted → `graybox-5-assisted-mechanic-loop`
 
 ### asset: Asset Pipeline
 - asset-1 → `asset-1-art-direction`

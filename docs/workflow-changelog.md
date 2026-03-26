@@ -2,7 +2,7 @@
 
 ---
 
-## 2026-03-26: graybox-4-designed — 9-level conversation, design journal, architecture enforcement
+## 2026-03-26: graybox-5-designed — 9-level conversation, design journal, architecture enforcement
 
 **Problem:** The 6-level design conversation was too coarse — Behavior mixed logic, edge cases, and signals into one level. No persistent design artifact existed. No architecture enforcement during code generation. No evaluation of user understanding.
 
@@ -19,11 +19,11 @@
 - Code generation: flags architecture violations (sideways/upward node references) before writing
 - Comprehension Check (Step 11): user narrates mechanic in natural language from memory — up to 3 attempts with precise corrections
 
-**Files:** `workflow/stages/graybox/04-mechanic-loop-designed.md`
+**Files:** `workflow/stages/graybox/05-mechanic-loop-designed.md`
 
 ---
 
-## 2026-03-20: Add feel + fusion phases; Bevy → Godot; redesign gameconcept; add graybox-4-designed
+## 2026-03-20: Add feel + fusion phases; Bevy → Godot; redesign gameconcept; add graybox-5-designed
 
 **feel phase (on-demand):** 3 independently invocable stages — engine effects per mechanic (`feel-1`), asset feel upgrades (`feel-2`), audio detail per event (`feel-3`). No sequential dependency.
 
@@ -35,7 +35,7 @@
 - Block 3 (7): Roadmap — collaborative discovery, all deliverables tagged by phase
 - Block 4 (8–9): Knowledge research + architecture consolidation
 
-**graybox-4-designed added:** 6-level design-first mechanic loop (user designs in natural language, AI generates all code at once after confirmation). Later upgraded to 9 levels (see 2026-03-26 entry).
+**graybox-5-designed added:** 6-level design-first mechanic loop (user designs in natural language, AI generates all code at once after confirmation). Later upgraded to 9 levels (see 2026-03-26 entry).
 
 **Bevy → Godot:** User tested both engines, chose Godot. All graybox, asset, sound, and skill files rewritten for Godot/GDScript. `graybox-godot/` parallel track deleted.
 

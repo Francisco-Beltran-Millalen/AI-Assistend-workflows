@@ -41,9 +41,10 @@ Start the specified workflow stage.
 - graybox-1: mechanic-spec (identify mechanics + feel contracts)
 - graybox-2: visual-language (Godot node types, 2D/3D decision, color per entity, camera setup)
 - graybox-3: scaffold (Godot project setup, one-time)
-- graybox-4-designed: mechanic-loop-designed (user designs in natural language across 9 levels, AI generates code — repeating per mechanic)
-- graybox-4-generative: mechanic-loop-generative (AI implements in GDScript, user reviews — repeating per mechanic)
-- graybox-4-assisted: mechanic-loop-assisted (user implements, AI guides and teaches Godot/GDScript — repeating per mechanic)
+- graybox-4: debug-indicators (debug overlay system — one-time setup)
+- graybox-5-designed: mechanic-loop-designed (user designs in natural language across 9 levels, AI generates code — repeating per mechanic)
+- graybox-5-generative: mechanic-loop-generative (AI implements in GDScript, user reviews — repeating per mechanic)
+- graybox-5-assisted: mechanic-loop-assisted (user implements, AI guides and teaches Godot/GDScript — repeating per mechanic)
 
 ### asset: Asset Pipeline
 - asset-1: art-direction (style, palette, 2D/3D/mixed decision)
@@ -79,11 +80,11 @@ Starts Stage 0 (Meta-Workflow) with the Workflow Engineer persona.
 Starts the Graybox Mechanic Spec stage with the Game Designer persona.
 
 ```
-/start-stage graybox-4-generative
+/start-stage graybox-5-generative
 ```
 Starts the Graybox Mechanic Loop (AI implements) with the Senior Godot Developer persona.
 
 ```
-/start-stage graybox-4-assisted
+/start-stage graybox-5-assisted
 ```
 Starts the Graybox Mechanic Loop (user implements) with the Code Mentor persona.
