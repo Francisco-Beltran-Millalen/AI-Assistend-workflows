@@ -36,7 +36,7 @@ Replace placeholder visuals with real art:
 | Flat color `StandardMaterial` on effect mesh | Real `Image` loaded via `asset_server.load()` on `StandardMaterial::base_color_texture` |
 | Default `bevy_hanabi` particle texture | Custom PNG texture assigned to the `EffectAsset` |
 | Placeholder `ColorMaterial` (2D) | Real `Image` handle on `ColorMaterial::texture` |
-| Colored primitive mesh placeholder | Real GLTF scene loaded via `asset_server.load("model.glb#Scene0")` |
+| Colored primitive mesh placeholder | Real GLTF scene loaded via `SceneRoot(asset_server.load(GltfAssetLabel::Scene(0).from_asset("models/model.glb")))` |
 | Plain `Text2d` damage number | Styled text with a loaded `Font` handle and correct color |
 
 For textures, specify the correct `ImageSampler` settings:
@@ -64,7 +64,7 @@ Move to the next effect to upgrade.
 
 - **Textures:** place in `assets/textures/`, load with `asset_server.load::<Image>("textures/name.png")`
 - **Sprite sheets:** use `TextureAtlasLayout` + `TextureAtlas` component on the sprite entity; advance `TextureAtlas::index` in a system to animate
-- **GLTF models:** load with `asset_server.load("models/name.glb#Scene0")`, spawn with `SceneRoot`
+- **GLTF models:** load with `GltfAssetLabel::Scene(0).from_asset("models/name.glb")`, spawn with `SceneRoot`
 - **Fonts:** load with `asset_server.load::<Font>("fonts/name.ttf")`, use in `TextFont` component
 - All assets load asynchronously — use `AssetEvent<T>` or check `Handle::is_loaded()` if you need to react when loading completes
 

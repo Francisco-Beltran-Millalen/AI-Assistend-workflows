@@ -95,7 +95,9 @@ fn replace_placeholder(
         commands.entity(entity).despawn();
     }
     commands.spawn((
-        SceneRoot(asset_server.load("models/enemy.glb#Scene0")),
+        SceneRoot(asset_server.load(
+            GltfAssetLabel::Scene(0).from_asset("models/enemy.glb"),
+        )),
         Transform::default(),
     ));
 }

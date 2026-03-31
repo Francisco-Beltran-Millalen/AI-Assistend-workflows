@@ -85,11 +85,20 @@ Move to the next feel event. Repeat until the session is done.
 
 ## Crate Versions
 
-Always use the latest stable versions of:
-- `bevy_hanabi` — check [crates.io/crates/bevy_hanabi](https://crates.io/crates/bevy_hanabi)
-- `bevy_tweening` — check [crates.io/crates/bevy_tweening](https://crates.io/crates/bevy_tweening)
+Add to `Cargo.toml` before using feel effects:
 
-Verify both are compatible with your current Bevy version before adding to `Cargo.toml`.
+```toml
+# bevy_hanabi: check crates.io for a release compatible with your Bevy version.
+# If none exists yet, use the git source:
+# bevy_hanabi = { git = "https://github.com/djeedai/bevy_hanabi.git" }
+bevy_hanabi = "0.17"   # update to latest compatible release
+
+bevy_tweening = "0.8"  # update to latest compatible release
+```
+
+Always verify crate compatibility with your exact Bevy version before adding:
+- `bevy_hanabi` — [crates.io/crates/bevy_hanabi](https://crates.io/crates/bevy_hanabi)
+- `bevy_tweening` — [crates.io/crates/bevy_tweening](https://crates.io/crates/bevy_tweening)
 
 ## Output Artifacts
 
