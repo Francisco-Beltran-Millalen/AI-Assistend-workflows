@@ -192,7 +192,7 @@ Screenshot each animation state (timeline visible) and share for review.
    - Data → Mesh: check "Apply Modifiers"
    - Data → Materials: check "Export"
    - Animation: check "Export", check "NLA Tracks" if using NLA editor
-3. Save to `graybox-prototype/assets/models/<asset-name>.glb` (Godot will auto-import it)
+3. Save to `graybox-prototype/assets/models/<asset-name>.glb`
 
 ---
 
@@ -218,23 +218,56 @@ fn spawn_asset(
 
 **Playing animations:**
 
-Bevy loads GLTF animations into `AnimationClip` assets. Use `AnimationPlayer` on the scene root to play them:
+Bevy loads GLTF animations automatically. The `AnimationPlayer` is spawned as a child of the scene root. Query it after the scene loads and play clips by index or name:
 
 ```rust
-// After the scene loads, find the AnimationPlayer and play a clip
-fn start_animation(
-    mut players: Query<(&mut AnimationPlayer, &mut AnimationTransitions)>,
-    animations: Res<GltfAnimations>, // store clip handles in a Resource during setup
+// Store the animation graph handle when setting up the scene
+#[derive(Resource)]
+struct CharacterAnimations {
+    graph: Handle<AnimationGraph>,
+    idle: AnimationNodeIndex,
+    walk: AnimationNodeIndex,
+}
+
+fn setup_animations(
+    mut commands: Commands,
+    asset_server: Res<AssetServer>,
+    mut graphs: ResMut<Assets<AnimationGraph>>,
+    mut gltf_events: EventReader<AssetEvent<Gltf>>,
+    gltf_assets: Res<Assets<Gltf>>,
 ) {
-    for (mut player, mut transitions) in &mut players {
-        transitions
-            .play(&mut player, animations.idle.clone(), Duration::ZERO)
-            .repeat();
+    // Build an AnimationGraph from the loaded GLTF clips
+    for event in gltf_events.read() {
+        if let AssetEvent::LoadedWithDependencies { id } = event {
+            if let Some(gltf) = gltf_assets.get(*id) {
+                let (graph, node_indices) = AnimationGraph::from_clips(
+                    gltf.animations.iter().cloned()
+                );
+                let graph_handle = graphs.add(graph);
+                commands.insert_resource(CharacterAnimations {
+                    graph: graph_handle.clone(),
+                    idle: node_indices[0],  // index matches animation order in Blender
+                    walk: node_indices[1],
+                });
+            }
+        }
+    }
+}
+
+// Play the idle animation once the AnimationPlayer is ready
+fn start_idle(
+    animations: Option<Res<CharacterAnimations>>,
+    mut players: Query<(&mut AnimationPlayer, &mut Handle<AnimationGraph>)>,
+) {
+    let Some(animations) = animations else { return };
+    for (mut player, mut graph_handle) in &mut players {
+        *graph_handle = animations.graph.clone();
+        player.play(animations.idle).repeat();
     }
 }
 ```
 
-Use `AnimationGraph` for blending multiple clips. For simple cases, drive `AnimationPlayer` directly.
+For simple cases with only one animation, you can drive `AnimationPlayer` directly without a graph. Provide specific code based on the actual animation names from the Blender export.
 
 Provide the full, specific code based on the actual asset and animation names. Do not leave placeholders.
 

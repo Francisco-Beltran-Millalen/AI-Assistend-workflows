@@ -124,48 +124,47 @@ fn spawn_player(
     asset_server: Res<AssetServer>,
     mut texture_atlas_layouts: ResMut<Assets<TextureAtlasLayout>>,
 ) {
-    let texture = asset_server.load("sprites/<asset-name>-sheet.png");
     // Define the sprite sheet grid: (frame_width, frame_height), (columns, rows)
     let layout = TextureAtlasLayout::from_grid(UVec2::new(64, 64), 4, 3, None, None);
-    let texture_atlas_layout = texture_atlas_layouts.add(layout);
+    let layout_handle = texture_atlas_layouts.add(layout);
 
     commands.spawn((
-        Sprite::from_atlas_image(texture, TextureAtlas {
-            layout: texture_atlas_layout,
-            index: 0, // start on frame 0
-        }),
+        Sprite::from_atlas_image(
+            asset_server.load("sprites/<asset-name>-sheet.png"),
+            TextureAtlas { layout: layout_handle, index: 0 },
+        ),
+        AnimationIndices { first: 0, last: 3 },
+        AnimationTimer(Timer::from_seconds(1.0 / fps, TimerMode::Repeating)),
         Transform::from_translation(Vec3::ZERO),
         Player,
     ));
 }
 
-// Animation system — advance frames on a timer
-#[derive(Component)]
-struct AnimationTimer(Timer);
-
 #[derive(Component)]
 struct AnimationIndices { first: usize, last: usize }
 
+// Deref lets you call timer.tick() directly without going through .0
+#[derive(Component, Deref, DerefMut)]
+struct AnimationTimer(Timer);
+
 fn animate_sprite(
     time: Res<Time>,
-    mut query: Query<(&AnimationIndices, &mut AnimationTimer, &mut Sprite)>,
+    mut query: Query<(&AnimationIndices, &mut AnimationTimer, &mut TextureAtlas)>,
 ) {
-    for (indices, mut timer, mut sprite) in &mut query {
-        timer.0.tick(time.delta());
-        if timer.0.just_finished() {
-            if let Some(atlas) = &mut sprite.texture_atlas {
-                atlas.index = if atlas.index == indices.last {
-                    indices.first
-                } else {
-                    atlas.index + 1
-                };
-            }
+    for (indices, mut timer, mut atlas) in &mut query {
+        timer.tick(time.delta());
+        if timer.just_finished() {
+            atlas.index = if atlas.index == indices.last {
+                indices.first
+            } else {
+                atlas.index + 1
+            };
         }
     }
 }
 ```
 
-Add `AnimationIndices { first: 0, last: 3 }` and `AnimationTimer(Timer::from_seconds(1.0 / fps, TimerMode::Repeating))` to the entity for each animation state.
+Provide the actual frame counts, sizes, and FPS from the exported sprite sheet. Do not leave placeholders.
 
 Provide the actual frame counts, sizes, and FPS from the exported sprite sheet. Do not leave placeholders.
 
