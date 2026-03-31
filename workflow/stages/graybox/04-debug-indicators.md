@@ -25,7 +25,7 @@ Set up a toggleable debug overlay system for the Bevy graybox prototype. Every m
 | `DebugLabel` component | Per-entity state text displayed via `Text2d` |
 | Velocity vector | `Gizmos::arrow` drawn from entity position in velocity direction |
 | Health/resource bar | `Gizmos::rect` pair (background + fill) above entity |
-| Debug panel | Screen-space `Text2d` showing FPS and entity count |
+| Debug panel | Screen-space UI `Text` node showing FPS and entity count |
 
 ## Process
 
@@ -38,13 +38,17 @@ Read `docs/mechanic-spec.md` and `graybox-prototype/src/` to understand what ent
 Create `graybox-prototype/src/debug.rs`. Start with the resource, toggle system, and plugin skeleton — other systems will be added in subsequent steps:
 
 ```rust
-use bevy::prelude::*;
+use bevy::{
+    diagnostic::{DiagnosticsStore, FrameTimeDiagnosticsPlugin},
+    prelude::*,
+};
 
 pub struct DebugPlugin;
 
 impl Plugin for DebugPlugin {
     fn build(&self, app: &mut App) {
         app
+            .add_plugins(FrameTimeDiagnosticsPlugin)
             .insert_resource(DebugConfig::default())
             .add_systems(Startup, setup_debug_panel)
             .add_systems(Update, (
@@ -53,6 +57,7 @@ impl Plugin for DebugPlugin {
                 debug_collision_outlines,
                 debug_velocity_arrows,
                 debug_health_bars,
+                toggle_debug_labels,
             ));
     }
 }
@@ -73,14 +78,14 @@ fn toggle_debug(
 }
 ```
 
-Register in `main.rs`:
+Register in `main.rs` alongside the other plugins:
 
 ```rust
 mod debug;
 use debug::DebugPlugin;
 
 // in App builder:
-.add_plugins(DebugPlugin)
+.add_plugins((ScenePlugin, InputPlugin, DebugPlugin))
 ```
 
 ### 3. Collision Outlines
@@ -96,7 +101,7 @@ pub enum DebugCollider {
 }
 ```
 
-Tag each entity at spawn (in `main.rs` or wherever entities are spawned):
+Tag each entity at spawn (in `scene.rs`):
 
 ```rust
 commands.spawn((
@@ -131,14 +136,14 @@ fn debug_collision_outlines(
                 );
             }
             DebugCollider::Capsule { radius, half_length } => {
-                // Draw as two spheres + cylinder approximation
-                gizmos.sphere(
-                    Isometry3d::from_translation(transform.translation + Vec3::Y * half_length),
-                    *radius, color,
-                );
-                gizmos.sphere(
-                    Isometry3d::from_translation(transform.translation - Vec3::Y * half_length),
-                    *radius, color,
+                gizmos.capsule_3d(
+                    Isometry3d::new(
+                        transform.translation,
+                        transform.rotation,
+                    ),
+                    *radius,
+                    *half_length * 2.0,
+                    color,
                 );
             }
         }
@@ -226,7 +231,7 @@ pub struct Health {
 
 ### 6. Entity State Label
 
-Add a `DebugLabel` marker component. Entities that need state display carry this component plus a `Text2d`:
+Add a `DebugLabel` marker component. Entities that need state display carry this component plus a `Text2d` child:
 
 ```rust
 #[derive(Component)]
@@ -259,11 +264,9 @@ fn toggle_debug_labels(
 }
 ```
 
-Add `toggle_debug_labels` to the plugin's system list.
-
 ### 7. Debug Panel
 
-Spawn a persistent screen-space text panel showing FPS and entity count:
+Spawn a screen-space UI panel using Bevy's UI system — this renders correctly at any resolution without needing to know the window size:
 
 ```rust
 #[derive(Component)]
@@ -271,28 +274,45 @@ struct DebugPanel;
 
 fn setup_debug_panel(mut commands: Commands) {
     commands.spawn((
-        Text2d::new(""),
-        TextFont { font_size: 14.0, ..default() },
-        TextColor(Color::WHITE),
-        Transform::from_xyz(-580.0, 320.0, 100.0),
+        Node {
+            position_type: PositionType::Absolute,
+            top: Val::Px(8.0),
+            left: Val::Px(8.0),
+            ..default()
+        },
         Visibility::Hidden,
         DebugPanel,
-    ));
+    )).with_children(|parent| {
+        parent.spawn((
+            Text::new("FPS: --\nEntities: --"),
+            TextFont { font_size: 14.0, ..default() },
+            TextColor(Color::WHITE),
+        ));
+    });
 }
 
 fn update_debug_panel(
     config: Res<DebugConfig>,
-    time: Res<Time>,
+    diagnostics: Res<DiagnosticsStore>,
     entity_count: Query<Entity>,
-    mut panel: Query<(&mut Text2d, &mut Visibility), With<DebugPanel>>,
+    mut panel: Query<(&mut Visibility, &Children), With<DebugPanel>>,
+    mut text: Query<&mut Text>,
 ) {
-    let Ok((mut text, mut vis)) = panel.get_single_mut() else { return };
+    let Ok((mut vis, children)) = panel.get_single_mut() else { return };
 
     *vis = if config.enabled { Visibility::Visible } else { Visibility::Hidden };
 
     if config.enabled {
-        let fps = 1.0 / time.delta_secs();
-        text.0 = format!("FPS: {:.0}\nEntities: {}", fps, entity_count.iter().count());
+        let fps = diagnostics
+            .get(&FrameTimeDiagnosticsPlugin::FPS)
+            .and_then(|d| d.smoothed())
+            .unwrap_or(0.0);
+
+        for child in children.iter() {
+            if let Ok(mut t) = text.get_mut(*child) {
+                t.0 = format!("FPS: {:.0}\nEntities: {}", fps, entity_count.iter().count());
+            }
+        }
     }
 }
 ```
@@ -300,7 +320,7 @@ fn update_debug_panel(
 ### 8. Verify
 
 Run `cargo run`. Press **F1**. Confirm:
-- Debug panel appears (FPS + entity count visible)
+- Debug panel appears (FPS + entity count visible, FPS is smooth and accurate)
 - Collision outlines appear around all entities tagged with `DebugCollider`
 - Velocity arrows appear once entities carry `Velocity` (check after graybox-5)
 - Health bars appear once entities carry `Health` (check after graybox-5)
@@ -314,12 +334,13 @@ Press **F1** again — all overlays disappear. Confirm `cargo run` compiles with
 - `DebugConfig` resource + `DebugPlugin`
 - `DebugCollider`, `DebugLabel`, `Velocity` (placeholder), `Health` (placeholder) components
 - Systems: toggle, collision outlines, velocity arrows, health bars, state labels, debug panel
+- `FrameTimeDiagnosticsPlugin` registered for accurate FPS
 
 ## Exit Criteria
 
 - [ ] `DebugPlugin` added to app and `cargo run` compiles cleanly
 - [ ] F1 toggles `DebugConfig::enabled` globally
-- [ ] Debug panel shows FPS and entity count when enabled
+- [ ] Debug panel shows FPS (smooth) and entity count when enabled
 - [ ] `DebugCollider` tags applied to all entities from the visual language
 - [ ] Collision outline system draws correct shapes per entity type
 - [ ] Velocity arrow system registered (activates once `Velocity` components exist in graybox-5)

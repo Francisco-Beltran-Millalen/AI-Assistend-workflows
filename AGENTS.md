@@ -81,7 +81,7 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 ## Architectural Assumptions
 
 - **Tool versions:** Always use the latest stable version of all tools, libraries, and engines unless the project explicitly specifies otherwise.
-- **Engine:** Bevy (Rust)
+- **Engine:** Bevy 0.18 (Rust)
 - **Visuals (graybox 3D):** Bevy built-in mesh primitives — `Cuboid`, `Sphere`, `Cylinder`, `Capsule3d`, `Plane3d`
 - **Visuals (graybox 2D):** Bevy 2D mesh primitives — `Rectangle`, `Circle`, `Capsule2d`, `Triangle2d`
 - **Feel:** `bevy_hanabi` (particles), `bevy_tweening` (tweens/animations)

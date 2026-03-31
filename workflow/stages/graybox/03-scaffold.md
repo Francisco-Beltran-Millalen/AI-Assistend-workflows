@@ -6,7 +6,7 @@ You are a **Senior Rust/Bevy Developer** setting up the foundation of the Bevy g
 
 ## Purpose
 
-Get a Bevy project compiling and running with the correct camera, a basic input handler, and placeholder entities using the visual language. Once this stage is done, all future work happens in the Mechanic Loop.
+Get a Bevy project compiling and running with the correct camera, placeholder entities from the visual language, and a basic input handler. Structure the project with Bevy's Plugin pattern from the start so every future mechanic has a clean home. Once this stage is done, all future work happens in the Mechanic Loop.
 
 ## Input Artifacts
 
@@ -22,11 +22,13 @@ cargo new graybox-prototype
 cd graybox-prototype
 ```
 
-Add Bevy to `Cargo.toml`. Always use the latest stable Bevy version. Enable `dynamic_linking` for faster compile times during development:
+### 2. Configure Cargo.toml
+
+Use Bevy 0.18. Enable `dynamic_linking` for faster compile times during development:
 
 ```toml
 [dependencies]
-bevy = { version = "LATEST_STABLE", features = ["dynamic_linking"] }
+bevy = { version = "0.18", features = ["dynamic_linking"] }
 
 [profile.dev]
 opt-level = 1
@@ -35,72 +37,112 @@ opt-level = 1
 opt-level = 3
 ```
 
-Check [crates.io/crates/bevy](https://crates.io/crates/bevy) for the latest stable version.
+### 3. Project Structure
 
-### 2. Basic App
+Use Bevy's **Plugin pattern** from day one. Each file owns one concern and registers its own systems:
 
-Set up the Bevy `App` in `src/main.rs` with:
-- `DefaultPlugins` configured with a window title and initial resolution
-- A startup system that spawns the camera
-- A startup system that spawns placeholder entities (from the visual language)
-- A basic input system (reads keyboard — no game logic yet, just confirm input is received)
+```
+graybox-prototype/
+└── src/
+    ├── main.rs      ← App setup only: add_plugins, window config
+    ├── scene.rs     ← ScenePlugin: spawn_camera + spawn_entities
+    └── input.rs     ← InputPlugin: debug_input system
+```
 
-Keep all code in `main.rs` at this stage. Do not create modules yet — the scaffold is deliberately flat.
+`debug.rs` will be added in graybox-4.
 
-### 3. Implement Visual Language (3D)
+### 4. main.rs — App Setup
 
-For 3D prototypes, spawn each entity using Bevy mesh primitives and an unlit `StandardMaterial`:
+`main.rs` contains only the `App` builder. No systems, no logic:
 
 ```rust
-fn spawn_entities(
+mod scene;
+mod input;
+
+use bevy::prelude::*;
+use scene::ScenePlugin;
+use input::InputPlugin;
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins.set(WindowPlugin {
+            primary_window: Some(Window {
+                title: "[Game Title] — Graybox".into(),
+                resolution: (1280.0, 720.0).into(),
+                ..default()
+            }),
+            ..default()
+        }))
+        .add_plugins((ScenePlugin, InputPlugin))
+        .run();
+}
+```
+
+### 5. scene.rs — Camera and Entities
+
+`ScenePlugin` owns the startup system that spawns the camera and all placeholder entities from the visual language.
+
+**For 3D prototypes:**
+
+```rust
+use bevy::prelude::*;
+
+pub struct ScenePlugin;
+
+impl Plugin for ScenePlugin {
+    fn build(&self, app: &mut App) {
+        app.add_systems(Startup, spawn_scene);
+    }
+}
+
+fn spawn_scene(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
-    // Unlit material — no lighting needed for graybox
-    let player_mat = materials.add(StandardMaterial {
-        base_color: Color::srgb_u8(0x44, 0x88, 0xFF),
-        unlit: true,
-        ..default()
-    });
-
-    // Player (Capsule3d)
-    commands.spawn((
-        Mesh3d(meshes.add(Capsule3d::new(0.4, 1.0))),
-        MeshMaterial3d(player_mat),
-        Transform::from_xyz(0.0, 1.0, 0.0),
-    ));
-
-    // Wall (Cuboid)
-    let wall_mat = materials.add(StandardMaterial {
-        base_color: Color::srgb_u8(0x55, 0x55, 0x55),
-        unlit: true,
-        ..default()
-    });
-    commands.spawn((
-        Mesh3d(meshes.add(Cuboid::new(10.0, 0.5, 1.0))),
-        MeshMaterial3d(wall_mat),
-        Transform::from_xyz(0.0, 0.0, 0.0),
-    ));
-
     // Camera
     commands.spawn((
         Camera3d::default(),
         Transform::from_xyz(0.0, 8.0, 12.0).looking_at(Vec3::ZERO, Vec3::Y),
     ));
+
+    // Player (Capsule3d) — unlit material, no lighting needed for graybox
+    commands.spawn((
+        Mesh3d(meshes.add(Capsule3d::new(0.4, 1.0))),
+        MeshMaterial3d(materials.add(StandardMaterial {
+            base_color: Color::srgb_u8(0x44, 0x88, 0xFF),
+            unlit: true,
+            ..default()
+        })),
+        Transform::from_xyz(0.0, 1.0, 0.0),
+    ));
+
+    // Wall (Cuboid)
+    commands.spawn((
+        Mesh3d(meshes.add(Cuboid::new(10.0, 0.5, 1.0))),
+        MeshMaterial3d(materials.add(StandardMaterial {
+            base_color: Color::srgb_u8(0x55, 0x55, 0x55),
+            unlit: true,
+            ..default()
+        })),
+        Transform::from_xyz(0.0, 0.0, 0.0),
+    ));
+
+    // Spawn all other entities from graybox-visual-language.md here
 }
 ```
 
-### 3b. Implement Visual Language (2D)
-
-For 2D prototypes, spawn each entity using Bevy 2D mesh primitives and `ColorMaterial`:
+**For 2D prototypes:**
 
 ```rust
-fn spawn_entities(
+fn spawn_scene(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<ColorMaterial>>,
 ) {
+    // Camera
+    commands.spawn(Camera2d);
+
     // Player (Capsule2d)
     commands.spawn((
         Mesh2d(meshes.add(Capsule2d::new(16.0, 32.0))),
@@ -115,16 +157,27 @@ fn spawn_entities(
         Transform::from_xyz(0.0, -100.0, 0.0),
     ));
 
-    // Camera
-    commands.spawn(Camera2d);
+    // Spawn all other entities from graybox-visual-language.md here
 }
 ```
 
-### 4. Basic Input System
+Spawn every entity type from `graybox-visual-language.md`. Use the exact mesh, color, and position defined there.
 
-Add a system that reads input and logs to console — no game logic yet, just confirm input is received:
+### 6. input.rs — Basic Input
+
+`InputPlugin` owns a system that reads keyboard input and prints to the console — no game logic, just confirm input is wired up:
 
 ```rust
+use bevy::prelude::*;
+
+pub struct InputPlugin;
+
+impl Plugin for InputPlugin {
+    fn build(&self, app: &mut App) {
+        app.add_systems(Update, debug_input);
+    }
+}
+
 fn debug_input(keys: Res<ButtonInput<KeyCode>>) {
     for key in keys.get_just_pressed() {
         println!("Key pressed: {:?}", key);
@@ -132,21 +185,16 @@ fn debug_input(keys: Res<ButtonInput<KeyCode>>) {
 }
 ```
 
-Register it in the app:
-```rust
-app.add_systems(Update, debug_input);
-```
-
-### 5. Verify
+### 7. Verify
 
 The scaffold is complete when:
 - `cargo run` compiles without errors or warnings
 - Window opens with the correct title and resolution
 - Camera is positioned and oriented as defined in the visual language
 - All placeholder entities are visible in the scene
-- Basic input is received (printed to console)
+- Key presses print to the console
 
-### 6. Commit
+### 8. Commit
 
 Commit the scaffold as a clean baseline before any mechanic work begins:
 
@@ -158,9 +206,11 @@ graybox: scaffold — bevy app running with placeholder entities
 
 ### `graybox-prototype/`
 
-Running Bevy project with:
-- `Cargo.toml` — project manifest with Bevy dependency
-- `src/main.rs` — app setup, camera spawn, entity spawn, basic input
+Running Bevy 0.18 project with:
+- `Cargo.toml` — Bevy 0.18 dependency, dev profile
+- `src/main.rs` — App setup + plugin registration
+- `src/scene.rs` — ScenePlugin: camera + placeholder entities
+- `src/input.rs` — InputPlugin: basic input logging
 - Window opens, entities visible, camera correct
 
 ## Exit Criteria

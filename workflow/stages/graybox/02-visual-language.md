@@ -87,63 +87,32 @@ Present the full visual language. User approves before scaffold begins.
 
 ### `docs/graybox-visual-language.md`
 
-**For 3D:**
 ```markdown
 # Graybox Visual Language
 
 ## Mode
-3D
+[3D / 2D]
 
 ## Entities
 
-| Entity | Mesh | Color (hex) | Notes |
-|--------|------|-------------|-------|
-| Player | Capsule3d | #4488FF | Follows camera |
-| Enemy | Sphere | #FF4422 | Red when alerted |
-| Wall | Cuboid | #555555 | Static |
-| ...    | ...  | ...         | ...   |
+| Entity | Mesh/Shape | Color (hex) | Notes |
+|--------|------------|-------------|-------|
+| Player | Capsule3d / Capsule2d | #4488FF | Follows camera |
+| Enemy | Sphere / Circle r=24 | #FF4422 | Red when alerted |
+| Wall | Cuboid / Rectangle 200×20 | #555555 | Static |
+| ...    | ...        | ...         | ...   |
 
 ## Camera
 
-- **Type:** Camera3d
-- **View:** [Top-down / Side / Isometric / etc.]
+- **Type:** [Camera3d / Camera2d]
+- **View:** [Top-down / Side-scrolling / Isometric / etc.]
 - **Follows player:** [Yes / No — describe behavior]
-- **Initial position:** [x, y, z]
-- **Look-at target:** [x, y, z]
+- **Initial position:** [x, y, z] or [x, y]
+- **Look-at target (3D):** [x, y, z]
 
 ## Scale Reference
 
 - 1 unit = [describe what 1 unit represents, e.g., "roughly 1 meter"]
-- Player height: [N units]
-- Tile/cell size (if applicable): [N units]
-```
-
-**For 2D:**
-```markdown
-# Graybox Visual Language
-
-## Mode
-2D
-
-## Entities
-
-| Entity | Shape | Size (units) | Color (hex) | Notes |
-|--------|-------|-------------|-------------|-------|
-| Player | Capsule2d | 32×64 | #4488FF | Follows camera |
-| Enemy | Circle r=24 | — | #FF4422 | |
-| Platform | Rectangle | 200×20 | #555555 | Static |
-| ...    | ...   | ...          | ...         | ...   |
-
-## Camera
-
-- **Type:** Camera2d
-- **View:** [Side-scrolling / Top-down 2D / etc.]
-- **Follows player:** [Yes / No — describe behavior]
-- **Initial position:** [x, y]
-
-## Scale Reference
-
-- 1 unit = [e.g., "1 pixel" or "roughly 1 cm in world space"]
 - Player height: [N units]
 - Tile/cell size (if applicable): [N units]
 ```
