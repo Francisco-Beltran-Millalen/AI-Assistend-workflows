@@ -37,6 +37,30 @@ Ask for each:
 
 Discuss each with the user. Resolve conflicts between what the roadmap implies and what's technically achievable.
 
+### 2b. Multiplayer Architecture Decision
+
+**This decision gates graybox-7.** Resolve it here so the graybox phase starts with the correct infrastructure in place.
+
+Ask:
+- **Single-player or multiplayer?** — Is this game played by more than one person simultaneously?
+- **If multiplayer — what model?**
+  - Local co-op (same machine, split input devices)
+  - Online listen-server (one player hosts, others connect)
+  - Online dedicated server (authoritative server separate from all clients)
+- **If online — input model:** Server-authoritative movement (recommended default) or lockstep/deterministic?
+- **Latency tolerance:** What round-trip latency is acceptable before the game feels broken? (informs whether rollback netcode is needed)
+- **Peer count:** Maximum simultaneous players? (informs transport choice: ENet ≤ ~16 peers, WebRTC for browser targets)
+- **Component isolation pattern:** Any self-contained behavior becomes a dedicated child node, not inlined into the parent script — this is Godot's official composition pattern. Ask for each entity: "Does this concern have a clear boundary? Could it be swapped or reused?" `PlayerInput` is example 1 (isolates input source regardless of multiplayer status — keyboard, network, AI). The pattern applies to anything with a clean interface: stamina, hitboxes, audio cues, physics sensors, state machines. Confirm this is understood.
+
+**Recommended defaults:**
+- Online games: listen-server, server-authoritative movement, ENet transport
+- Rollback netcode: only if the game is competitive and input latency is perceptible (fighting games, precise platformers). Community plugin: GodotRollbackNetcode.
+- Single-player: `PlayerInput` pattern still applies (enables AI characters, replay systems, future multiplayer with no refactoring)
+
+**Record decisions in `docs/game-architecture.md` under `## Multiplayer Architecture`.** This section gates graybox-7:
+- Multiplayer confirmed → run graybox-7 (Multiplayer Scaffold) after graybox-5, before graybox-6
+- Single-player confirmed → skip graybox-7, proceed directly to graybox-6 after graybox-5
+
 ### 3. Define Phase Constraints
 
 For each execution phase, what constraints must it respect?
@@ -115,6 +139,17 @@ Flag any remaining conflicts or open questions explicitly — do not paper over 
 ## Reuse Opportunities
 - [component or system] — reused by [which mechanics / entities]
 
+## Multiplayer Architecture
+
+**Model:** [Single-player / Local co-op / Online listen-server / Online dedicated server]
+**Input model:** [Server-authoritative / Lockstep / N/A]
+**Max peers:** [N / N/A]
+**Transport:** [ENet / WebRTC / N/A]
+**Latency tolerance:** [Xms acceptable RTT / N/A]
+**Rollback netcode:** [Not needed / GodotRollbackNetcode — reason]
+**Component isolation pattern:** Godot composition pattern confirmed — isolatable concerns become child nodes. PlayerInput is example 1 (confirmed for all controllable entities).
+**Gates:** [graybox-7 required / graybox-7 skipped — single-player]
+
 ## Open Questions / Known Conflicts
 - [anything unresolved going into execution]
 ```
@@ -123,8 +158,9 @@ Flag any remaining conflicts or open questions explicitly — do not paper over 
 
 - [ ] All gameconcept artifacts read
 - [ ] Cross-cutting concerns identified and resolved
+- [ ] **Multiplayer architecture decided** — single/multiplayer, model, transport, rollback stance, graybox-7 gate confirmed
 - [ ] Phase constraints defined for all four execution phases
 - [ ] Reuse opportunities identified
 - [ ] Open questions and conflicts explicitly listed
 - [ ] User confirms the architecture frame makes sense
-- [ ] `docs/game-architecture.md` written
+- [ ] `docs/game-architecture.md` written with `## Multiplayer Architecture` section

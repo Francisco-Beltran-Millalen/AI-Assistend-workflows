@@ -190,8 +190,8 @@ Run the project (F5). Press **F1**. Confirm:
 - Debug panel appears (FPS + entity count visible)
 - Collision outlines appear on each entity
 - Debug labels appear on each entity
-- Velocity indicators appear (once entities have velocity — check after graybox-5)
-- Health bars appear (once entities have health — check after graybox-5)
+- Velocity indicators appear (once entities have velocity — check after graybox-6)
+- Health bars appear (once entities have health — check after graybox-6)
 
 Press **F1** again — all overlays disappear.
 
@@ -209,12 +209,12 @@ Press **F1** again — all overlays disappear.
 - [ ] F1 toggles debug mode globally
 - [ ] Collision outlines visible per entity in debug mode
 - [ ] Debug labels visible per entity in debug mode
-- [ ] Velocity indicators set up per entity (activate once velocity exists in graybox-5)
-- [ ] Health bars set up per entity (activate once health exists in graybox-5)
+- [ ] Velocity indicators set up per entity (activate once velocity exists in graybox-6)
+- [ ] Health bars set up per entity (activate once health exists in graybox-6)
 - [ ] Debug panel shows FPS and entity count in debug mode
 - [ ] All debug overlays hidden when debug mode is off
 - [ ] Verified with F1 toggle
 
 ## Next Stage
 
-Proceed to **graybox-5** (Mechanic Loop) — pick `graybox-5-designed`, `graybox-5-generative`, or `graybox-5-assisted`.
+Proceed to **graybox-5** (Performance Guidelines).

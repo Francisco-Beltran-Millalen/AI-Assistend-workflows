@@ -46,9 +46,9 @@ Examples:
 - graybox-2 → `graybox-2-visual-language`
 - graybox-3 → `graybox-3-scaffold`
 - graybox-4 → `graybox-4-debug-indicators`
-- graybox-5-designed → `graybox-5-designed-mechanic-loop`
-- graybox-5-generative → `graybox-5-generative-mechanic-loop`
-- graybox-5-assisted → `graybox-5-assisted-mechanic-loop`
+- graybox-5 → `graybox-5-performance-guidelines`
+- graybox-7 → `graybox-7-multiplayer-scaffold`
+- graybox-6 → `graybox-6-mechanic-loop`
 
 ### asset: Asset Pipeline
 - asset-1 → `asset-1-art-direction`

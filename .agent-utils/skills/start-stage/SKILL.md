@@ -42,9 +42,13 @@ Start the specified workflow stage.
 - graybox-2: visual-language (Godot node types, 2D/3D decision, color per entity, camera setup)
 - graybox-3: scaffold (Godot project setup, one-time)
 - graybox-4: debug-indicators (debug overlay system — one-time setup)
-- graybox-5-designed: mechanic-loop-designed (user designs in natural language across 9 levels, AI generates code — repeating per mechanic)
-- graybox-5-generative: mechanic-loop-generative (AI implements in GDScript, user reviews — repeating per mechanic)
-- graybox-5-assisted: mechanic-loop-assisted (user implements, AI guides and teaches Godot/GDScript — repeating per mechanic)
+- graybox-5: performance-guidelines (establish Godot performance rules and game-specific decisions — one-time)
+- graybox-7: multiplayer-scaffold (ENet peer, GameSession, PlayerInput+MultiplayerSynchronizer, dual-authority pattern — conditional, one-time, multiplayer games only)
+- graybox-6: mechanic-loop (12-level design conversation then generative or assisted implementation — repeating per mechanic)
+
+Stage order:
+- Single-player: graybox-4 → graybox-5 → graybox-6 (loop)
+- Multiplayer: graybox-4 → graybox-5 → graybox-7 → graybox-6 (loop)
 
 ### asset: Asset Pipeline
 - asset-1: art-direction (style, palette, 2D/3D/mixed decision)
@@ -80,11 +84,16 @@ Starts Stage 0 (Meta-Workflow) with the Workflow Engineer persona.
 Starts the Graybox Mechanic Spec stage with the Game Designer persona.
 
 ```
-/start-stage graybox-5-generative
+/start-stage graybox-5
 ```
-Starts the Graybox Mechanic Loop (AI implements) with the Senior Godot Developer persona.
+Starts the Graybox Performance Guidelines stage with the Senior Godot Developer persona.
 
 ```
-/start-stage graybox-5-assisted
+/start-stage graybox-7
 ```
-Starts the Graybox Mechanic Loop (user implements) with the Code Mentor persona.
+Starts the Multiplayer Scaffold stage (conditional — only if multiplayer confirmed in gameconcept-9).
+
+```
+/start-stage graybox-6
+```
+Starts the Graybox Mechanic Loop — 12-level design conversation then generative or assisted implementation.

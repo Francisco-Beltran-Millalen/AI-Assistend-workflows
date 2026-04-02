@@ -85,9 +85,48 @@ Confirm the decision before proceeding.
 
 Synthesize everything into a concrete style guide. Be specific enough that any asset produced by following this guide will look like it belongs in the same game.
 
-### 5. Confirm
+### 5. Technical Import Standards
 
-Present the full art direction document. Ask: "If you saw an asset that followed these rules, would it look right for this game?" Revise until yes.
+Before writing the output document, establish the technical standards all assets must follow. These rules are set once here and enforced in asset-3/4 production.
+
+**3D models:**
+- **Format:** GLTF 2.0 `.glb` (binary) — the only accepted format for 3D geometry and animations
+- **Scale:** Apply All Transforms in Blender before export (`Ctrl+A → All Transforms`). Export with scale 1.0. Verify in Godot that 1 unit = 1 meter (or the unit scale from `docs/game-architecture.md`).
+- **Import settings (set per mesh or via `.import` files):** LOD generation: ON; shadow meshes: ON; lightmap UV generation: ON
+
+**2D textures:**
+- **Format:** PNG — lossless, standard
+- **World/gameplay textures:** Compress: VRAM (S3TC/BPTC on desktop, ETC2 on mobile); mipmaps: ON; filter: Linear
+- **UI textures:** Compress: Lossless; mipmaps: OFF; filter: Nearest (pixel art) or Linear (smooth UI)
+
+**Audio:**
+- **Music / long ambient SFX:** OGG Vorbis — streaming ON, loop point set per file
+- **Short SFX (one-shot, < 3 seconds):** WAV — no streaming, loop: OFF
+- **Decision rule:** If in doubt, use WAV for anything under 3 seconds; OGG for anything over.
+
+**Vector UI:**
+- **Format:** SVG — only for UI elements that must scale to arbitrary resolutions
+
+**GI Stance (3D/Mixed only):**
+Ask the user:
+- **LightmapGI** (baked, static only — cheapest, no runtime cost, recommended for most games)
+- **VoxelGI** (baked at runtime — dynamic objects receive lighting, moderate cost)
+- **SDFGI** (real-time GI — expensive, for games with fully dynamic lighting)
+
+Record the decision. This determines the lighting workflow for all 3D assets.
+
+**LOD switch distances:**
+What camera distance triggers each LOD level? Set once, apply to all 3D imports. (Godot 4.6 LOD component pruning provides better shape preservation for multi-part meshes on import.)
+
+**Occlusion culling:**
+Will this game bake `OccluderInstance3D` occluders? Decision: Yes / No. If yes, note when the bake will happen (after level geometry is finalized).
+
+**SSR (Godot 4.6 — fully rewritten):**
+Does this game's visual style call for screen-space reflections? If yes: half-resolution (cheaper) or full-resolution (higher quality)? Record stance.
+
+### 6. Confirm
+
+Present the full art direction document including technical standards. Ask: "If you saw an asset that followed these rules, would it look right for this game?" Revise until yes.
 
 ## Output Artifacts
 
@@ -128,6 +167,26 @@ Present the full art direction document. Ask: "If you saw an asset that followed
 ## Per-Track Rules (Mixed only)
 - **2D elements:** [which entities, style rules specific to 2D track]
 - **3D elements:** [which entities, style rules specific to 3D track]
+
+## Technical Import Standards
+
+### Formats
+
+| Asset type | Format | Notes |
+|------------|--------|-------|
+| 3D models + animations | GLTF 2.0 `.glb` | Apply All Transforms before export; scale 1.0; LOD ON; shadow meshes ON; lightmap UV ON |
+| 2D world/gameplay textures | PNG | VRAM compressed; mipmaps ON; filter Linear |
+| 2D UI textures | PNG | Lossless; mipmaps OFF; filter per style |
+| Music / long ambient SFX | OGG Vorbis | Stream ON; loop point set per file |
+| Short SFX (< 3s) | WAV | No streaming; loop OFF |
+| Vector UI elements | SVG | Scaling UI only |
+
+### Rendering
+
+- **GI stance:** [LightmapGI / VoxelGI / SDFGI] — [reason]
+- **LOD switch distances:** [near: Xm / mid: Xm / far: Xm] — applied to all 3D imports
+- **Occlusion culling:** [Yes — bake after level finalized / No]
+- **SSR:** [Enabled: half-res / full-res / Disabled] — Godot 4.6 SSR rewritten; half-res recommended unless visual quality demands full
 ```
 
 ## Exit Criteria
@@ -137,5 +196,6 @@ Present the full art direction document. Ask: "If you saw an asset that followed
 - [ ] Color palette defined with hex codes
 - [ ] Animation style described
 - [ ] Visual references documented with notes
-- [ ] User has approved the art direction
+- [ ] **Technical Import Standards defined:** formats, GI stance, LOD distances, occlusion culling plan, SSR stance
+- [ ] User has approved the art direction and technical standards
 - [ ] `docs/art-direction.md` written
