@@ -8,7 +8,7 @@ Export the current conversation to a log file in `docs/logs/`.
   - `0` for meta-workflow
   - `teacher` for teacher
   - `<phase-name>-<stage-number>` for regular stages (e.g., `graybox-1`, `gameconcept-2`)
-  - `<phase-name>-<stage-number>-<variant>` for variant stages (e.g., `graybox-4-generative`, `asset-4-2d`)
+  - `<phase-name>-<stage-number>-<variant>` for variant stages (e.g., `asset-4-2d`, `asset-4-3d`)
 
 ## Process
 
@@ -40,6 +40,7 @@ Examples:
 - gameconcept-7 → `gameconcept-7-roadmap`
 - gameconcept-8 → `gameconcept-8-knowledge-research`
 - gameconcept-9 → `gameconcept-9-architecture-consolidation`
+- gameconcept-10 → `gameconcept-10-gdd-consolidation`
 
 ### graybox: Graybox Prototype (Godot)
 - graybox-1 → `graybox-1-mechanic-spec`

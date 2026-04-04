@@ -16,7 +16,7 @@ Start the specified workflow stage.
    - If `teacher`: Read `workflow/stages/phase-0/04-teacher.md`
    - If `<phase-name>-<stage-number>`: Read `workflow/stages/<phase-name>/<NN>-*.md`
      where `<NN>` is the stage number zero-padded to 2 digits (1 → `01`, 9 → `09`, 10 → `10`)
-   - If `<phase-name>-<stage-number>-<variant>` (e.g., `graybox-4-generative`, `asset-4-2d`): Read `workflow/stages/<phase-name>/<NN>-*-<variant>.md`
+   - If `<phase-name>-<stage-number>-<variant>` (e.g., `asset-4-2d`, `asset-4-3d`): Read `workflow/stages/<phase-name>/<NN>-*-<variant>.md`
      (same zero-padding rule applies)
 2. Adopt the persona defined in the stage file
 3. For all named phase stages (not 0 or teacher): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
@@ -57,9 +57,9 @@ Stage order:
 - asset-1: art-direction (style, palette, 2D/3D/mixed decision)
 - asset-2: asset-list (enumerate and prioritize all assets)
 - asset-3: concept (concept sketch per asset before production)
-- asset-4-2d: production-loop-2d (Krita pipeline, sprite sheets, Godot integration)
-- asset-4-3d: production-loop-3d (Blender pipeline, GLTF, Godot integration)
-- asset-4-mixed: production-loop-mixed (both tracks, cohesion rules, Godot integration)
+- asset-4-2d: production-2d (Krita pipeline, sprite sheets, Godot integration)
+- asset-4-3d: production-3d (Blender pipeline, GLTF, Godot integration)
+- asset-4-mixed: production-mixed (both tracks, cohesion rules, Godot integration)
 
 ### sound: Sound Pipeline
 - sound-1: sound-direction (sonic identity, tonal rules, references)

@@ -2,6 +2,58 @@
 
 ---
 
+## 2026-04-04: Fix gameconcept-10 missing from export-log stage name map
+
+**Problem:** `gameconcept-10` was absent from the `## Stage Names` section of `.agent-utils/skills/export-log/SKILL.md`. Running `/export-log gameconcept-10` would produce a log file without the correct stage name slug.
+
+**Cause:** Oversight when gameconcept-10 was added to the workflow — the start-stage skill was updated but export-log was not.
+
+**Fix:** Added `- gameconcept-10 → \`gameconcept-10-gdd-consolidation\`` to the gameconcept section of the export-log skill.
+
+**Files:** `.agent-utils/skills/export-log/SKILL.md`
+
+---
+
+## 2026-04-04: Fix misleading variant examples and stale asset-4 labels in skill files
+
+**Problem:** Two issues in `.agent-utils/skills/start-stage/SKILL.md`:
+1. Example variant `graybox-4-generative` was used to illustrate the variant syntax, but no such file exists — only `asset-4-2d/3d/mixed` have real variant files. A user running `/start-stage graybox-4-generative` would get a silent glob failure.
+2. asset-4 description labels read "production-loop-2d/3d/mixed" but actual filenames are `04-production-2d.md` etc. (no `-loop`). Same misleading label appeared in `export-log/SKILL.md`.
+
+**Cause:** Stale names from an earlier iteration of the stage files; the generative/assisted split in graybox-6 was later collapsed into a single file with an internal mode-select rather than separate variant files.
+
+**Fix:**
+- Replaced `graybox-4-generative` with `asset-4-2d` (real example) in both skill files
+- Dropped `-loop` from asset-4 description labels in `start-stage/SKILL.md`
+
+**Files:** `.agent-utils/skills/start-stage/SKILL.md`, `.agent-utils/skills/export-log/SKILL.md`
+
+---
+
+## 2026-04-04: Common Techniques — log cleanup, web review, Nintendo references, Godot 4.x sections
+
+**Task 1 — Log cleanup:**
+Summarized all 12 session log files (2026-03-19 to 2026-04-04) into a permanent `docs/logs/session-history.md` table (date, session, work done, outcome). Deleted all 12 individual `.txt` log files from `docs/logs/`.
+
+**Task 2 — Web review for correctness:**
+Searched for factual errors across the 11 technique files. Two fixes applied:
+- `character_controller_architecture_full.md`: Added explicit warning that `RigidBody3D` is not recommended for player characters in Godot 4 — use `CharacterBody3D` (kinematic). Prior text was ambiguous.
+- `animation_systems_full.md`: Fixed oversimplification in 2D vs 3D section — modern 2D games also use skeletal animation via `Skeleton2D`, not just sprite switching.
+
+**Task 3 — Nintendo references (all 11 files):**
+Added a `## 🎮 Reference Games` table to each file listing relevant Nintendo games. Per each problem area, added `### 🎮 Nintendo Reference` with 2–3 sentences on how a specific shipped game solved that problem. Reference games: Zelda BotW/TotK (3D), Metroid Dread (2D), Fire Emblem: Three Houses (strategy/AI).
+
+**Task 4 — Godot 4.x sections (all 11 files):**
+Per each problem area, added `### 🟦 Godot 4.x` with: primary node/API, typed GDScript snippet (5–15 lines, full static typing), and 2 pitfall bullets. All snippets use Godot 4.6 APIs (Jolt physics default, `CharacterBody3D`, `NavigationAgent3D`, `AStarGrid2D`, `AnimationTree`, `SpringArm3D`, `FastNoiseLite`, etc.).
+
+**Files modified:**
+- `docs/logs/session-history.md` (created)
+- `docs/logs/*.txt` (12 files deleted)
+- All 11 `workflow/common-techniques/*_full.md` files
+- `workflow/common-techniques/INDEX.md`
+
+---
+
 ## 2026-04-04: Common Techniques index, static typing enforcement, no hardcoded values, gameconcept-10 skill fix
 
 **Problem 1:** Technique reference files in `imported-artifacts/` were unindexed and misplaced — they are workflow-level reference material, not project-specific imports, and had no navigation aid.
