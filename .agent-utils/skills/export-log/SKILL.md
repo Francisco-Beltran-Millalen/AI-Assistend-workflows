@@ -68,5 +68,16 @@ Examples:
 - feel-2 → `feel-2-asset-feel`
 - feel-3 → `feel-3-sound-feel`
 
+### writing: Game Writing
+- writing-1 → `writing-1-story-foundation`
+- writing-2 → `writing-2-world-lore`
+- writing-3 → `writing-3-character-voices`
+- writing-4 → `writing-4-scene-plan`
+- writing-5 → `writing-5-writing-loop`
+
+### testing: Unit Testing
+- testing-1 → `testing-1-test-scaffold`
+- testing-2 → `testing-2-test-loop`
+
 ### fusion: Fusion
 - fusion-1 → `fusion-1-integration`

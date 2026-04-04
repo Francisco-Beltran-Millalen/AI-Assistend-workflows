@@ -24,7 +24,19 @@ Read all available input artifacts. Build a picture of:
 - Whether any entity type will exist in large numbers simultaneously
 - The overall simulation complexity
 
-### 2. Present Universal Rules
+### 2. Present Code Style Rules
+
+These rules apply to every GDScript file in this project with no exceptions. Present them first, confirm the user understands each one, and record them verbatim in the output document.
+
+| Rule | Requirement |
+|------|-------------|
+| Full static typing | All variables, parameters, and return types must be explicitly typed. No bare `var x = value` — always `var x: Type = value`. No untyped function signatures — always `func foo(a: int) -> void:`. Use `Variant` only when a value genuinely holds mixed types, and document why. |
+| `@onready` vars typed | `@onready var label: Label3D = $DebugLabel` — always the concrete type, never inferred. |
+| Signals typed | `signal hit(damage: int, source: Node)` — all signal parameters must have explicit types. |
+| No magic numbers | Any numeric value that affects gameplay behavior must be named. Configuration values (speed, force, range, thresholds) → `@export var`. Fixed constants → `const` at the top of the script. Calculated values → derive from other named values at runtime, never inline the formula result. |
+| Prefer calculation over hardcoding | Positions, offsets, and layout values must be derived from node dimensions, viewport size, or other measured values — not hardcoded coordinates. Use `shape.size`, `get_viewport_rect().size`, etc. to anchor derived values to real measurements. |
+
+### 3. Present Performance Rules
 
 These rules apply to every script in this project with no negotiation. Present them, confirm the user understands each one, and record them verbatim in the output document.
 
@@ -36,7 +48,7 @@ These rules apply to every script in this project with no negotiation. Present t
 | Simple collision shapes on gameplay nodes | `BoxShape3D`, `SphereShape3D`, `CapsuleShape3D`, `CylinderShape3D` (or 2D equivalents) for all moving or frequently spawned entities. Never `ConcavePolygonShape3D` on moving nodes. | **Graybox — static environment may use mesh collision in asset phase** |
 | Profiling cadence | Run Godot Debugger → Profiler after each mechanic is implemented. Check `_process` and `_physics_process` total frame time before marking `[x] Done` in `mechanic-spec.md`. | **All phases** |
 
-### 3. Game-Specific Decisions
+### 4. Game-Specific Decisions
 
 Work through each topic below. For each: present the context and the standard Godot approach, ask how it applies to this game, agree on a decision, and record it.
 
@@ -101,7 +113,7 @@ Work through each topic below. For each: present the context and the standard Go
 
 > **Phase note:** Threshold established here and inherited by all phases.
 
-### 4. Write Output Document
+### 5. Write Output Document
 
 Write `docs/performance-guidelines.md` using the template below. Fill in every game-specific decision agreed during step 3. Do not leave blanks — every field must be resolved before this stage is complete.
 
@@ -118,7 +130,21 @@ Write `docs/performance-guidelines.md` using the template below. Fill in every g
 
 ---
 
-## Universal Rules
+## Code Style Rules
+
+Apply to every GDScript file in every mechanic without exception. These are never relaxed.
+
+| Rule | Requirement |
+|------|-------------|
+| Full static typing | All variables, parameters, and return types must be explicitly typed. No bare `var x = value` — always `var x: Type = value`. No untyped function signatures — always `func foo(a: int) -> void:`. Use `Variant` only when genuinely required, document why. |
+| `@onready` vars typed | `@onready var label: Label3D = $DebugLabel` — always the concrete type. |
+| Signals typed | `signal hit(damage: int, source: Node)` — all signal parameters must have explicit types. |
+| No magic numbers | Configuration values → `@export var`. Fixed constants → `const` at top of script. Calculated values → derive from named values, never inline the result. |
+| Prefer calculation over hardcoding | Positions, offsets, and layout values must be derived from node dimensions, viewport size, or other measured values — not hardcoded coordinates. |
+
+---
+
+## Universal Performance Rules
 
 Apply to every script in every mechanic without exception. Rules marked **All phases** are never relaxed.
 
@@ -195,7 +221,8 @@ These decisions are **not made here** — they belong to later phases:
 ## Exit Criteria
 
 - [ ] All input artifacts read
-- [ ] Universal rules presented and confirmed by user
+- [ ] Code style rules presented and confirmed by user
+- [ ] Universal performance rules presented and confirmed by user
 - [ ] Jolt physics: status confirmed (new project or migrated; determinism requirement noted)
 - [ ] Object pooling: node types and pre-instantiate counts decided
 - [ ] `MultiMeshInstance3D`: threshold and mesh types decided

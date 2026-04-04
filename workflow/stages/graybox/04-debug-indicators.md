@@ -49,6 +49,8 @@ func _input(event: InputEvent) -> void:
             debug_toggled.emit(debug_enabled)
 ```
 
+> **Code style note:** All GDScript in this project uses full static typing — every variable, `@onready` var, signal parameter, function parameter, and return type must be explicitly annotated. The samples above follow this convention.
+
 Register it in the Godot editor as an Autoload: **Project → Project Settings → Autoload**, name it `DebugManager`.
 
 ### 3. Collision Outlines
@@ -63,7 +65,7 @@ In each entity scene, add a `MeshInstance3D` (3D) or `Polygon2D` (2D) that match
 
 func _ready() -> void:
     collision_outline.visible = DebugManager.debug_enabled
-    DebugManager.debug_toggled.connect(func(e): collision_outline.visible = e)
+    DebugManager.debug_toggled.connect(func(e: bool) -> void: collision_outline.visible = e)
 ```
 
 Configure the outline material: same mesh type as the entity, `albedo_color` set to a distinct semi-transparent color (e.g., `Color(1, 1, 0, 0.4)`), `shading_mode = SHADING_MODE_UNSHADED`, `transparency = TRANSPARENCY_ALPHA`.
@@ -77,14 +79,14 @@ Configure the outline material: same mesh type as the entity, `albedo_color` set
 
 func _ready() -> void:
     debug_label.visible = DebugManager.debug_enabled
-    DebugManager.debug_toggled.connect(func(e): debug_label.visible = e)
+    DebugManager.debug_toggled.connect(func(e: bool) -> void: debug_label.visible = e)
 
 func _process(_delta: float) -> void:
     if DebugManager.debug_enabled:
         debug_label.text = _get_debug_text()
 
 func _get_debug_text() -> String:
-    return "state: idle"  # each entity overrides this in the Mechanic Loop
+    return "state: idle"  # each entity overrides this in the Mechanic Loop — return type must always be String
 ```
 
 Configure the `Label3D` in the editor:
@@ -107,7 +109,7 @@ Add a `MeshInstance3D` child named `VelocityIndicator` with a `BoxMesh` sized `0
 
 func _ready() -> void:
     velocity_indicator.visible = false
-    DebugManager.debug_toggled.connect(func(e): velocity_indicator.visible = e and velocity != Vector3.ZERO)
+    DebugManager.debug_toggled.connect(func(e: bool) -> void: velocity_indicator.visible = e and velocity != Vector3.ZERO)
 
 func _process(_delta: float) -> void:
     if DebugManager.debug_enabled and velocity != Vector3.ZERO:
@@ -142,7 +144,7 @@ Add a `ProgressBar` per entity on a `CanvasLayer`. The bar follows the entity in
 
 func _ready() -> void:
     health_bar.visible = DebugManager.debug_enabled
-    DebugManager.debug_toggled.connect(func(e): health_bar.visible = e)
+    DebugManager.debug_toggled.connect(func(e: bool) -> void: health_bar.visible = e)
     camera = get_viewport().get_camera_3d()
 
 func _process(_delta: float) -> void:
@@ -174,7 +176,7 @@ extends CanvasLayer
 
 func _ready() -> void:
     visible = DebugManager.debug_enabled
-    DebugManager.debug_toggled.connect(func(e): visible = e)
+    DebugManager.debug_toggled.connect(func(e: bool) -> void: visible = e)
 
 func _process(_delta: float) -> void:
     if visible:

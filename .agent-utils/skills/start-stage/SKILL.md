@@ -14,8 +14,10 @@ Start the specified workflow stage.
 1. Parse the stage identifier and build the file path using base `workflow/stages/`:
    - If `0`: Read `workflow/stages/phase-0/00-meta-workflow.md`
    - If `teacher`: Read `workflow/stages/phase-0/04-teacher.md`
-   - If `<phase-name>-<stage-number>`: Read `workflow/stages/<phase-name>/0<stage-number>-*.md`
-   - If `<phase-name>-<stage-number>-<variant>` (e.g., `graybox-4-generative`, `asset-4-2d`): Read `workflow/stages/<phase-name>/0<stage-number>-*-<variant>.md`
+   - If `<phase-name>-<stage-number>`: Read `workflow/stages/<phase-name>/<NN>-*.md`
+     where `<NN>` is the stage number zero-padded to 2 digits (1 → `01`, 9 → `09`, 10 → `10`)
+   - If `<phase-name>-<stage-number>-<variant>` (e.g., `graybox-4-generative`, `asset-4-2d`): Read `workflow/stages/<phase-name>/<NN>-*-<variant>.md`
+     (same zero-padding rule applies)
 2. Adopt the persona defined in the stage file
 3. For all named phase stages (not 0 or teacher): check if the stage's output artifacts (listed in `## Output Artifacts`) already exist. If any do, read `workflow/shared/00-existing-artifact-protocol.md` and follow it before proceeding to step 4.
 4. Follow the stage process
@@ -36,6 +38,7 @@ Start the specified workflow stage.
 - gameconcept-7: roadmap (collaborative ping-pong — all deliverables tagged by phase)
 - gameconcept-8: knowledge-research (identify and fill gaps from the roadmap)
 - gameconcept-9: architecture-consolidation (frame for all execution phases)
+- gameconcept-10: gdd-consolidation (master GDD — markdown + styled HTML)
 
 ### graybox: Graybox Prototype (Godot/GDScript)
 - graybox-1: mechanic-spec (identify mechanics + feel contracts)
@@ -62,6 +65,17 @@ Stage order:
 - sound-1: sound-direction (sonic identity, tonal rules, references)
 - sound-2: sound-event-list (enumerate every SFX event from mechanics + animations + UI)
 - sound-3: production-loop (library → record → synthesize fallback, Audacity edit, Godot integration)
+
+### writing: Game Writing (conditional — narrative/dialogue games)
+- writing-1: story-foundation (narrative spine, protagonist/antagonist arc, key story events, mechanic–narrative bridges)
+- writing-2: world-lore (world systems with costs/limits, factions, history, lore reveal map)
+- writing-3: character-voices (per-character dialogue patterns, evasion methods, sample lines, dynamic pairs)
+- writing-4: scene-plan (full writing inventory: cutscenes, NPC dialogue trees, quest text, items, environmental)
+- writing-5: writing-loop (per scene: brief → draft → voice check → integration check — repeating)
+
+### testing: Unit Testing
+- testing-1: test-scaffold (GUT 9.6.0 installation, test directory structure, verify setup — one-time, after graybox-3)
+- testing-2: test-loop (per mechanic: identify testable units, write GUT tests, run, update design doc — repeating)
 
 ### feel: Feel & Details (on-demand)
 - feel-1: graybox-feel (engine effects per interaction — particles, tween, shaders, camera shake)

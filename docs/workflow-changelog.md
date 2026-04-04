@@ -2,6 +2,72 @@
 
 ---
 
+## 2026-04-04: Common Techniques index, static typing enforcement, no hardcoded values, gameconcept-10 skill fix
+
+**Problem 1:** Technique reference files in `imported-artifacts/` were unindexed and misplaced — they are workflow-level reference material, not project-specific imports, and had no navigation aid.
+**Cause:** Files were added to `imported-artifacts/` during an earlier session without being integrated into the workflow structure.
+**Fix:** Moved all 11 technique files to `workflow/common-techniques/`. Created `workflow/common-techniques/INDEX.md` with a quick-lookup table, per-file descriptions, and cross-references to graybox-6 design levels. Added `common-techniques/` to the Project Structure in `AGENTS.md`. Added a reference to the index in graybox-6's Input Artifacts section.
+**Files:** `workflow/common-techniques/` (new), `AGENTS.md`, `workflow/stages/graybox/06-mechanic-loop.md`
+
+**Problem 2:** GDScript static typing was not explicitly required anywhere in the workflow. Code produced during graybox sessions could use bare `var` and untyped functions without any prompt to type them.
+**Cause:** Missing code style rule in the workflow.
+**Fix:** Added a "Code Style Rules" section to `workflow/stages/graybox/05-performance-guidelines.md` (process + output template) requiring full static typing for all vars, `@onready` vars, signal parameters, function parameters, and return types. Added explicit enforcement at Level 10 (Godot Mapping), the Green Light checklist, and the Generative mode implementation rules in graybox-6. Fixed lambda type annotations in graybox-4 code samples.
+**Files:** `workflow/stages/graybox/05-performance-guidelines.md`, `workflow/stages/graybox/06-mechanic-loop.md`, `workflow/stages/graybox/03-scaffold.md`, `workflow/stages/graybox/04-debug-indicators.md`
+
+**Problem 3:** No rule existed to prevent hardcoded magic numbers, positions, and inline formula results. Mechanics accumulated untunable magic values during prototyping.
+**Cause:** Missing code style rule in the workflow.
+**Fix:** Added no-hardcoded-values rule to the Code Style Rules section in graybox-5 (requiring `@export var` for tunables, `const` for fixed values, and derived calculations over hardcoded coordinates). Added the rule at Level 4 (State), the Green Light checklist, and Generative mode in graybox-6.
+**Files:** `workflow/stages/graybox/05-performance-guidelines.md`, `workflow/stages/graybox/06-mechanic-loop.md`
+
+**Problem 4:** `gameconcept-10` was present in `AGENTS.md` and as a stage file, but missing from the Stage Mapping in `.agent-utils/skills/start-stage/SKILL.md`. Additionally, the path mapping rule `0<stage-number>-*.md` would produce `010-*` for stage 10 (double-digit), which is incorrect.
+**Cause:** Stage was added to AGENTS.md and the stage file was created, but the skill was not updated. The path rule was written assuming single-digit stages only.
+**Fix:** Added `gameconcept-10: gdd-consolidation` to the Stage Mapping in SKILL.md. Fixed the path rule to use zero-padded 2-digit stage numbers (`<NN>`), which correctly handles both single-digit (01–09) and double-digit (10+) stages.
+**Files:** `.agent-utils/skills/start-stage/SKILL.md`
+
+---
+
+## 2026-04-03: Add `gameconcept-10` GDD Consolidation stage
+
+**Problem:** The `gameconcept` phase lacked a final consolidation step to compile the 9 scattered artifacts into a single cohesive Game Design Document (GDD).
+
+**Cause:** The redesign of the gameconcept phase generated multiple individual documents without a master file for human readability and production reference.
+
+**Fix:** Added `gameconcept-10` (Lead Game Designer) as the final step of the `gameconcept` phase. This stage aggregates exact contents of prior artifacts into `.md` and HTML formats, explicitly handling duplications and adding multimedia placeholders.
+
+**Files created:**
+- `workflow/stages/gameconcept/10-gdd-consolidation.md`
+
+**Files modified:**
+- `AGENTS.md` — added gameconcept-10 to the stage table, detection logic, and project status.
+
+---
+
+## 2026-04-03: Add `writing` and `testing` phases
+
+**Problem:** The workflow had no support for game narrative/dialogue or for automated unit testing of game logic.
+
+**Cause:** The original workflow focused on prototyping mechanics. Writing and testing are commonly needed but were absent.
+
+**Fix:** Added two new workflow phases:
+
+- **writing** (5 stages): story-foundation → world-lore → character-voices → scene-plan → writing-loop. Conditional — for games with narrative/dialogue. Can run in parallel with graybox. Adapted from the AI-assisted writing workflow reference (`C:\Users\francisco\Programming\AI-Assisted-workflow-writing`).
+- **testing** (2 stages): test-scaffold (GUT 9.6.0 installation, one-time after graybox-3) + test-loop (per mechanic, after each graybox-6 implementation). Uses GUT 9.6.0 for Godot 4.6.
+
+**Files created:**
+- `workflow/stages/writing/01-story-foundation.md`
+- `workflow/stages/writing/02-world-lore.md`
+- `workflow/stages/writing/03-character-voices.md`
+- `workflow/stages/writing/04-scene-plan.md`
+- `workflow/stages/writing/05-writing-loop.md`
+- `workflow/stages/testing/01-test-scaffold.md`
+- `workflow/stages/testing/02-test-loop.md`
+
+**Files modified:**
+- `AGENTS.md` — added writing + testing to stage table, detection logic, project status, critical rules, artifact storage, project structure
+- `.agent-utils/skills/start-stage/SKILL.md` — added writing + testing stage mappings
+
+---
+
 ## 2026-04-02: Broaden PlayerInput pattern → Godot Composition Pattern
 
 **Problem:** The `PlayerInput` child node rule was introduced as the project's pattern for isolating input, but it was intended as one example of Godot's broader composition principle: any self-contained concern becomes a dedicated child node. Three places named `PlayerInput` specifically, causing future agents to treat it as the only component, missing StaminaComponent, HitboxComponent, AudioComponent, etc.

@@ -27,6 +27,7 @@ Design and implement one mechanic per session, end-to-end. Every mechanic goes t
 - `docs/graybox-visual-language.md` — entity geometry and color definitions
 - `graybox-prototype/` — current Godot project state
 - `docs/mechanic-designs/` — design documents from previous mechanics (if any)
+- `workflow/common-techniques/INDEX.md` — reference library of game dev technique documents; consult during Level 5 (Behavior Logic) and Level 10 (Godot Mapping) when selecting implementation approaches
 
 ---
 
@@ -233,6 +234,7 @@ For each entity from Level 2, ask what values it needs to remember or track.
 - Still natural language — no types, no code
 - Distinguish mutable state ("changes during gameplay") from configuration ("set once, stays fixed")
 - Standard Godot approach: configuration values → `@export` vars (tunable in editor); mutable state → regular vars in the script
+- **No hardcoded values:** every numeric value that affects gameplay behavior must be named — `@export` for tunables, `const` for fixed constants. Never inline a magic number into logic.
 
 **After confirmation — write to design document:**
 
@@ -402,6 +404,8 @@ For each entity and behavior, state the appropriate Godot node type and key APIs
 - Node types: `CharacterBody2D/3D`, `RigidBody2D/3D`, `Area2D/3D`, `Node2D/3D`, `AnimationPlayer`, etc.
 - Key APIs: `move_and_slide()`, `Input.get_vector()`, `_physics_process(delta)`, `emit_signal()`, `Tween`, `Timer`, etc.
 - Do not write full implementation code — use typed GDScript stubs only
+- **All stubs must use full static typing:** every variable, every `@onready`, every signal parameter, every function parameter, and every return type must be explicitly annotated. No bare `var`, no missing `-> Type`. Consult `workflow/common-techniques/INDEX.md` for reference patterns when choosing implementation approach.
+- **No magic numbers in stubs:** use `@export var` for all configuration values; use `const` for fixed values; derive calculated values from named sources.
 
 If a design decision needs adjustment for Godot: "For the deceleration you described, the standard Godot approach is to multiply velocity by a friction factor each frame (`velocity *= friction`). Does that work, or do you want something else?"
 
@@ -649,7 +653,9 @@ Run a self-containment check before asking for approval. Any future agent must b
 > - [ ] `PlayerInput` contract defined: synced properties, authority, responsibility
 > - [ ] Level 11 Performance Constraints: every rule checked, every applicable constraint is concrete
 > - [ ] Level 11 Network sync row filled in (multiplayer: properties + rates / single-player: N/A)
-> - [ ] Level 12 Debug Indicators: every scripted node has state text format, channels, and log events specified"
+> - [ ] Level 12 Debug Indicators: every scripted node has state text format, channels, and log events specified
+> - [ ] All GDScript stubs in Level 10 use full static typing — no bare vars, no missing return types, no untyped signal parameters
+> - [ ] No magic numbers in stubs — all gameplay values are named via `@export` or `const`"
 
 Fix any gaps before presenting for approval.
 
@@ -695,6 +701,8 @@ Work through each node contract from the design document:
 - Wire all signals: emitter and listener per the contracts
 - Implement the debug indicators from Level 11 (gated by `DebugManager.debug_enabled`)
 - Apply every performance constraint from Level 10 (`set_process(false)` by default, pool pre-instantiation, `MultiMeshInstance3D` setup)
+- **Full static typing required:** every variable (`var x: Type`), `@onready` var (`@onready var x: Type = $Node`), signal parameter (`signal foo(x: Type)`), function parameter, and return type (`func bar() -> void:`) must be explicitly annotated. No exceptions.
+- **No hardcoded values:** every numeric value that affects gameplay behavior must be a named `@export var` or `const`. Positions and offsets must be derived from measured values, not hardcoded coordinates.
 
 Present code clearly — each file labeled with its scene path, changes described in one line above the code block.
 
@@ -878,6 +886,8 @@ Mechanic marked `[x] Done` with any spec deviations noted.
 - [ ] Debug indicators implemented and verified with F1 toggle
 - [ ] Performance constraints applied (`_process` config, pool pre-instantiation, `MultiMeshInstance3D` setup)
 - [ ] No architecture violations
+- [ ] Full static typing — all vars, `@onready` vars, signal params, function params, and return types explicitly annotated
+- [ ] No magic numbers — all gameplay values named via `@export` or `const`
 
 **Validation:**
 - [ ] Mechanic tested against feel contract (F5)

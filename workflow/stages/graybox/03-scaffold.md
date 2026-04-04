@@ -70,7 +70,7 @@ For each entity in `graybox-visual-language.md`, create a minimal scene (`.tscn`
 
 For 3D graybox, use unshaded materials to keep visuals clean and engine-independent:
 ```gdscript
-var mat = StandardMaterial3D.new()
+var mat: StandardMaterial3D = StandardMaterial3D.new()
 mat.albedo_color = Color("#4488FF")
 mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 mesh_instance.material_override = mat
@@ -83,6 +83,7 @@ Add a script to the `Main` node that reads input and prints to the console — n
 ```gdscript
 extends Node3D  # or Node2D
 
+# Use full static typing — every function must have explicit return type
 func _input(event: InputEvent) -> void:
     if event is InputEventKey and event.pressed:
         print("Key pressed: ", event.keycode)

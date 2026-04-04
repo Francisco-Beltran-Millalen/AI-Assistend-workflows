@@ -28,6 +28,7 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 | gameconcept-7 | `workflow/stages/gameconcept/07-roadmap.md` | Production Designer | `docs/roadmap.md` |
 | gameconcept-8 | `workflow/stages/gameconcept/08-knowledge-research.md` | Research Analyst | `docs/knowledge-research.md` |
 | gameconcept-9 | `workflow/stages/gameconcept/09-architecture-consolidation.md` | Systems Architect | `docs/game-architecture.md` |
+| gameconcept-10 | `workflow/stages/gameconcept/10-gdd-consolidation.md` | Lead Game Designer | `docs/game-design-document.md`, `docs/game-design-document.html` |
 
 ### graybox: Graybox Prototype (Godot/GDScript)
 
@@ -59,6 +60,23 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 | sound-1 | `workflow/stages/sound/01-sound-direction.md` | Sound Designer | `docs/sound-direction.md` |
 | sound-2 | `workflow/stages/sound/02-sound-event-list.md` | Sound Designer | `docs/sound-event-list.md` |
 | sound-3 | `workflow/stages/sound/03-production-loop.md` | Sound Designer | SFX files + Godot integration |
+
+### writing: Game Writing (conditional — narrative/dialogue games)
+
+| Stage | File | Persona | Output |
+|-------|------|---------|--------|
+| writing-1 | `workflow/stages/writing/01-story-foundation.md` | Narrative Director | `docs/story-foundation.md` |
+| writing-2 | `workflow/stages/writing/02-world-lore.md` | Lore Architect | `docs/world-lore.md` |
+| writing-3 | `workflow/stages/writing/03-character-voices.md` | Dialogue Director | `docs/character-voices.md` |
+| writing-4 | `workflow/stages/writing/04-scene-plan.md` | Narrative Producer | `docs/scene-plan.md` |
+| writing-5 | `workflow/stages/writing/05-writing-loop.md` | Game Writer / Dialogue Editor | `docs/scenes/<slug>.md` (repeating per scene) |
+
+### testing: Unit Testing
+
+| Stage | File | Persona | Output |
+|-------|------|---------|--------|
+| testing-1 | `workflow/stages/testing/01-test-scaffold.md` | Senior Godot Developer | `docs/testing-guidelines.md` + GUT setup in `graybox-prototype/` |
+| testing-2 | `workflow/stages/testing/02-test-loop.md` | Test Engineer | `graybox-prototype/test/unit/test_<slug>.gd` (repeating per mechanic) |
 
 ### feel: Feel & Details (on-demand, complementary)
 
@@ -109,7 +127,8 @@ Check `docs/` for existing artifacts:
 - `docs/game-feel-direction.md` exists → gameconcept-7
 - `docs/roadmap.md` exists → gameconcept-8
 - `docs/knowledge-research.md` exists → gameconcept-9
-- `docs/game-architecture.md` exists → gameconcept phase complete → graybox-1
+- `docs/game-architecture.md` exists → gameconcept-10
+- `docs/game-design-document.md` exists → gameconcept phase complete → graybox-1
 
 **graybox phase (Godot):**
 - `docs/mechanic-spec.md` does not exist → graybox-1
@@ -137,6 +156,25 @@ Check `docs/` for existing artifacts:
 - `docs/sound-direction.md` exists, no `sound-event-list.md` → sound-2
 - `docs/sound-event-list.md` exists, events not all done → sound-3
 - All events `[x] Done` → sound phase complete
+
+**writing phase (conditional — narrative/dialogue games):**
+- writing-1 can start after gameconcept-10 and graybox-1 are complete (needs `docs/game-design-document.md`, `docs/mechanic-spec.md`)
+- writing-2 through writing-4 follow sequentially after writing-1
+- writing-5 repeats per scene until all `core` entries in `docs/scene-plan.md` are `[x] done`
+- writing phases run **independently of graybox phases** (can run in parallel)
+- If `docs/game-architecture.md` flags "no narrative/dialogue", confirm with user before starting
+- `docs/story-foundation.md` does not exist → writing-1
+- `docs/story-foundation.md` exists, `docs/world-lore.md` does not → writing-2
+- `docs/world-lore.md` exists, `docs/character-voices.md` does not → writing-3
+- `docs/character-voices.md` exists, `docs/scene-plan.md` does not → writing-4
+- `docs/scene-plan.md` exists, `core` scenes not all `[x] done` → writing-5 (loop)
+- All `core` scenes `[x] done` → writing phase complete
+
+**testing phase:**
+- testing-1 runs once, after graybox-3 is complete (`graybox-prototype/` must exist)
+- testing-2 repeats after each graybox-6 mechanic implementation
+- `docs/testing-guidelines.md` does not exist → testing-1
+- `docs/testing-guidelines.md` exists → testing-2 (loop per mechanic)
 
 **feel phase (on-demand):**
 - Invoke `feel-1` anytime after a mechanic is implemented — add engine feel effects
@@ -188,8 +226,10 @@ This creates: `docs/logs/stage-graybox-1-mechanic-spec-20260319-143022.txt`
 3. **ALWAYS use `/start-stage`** to start stages — it runs the Existing Artifact Protocol when artifacts already exist
 4. **In graybox-6: ALWAYS read `docs/mechanic-spec.md`, `docs/performance-guidelines.md`, AND (if multiplayer) `docs/multiplayer-architecture.md` first** — they track progress and constraints across sessions
 5. **Follow stage order** within each phase (gameconcept is strictly sequential; graybox/asset/sound are loosely ordered)
-6. **feel is on-demand** — invoke anytime, in any order, per mechanic or per interaction
-7. **fusion is final** — invoke when a mechanic is ready for integration
+6. **writing is conditional** — only for narrative/dialogue games; can run in parallel with graybox; starts after gameconcept-9 + graybox-1
+7. **testing-1 runs after graybox-3** (needs the Godot project); **testing-2 repeats after each graybox-6 mechanic**
+8. **feel is on-demand** — invoke anytime, in any order, per mechanic or per interaction
+9. **fusion is final** — invoke when a mechanic is ready for integration
 
 ---
 
@@ -238,8 +278,11 @@ project-root/
     │   ├── graybox/             ← Graybox Prototype stages (Godot)
     │   ├── asset/               ← Asset Pipeline stages
     │   ├── sound/               ← Sound Pipeline stages
+    │   ├── writing/             ← Game Writing stages (conditional)
+    │   ├── testing/             ← Unit Testing stages
     │   ├── feel/                ← Feel & Details stages (on-demand)
     │   └── fusion/              ← Fusion / Integration stages (final)
+    ├── common-techniques/       ← Game dev technique reference library (INDEX.md for navigation)
     ├── shared/                  ← Shared protocols
     ├── templates/               ← Output templates
     └── scripts/                 ← Automation scripts
@@ -254,6 +297,10 @@ project-root/
 - Architecture decisions: `docs/adrs/`
 - Conversation logs: `docs/logs/`
 - Workflow changelog: `docs/workflow-changelog.md`
+- Mechanic design journals: `docs/mechanic-designs/`
+- Scene / dialogue scripts: `docs/scenes/`
+- Unit tests: `graybox-prototype/test/unit/`
+- Integration tests: `graybox-prototype/test/integration/`
 
 ---
 
@@ -301,6 +348,7 @@ Which technique is enforced in which phase. Rules marked **All phases** are neve
 - [ ] `docs/roadmap.md` ← gameconcept-7 complete
 - [ ] `docs/knowledge-research.md` ← gameconcept-8 complete
 - [ ] `docs/game-architecture.md` ← gameconcept-9 complete
+- [ ] `docs/game-design-document.md` ← gameconcept-10 complete
 
 ### graybox phase (Godot)
 - [ ] `docs/mechanic-spec.md` ← graybox-1 complete
@@ -321,6 +369,18 @@ Which technique is enforced in which phase. Rules marked **All phases** are neve
 - [ ] `docs/sound-direction.md` ← sound-1 complete
 - [ ] `docs/sound-event-list.md` ← sound-2 complete
 - [ ] All events `[x] Done` in `sound-event-list.md` ← sound-3 complete
+
+### writing phase (conditional — narrative/dialogue games)
+- [ ] `docs/story-foundation.md` ← writing-1 complete
+- [ ] `docs/world-lore.md` ← writing-2 complete
+- [ ] `docs/character-voices.md` ← writing-3 complete
+- [ ] `docs/scene-plan.md` ← writing-4 complete
+- [ ] All `core` entries `[x] done` in `docs/scene-plan.md` ← writing-5 complete
+- Scenes written to `docs/scenes/<slug>.md` (one file per scene)
+
+### testing phase
+- [ ] `docs/testing-guidelines.md` ← testing-1 complete
+- [ ] Test files `graybox-prototype/test/unit/test_<slug>.gd` per mechanic ← testing-2 complete (per mechanic)
 
 ### feel phase (on-demand — no completion gate)
 - feel-1: engine feel effects per mechanic (invoke per mechanic, multiple times)
