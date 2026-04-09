@@ -14,6 +14,7 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 |-------|------|---------|--------|
 | 0 | `workflow/stages/phase-0/00-meta-workflow.md` | Workflow Engineer | `docs/workflow-changelog.md` |
 | teacher | `workflow/stages/phase-0/04-teacher.md` | Patient Teacher | No artifacts |
+| plan-eval | `workflow/stages/phase-0/05-plan-eval.md` | Plan Evaluator | No artifacts (in-session report) |
 
 ### gameconcept: Game Concept
 

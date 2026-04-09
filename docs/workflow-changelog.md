@@ -2,6 +2,33 @@
 
 ---
 
+## 2026-04-09: Add `plan-eval` — Plan Evaluator stage
+
+**Problem:** The graybox-6 mechanic loop has no external validation of design documents before implementation. The designer who wrote the plan evaluates their own work — a known failure mode: models confidently praise plans even when they will fail in implementation.
+
+**Cause:** No GAN-style separation between generator and evaluator in the graybox phase. Phase 4 of graybox-6 relied on self-evaluation against the feel contract.
+
+**Fix:** Added `plan-eval` as a Phase 0 on-demand stage. Inspired by the Anthropic engineering article on harness design for long-running applications. Key design decisions informed by the article:
+- Evaluator always runs in a new session (cold context — never saw the design conversation)
+- Five criteria weighted toward model weaknesses: feel fit and logic completeness are high-weight (areas generators get wrong silently)
+- Hard thresholds: binary PASS/FAIL/PARTIAL per criterion — no partial credit
+- Active probing method per criterion (not static checklist)
+- Explicit anti-leniency instruction in persona — "looks reasonable" is not a verdict
+- Calibration rule: uncertain items must be flagged, not silently resolved in the plan's favor
+- REVISE verdict includes specific issue location, consequence, and required fix
+
+Flexible invocation: can be called mid-graybox-6 design conversation (partial design) or after Green Light (complete design). Partial designs receive a partial evaluation plus forward-risk flags for upcoming levels.
+
+**Files created:**
+- `workflow/stages/phase-0/05-plan-eval.md`
+
+**Files modified:**
+- `AGENTS.md` — added plan-eval to On-Demand Stages table
+- `.agent-utils/skills/start-stage/SKILL.md` — added plan-eval to stage mapping and path resolution
+- `.agent-utils/skills/export-log/SKILL.md` — added plan-eval to stage names
+
+---
+
 ## 2026-04-04: Fix gameconcept-10 missing from export-log stage name map
 
 **Problem:** `gameconcept-10` was absent from the `## Stage Names` section of `.agent-utils/skills/export-log/SKILL.md`. Running `/export-log gameconcept-10` would produce a log file without the correct stage name slug.

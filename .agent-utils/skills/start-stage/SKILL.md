@@ -14,6 +14,7 @@ Start the specified workflow stage.
 1. Parse the stage identifier and build the file path using base `workflow/stages/`:
    - If `0`: Read `workflow/stages/phase-0/00-meta-workflow.md`
    - If `teacher`: Read `workflow/stages/phase-0/04-teacher.md`
+   - If `plan-eval`: Read `workflow/stages/phase-0/05-plan-eval.md`
    - If `<phase-name>-<stage-number>`: Read `workflow/stages/<phase-name>/<NN>-*.md`
      where `<NN>` is the stage number zero-padded to 2 digits (1 → `01`, 9 → `09`, 10 → `10`)
    - If `<phase-name>-<stage-number>-<variant>` (e.g., `asset-4-2d`, `asset-4-3d`): Read `workflow/stages/<phase-name>/<NN>-*-<variant>.md`
@@ -27,6 +28,7 @@ Start the specified workflow stage.
 ### On-Demand Stages
 - 0: meta-workflow (fix workflow issues)
 - teacher: teacher (Socratic teaching sessions)
+- plan-eval: plan-eval (evaluate a graybox mechanic design before implementation)
 
 ### gameconcept: Game Concept
 - gameconcept-1: references-analysis (main loop + mechanics of each reference game)

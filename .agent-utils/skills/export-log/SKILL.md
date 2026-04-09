@@ -29,6 +29,7 @@ Examples:
 ### On-Demand Stages
 - 0 → `00-meta-workflow`
 - teacher → `teacher`
+- plan-eval → `plan-eval`
 
 ### gameconcept: Game Concept
 - gameconcept-1 → `gameconcept-1-references-analysis`
