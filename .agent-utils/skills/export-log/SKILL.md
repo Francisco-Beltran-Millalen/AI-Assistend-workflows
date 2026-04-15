@@ -7,7 +7,7 @@ Export the current conversation to a log file in `docs/logs/`.
 - Stage identifier:
   - `0` for meta-workflow
   - `teacher` for teacher
-  - `<phase-name>-<stage-number>` for regular stages (e.g., `graybox-1`, `gameconcept-2`)
+  - `<phase-name>-<stage-number>` for regular stages (e.g., `graybox-1`, `gdd-2`)
   - `<phase-name>-<stage-number>-<variant>` for variant stages (e.g., `asset-4-2d`, `asset-4-3d`)
 
 ## Process

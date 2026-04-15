@@ -2,6 +2,92 @@
 
 ---
 
+## 2026-04-15: Pre-commit audit — stage header naming, artifact references, section consistency
+
+**Problem:** Full workflow audit before commit revealed 4 categories of issues.
+
+**Fix:**
+- **export-log SKILL.md:** Fixed incorrect example stage identifier `gameconcept-2` → `gdd-2`.
+- **feel-1:** Removed reference to `docs/game-feel-direction.md` (never produced by any stage); replaced with `docs/mechanic-spec.md` which contains the feel contracts.
+- **gdd-kickstart stages 1–7:** All 7 stage file headers used `# Stage: Gameconcept-N:` (legacy name). Renamed to `# Stage gdd-N:` to match AGENTS.md identifiers and the naming pattern of all other stage files.
+- **gdd-1 and gdd-7:** `## Output Artifact` (singular) → `## Output Artifacts` (plural) to match every other stage file. `gdd-2` through `gdd-6` retain `## Output Update` which is intentionally different (they append to an existing file).
+
+**Files:**
+- `.agent-utils/skills/export-log/SKILL.md`
+- `workflow/stages/feel/01-graybox-feel.md`
+- `workflow/stages/gdd-kickstart/01-vision-and-references.md`
+- `workflow/stages/gdd-kickstart/02-gameplay-experience.md`
+- `workflow/stages/gdd-kickstart/03-systems-design.md`
+- `workflow/stages/gdd-kickstart/04-aesthetics-and-world.md`
+- `workflow/stages/gdd-kickstart/05-knowledge-research.md`
+- `workflow/stages/gdd-kickstart/06-technical-roadmap.md`
+- `workflow/stages/gdd-kickstart/07-agent-export.md`
+
+---
+
+## 2026-04-15: Architecture phase — DebugOverlay + game-type flexibility
+
+**Problem:** (1) No standard in-game debug overlay was part of the architecture design, leading to ad-hoc debug tooling during graybox that breaks composition and data-flow contracts. (2) Architecture stage examples used Motor/Service/Transition vocabulary exclusively, with no signal to the persona that these are action-game illustrations — not prescriptions for every game type.
+
+**Fix:**
+- `01-scope-and-boundaries.md`: Added Step 2b ("Declare the Debug Overlay Layer") — always assigns F1–F12 debug context names; added `## Debug Overlay Contexts` table to the output artifact template and exit criteria. Added one-line framing note after Step 2 example clarifying that layer names are domain-specific.
+- `02-data-flow.md`: Added one-line clarification after the Orchestrator definition noting that turn-based/event-driven games use a command-triggered Orchestrator instead of `_physics_process`.
+- `04-systems-and-components.md`: Added one-line framing note after inventory examples clarifying Motor/Service/Transition are action-game names. Added Step 3b ("Autoloads") with mandatory DebugOverlay entry, performance rules, and artifact template section. Updated exit criteria.
+- `05-project-scaffold.md`: Added instruction in Step 2 to show DebugOverlay in a separate `## Autoloads` section (not scene-tree child). Extended scaffold diagram template with Autoloads section and DebugOverlay rationale. Updated exit criteria.
+- `06-interfaces-and-contracts.md`: Added one-line framing note in Step 1 for custom vocabulary. Added Step 2b ("Debug Overlay Contracts") with `BaseDebugContext` and `push()` GDScript code blocks. Added `DebugSnapshot` struct to Step 3. Updated exit criteria.
+
+**Files:**
+- `workflow/stages/architecture/01-scope-and-boundaries.md`
+- `workflow/stages/architecture/02-data-flow.md`
+- `workflow/stages/architecture/04-systems-and-components.md`
+- `workflow/stages/architecture/05-project-scaffold.md`
+- `workflow/stages/architecture/06-interfaces-and-contracts.md`
+
+---
+
+## 2026-04-15: GDD skeleton, image gallery, asset folders, and PDF export
+
+**Problem:** gdd-1 only initialized Section 1 of `docs/human-gdd.md`, with no full document skeleton visible up-front. There was no standard image folder structure, no gallery of image slots for the user to organize, and no way to export the completed GDD to PDF.
+
+**Fix:**
+- Created `workflow/templates/human-gdd-template.md`: a full 8-section GDD skeleton with an Image Gallery header listing all image slots across all sections. Users cut-and-paste slots from the gallery to the section where the image belongs.
+- Updated gdd-1 to initialize the document by copying the template verbatim (instead of writing only Section 1 inline), and to create the standard `docs/assets/GDD/<section>/` subdirectories on disk.
+- Updated gdd-1 image population step: only Section 1 slots are resolved during gdd-1; all others remain in the gallery for subsequent stages.
+- Created `workflow/scripts/gdd_to_pdf.py`: a Python script that pre-processes Mermaid blocks with `mmdc` (renders diagrams to PNGs), converts the markdown to HTML via the `markdown` library, and exports `docs/human-gdd.pdf` via `weasyprint`.
+- Created `requirements.txt` at project root with `markdown` and `weasyprint` as explicit dependencies.
+- Updated gdd-7 (the true last stage of gdd-kickstart) to run the PDF export after the XML is generated, ensuring the PDF reflects any final clarifications made during Agent Export.
+- Updated `PREREQUISITES.md` with weasyprint and mermaid-cli install instructions for gdd-7.
+
+**Files modified:**
+- `workflow/templates/human-gdd-template.md` (new)
+- `workflow/scripts/gdd_to_pdf.py` (new)
+- `requirements.txt` (new)
+- `workflow/stages/gdd-kickstart/01-vision-and-references.md`
+- `workflow/stages/gdd-kickstart/07-agent-export.md`
+- `PREREQUISITES.md`
+
+---
+
+## 2026-04-14: Audit sweep, stale reference purge, and legacy folder archiving
+
+**Problem:** After transitioning from the old monolithic graybox structure to the new multi-agent `graybox` execution pipeline (initiator, generator, rule-enforcer, code-writer, auditor, debugger) and the new `gdd-kickstart`, `architecture`, and `mechanic` phases, the repository was littered with stale cross-references. Many stage files, CLI skills, and documentation artifacts still pointed to old paths, old pipeline phases (`gameconcept`), obsolete target files (`game-brief.md`, `graybox-visual-language`, `performance-guidelines.md`), and old `graybox-6` implementation logic.
+
+**Fix:** Conducted a comprehensive, repository-wide search-and-replace sweep.
+- Updated all stage input files to point to correct, modern outputs (e.g. `docs/human-gdd.md`, `docs/architecture/*.md`).
+- Scrubbed `mechanic-2`, `plan-eval`, `testing-2`, `phase-0`, and `asset` phase files of any stale graybox stage dependencies.
+- Updated the CLI `.agent-utils/skills/git-commit/SKILL.md` to reflect the new pipeline stages instead of the old terminology.
+- Prevented git clutter by expressly adding the newly created archived folders (`legacy/` and `workflow/stages/legacy/`) into the `.gitignore`.
+- Finalized a clean Git commit of the total workflow overhaul, ensuring the multi-agent framework is pristine and ready for Godot 4.6 game development.
+
+**Files modified:**
+- Almost every active stage file inside `workflow/stages/*`
+- `AGENTS.md` and `README.md`
+- `.agent-utils/skills/git-commit/SKILL.md`
+- `workflow/common-techniques/INDEX.md`
+- `.gitignore` (added legacy folders)
+
+---
+
 ## 2026-04-14: Add `architecture` phase
 
 **Problem:** The gameconcept phase historically culminated in a single stage (gameconcept-9) for "architecture consolidation," which failed to bridge the gap between abstract game design concepts and strict Godot-specific code implementation. This led to AI agents going straight from broad designs to unstructured code generation in the graybox phase.

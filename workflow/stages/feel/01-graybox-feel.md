@@ -16,7 +16,7 @@ Run per interaction or per mechanic — not per phase.
 
 ### 1. Identify the Target
 
-Ask which mechanic or interaction we're adding feel to. Read `docs/game-feel-direction.md` for intent — what sensation should this interaction produce?
+Ask which mechanic or interaction we're adding feel to. Read the mechanic's feel contract in `docs/mechanic-spec.md` for intent — what sensation should this interaction produce?
 
 ### 2. Enumerate Feel Events
 

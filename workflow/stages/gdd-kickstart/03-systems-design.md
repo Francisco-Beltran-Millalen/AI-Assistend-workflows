@@ -1,4 +1,4 @@
-# Stage: Gameconcept-3: Systems Design
+# Stage gdd-3: Systems Design
 
 ## Persona: Systems Designer
 

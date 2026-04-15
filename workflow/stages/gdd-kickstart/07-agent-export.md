@@ -1,4 +1,4 @@
-# Stage: Gameconcept-7: Agent Export
+# Stage gdd-7: Agent Export
 
 ## Persona: Workflow Engineer
 
@@ -27,7 +27,22 @@ Extract ONLY the actionable, factual information. Discard narrative hooks, image
 ### 4. XML Generation
 Construct the XML document with a strict schema. This schema ensures that agents in the `graybox`, `asset`, and `sound` phases can easily parse exactly what they need without wasting context window tokens.
 
-## Output Artifact
+### 5. Export GDD to PDF
+After `docs/agent-gdd.xml` is written, run the PDF export script from the project root:
+
+```
+python3 workflow/scripts/gdd_to_pdf.py
+```
+
+This produces `docs/human-gdd.pdf` — the shareable, print-ready version of the complete GDD. Running it here (after any ambiguity clarifications from step 2) ensures the PDF reflects the final state of the document.
+
+If dependencies are not yet installed:
+```
+pip install -r requirements.txt
+npm install -g @mermaid-js/mermaid-cli
+```
+
+## Output Artifacts
 
 ### `docs/agent-gdd.xml`
 
@@ -82,3 +97,4 @@ Generate the file using this exact XML structure:
 - [ ] Ambiguities are clarified with the user.
 - [ ] `docs/agent-gdd.xml` is generated perfectly matching the required schema.
 - [ ] All narrative fluff, Mermaid charts, and visual placeholders are successfully stripped.
+- [ ] PDF exported to `docs/human-gdd.pdf` via `gdd_to_pdf.py`.

@@ -11,7 +11,8 @@ Define how data (Input, Network, AI) flows through the layers defined in the pre
 ## Process
 
 ### 1. Define the Orchestrator
-Design the single object (the Orchestrator) that will have `_physics_process` (or `_process`) enabled. All subsystems will have their processing disabled and will be ticked manually by this Orchestrator. 
+Design the single object (the Orchestrator) that will have `_physics_process` (or `_process`) enabled. All subsystems will have their processing disabled and will be ticked manually by this Orchestrator.
+- *For real-time games, the Orchestrator runs on `_physics_process`. For turn-based or event-driven games, the Orchestrator is a plain Node triggered by an input event or command — the principle is the same: one place, one execution order. Define what triggers the Orchestrator for your game.*
 
 ### 2. Define the Execution Order
 Map out the exact execution order.

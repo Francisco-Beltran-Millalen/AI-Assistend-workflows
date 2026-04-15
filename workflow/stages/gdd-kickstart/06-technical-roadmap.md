@@ -1,4 +1,4 @@
-# Stage: Gameconcept-6: Technical Frame and Roadmap
+# Stage gdd-6: Technical Frame and Roadmap
 
 ## Persona: Technical Director & Production Designer
 

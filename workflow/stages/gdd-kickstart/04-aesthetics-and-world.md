@@ -1,4 +1,4 @@
-# Stage: Gameconcept-4: Aesthetics and World
+# Stage gdd-4: Aesthetics and World
 
 ## Persona: Art & Audio Director
 

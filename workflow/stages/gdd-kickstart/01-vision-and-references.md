@@ -1,4 +1,4 @@
-# Stage: Gameconcept-1: Vision and References
+# Stage gdd-1: Vision and References
 
 ## Persona: Creative Director
 
@@ -13,6 +13,20 @@ Create the initial `docs/human-gdd.md` file. This is a "Rich Markdown" file inte
 Conversational and curious. The user may not have the vocabulary to describe what they know — help them find the right words. Accept "I'm not sure" as a valid answer and move on. Don't force completeness — a partial analysis of three games beats an exhaustive analysis of one. Proceed step-by-step; do not rush to generate the document before the discussion is complete.
 
 ## Process
+
+### 0. Initialize the Document Skeleton
+
+Before any discussion begins:
+
+1. Copy `workflow/templates/human-gdd-template.md` verbatim to `docs/human-gdd.md`
+2. Create the standard GDD asset subdirectories (with `.gitkeep` so they are tracked by git):
+   - `docs/assets/GDD/1-hook-and-vision/.gitkeep`
+   - `docs/assets/GDD/2-reference-analysis/.gitkeep`
+   - `docs/assets/GDD/4-gameplay-experience/.gitkeep`
+   - `docs/assets/GDD/5-systems/.gitkeep`
+   - `docs/assets/GDD/6-aesthetics/.gitkeep`
+
+The full GDD skeleton — all 8 section stubs plus the Image Gallery — is now in place. The remainder of this stage fills in Sections 1–3 only.
 
 ### 1. Identify the References
 Ask the user: what games are they using as references? There may be one or several. List them all before going deeper into any.
@@ -65,62 +79,30 @@ Now that the design space is understood, collaboratively define the core identit
 - **Narrative Foundation:** (If applicable to the genre) Outline the basic lore or story foundation.
 
 ### 5. Image Population
-Before completing the stage, present the user with a list of the image placeholders you created. Ask the user to:
-*   Provide direct web URLs to reference images they like, OR
-*   Save their reference images into the corresponding section folder in `docs/assets/GDD/` (e.g., `docs/assets/GDD/1-hook-and-vision/`) and give you the filenames.
 
-Once the user provides the links or filenames, **edit the `docs/human-gdd.md` file to replace the placeholders with the actual image links** before checking off the final exit criteria.
+The Image Gallery at the top of `docs/human-gdd.md` already lists all image slots for the entire document. For this stage, focus only on the **Section 1 slots** (`1-hook-and-vision/`):
 
-## Output Artifact
+Remind the user:
+- They can drop image files into `docs/assets/GDD/1-hook-and-vision/` and provide the filename, OR
+- Provide a direct web URL to a reference image they like
+
+Once the user provides links or filenames, **edit `docs/human-gdd.md`** to replace the two `1-hook-and-vision` comment placeholders in the Image Gallery and in Section 1 with actual `![description](path)` markdown links.
+
+Leave all other `<!-- IMAGE: ... -->` slots in the gallery untouched — they will be resolved by gdd-2 through gdd-6 as those sections are filled in.
+
+## Output Artifacts
 
 ### `docs/human-gdd.md`
 
-Initialize the file with the following structure:
+Initialize by copying `workflow/templates/human-gdd-template.md` verbatim. This creates the full 8-section skeleton with the Image Gallery header already in place.
 
-```markdown
-# [Game Title / Working Title]
-
-## 1. The Hook & Vision
-[Insert narrative hook here]
-
-<!-- IMAGE: [Placeholder for opening mood image] -->
-<!-- IMAGE: [Placeholder for secondary mood image] -->
-
-## 2. Reference Analysis
-### Reference Games
-- **[Game A]:** [Why we are looking at it]
-- **[Game B]:** [Why we are looking at it]
-
-### The "Keep" List (What we are emulating)
-- [Specific mechanic/vibe] from [Game A]
-- [Specific system] from [Game B]
-
-### The "Discard" List (What we are avoiding)
-- [Specific anti-pattern] commonly found in [Genre/Reference]
-- [Specific mechanic] we want to explicitly leave out
-
-## 3. Core Identity
-
-### Elevator Pitch
-[Insert Pitch]
-
-### Genre & Format
-- **Genre:** [e.g., Action Roguelike]
-- **Format:** [e.g., 3D, Single-player]
-- **Target Audience:** [e.g., Midcore players who enjoy high-stakes combat]
-
-### Core Pillars
-1. **[Pillar 1]:** [Description]
-2. **[Pillar 2]:** [Description]
-3. **[Pillar 3]:** [Description]
-
-### Narrative & Lore Foundation
-[Insert brief foundation or state "N/A - purely mechanical focus"]
-```
+Fill in Sections 1–3 (Hook & Vision, Reference Analysis, Core Identity) with the content developed collaboratively in this stage. Replace the `1-hook-and-vision` image slots in the gallery with actual image links. All other section stubs and image slots remain as placeholders for subsequent stages.
 
 ## Exit Criteria
-- [ ] References are analyzed collaboratively and systematically.
-- [ ] `docs/human-gdd.md` is created.
-- [ ] A strong narrative hook is written.
-- [ ] The Keep and Discard lists are specific and opinionated.
-- [ ] Image placeholders are replaced with actual image links.
+- [ ] Document skeleton initialized from `workflow/templates/human-gdd-template.md`
+- [ ] Asset subdirectories created (`docs/assets/GDD/*/`)
+- [ ] References analyzed collaboratively and systematically
+- [ ] Sections 1–3 filled in (Hook & Vision, Reference Analysis, Core Identity)
+- [ ] Strong narrative hook written
+- [ ] Keep and Discard lists are specific and opinionated
+- [ ] Section 1 image slots resolved (replaced with actual `![...](...)` links)

@@ -1,4 +1,4 @@
-# Stage: Gameconcept-2: Gameplay Experience
+# Stage gdd-2: Gameplay Experience
 
 ## Persona: Lead Game Designer
 

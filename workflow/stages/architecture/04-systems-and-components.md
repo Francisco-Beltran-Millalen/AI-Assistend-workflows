@@ -15,6 +15,7 @@ For every layer identified in `01-scope-and-boundaries`, list the actual Godot N
 - *Examples:*
   - **Motors List:** `GroundMotor`, `AirMotor`, `ClimbMotor`.
   - **Services List:** `FloorContactService`, `JumpService`.
+- *`GroundMotor` and `FloorContactService` are examples from a movement system in an action game. Your component names should reflect your game's domain (e.g., a card game might have `HandManager`, `DeckService`, `PlayResolver`). The structural pattern — Motors execute, Services provide facts, Transitions decide state changes — translates to any game type under different names.*
 
 ### 2. Responsibilities per Component
 State exactly what subset of the system each component is responsible for. Emphasize Single Responsibility.
@@ -23,6 +24,18 @@ State exactly what subset of the system each component is responsible for. Empha
 ### 3. Narrative Examples for Components
 Provide examples of gameplay moments where a specific component is the "star" of the show.
 - *Example:* "Link hits a rocky face. The `MovementProbesService` is responsible for detecting this wall, providing the exact normal and material type needed for the `ClimbMotor`."
+
+### 3b. Autoloads
+
+Declare all Autoload singletons. At minimum, every architecture includes:
+
+- **DebugOverlay** — receives push calls from any system; routes to F-key panels. Read-only observer. Never holds game state. No-op in release (`OS.is_debug_build()`).
+  - Sub-components: one context node per F-key slot assigned in Stage 1 (e.g., `PlayerContext`, `PhysicsContext`).
+
+Performance rules for DebugOverlay:
+- Panel render runs only when that panel is visible (push is a no-op when hidden).
+- May use `_process` for UI refresh in debug builds only.
+- Data flows strictly game → DebugOverlay. Nothing reads from it.
 
 ### 4. Performance Constraints per Component
 
@@ -81,6 +94,9 @@ All components in this system are bound by the following universal rules: [list]
 
 ### Per-Component Performance Notes
 - **[ComponentName]:** [Which thresholds apply and why]
+
+### Autoloads
+- **DebugOverlay:** [List context sub-components from Stage 1 and confirm no-op in release]
 ```
 
 ## Exit Criteria
@@ -90,3 +106,4 @@ All components in this system are bound by the following universal rules: [list]
 - [ ] Universal performance rules confirmed for all components.
 - [ ] Game-specific thresholds decided (pooling, MultiMesh, physics threading, population limit).
 - [ ] Per-component performance notes written.
+- [ ] DebugOverlay Autoload and per-context sub-components listed in the inventory.

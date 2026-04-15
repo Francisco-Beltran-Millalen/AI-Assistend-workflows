@@ -110,6 +110,32 @@ Used for trimming, normalizing, pitch-shifting, EQ, and layering SFX recordings.
 
 ---
 
+## Required for GDD Phase (gdd-7 — PDF export)
+
+Install when you reach gdd-7. Not needed before then.
+
+### Python packages (markdown + weasyprint)
+
+Used to convert the completed Human GDD to a PDF.
+
+```bash
+pip install -r requirements.txt
+```
+
+Verify: `python3 -c "import weasyprint; print('ok')"`
+
+### mermaid-cli (Mermaid diagram rendering)
+
+Used to render Mermaid flowcharts and Gantt charts inside the GDD as images in the PDF. Requires Node.js (already a prerequisite for the graybox phase).
+
+```bash
+npm install -g @mermaid-js/mermaid-cli
+```
+
+Verify: `mmdc --version`
+
+---
+
 ## Quick verification
 
 Run this to check all required tools at once:

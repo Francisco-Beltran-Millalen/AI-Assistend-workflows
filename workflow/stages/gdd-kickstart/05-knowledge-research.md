@@ -1,4 +1,4 @@
-# Stage: Gameconcept-5: Knowledge Research
+# Stage gdd-5: Knowledge Research
 
 ## Persona: Research Analyst
 
