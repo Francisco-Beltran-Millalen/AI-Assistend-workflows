@@ -13,14 +13,14 @@ Design the world systems, factions, and history that give the game's narrative i
 ## Input Artifacts
 
 - `docs/story-foundation.md` — central question, themes, protagonist/antagonist, key story events
-- `docs/game-description.md` — genre, core loop, world setting
+- `docs/agent-gdd.xml` — genre, core loop, world setting
 - `docs/mechanic-spec.md` — core mechanics (some mechanics embody world rules)
 
 ## Process
 
 ### 1. Review Foundation
 
-Read `docs/story-foundation.md` and `docs/game-description.md`. Note:
+Read `docs/story-foundation.md` and `docs/agent-gdd.xml`. Note:
 - The central conflict and themes — world rules should feed these
 - The key story events — world rules should explain why they can happen
 - Any setting details already established in game-description
@@ -137,3 +137,4 @@ On completion, export the session log:
 - [ ] Lore reveal map covers all key story events from `story-foundation.md`
 - [ ] `docs/world-lore.md` written
 - [ ] User approved the artifact
+

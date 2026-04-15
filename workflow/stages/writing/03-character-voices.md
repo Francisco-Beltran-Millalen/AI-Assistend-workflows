@@ -14,7 +14,7 @@ Define the dialogue voice, personality, and speech patterns of every named chara
 
 - `docs/story-foundation.md` — character list (protagonist, antagonist, key NPCs), arcs, dynamics
 - `docs/world-lore.md` — world rules that affect how characters speak (class, faction, education)
-- `docs/game-description.md` — genre and tone
+- `docs/agent-gdd.xml` — genre and tone
 
 ## Process
 
@@ -122,3 +122,4 @@ On completion, export the session log:
 - [ ] All key character pairs (protagonist–antagonist, protagonist–main allies) have a dynamic entry
 - [ ] `docs/character-voices.md` written
 - [ ] User approved the artifact
+

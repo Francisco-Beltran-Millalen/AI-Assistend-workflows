@@ -13,7 +13,7 @@ Produce a complete, prioritized list of every SFX event in the game. Production 
 - `docs/mechanic-spec.md` — every mechanic and action in the game
 - `docs/asset-list.md` — every animation state (each animation implies sound events)
 - `docs/sound-direction.md` — tonal vocabulary and per-category guidance
-- `docs/game-description.md` — setting and tone (may imply ambient or contextual sounds) (gameconcept-4)
+- `docs/agent-gdd.xml` — setting and tone (may imply ambient or contextual sounds) 
 
 ## Process
 
@@ -122,3 +122,4 @@ Present the full list. Cut anything that isn't needed for the prototype.
 - [ ] Environmental sounds flagged as optional or cut
 - [ ] Production order agreed with user
 - [ ] `docs/sound-event-list.md` written
+

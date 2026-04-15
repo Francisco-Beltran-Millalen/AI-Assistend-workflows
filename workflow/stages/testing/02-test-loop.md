@@ -8,13 +8,12 @@ You are efficient. You write the minimum number of tests that give maximum confi
 
 ## Purpose
 
-Write unit tests for a specific mechanic's logic classes using GUT. This stage repeats after each graybox-6 mechanic implementation. The goal is not to test everything — it is to test the parts of the mechanic that are testable without the scene tree and that could silently break during future changes.
+Write unit tests for a specific mechanic's logic classes using GUT. This stage repeats after each graybox-5 mechanic implementation. The goal is not to test everything — it is to test the parts of the mechanic that are testable without the scene tree and that could silently break during future changes.
 
 ## Input Artifacts
 
 - `docs/mechanic-designs/<slug>.md` — the mechanic's design doc (entity list, state, behavior logic, node contracts)
 - `docs/testing-guidelines.md` — project-specific testability rules (what we test / what we don't)
-- `docs/performance-guidelines.md` — may inform edge cases (limits, thresholds)
 - The mechanic's GDScript source files in `graybox-prototype/`
 
 ## Process

@@ -21,8 +21,8 @@ Export the current conversation to a log file in `docs/logs/`.
 Examples:
 - `stage-00-meta-workflow-20260319-091500.txt`
 - `stage-teacher-20260319-091500.txt`
-- `stage-gameconcept-1-brief-20260319-143022.txt`
-- `stage-graybox-5-generative-mechanic-loop-20260319-143022.txt`
+- `stage-mechanic-1-mechanic-spec-20260319-143022.txt`
+- `stage-graybox-5-code-writer-20260319-143022.txt`
 
 ## Stage Names
 
@@ -31,26 +31,34 @@ Examples:
 - teacher → `teacher`
 - plan-eval → `plan-eval`
 
-### gameconcept: Game Concept
-- gameconcept-1 → `gameconcept-1-references-analysis`
-- gameconcept-2 → `gameconcept-2-references-art`
-- gameconcept-3 → `gameconcept-3-references-feel`
-- gameconcept-4 → `gameconcept-4-game-description`
-- gameconcept-5 → `gameconcept-5-art-direction`
-- gameconcept-6 → `gameconcept-6-feel-direction`
-- gameconcept-7 → `gameconcept-7-roadmap`
-- gameconcept-8 → `gameconcept-8-knowledge-research`
-- gameconcept-9 → `gameconcept-9-architecture-consolidation`
-- gameconcept-10 → `gameconcept-10-gdd-consolidation`
+### gdd-kickstart: GDD Kickstart
+- gdd-1 → `gdd-1-vision-and-references`
+- gdd-2 → `gdd-2-gameplay-experience`
+- gdd-3 → `gdd-3-systems-design`
+- gdd-4 → `gdd-4-aesthetics-and-world`
+- gdd-5 → `gdd-5-knowledge-research`
+- gdd-6 → `gdd-6-technical-roadmap`
+- gdd-7 → `gdd-7-agent-export`
+
+### architecture: System Architecture
+- architecture-1 → `architecture-1-scope-and-boundaries`
+- architecture-2 → `architecture-2-data-flow`
+- architecture-3 → `architecture-3-edge-cases`
+- architecture-4 → `architecture-4-systems-and-components`
+- architecture-5 → `architecture-5-project-scaffold`
+- architecture-6 → `architecture-6-interfaces-and-contracts`
+
+### mechanic: Mechanic Analysis
+- mechanic-1 → `mechanic-1-mechanic-spec`
+- mechanic-2 → `mechanic-2-mechanic-design`
 
 ### graybox: Graybox Prototype (Godot)
-- graybox-1 → `graybox-1-mechanic-spec`
-- graybox-2 → `graybox-2-visual-language`
-- graybox-3 → `graybox-3-scaffold`
-- graybox-4 → `graybox-4-debug-indicators`
-- graybox-5 → `graybox-5-performance-guidelines`
-- graybox-7 → `graybox-7-multiplayer-scaffold`
-- graybox-6 → `graybox-6-mechanic-loop`
+- graybox-1 → `graybox-1-project-initiator`
+- graybox-2 → `graybox-2-plan-generator`
+- graybox-4 → `graybox-4-rule-enforcer`
+- graybox-5 → `graybox-5-code-writer`
+- graybox-6 → `graybox-6-auditor`
+- graybox-7 → `graybox-7-debugger`
 
 ### asset: Asset Pipeline
 - asset-1 → `asset-1-art-direction`

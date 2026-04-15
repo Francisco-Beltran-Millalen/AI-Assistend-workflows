@@ -14,7 +14,7 @@ Create a concept sketch or annotated reference for every asset in the asset list
 
 - `docs/asset-list.md` — every asset, in production order
 - `docs/art-direction.md` — style rules, palette, form language
-- `docs/game-description.md` — tone, world, character motivations (gameconcept-4)
+- `docs/agent-gdd.xml` — tone, world, character motivations 
 
 ## Process
 
@@ -105,3 +105,4 @@ Each asset entry updated with a `[~] Concept done` note.
 - [ ] Krita files saved, PNGs exported
 - [ ] Asset list updated with concept status
 - [ ] User ready to begin production
+

@@ -10,7 +10,7 @@ This is not a tool. It is a **process**.
 
 A sequence of stages, each with a defined goal, a persona, concrete input artifacts, and concrete output artifacts. You run it with an LLM CLI (Claude Code, Gemini CLI, or any tool that supports `AGENTS.md`). The AI plays a role in each stage — asking questions, proposing designs, writing code — and you approve, adjust, and steer.
 
-The workflow is specialized for **game development with Bevy/Rust**, producing a graybox prototype using geometric primitives, then replacing them with real assets and sound.
+The workflow is specialized for **game development with Godot/GDScript**, producing a graybox prototype using geometric primitives, then replacing them with real assets and sound.
 
 ---
 
@@ -24,14 +24,12 @@ Every significant decision goes through a propose-approve loop. The AI suggests 
 
 Each stage has a defined persona with a specific responsibility:
 - **Creative Director** — asks questions until the game idea is clear
-- **Knowledge Auditor** — maps what you know and what needs research
-- **Research Analyst** — fills knowledge gaps with targeted research
+- **Systems Architect** — establishes system boundaries and constraints
 - **Game Designer** — identifies mechanics and writes feel contracts
-- **Technical Designer** — defines the graybox visual language
-- **Senior Rust/Bevy Developer** — implements mechanics and scaffolding
-- **Code Mentor** — guides you through implementing mechanics yourself
-- **Art Director / Sound Designer** — define and produce assets
-- **Workflow Engineer** — fixes the workflow itself
+- **Systems Designer** — matches mechanics to architecture to create execution blueprints
+- **Plan Generator** — translates blueprints into file-by-file execution plans
+- **Code Writer** — executes plans by writing Godot code
+- **Auditor** — strictly reviews written code against architectural constraints
 
 ### 3. Artifacts as Context Bridges
 
@@ -43,7 +41,7 @@ Stage 0 (Meta-Workflow) is a dedicated stage for fixing the workflow itself.
 
 ### 5. Prototype Mindset
 
-The workflow produces a **playable graybox prototype** using Bevy primitive meshes (Cuboid, Sphere, Capsule, Cylinder, Plane) before any real assets exist. Mechanics are validated first; polish comes after.
+The workflow produces a **playable graybox prototype** using Godot primitive meshes (BoxMesh, SphereMesh, CapsuleMesh, CylinderMesh, PlaneMesh) before any real assets exist. Mechanics are validated first; polish comes after.
 
 ### 6. Logs as Institutional Memory
 
@@ -59,10 +57,12 @@ The canonical workflow instructions live in `AGENTS.md`. Tool-specific configura
 
 | Phase | Goal | Key Outputs |
 |-------|------|-------------|
-| **gameconcept** | Clarify the game idea, audit knowledge, fill gaps | `game-brief.md`, `knowledge-audit.md`, `research-findings.md` |
-| **graybox** | Spec mechanics, build a Bevy prototype with geometric primitives | `mechanic-spec.md`, `graybox-visual-language.md`, `graybox-prototype/` |
-| **asset** | Define art direction, produce 2D/3D assets, integrate into Bevy | `art-direction.md`, `asset-list.md`, sprite sheets / GLTF models |
-| **sound** | Define sonic identity, produce SFX, integrate into Bevy | `sound-direction.md`, `sound-event-list.md`, `.ogg` files |
+| **gdd-kickstart** | Clarify the game idea, audit knowledge, fill gaps | `human-gdd.md`, `agent-gdd.xml` |
+| **architecture** | Define system boundaries, data flow, and components | `docs/architecture/*.md` |
+| **mechanic** | Spec mechanics, create isolated mechanic blueprints | `mechanic-spec.md`, `mechanic-designs/*.md` |
+| **graybox** | Execute blueprints using a multi-agent pipeline in Godot | `execution-plans/*.md`, `graybox-prototype/` |
+| **asset** | Define art direction, produce 2D/3D assets, integrate into Godot | `art-direction.md`, `asset-list.md`, sprite sheets / GLTF models |
+| **sound** | Define sonic identity, produce SFX, integrate into Godot | `sound-direction.md`, `sound-event-list.md`, `.ogg files / .wav files` |
 
 ### On-Demand Stages
 
@@ -73,11 +73,11 @@ The canonical workflow instructions live in `AGENTS.md`. Tool-specific configura
 
 ### What It Produces
 
-- A playable Bevy/Rust prototype with all core mechanics implemented
+- A playable Godot/GDScript prototype with all core mechanics implemented
 - Graybox prototype with geometric primitives (validated before asset production)
-- 2D sprites, 3D models, or mixed assets — integrated and animating in Bevy
-- SFX suite sourced, edited, and integrated into Bevy
-- Complete game design documentation (`game-brief.md`, `mechanic-spec.md`, `art-direction.md`, `sound-direction.md`, and more)
+- 2D sprites, 3D models, or mixed assets — integrated and animating in Godot
+- SFX suite sourced, edited, and integrated into Godot
+- Complete set of design blueprints (`human-gdd.md`, `mechanic-spec.md`, `art-direction.md`, `sound-direction.md`, architecture docs, etc.)
 
 ---
 
@@ -87,7 +87,7 @@ The canonical workflow instructions live in `AGENTS.md`. Tool-specific configura
 - An LLM CLI that supports `AGENTS.md` (Claude Code recommended)
 - Python 3 (workflow scripts)
 - bash (hook scripts)
-- Rust + Cargo (game engine — see [rustup.rs](https://rustup.rs))
+- Godot Engine 4.6+ (executable in PATH recommended)
 - Git
 
 **Required for asset phase:**
@@ -102,7 +102,7 @@ The canonical workflow instructions live in `AGENTS.md`. Tool-specific configura
 ```bash
 echo "Python 3:  $(python3 --version 2>/dev/null || echo 'NOT FOUND')"
 echo "bash:      $(bash --version 2>/dev/null | head -1 || echo 'NOT FOUND')"
-echo "Rust:      $(rustc --version 2>/dev/null || echo 'NOT FOUND')"
+echo "Godot:     $(godot --version 2>/dev/null || echo 'NOT FOUND')"
 echo "git:       $(git --version 2>/dev/null || echo 'NOT FOUND')"
 ```
 
@@ -123,12 +123,12 @@ echo "git:       $(git --version 2>/dev/null || echo 'NOT FOUND')"
 
 3. **Start the first stage** to begin the game concept phase
    ```bash
-   /start-stage gameconcept-1
+   /start-stage gdd-1
    ```
 
 4. **Follow the stage**. The AI will adopt the Creative Director persona and ask about your game idea. Answer, discuss, and at the end of the session, export the log:
    ```bash
-   /export-log gameconcept-1
+   /export-log gdd-1
    ```
 
 5. **Continue stage by stage.** Each stage reads the outputs of the previous one. The workflow guides you.
@@ -150,7 +150,7 @@ project-root/
 ├── .agent-utils/
 │   └── skills/                  ← Canonical, tool-agnostic skill content
 ├── imported-artifacts/          ← Raw imports + adapted *-imported.md files
-├── graybox-prototype/           ← Bevy graybox prototype code
+├── graybox-prototype/           ← Godot graybox prototype code
 ├── docs/
 │   ├── logs/                    ← Conversation logs (one per stage session)
 │   ├── assets/                  ← Diagrams, concept art, textures
@@ -159,10 +159,17 @@ project-root/
 └── workflow/
     ├── stages/
     │   ├── phase-0/             ← On-demand stages (meta-workflow, teacher)
-    │   ├── gameconcept/         ← Game Concept stages
+    │   ├── gdd-kickstart/       ← GDD Kickstart stages
+    │   ├── architecture/        ← System Architecture stages
+    │   ├── mechanic/            ← Mechanic Analysis stages
     │   ├── graybox/             ← Graybox Prototype stages
     │   ├── asset/               ← Asset Pipeline stages
-    │   └── sound/               ← Sound Pipeline stages
+    │   ├── sound/               ← Sound Pipeline stages
+    │   ├── writing/             ← Game Writing stages
+    │   ├── testing/             ← Unit Testing stages
+    │   ├── feel/                ← Feel & Details stages
+    │   ├── fusion/              ← Fusion stages
+    │   └── legacy/              ← Archived stages
     ├── shared/                  ← Shared protocols
     ├── templates/               ← Output templates
     └── scripts/                 ← Automation scripts (log export, auto-export)
@@ -174,10 +181,10 @@ project-root/
 
 | Command | What it does |
 |---------|-------------|
-| `/start-stage gameconcept-1` | Start a specific stage |
+| `/start-stage gdd-1` | Start a specific stage |
 | `/start-stage 0` | Start the Meta-Workflow (fix workflow issues) |
 | `/start-stage teacher` | Start a teaching / knowledge-test session |
-| `/export-log gameconcept-1` | Export the current session log |
+| `/export-log gdd-1` | Export the current session log |
 
 ---
 

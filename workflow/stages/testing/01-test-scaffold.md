@@ -12,16 +12,16 @@ Install and configure GUT (Godot Unit Test) 9.6.0 in the Godot project, create t
 
 ## Input Artifacts
 
-- `graybox-prototype/` — the Godot project (must exist; graybox-3 must be complete)
+- `graybox-prototype/` — the Godot project (must exist; graybox-1 must be complete)
 - `docs/mechanic-spec.md` — list of mechanics (informs what will eventually be tested)
 
 ## Process
 
 ### 1. Verify Prerequisites
 
-Confirm `graybox-prototype/project.godot` exists. If graybox-3 is not complete, stop:
+Confirm `graybox-prototype/project.godot` exists. If graybox-1 is not complete, stop:
 
-> "The Godot project at `graybox-prototype/` doesn't exist yet. Complete graybox-3 (scaffold) first, then return to this stage."
+> "The Godot project at `graybox-prototype/` doesn't exist yet. Complete graybox-1 (project-initiator) first, then return to this stage."
 
 ### 2. Install GUT
 

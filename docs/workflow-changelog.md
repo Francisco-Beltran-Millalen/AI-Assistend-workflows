@@ -2,6 +2,24 @@
 
 ---
 
+## 2026-04-14: Add `architecture` phase
+
+**Problem:** The gameconcept phase historically culminated in a single stage (gameconcept-9) for "architecture consolidation," which failed to bridge the gap between abstract game design concepts and strict Godot-specific code implementation. This led to AI agents going straight from broad designs to unstructured code generation in the graybox phase.
+
+**Fix:** Created an entirely new `architecture` phase spanning 6 distinct stages, placed between `gameconcept-2` and `graybox`. This phase produces six source-of-truth technical documents that define the systemic bedrock using clean architecture patterns adapted for Godot (e.g. strict Base Class contracts, explicitly separated layers, single-orchestrator flows).
+
+**Files created:**
+- `workflow/stages/architecture/01-scope-and-boundaries.md`
+- `workflow/stages/architecture/02-data-flow.md`
+- `workflow/stages/architecture/03-edge-cases.md`
+- `workflow/stages/architecture/04-systems-and-components.md`
+- `workflow/stages/architecture/05-project-scaffold.md`
+- `workflow/stages/architecture/06-interfaces-and-contracts.md`
+
+**Files modified:**
+- `AGENTS.md` — inserted the architecture phase stages, adjusted the "Current Stage" checks, and updated the project completion checklist.
+
+---
 ## 2026-04-09: Add `plan-eval` — Plan Evaluator stage
 
 **Problem:** The graybox-6 mechanic loop has no external validation of design documents before implementation. The designer who wrote the plan evaluates their own work — a known failure mode: models confidently praise plans even when they will fail in implementation.

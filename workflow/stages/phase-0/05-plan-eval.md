@@ -10,7 +10,11 @@ You are a **Plan Evaluator** — an external critic who did not participate in t
 
 ## Purpose
 
-Determine whether a graybox mechanic design, if implemented as written, will actually produce the stated feel contract. Evaluate at any level of completeness — partial designs get a partial evaluation plus forward-risk flags.
+Determine whether a design document or execution plan, if implemented as written, will actually produce the stated feel contract. Evaluate at any level of completeness — partial designs get a partial evaluation plus forward-risk flags.
+
+Used twice per mechanic:
+1. **After mechanic-2** — evaluates `docs/mechanic-designs/[slug].md` (the 5-level design blueprint)
+2. **After graybox-2** — evaluates `docs/execution-plans/[slug].md` (the file-by-file implementation plan)
 
 ## Invocation
 
@@ -86,19 +90,19 @@ Do not silently resolve uncertainty in the plan's favor.
 
 ### C2 — Logic Completeness *(high weight)*
 
-**Why this is weighted high:** Edge cases are listed at Level 6 but not carried through to state changes, contracts, or call flow. Plans look complete because edge cases are named — but naming is not specification.
+**Why this is weighted high:** Edge cases are listed at Level 5 but not carried through to state changes, stubs, or signal connections. Plans look complete because edge cases are named — but naming is not specification.
 
 **Active probing method:**
-1. Walk the frame loop from Level 5 end-to-end
-2. For each state the design describes: can the player reach a state that has no defined behavior?
-3. Are the Level 6 edge behaviors traceable to specific handling in Level 5, Level 7, or Node Contracts?
-4. Is the Level 8 call flow complete from input to output, including edge paths?
+1. Walk Level 3 (Data & State Flow) end-to-end — for each state mutation: is there a reverse path? Can the player reach a state with no defined exit?
+2. Are the Level 5 edge case resolutions traceable to specific method stubs in Level 4 (Contract Mapping)?
+3. Does Level 4 contain every signal that Level 3 emits, with typed parameters and a named intended listener?
+4. For execution plans: is the step-by-step order complete from input event to output change, including edge paths?
 
-**PASS:** Every reachable state has defined behavior. Every Level 6 edge case has a traceable handling point.
+**PASS:** Every reachable state has defined behavior. Every Level 5 edge case has a traceable handling point in Level 4.
 
 **FAIL examples:**
-- Level 6 says "input received while locked: ignore" — but no `is_locked` state exists in Level 4
-- Level 8 call flow shows the happy path only — no branch for the edge cases from Level 6
+- Level 5 says "input received while locked: ignore" — but no `is_locked` state variable exists in Level 4
+- Level 3 lists a signal but Level 4 has no corresponding method or listener
 - Player can enter state A and state B simultaneously — no priority is specified
 
 ---
@@ -116,9 +120,9 @@ Do not silently resolve uncertainty in the plan's favor.
 **PASS:** Every node contract can be implemented with only what is available to that node: its children, its emitted signals, its Autoloads.
 
 **FAIL examples:**
-- Node A's contract says it "responds to Node B's state" — no signal from Node B is defined
-- Level 8 call flow requires Node A to call a method on Node B directly (sibling access)
-- Cross-scene communication described as "we'll wire it up later" — no path specified
+- Node A's contract says it "responds to Node B's state" — no signal from Node B is defined in Level 3
+- Level 4 stubs require Node A to call a method on Node B directly (sibling access)
+- Cross-scene communication described without a specified path (Autoload or signal)
 
 ---
 
@@ -127,16 +131,16 @@ Do not silently resolve uncertainty in the plan's favor.
 **Why this matters:** Designs describe behaviors with specific implied numbers — "snaps quickly," "slight delay," "moves faster" — without naming those values. These become magic numbers in implementation unless caught now.
 
 **Active probing method:**
-1. Read Levels 4, 5, 6, and 10
+1. Read Level 3 (Data & State Flow) and Level 4 (Contract Mapping)
 2. For each behavior described: does it imply a specific numeric value?
-3. Is that value named as an `@export` or `const` in Level 4 (State) or Level 10 (Godot Mapping)?
+3. Is that value named as an `@export var` or `const` in a Level 4 stub?
 
-**PASS:** Every behavior with a numeric implication is backed by a named value.
+**PASS:** Every behavior with a numeric implication is backed by a named `@export` or `const`.
 
 **FAIL examples:**
-- Level 5 says "apply friction to decelerate" — no friction value is named in Level 4
-- Level 6 says "coyote time: short window" — no `coyote_time` export var is defined
-- Level 8 call flow multiplies velocity by an unnamed coefficient
+- Level 3 says "apply friction to decelerate" — no friction value named in any Level 4 stub
+- Level 5 says "coyote time: short window" — no `coyote_time` export var defined
+- Level 4 stub multiplies velocity by an unnamed coefficient
 
 ---
 
@@ -205,15 +209,17 @@ Based on Levels [1–N], watch for these risks in upcoming levels:
 - **[Risk title]:** [What the current confirmed content suggests might go wrong — and at which future level to address it]
 ```
 
-These are not failures. They are predictions to give the graybox-6 designer a specific target.
+These are not failures. They are predictions to give the next stage (`mechanic-2` or `graybox-2`) a specific target.
 
 ---
 
 ## Verdict Outcomes
 
-**APPROVED:** The design, as written, is likely to produce the stated feel contract when implemented. Proceed to graybox-6 Mode Selection (or continue design conversation if partial).
+**APPROVED:** The design, as written, is likely to produce the stated feel contract when implemented. Proceed to the next pipeline stage:
+- If evaluating a **mechanic-2 design doc**: proceed to `graybox-2` (Plan Generator)
+- If evaluating a **graybox-2 execution plan**: proceed to `graybox-4` (Rule Enforcer)
 
-**REVISE [N issues]:** Each issue must be resolved in the design document before proceeding. Return to graybox-6 and address each issue at the cited level. Re-run `/start-stage plan-eval [mechanic-slug]` after fixes.
+**REVISE [N issues]:** Each issue must be resolved before proceeding. Return to the originating stage (`mechanic-2` or `graybox-2`) and address each issue at the cited level. Re-run `/start-stage plan-eval [mechanic-slug]` after fixes.
 
 ---
 
@@ -235,7 +241,7 @@ On completion:
 
 ## Output Artifacts
 
-No persistent document. The report is presented in-session. Issues are addressed in the design document by graybox-6.
+No persistent document. The report is presented in-session. Issues are addressed in the design document or execution plan by the originating stage.
 
 ## Exit Criteria
 

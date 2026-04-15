@@ -304,17 +304,14 @@ If uncertain between two stages, present both options to the user and ask which 
 
 | Artifact contains | Target stage |
 |-------------------|-------------|
-| Reference game analysis — main loops, mechanics, what makes them work | gameconcept-1 (`docs/references-analysis.md`) |
-| Visual style analysis of reference games — art style, palette, UI | gameconcept-2 (`docs/references-art.md`) |
-| Feel analysis of reference games — input response, effects, sensation | gameconcept-3 (`docs/references-feel.md`) |
-| Our game's description — main loop, core mechanics, pitch | gameconcept-4 (`docs/game-description.md`) |
-| Our game's visual identity — art style, color philosophy | gameconcept-5 (`docs/game-art-direction.md`) |
-| Our game's feel direction — feedback systems, VFX intent, audio feel | gameconcept-6 (`docs/game-feel-direction.md`) |
-| Production roadmap — all deliverables tagged by phase and priority | gameconcept-7 (`docs/roadmap.md`) |
-| Knowledge gaps and research findings tied to roadmap items | gameconcept-8 (`docs/knowledge-research.md`) |
-| Architecture frame — cross-cutting decisions and phase constraints | gameconcept-9 (`docs/game-architecture.md`) |
-| Mechanic list, feel contracts, input mappings, loop structure | graybox-1 (`docs/mechanic-spec.md`) |
-| Entity geometry, color assignments, camera setup, visual rules | graybox-2 (`docs/graybox-visual-language.md`) |
+| Reference game analysis, gameplay experience, core loops, or pitch | gdd-1 through gdd-4 (`docs/human-gdd.md`) |
+| Knowledge gaps and research findings tied to roadmap items | gdd-5 (`docs/human-gdd.md`) |
+| Technical roadmap and final formal game specification | gdd-6 / gdd-7 (`docs/human-gdd.md`, `docs/agent-gdd.xml`) |
+| System boundaries, data flow, edge cases, project scaffold | architecture-1 through architecture-6 (`docs/architecture/*.md`) |
+| Mechanic list, feel contracts, input mappings, loop structure | mechanic-1 (`docs/mechanic-spec.md`) |
+| Isolated mechanic design blueprints | mechanic-2 (`docs/mechanic-designs/[slug].md`) |
+| Execution plans for implementing mechanics | graybox-2 (`docs/execution-plans/[slug].md`) |
+| Enforcement checklists for code auditing | graybox-4 (`docs/enforcement-checklists/[slug].md`) |
 | Art style description, palette, 2D/3D/mixed decision, references | asset-1 (`docs/art-direction.md`) |
 | Asset inventory with categories, priorities, and status tracking | asset-2 (`docs/asset-list.md`) |
 | Sonic identity, tonal rules, SFX references, music stance | sound-1 (`docs/sound-direction.md`) |
@@ -353,8 +350,8 @@ Save the adapted artifact to `imported-artifacts/` using the workflow artifact n
 
 | Source file | Output file |
 |-------------|-------------|
-| `gameidea.txt` | `imported-artifacts/game-brief-imported.md` |
-| `old-gdd.md` | `imported-artifacts/game-brief-imported.md` |
+| `gameidea.txt` | `imported-artifacts/human-gdd-imported.md` |
+| `old-gdd.md` | `imported-artifacts/human-gdd-imported.md` |
 | `mechanics-notes.md` | `imported-artifacts/mechanic-spec-imported.md` |
 | `art-style.md` | `imported-artifacts/art-direction-imported.md` |
 
@@ -443,3 +440,4 @@ After completing Stage 0:
 1. Export the log via `/export-log 0`
 2. End this session
 3. Start a new session for the next stage (or return to the interrupted stage)
+

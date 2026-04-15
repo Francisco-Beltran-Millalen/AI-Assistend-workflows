@@ -16,32 +16,48 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 | teacher | `workflow/stages/phase-0/04-teacher.md` | Patient Teacher | No artifacts |
 | plan-eval | `workflow/stages/phase-0/05-plan-eval.md` | Plan Evaluator | No artifacts (in-session report) |
 
-### gameconcept: Game Concept
+### gdd-kickstart: GDD Kickstart
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
-| gameconcept-1 | `workflow/stages/gameconcept/01-references-analysis.md` | Game Analyst | `docs/references-analysis.md` |
-| gameconcept-2 | `workflow/stages/gameconcept/02-references-art.md` | Art Analyst | `docs/references-art.md` |
-| gameconcept-3 | `workflow/stages/gameconcept/03-references-feel.md` | Game Feel Analyst | `docs/references-feel.md` |
-| gameconcept-4 | `workflow/stages/gameconcept/04-game-description.md` | Creative Director | `docs/game-description.md` |
-| gameconcept-5 | `workflow/stages/gameconcept/05-art-direction.md` | Creative Director / Art Director | `docs/game-art-direction.md` *(concept-level visual identity)* |
-| gameconcept-6 | `workflow/stages/gameconcept/06-feel-direction.md` | Creative Director / Game Feel Designer | `docs/game-feel-direction.md` |
-| gameconcept-7 | `workflow/stages/gameconcept/07-roadmap.md` | Production Designer | `docs/roadmap.md` |
-| gameconcept-8 | `workflow/stages/gameconcept/08-knowledge-research.md` | Research Analyst | `docs/knowledge-research.md` |
-| gameconcept-9 | `workflow/stages/gameconcept/09-architecture-consolidation.md` | Systems Architect | `docs/game-architecture.md` |
-| gameconcept-10 | `workflow/stages/gameconcept/10-gdd-consolidation.md` | Lead Game Designer | `docs/game-design-document.md`, `docs/game-design-document.html` |
+| gdd-1 | `workflow/stages/gdd-kickstart/01-vision-and-references.md` | Creative Director | `docs/human-gdd.md` |
+| gdd-2 | `workflow/stages/gdd-kickstart/02-gameplay-experience.md` | Lead Game Designer | `docs/human-gdd.md` |
+| gdd-3 | `workflow/stages/gdd-kickstart/03-systems-design.md` | Systems Designer | `docs/human-gdd.md` |
+| gdd-4 | `workflow/stages/gdd-kickstart/04-aesthetics-and-world.md` | Art & Audio Director | `docs/human-gdd.md` |
+| gdd-5 | `workflow/stages/gdd-kickstart/05-knowledge-research.md` | Research Analyst | `docs/human-gdd.md` |
+| gdd-6 | `workflow/stages/gdd-kickstart/06-technical-roadmap.md` | Technical Director | `docs/human-gdd.md` |
+| gdd-7 | `workflow/stages/gdd-kickstart/07-agent-export.md` | Workflow Engineer | `docs/agent-gdd.xml` |
+
+
+### architecture: System Architecture
+
+| Stage | File | Persona | Output |
+|-------|------|---------|--------|
+| architecture-1 | `workflow/stages/architecture/01-scope-and-boundaries.md` | Systems Architect | `docs/architecture/01-scope-and-boundaries-[system].md` |
+| architecture-2 | `workflow/stages/architecture/02-data-flow.md` | Systems Architect | `docs/architecture/02-data-flow-[system].md` |
+| architecture-3 | `workflow/stages/architecture/03-edge-cases.md` | Systems Architect | `docs/architecture/03-edge-cases-[system].md` |
+| architecture-4 | `workflow/stages/architecture/04-systems-and-components.md` | Systems Architect | `docs/architecture/04-systems-and-components-[system].md` |
+| architecture-5 | `workflow/stages/architecture/05-project-scaffold.md` | Systems Architect | `docs/architecture/05-project-scaffold-[system].md` |
+| architecture-6 | `workflow/stages/architecture/06-interfaces-and-contracts.md` | Systems Architect | `docs/architecture/06-interfaces-and-contracts-[system].md` |
+
+### mechanic: Mechanic Analysis
+
+| Stage | File | Persona | Output |
+|-------|------|---------|--------|
+| mechanic-1 | `workflow/stages/mechanic/01-mechanic-spec.md` | Game Designer | `docs/mechanic-spec.md` |
+| mechanic-2 | `workflow/stages/mechanic/02-mechanic-design.md` | Systems Designer | `docs/mechanic-designs/[slug].md` (repeating per mechanic) |
 
 ### graybox: Graybox Prototype (Godot/GDScript)
 
-| Stage | File | Persona | Output |
-|-------|------|---------|--------|
-| graybox-1 | `workflow/stages/graybox/01-mechanic-spec.md` | Game Designer | `docs/mechanic-spec.md` |
-| graybox-2 | `workflow/stages/graybox/02-visual-language.md` | Technical Designer | `docs/graybox-visual-language.md` |
-| graybox-3 | `workflow/stages/graybox/03-scaffold.md` | Senior Godot Developer | `graybox-prototype/` |
-| graybox-4 | `workflow/stages/graybox/04-debug-indicators.md` | Senior Godot Developer | Debug overlay system in `graybox-prototype/` |
-| graybox-5 | `workflow/stages/graybox/05-performance-guidelines.md` | Senior Godot Developer | `docs/performance-guidelines.md` |
-| graybox-7 *(conditional)* | `workflow/stages/graybox/07-multiplayer-scaffold.md` | Senior Godot Developer | `graybox-prototype/multiplayer/` + `docs/multiplayer-architecture.md` |
-| graybox-6 | `workflow/stages/graybox/06-mechanic-loop.md` | Systems Designer / Senior Godot Developer / Code Mentor | Updated prototype + `docs/mechanic-spec.md` + `docs/mechanic-designs/` |
+| Stage | File | Persona | When |
+|-------|------|---------|------|
+| graybox-1 | `workflow/stages/graybox/01-project-initiator.md` | Senior Godot Developer | Once — before any mechanic |
+| graybox-2 | `workflow/stages/graybox/02-plan-generator.md` | Plan Generator | Per mechanic — after mechanic-2 approved |
+| plan-eval *(reused)* | `workflow/stages/phase-0/05-plan-eval.md` | Plan Evaluator | Per mechanic — after graybox-2 |
+| graybox-4 | `workflow/stages/graybox/04-rule-enforcer.md` | Rule Enforcer | Per mechanic — after plan-eval approves |
+| graybox-5 | `workflow/stages/graybox/05-code-writer.md` | Code Writer | Per mechanic — after graybox-4 |
+| graybox-6 | `workflow/stages/graybox/06-auditor.md` | Auditor | Per mechanic — after graybox-5 |
+| graybox-7 *(on-demand)* | `workflow/stages/graybox/07-debugger.md` | Debugger | On-demand — when the game has a bug |
 
 ### asset: Asset Pipeline
 
@@ -118,32 +134,39 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 
 Check `docs/` for existing artifacts:
 
-**gameconcept phase:**
-- No artifacts → gameconcept-1
-- `docs/references-analysis.md` exists → gameconcept-2
-- `docs/references-art.md` exists → gameconcept-3
-- `docs/references-feel.md` exists → gameconcept-4
-- `docs/game-description.md` exists → gameconcept-5
-- `docs/game-art-direction.md` exists → gameconcept-6
-- `docs/game-feel-direction.md` exists → gameconcept-7
-- `docs/roadmap.md` exists → gameconcept-8
-- `docs/knowledge-research.md` exists → gameconcept-9
-- `docs/game-architecture.md` exists → gameconcept-10
-- `docs/game-design-document.md` exists → gameconcept phase complete → graybox-1
+**gdd-kickstart phase:**
+- No artifacts → gdd-1
+- `docs/human-gdd.md` exists, `docs/agent-gdd.xml` does not exist → (run gdd-2 through gdd-7)
+- `docs/agent-gdd.xml` exists → gdd-kickstart phase complete → architecture-1
+
+**architecture phase:**
+- `docs/architecture/01-scope-and-boundaries-[system].md` does not exist → architecture-1
+- `docs/architecture/01-scope-and-boundaries-[system].md` exists, `02-data-flow-[system].md` does not → architecture-2
+- `docs/architecture/02-data-flow-[system].md` exists, `03-edge-cases-[system].md` does not → architecture-3
+- `docs/architecture/03-edge-cases-[system].md` exists, `04-systems-and-components-[system].md` does not → architecture-4
+- `docs/architecture/04-systems-and-components-[system].md` exists, `05-project-scaffold-[system].md` does not → architecture-5
+- `docs/architecture/05-project-scaffold-[system].md` exists, `06-interfaces-and-contracts-[system].md` does not → architecture-6
+- `docs/architecture/06-interfaces-and-contracts-[system].md` exists → architecture phase complete → graybox-1
+
+**mechanic phase:**
+- `docs/mechanic-spec.md` does not exist → mechanic-1
+- `docs/mechanic-spec.md` exists, any mechanic has `Analysis Status: [ ] Not started` → mechanic-2 (repeating per mechanic)
+- All mechanics have `Analysis Status: [x] Done` → mechanic phase complete → graybox-2
 
 **graybox phase (Godot):**
-- `docs/mechanic-spec.md` does not exist → graybox-1
-- `docs/mechanic-spec.md` exists, `docs/graybox-visual-language.md` does not → graybox-2
-- `docs/graybox-visual-language.md` exists, `graybox-prototype/` does not → graybox-3
-- `graybox-prototype/` exists, `graybox-prototype/scripts/debug_manager.gd` does not → graybox-4
-- `graybox-prototype/scripts/debug_manager.gd` exists, `docs/performance-guidelines.md` does not → graybox-5
-- `docs/performance-guidelines.md` exists, `game-architecture.md` has multiplayer confirmed, `docs/multiplayer-architecture.md` does not exist → graybox-7
-- `docs/performance-guidelines.md` exists, (single-player OR `docs/multiplayer-architecture.md` exists), mechanics not all done → graybox-6 (repeating per mechanic)
-- All mechanics in `mechanic-spec.md` marked `[x] Done` → graybox phase complete
+- `docs/graybox-visual-language.md` does not exist → graybox-1
+- `docs/graybox-visual-language.md` exists, `graybox-prototype/` does not → graybox-1 (still in progress)
+- `graybox-prototype/` exists, any mechanic has `Implementation Status: [ ] Not started`:
+  - `docs/execution-plans/[slug].md` does not exist → graybox-2 (Plan Generator)
+  - `docs/execution-plans/[slug].md` exists, not yet plan-eval approved → `/start-stage plan-eval [slug]`
+  - plan-eval approved, `docs/enforcement-checklists/[slug].md` does not exist → graybox-4 (Rule Enforcer)
+  - enforcement checklist exists, code not written → graybox-5 (Code Writer)
+  - code written, audit not done → graybox-6 (Auditor)
+  - audit CLEAN → mark `Implementation Status: [x] Done`, repeat loop next mechanic
+- All mechanics `Implementation Status: [x] Done` → graybox phase complete
 
-> **Stage order:**
-> - Single-player: graybox-4 → graybox-5 → graybox-6 (loop)
-> - Multiplayer: graybox-4 → graybox-5 → graybox-7 → graybox-6 (loop)
+> **Stage order (per mechanic):**
+> mechanic-2 → plan-eval → graybox-2 → plan-eval → graybox-4 → graybox-5 → graybox-6 → [if bugs: graybox-7]
 
 **asset phase:**
 - `docs/art-direction.md` does not exist → asset-1
@@ -159,11 +182,11 @@ Check `docs/` for existing artifacts:
 - All events `[x] Done` → sound phase complete
 
 **writing phase (conditional — narrative/dialogue games):**
-- writing-1 can start after gameconcept-10 and graybox-1 are complete (needs `docs/game-design-document.md`, `docs/mechanic-spec.md`)
+- writing-1 can start after gdd-7 and graybox-1 are complete (needs `docs/agent-gdd.xml`, `docs/mechanic-spec.md`)
 - writing-2 through writing-4 follow sequentially after writing-1
 - writing-5 repeats per scene until all `core` entries in `docs/scene-plan.md` are `[x] done`
 - writing phases run **independently of graybox phases** (can run in parallel)
-- If `docs/game-architecture.md` flags "no narrative/dialogue", confirm with user before starting
+- If `docs/agent-gdd.xml` flags "no narrative/dialogue", confirm with user before starting
 - `docs/story-foundation.md` does not exist → writing-1
 - `docs/story-foundation.md` exists, `docs/world-lore.md` does not → writing-2
 - `docs/world-lore.md` exists, `docs/character-voices.md` does not → writing-3
@@ -172,7 +195,7 @@ Check `docs/` for existing artifacts:
 - All `core` scenes `[x] done` → writing phase complete
 
 **testing phase:**
-- testing-1 runs once, after graybox-3 is complete (`graybox-prototype/` must exist)
+- testing-1 runs once, after graybox-1 is complete (`graybox-prototype/` must exist)
 - testing-2 repeats after each graybox-6 mechanic implementation
 - `docs/testing-guidelines.md` does not exist → testing-1
 - `docs/testing-guidelines.md` exists → testing-2 (loop per mechanic)
@@ -207,7 +230,7 @@ At the end of each stage session:
 /export-log graybox-1
 ```
 
-This creates: `docs/logs/stage-graybox-1-mechanic-spec-20260319-143022.txt`
+This creates: `docs/logs/stage-graybox-1-project-initiator-20260319-143022.txt`
 
 ---
 
@@ -225,12 +248,14 @@ This creates: `docs/logs/stage-graybox-1-mechanic-spec-20260319-143022.txt`
 1. **ALWAYS read the stage file** before starting work
 2. **ALWAYS adopt the persona** defined in the stage file
 3. **ALWAYS use `/start-stage`** to start stages — it runs the Existing Artifact Protocol when artifacts already exist
-4. **In graybox-6: ALWAYS read `docs/mechanic-spec.md`, `docs/performance-guidelines.md`, AND (if multiplayer) `docs/multiplayer-architecture.md` first** — they track progress and constraints across sessions
-5. **Follow stage order** within each phase (gameconcept is strictly sequential; graybox/asset/sound are loosely ordered)
-6. **writing is conditional** — only for narrative/dialogue games; can run in parallel with graybox; starts after gameconcept-9 + graybox-1
-7. **testing-1 runs after graybox-3** (needs the Godot project); **testing-2 repeats after each graybox-6 mechanic**
-8. **feel is on-demand** — invoke anytime, in any order, per mechanic or per interaction
-9. **fusion is final** — invoke when a mechanic is ready for integration
+4. **In graybox-2: ALWAYS read `docs/mechanic-designs/[slug].md` fully before generating an execution plan** — the plan is a translation, not a redesign
+5. **In graybox-5: ALWAYS read `docs/enforcement-checklists/[slug].md` before writing a single line** — violations found by the Auditor are escalated back to Code Writer
+6. **In graybox-6: ALWAYS run audit COLD** — do not use context from the Code Writer session
+7. **In mechanic-2: ALWAYS read ALL `docs/architecture/*.md` files first** — they define the binding contracts that every mechanic design must conform to.
+8. **Follow stage order** within each phase (gdd-kickstart and architecture are strictly sequential; mechanic-2 and graybox execution loop per mechanic)
+9. **writing is conditional** — only for narrative/dialogue games; can run in parallel with graybox; starts after gdd-7 + mechanic-1
+10. **graybox-7 (Debugger) is on-demand** — invoke only when the running game has incorrect behavior
+11. **plan-eval is called twice per mechanic** — once after mechanic-2 (design doc), once after graybox-2 (execution plan)
 
 ---
 
@@ -245,7 +270,7 @@ This creates: `docs/logs/stage-graybox-1-mechanic-spec-20260319-143022.txt`
 
 ### Natural Language
 
-- "Start graybox-1" → Mechanic Spec
+- "Start graybox-1" → Project Initiator (one-time Godot setup)
 - "What stage are we in?" → Check `docs/` for artifacts
 - "Export the log" → Save conversation
 
@@ -270,19 +295,22 @@ project-root/
 │   ├── logs/                    ← Conversation logs
 │   ├── assets/                  ← Diagrams, design specs
 │   ├── adrs/                    ← Architecture Decision Records
-│   ├── mechanic-designs/        ← Per-mechanic design journals (graybox-6)
+│   ├── mechanic-designs/        ← Per-mechanic design blueprints (mechanic-2)
 │   └── *.md                     ← Working design artifacts
 └── workflow/
     ├── stages/
     │   ├── phase-0/             ← On-demand stages
-    │   ├── gameconcept/         ← Game Concept stages
+    │   ├── gdd-kickstart/       ← GDD Kickstart stages (gdd-1 → gdd-7)
+    │   ├── architecture/        ← System Architecture stages (architecture-1 → architecture-6)
+    │   ├── mechanic/            ← Mechanic Analysis stages (mechanic-1 → mechanic-2)
     │   ├── graybox/             ← Graybox Prototype stages (Godot)
     │   ├── asset/               ← Asset Pipeline stages
     │   ├── sound/               ← Sound Pipeline stages
     │   ├── writing/             ← Game Writing stages (conditional)
     │   ├── testing/             ← Unit Testing stages
     │   ├── feel/                ← Feel & Details stages (on-demand)
-    │   └── fusion/              ← Fusion / Integration stages (final)
+    │   ├── fusion/              ← Fusion / Integration stages (final)
+    │   └── legacy/              ← Archived superseded stage files
     ├── common-techniques/       ← Game dev technique reference library (INDEX.md for navigation)
     ├── shared/                  ← Shared protocols
     ├── templates/               ← Output templates
@@ -311,14 +339,14 @@ Which technique is enforced in which phase. Rules marked **All phases** are neve
 
 | Technique | Phase | Notes |
 |-----------|-------|-------|
-| `_process`/`_physics_process` disabled by default | graybox-5 → **all phases** | Universal rule, never relaxed |
-| Signal-only cross-node communication | graybox-5 → **all phases** | Universal rule |
-| No group iteration in hot paths | graybox-5 → **all phases** | Universal rule |
-| Godot Composition Pattern (child nodes for isolatable concerns) | graybox-6 → **all phases** | Universal rule; `PlayerInput` and `StaminaComponent` are examples; enables network/AI input swapping and reuse |
+| `_process`/`_physics_process` disabled by default | architecture-4 → **all phases** | Universal rule, never relaxed |
+| Signal-only cross-node communication | architecture-4 → **all phases** | Universal rule |
+| No group iteration in hot paths | architecture-4 → **all phases** | Universal rule |
+| Godot Composition Pattern (child nodes for isolatable concerns) | architecture-4 → **all phases** | Universal rule; `PlayerInput` and `StaminaComponent` are examples; enables network/AI input swapping and reuse |
 | Simple collision shapes (gameplay nodes) | graybox-5 | Graybox only — static env may use mesh collision in asset phase |
-| Object pooling thresholds | graybox-5 | Counts may be revised in asset phase once real asset costs are known |
-| MultiMeshInstance3D thresholds | graybox-5 | Same — threshold may be revised in asset phase |
-| Jolt physics (default, Godot 4.6) | graybox-5 (verify) | No action for new 4.6 projects; verify if migrating |
+| Object pooling thresholds | architecture-4 | Thresholds decided at architecture-4; may be revised in asset phase |
+| MultiMeshInstance3D thresholds | architecture-4 | Thresholds decided at architecture-4; may be revised in asset phase |
+| Jolt physics (default, Godot 4.6) | architecture-4 (verify) | No action for new 4.6 projects; verify if migrating |
 | Unshaded rendering / no GI | graybox only | Replaced at asset-1 with GI decision |
 | Asset import format standards | **asset-1** | GLTF .glb, PNG, OGG/WAV — defined in `docs/art-direction.md` |
 | LOD auto-generation (import setting) | **asset-1** | ON for all 3D meshes; Godot 4.6 LOD pruning improved for multi-part meshes |
@@ -339,26 +367,37 @@ Which technique is enforced in which phase. Rules marked **All phases** are neve
 ### Meta Artifacts
 - [ ] `docs/workflow-changelog.md`
 
-### gameconcept phase
-- [ ] `docs/references-analysis.md` ← gameconcept-1 complete
-- [ ] `docs/references-art.md` ← gameconcept-2 complete
-- [ ] `docs/references-feel.md` ← gameconcept-3 complete
-- [ ] `docs/game-description.md` ← gameconcept-4 complete
-- [ ] `docs/game-art-direction.md` ← gameconcept-5 complete
-- [ ] `docs/game-feel-direction.md` ← gameconcept-6 complete
-- [ ] `docs/roadmap.md` ← gameconcept-7 complete
-- [ ] `docs/knowledge-research.md` ← gameconcept-8 complete
-- [ ] `docs/game-architecture.md` ← gameconcept-9 complete
-- [ ] `docs/game-design-document.md` ← gameconcept-10 complete
+### gdd-kickstart phase
+- [ ] `docs/human-gdd.md` started ← gdd-1 complete
+- [ ] `docs/human-gdd.md` section 2 ← gdd-2 complete
+- [ ] `docs/human-gdd.md` section 3 ← gdd-3 complete
+- [ ] `docs/human-gdd.md` section 4 ← gdd-4 complete
+- [ ] `docs/human-gdd.md` section 5 ← gdd-5 complete
+- [ ] `docs/human-gdd.md` section 6 ← gdd-6 complete
+- [ ] `docs/agent-gdd.xml` ← gdd-7 complete
+
+### architecture phase
+- [ ] `docs/architecture/01-scope-and-boundaries-[system].md` ← architecture-1 complete
+- [ ] `docs/architecture/02-data-flow-[system].md` ← architecture-2 complete
+- [ ] `docs/architecture/03-edge-cases-[system].md` ← architecture-3 complete
+- [ ] `docs/architecture/04-systems-and-components-[system].md` ← architecture-4 complete
+- [ ] `docs/architecture/05-project-scaffold-[system].md` ← architecture-5 complete
+- [ ] `docs/architecture/06-interfaces-and-contracts-[system].md` ← architecture-6 complete
+
+### mechanic phase
+- [ ] `docs/mechanic-spec.md` ← mechanic-1 complete
+- [ ] All mechanics have `Analysis Status: [x] Done` in `mechanic-spec.md` ← mechanic-2 complete (per mechanic)
+- Design documents in `docs/mechanic-designs/<slug>.md`
 
 ### graybox phase (Godot)
-- [ ] `docs/mechanic-spec.md` ← graybox-1 complete
-- [ ] `docs/graybox-visual-language.md` ← graybox-2 complete
-- [ ] `graybox-prototype/` created ← graybox-3 complete
-- [ ] Debug overlay system set up ← graybox-4 complete
-- [ ] `docs/performance-guidelines.md` ← graybox-5 complete
-- [ ] `docs/multiplayer-architecture.md` ← graybox-7 complete *(multiplayer games only)*
-- [ ] All mechanics `[x] Done` in `mechanic-spec.md` ← graybox-6 complete
+- [ ] `docs/graybox-visual-language.md` + `graybox-prototype/` setup ← graybox-1 complete
+- Per mechanic loop:
+  - [ ] `docs/execution-plans/[slug].md` ← graybox-2 complete
+  - [ ] plan-eval approved
+  - [ ] `docs/enforcement-checklists/[slug].md` ← graybox-4 complete
+  - [ ] GDScript files written ← graybox-5 complete
+  - [ ] Audit CLEAN ← graybox-6 complete
+- [ ] All mechanics `Implementation Status: [x] Done` in `mechanic-spec.md`
 
 ### asset phase
 - [ ] `docs/art-direction.md` ← asset-1 complete

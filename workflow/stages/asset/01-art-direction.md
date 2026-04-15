@@ -12,16 +12,15 @@ Establish the visual language of the game and make the 2D/3D/mixed decision. Eve
 
 ## Input Artifacts
 
-- `docs/game-description.md` — tone, core fantasy, what the game is (gameconcept-4)
-- `docs/game-art-direction.md` — concept-level visual identity defined in gameconcept-5
-- `docs/references-art.md` — reference games and what made them work visually (gameconcept-2)
-- `docs/graybox-visual-language.md` — entity types that need assets (graybox-2)
+- `docs/agent-gdd.xml` — tone, core fantasy, what the game is 
+- `docs/human-gdd.md` — concept-level visual identity, reference games, and what made them work visually (gdd-4)
+- `docs/graybox-visual-language.md` — entity types that need assets (graybox-1)
 
 ## Process
 
 ### 1. Review Inputs
 
-Read all three input artifacts. Note:
+Read all input artifacts. Note:
 - The emotional tone the game is going for
 - Visual references already identified
 - Every entity type that will need a real asset
@@ -91,7 +90,7 @@ Before writing the output document, establish the technical standards all assets
 
 **3D models:**
 - **Format:** GLTF 2.0 `.glb` (binary) — the only accepted format for 3D geometry and animations
-- **Scale:** Apply All Transforms in Blender before export (`Ctrl+A → All Transforms`). Export with scale 1.0. Verify in Godot that 1 unit = 1 meter (or the unit scale from `docs/game-architecture.md`).
+- **Scale:** Apply All Transforms in Blender before export (`Ctrl+A → All Transforms`). Export with scale 1.0. Verify in Godot that 1 unit = 1 meter (or the unit scale from `docs/architecture/*.md`).
 - **Import settings (set per mesh or via `.import` files):** LOD generation: ON; shadow meshes: ON; lightmap UV generation: ON
 
 **2D textures:**
@@ -199,3 +198,4 @@ Present the full art direction document including technical standards. Ask: "If 
 - [ ] **Technical Import Standards defined:** formats, GI stance, LOD distances, occlusion culling plan, SSR stance
 - [ ] User has approved the art direction and technical standards
 - [ ] `docs/art-direction.md` written
+

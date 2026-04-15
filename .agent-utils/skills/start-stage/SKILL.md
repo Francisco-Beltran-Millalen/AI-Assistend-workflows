@@ -7,7 +7,7 @@ Start the specified workflow stage.
 - Stage identifier:
   - `0` for meta-workflow
   - `teacher` for teacher
-  - `<phase-name>-<stage-number>` for regular stages (e.g., `graybox-1`, `gameconcept-2`)
+  - `<phase-name>-<stage-number>` for regular stages (e.g., `graybox-1`, `mechanic-2`)
 
 ## Instructions
 
@@ -15,6 +15,7 @@ Start the specified workflow stage.
    - If `0`: Read `workflow/stages/phase-0/00-meta-workflow.md`
    - If `teacher`: Read `workflow/stages/phase-0/04-teacher.md`
    - If `plan-eval`: Read `workflow/stages/phase-0/05-plan-eval.md`
+   - If `gdd-<stage-number>`: Read `workflow/stages/gdd-kickstart/<NN>-*.md`
    - If `<phase-name>-<stage-number>`: Read `workflow/stages/<phase-name>/<NN>-*.md`
      where `<NN>` is the stage number zero-padded to 2 digits (1 → `01`, 9 → `09`, 10 → `10`)
    - If `<phase-name>-<stage-number>-<variant>` (e.g., `asset-4-2d`, `asset-4-3d`): Read `workflow/stages/<phase-name>/<NN>-*-<variant>.md`
@@ -30,30 +31,37 @@ Start the specified workflow stage.
 - teacher: teacher (Socratic teaching sessions)
 - plan-eval: plan-eval (evaluate a graybox mechanic design before implementation)
 
-### gameconcept: Game Concept
-- gameconcept-1: references-analysis (main loop + mechanics of each reference game)
-- gameconcept-2: references-art (visual style of each reference game)
-- gameconcept-3: references-feel (how each reference game feels to play)
-- gameconcept-4: game-description (our game's main loop + core mechanics)
-- gameconcept-5: art-direction (our game's visual identity)
-- gameconcept-6: feel-direction (how our game should feel)
-- gameconcept-7: roadmap (collaborative ping-pong — all deliverables tagged by phase)
-- gameconcept-8: knowledge-research (identify and fill gaps from the roadmap)
-- gameconcept-9: architecture-consolidation (frame for all execution phases)
-- gameconcept-10: gdd-consolidation (master GDD — markdown + styled HTML)
+### gdd-kickstart: GDD Kickstart
+- gdd-1: vision-and-references
+- gdd-2: gameplay-experience
+- gdd-3: systems-design
+- gdd-4: aesthetics-and-world
+- gdd-5: knowledge-research
+- gdd-6: technical-roadmap
+- gdd-7: agent-export
+
+### architecture: System Architecture
+- architecture-1: scope-and-boundaries
+- architecture-2: data-flow
+- architecture-3: edge-cases
+- architecture-4: systems-and-components
+- architecture-5: project-scaffold
+- architecture-6: interfaces-and-contracts
+
+### mechanic: Mechanic Analysis
+- mechanic-1: mechanic-spec (extract mechanics from GDD, cross-reference architecture, write feel contracts — one-time)
+- mechanic-2: mechanic-design (5-level contract review per mechanic against architecture artifacts — repeating per mechanic)
 
 ### graybox: Graybox Prototype (Godot/GDScript)
-- graybox-1: mechanic-spec (identify mechanics + feel contracts)
-- graybox-2: visual-language (Godot node types, 2D/3D decision, color per entity, camera setup)
-- graybox-3: scaffold (Godot project setup, one-time)
-- graybox-4: debug-indicators (debug overlay system — one-time setup)
-- graybox-5: performance-guidelines (establish Godot performance rules and game-specific decisions — one-time)
-- graybox-7: multiplayer-scaffold (ENet peer, GameSession, PlayerInput+MultiplayerSynchronizer, dual-authority pattern — conditional, one-time, multiplayer games only)
-- graybox-6: mechanic-loop (12-level design conversation then generative or assisted implementation — repeating per mechanic)
+- graybox-1: project-initiator (visual language + Godot scaffold from architecture artifacts — one-time)
+- graybox-2: plan-generator (translate approved mechanic design into file-by-file execution plan — per mechanic)
+- *(plan-eval from phase-0 is called after graybox-2 to evaluate the execution plan)*
+- graybox-4: rule-enforcer (derive enforcement checklist from architecture contracts before coding — per mechanic)
+- graybox-5: code-writer (execute the approved plan — no design decisions — per mechanic)
+- graybox-6: auditor (audit written code against enforcement checklist — per mechanic)
+- graybox-7: debugger (on-demand — diagnose and fix runtime bugs)
 
-Stage order:
-- Single-player: graybox-4 → graybox-5 → graybox-6 (loop)
-- Multiplayer: graybox-4 → graybox-5 → graybox-7 → graybox-6 (loop)
+Stage order (per mechanic): mechanic-2 → plan-eval → graybox-2 → plan-eval → graybox-4 → graybox-5 → graybox-6 → [graybox-7 if bugs]
 
 ### asset: Asset Pipeline
 - asset-1: art-direction (style, palette, 2D/3D/mixed decision)
@@ -76,7 +84,7 @@ Stage order:
 - writing-5: writing-loop (per scene: brief → draft → voice check → integration check — repeating)
 
 ### testing: Unit Testing
-- testing-1: test-scaffold (GUT 9.6.0 installation, test directory structure, verify setup — one-time, after graybox-3)
+- testing-1: test-scaffold (GUT 9.6.0 installation, test directory structure, verify setup — one-time, after graybox-1)
 - testing-2: test-loop (per mechanic: identify testable units, write GUT tests, run, update design doc — repeating)
 
 ### feel: Feel & Details (on-demand)
@@ -97,19 +105,24 @@ Starts Stage 0 (Meta-Workflow) with the Workflow Engineer persona.
 ```
 /start-stage graybox-1
 ```
-Starts the Graybox Mechanic Spec stage with the Game Designer persona.
+Starts the Project Initiator stage — one-time Godot project setup (visual language + scaffold) with the Senior Godot Developer persona.
 
 ```
-/start-stage graybox-5
+/start-stage graybox-2 player-movement
 ```
-Starts the Graybox Performance Guidelines stage with the Senior Godot Developer persona.
+Starts the Plan Generator for the `player-movement` mechanic — translates the approved mechanic design into a step-by-step execution plan.
 
 ```
-/start-stage graybox-7
+/start-stage graybox-5 player-movement
 ```
-Starts the Multiplayer Scaffold stage (conditional — only if multiplayer confirmed in gameconcept-9).
+Starts the Code Writer for the `player-movement` mechanic — executes the approved plan, writes GDScript, escalates on ambiguity.
 
 ```
-/start-stage graybox-6
+/start-stage graybox-6 player-movement
 ```
-Starts the Graybox Mechanic Loop — 12-level design conversation then generative or assisted implementation.
+Starts the Auditor for the `player-movement` mechanic — cold audit of written code against the enforcement checklist.
+
+```
+/start-stage graybox-7 player-movement
+```
+Starts the Debugger on-demand — diagnoses and fixes runtime bugs without redesigning the mechanic.

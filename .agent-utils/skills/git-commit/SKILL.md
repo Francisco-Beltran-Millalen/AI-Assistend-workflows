@@ -80,11 +80,11 @@ Run this? [yes / no / explain more]
 Propose a commit message based on the stage context:
 
 **Format:**
-- Mechanic implementation (graybox-4): `graybox: implement [mechanic name]`
+- Mechanic implementation (graybox-5): `graybox: implement [mechanic name]`
 - Asset added (asset-4): `asset: add [asset-name] + Godot integration`
 - Sound added (sound-3): `sound: add [event-name] sfx`
-- Design artifact (gameconcept, graybox-1/2, asset-1/2, sound-1/2): `docs: [stage] [artifact name]`
-- Scaffold / setup (graybox-3): `chore: scaffold Godot project`
+- Design artifact (gdd/architecture/mechanic, graybox-1/2/4, asset-1/2, sound-1/2): `docs: [stage] [artifact name]`
+- Scaffold / setup (graybox-1): `chore: scaffold Godot project`
 - Meta / workflow (stage 0): `workflow: [what was fixed or added]`
 
 Example:

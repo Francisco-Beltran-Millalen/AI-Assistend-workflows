@@ -12,20 +12,20 @@ Establish the foundational narrative frame for the game: the central question th
 
 ## Input Artifacts
 
-- `docs/game-description.md` — game's core loop, mechanics, genre, and tone
-- `docs/game-architecture.md` — cross-cutting decisions including whether narrative is in scope
+- `docs/agent-gdd.xml` — game's core loop, mechanics, genre, and tone
+- `docs/architecture/*.md` — cross-cutting decisions including whether narrative is in scope
 - `docs/mechanic-spec.md` — core mechanics (needed for mechanic–narrative bridges)
 
 ## Process
 
 ### 1. Review Game Context
 
-Read `docs/game-description.md` and `docs/game-architecture.md`. Summarize aloud:
+Read `docs/agent-gdd.xml` and `docs/architecture/*.md`. Summarize aloud:
 - Genre and core loop
-- Any narrative elements already decided in gameconcept
-- Whether `docs/game-architecture.md` flags narrative/dialogue as in scope
+- Any narrative elements already decided in gdd-kickstart
+- Whether `docs/architecture/*.md` flags narrative/dialogue as in scope
 
-**If gameconcept-9 explicitly flags "no narrative/dialogue":** Surface this to the user and ask: "Game architecture marks narrative as out of scope. Do you want to proceed with the writing phase anyway, or is this for a future iteration?" Wait for confirmation before continuing.
+**If `docs/agent-gdd.xml` explicitly flags "no narrative/dialogue":** Surface this to the user and ask: "The GDD marks narrative as out of scope. Do you want to proceed with the writing phase anyway, or is this for a future iteration?" Wait for confirmation before continuing.
 
 ### 2. Story Seed (2 turns)
 
@@ -142,7 +142,7 @@ On completion, export the session log:
 
 ## Exit Criteria
 
-- [ ] Narrative scope confirmed (or overridden) based on gameconcept-9
+- [ ] Narrative scope confirmed (or overridden) based on `docs/agent-gdd.xml`
 - [ ] Central question articulated in one sentence and approved by user
 - [ ] Emotional core articulated in one sentence
 - [ ] At least two themes identified and tied to mechanics or world elements
@@ -152,3 +152,4 @@ On completion, export the session log:
 - [ ] At least one mechanic–narrative bridge identified
 - [ ] `docs/story-foundation.md` written
 - [ ] User approved the artifact
+

@@ -2,7 +2,7 @@
 
 Reference library of game development technique documents. Each file covers a problem category: the core sub-problems, established techniques with tradeoff tables, composability notes, 2D/3D variations, Nintendo reference examples, and Godot 4.x implementation guidance.
 
-**When to consult:** During graybox-6 Level 5 (Behavior Logic) and Level 10 (Godot Mapping), when designing how a mechanic should work and which Godot APIs implement it. Also useful during graybox-1 (Mechanic Spec) when identifying edge cases per mechanic.
+**When to consult:** During mechanic-2 (Mechanic Design Loop) when designing how a mechanic should work. Also useful during graybox-4 (Rule Enforcer) and graybox-5 (Code Writer) to identify the correct Godot APIs and edge case handling.
 
 **What each file contains (per problem area):**
 - Technique comparison table with tradeoffs

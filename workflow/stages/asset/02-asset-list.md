@@ -15,7 +15,7 @@ Produce a complete, prioritized list of every asset that needs to be made before
 - `docs/art-direction.md` — pipeline track (2D/3D/mixed), style guide
 - `docs/mechanic-spec.md` — every entity that exists in the game
 - `docs/graybox-visual-language.md` — the graybox geometry for each entity (these are what get replaced)
-- `docs/game-description.md` — setting, tone, any mentioned characters or environments (gameconcept-4)
+- `docs/agent-gdd.xml` — setting, tone, any mentioned characters or environments 
 
 ## Process
 
@@ -131,3 +131,4 @@ Present the full list. Confirm scope — cut anything that isn't needed for the 
 - [ ] Production order agreed with user
 - [ ] Scope cut confirmed
 - [ ] `docs/asset-list.md` written
+

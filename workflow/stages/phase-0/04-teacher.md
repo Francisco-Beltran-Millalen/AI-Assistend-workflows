@@ -132,17 +132,18 @@ When the user signals they're done (or when the topic is exhausted), deliver a r
 Read whatever artifacts exist. Scan `graybox-prototype/` if it exists — look at the folder structure, key source files (systems, components, game loop), and any patterns that stand out.
 
 Priority reading order:
-1. `docs/game-description.md` — game concept, genre, references, unique angle (gameconcept-4)
-2. `docs/knowledge-research.md` — knowledge gaps and research findings (gameconcept-8, if complete)
-3. `docs/references-analysis.md` — genre analysis, reference game analysis (gameconcept-1, if complete)
-4. `docs/mechanic-spec.md` — all mechanics and feel contracts (if graybox-1 complete)
-5. `docs/graybox-visual-language.md` — entity geometry, colors, camera setup (if graybox-2 complete)
-6. `graybox-prototype/` — current Godot codebase (if graybox-3 complete)
-7. `docs/art-direction.md` — style, palette, 2D/3D decision (if asset-1 complete)
-8. `docs/asset-list.md` — asset inventory and status (if asset-2 complete)
-9. `docs/sound-direction.md` — sonic identity and tonal rules (if sound-1 complete)
-10. `docs/sound-event-list.md` — SFX event list (if sound-2 complete)
-11. `docs/adrs/` — architecture decisions
+1. `docs/agent-gdd.xml` — game concept, genre, references, unique angle 
+2. `docs/human-gdd.md` — full GDD with research, visuals, and technical roadmap
+3. `docs/architecture/*.md` — system scope, data flow, edge cases, components, scaffold, contracts
+4. `docs/mechanic-spec.md` — all mechanics and feel contracts (if mechanic-1 complete)
+5. `docs/mechanic-designs/` — individual mechanic blueprints (if mechanic-2 complete)
+6. `docs/graybox-visual-language.md` — entity geometry, colors, camera setup (if graybox-1 complete)
+7. `graybox-prototype/` — current Godot codebase (if graybox-1 complete)
+8. `docs/art-direction.md` — style, palette, 2D/3D decision (if asset-1 complete)
+9. `docs/asset-list.md` — asset inventory and status (if asset-2 complete)
+10. `docs/sound-direction.md` — sonic identity and tonal rules (if sound-1 complete)
+11. `docs/sound-event-list.md` — SFX event list (if sound-2 complete)
+12. `docs/adrs/` — architecture decisions
 
 Build a mental question bank organized by category.
 
@@ -184,7 +185,7 @@ Work through the question bank category by category. Adapt the number of questio
 - What trade-offs did the choice of Godot introduce?
 - What alternatives were considered for [specific technical choice]?
 
-**Category: Visual Language & Graybox** (if graybox-2 complete)
+**Category: Visual Language & Graybox** (if graybox-1 complete)
 - What geometry represents [entity type] in the graybox and why?
 - How is the camera set up, and what view angle was chosen?
 - What does each color communicate at a glance?
@@ -423,3 +424,4 @@ No required artifacts for teaching or knowledge test sessions. Export the log if
 
 **All modes:**
 - [ ] Session log optionally exported via `/export-log teacher`
+

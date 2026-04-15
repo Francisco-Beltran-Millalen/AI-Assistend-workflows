@@ -12,7 +12,7 @@ Establish the tonal vocabulary of the game's SFX. Every sound produced after thi
 
 ## Input Artifacts
 
-- `docs/game-description.md` — tone, setting, core fantasy, references (gameconcept-4)
+- `docs/agent-gdd.xml` — tone, setting, core fantasy, references 
 - `docs/art-direction.md` — visual style (sound should complement it)
 - `docs/mechanic-spec.md` — what kind of actions happen in this game
 
@@ -109,3 +109,4 @@ Present the sound direction document. Ask: "If you heard a sound that followed t
 - [ ] Forbidden sounds listed
 - [ ] User has approved the sound direction
 - [ ] `docs/sound-direction.md` written
+
