@@ -60,7 +60,7 @@ For each step in the execution plan, in order:
 - No magic numbers — every gameplay value is `@export var` or `const`
 - `set_process(false)` and `set_physics_process(false)` called in `_ready()` unless the plan explicitly enables them
 - No `get_parent()`, no `$SiblingName` — only children, Autoloads, signals
-- Debug code gated behind `DebugManager.debug_enabled`
+- Debug instrumentation must use `DebugOverlay.push()` / `BaseDebugContext` contracts and respect the `OS.is_debug_build()` guard
 
 **When you hit ambiguity:**
 > "⚠️ Step [N] is ambiguous. The plan says: '[quote from plan]'. This could mean:

@@ -59,7 +59,7 @@ Beyond the enforcement checklist, check that the implementation matches the desi
 
 - Does the feel contract have a traceable implementation path? (Same as plan-eval C1 — but now checking the actual code, not the plan)
 - Does every edge case from Level 5 have a code path? Walk it.
-- Does the debug indicator from Level 4's contract exist and is it gated by `DebugManager.debug_enabled`?
+- Does the debug indicator from Level 4's contract exist and does it flow through `DebugOverlay.push()` / `BaseDebugContext` with the required debug-build guard?
 - Does every signal from Level 3 exist, have typed parameters, and have a connected listener?
 
 ### Phase 3: Produce the Report

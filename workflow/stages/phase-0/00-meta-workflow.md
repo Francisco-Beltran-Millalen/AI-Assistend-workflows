@@ -307,6 +307,7 @@ If uncertain between two stages, present both options to the user and ask which 
 | Reference game analysis, gameplay experience, core loops, or pitch | gdd-1 through gdd-4 (`docs/human-gdd.md`) |
 | Knowledge gaps and research findings tied to roadmap items | gdd-5 (`docs/human-gdd.md`) |
 | Technical roadmap and final formal game specification | gdd-6 / gdd-7 (`docs/human-gdd.md`, `docs/agent-gdd.xml`) |
+| System map, architecture grouping, cluster batching, or cross-system coupling decisions | architecture-0 (`docs/architecture/00-system-map.md`) |
 | System boundaries, data flow, edge cases, project scaffold | architecture-1 through architecture-6 (`docs/architecture/*.md`) |
 | Mechanic list, feel contracts, input mappings, loop structure | mechanic-1 (`docs/mechanic-spec.md`) |
 | Isolated mechanic design blueprints | mechanic-2 (`docs/mechanic-designs/[slug].md`) |

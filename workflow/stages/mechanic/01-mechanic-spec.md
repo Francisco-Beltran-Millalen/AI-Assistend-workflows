@@ -15,9 +15,9 @@ Translate the GDD into a concrete, prioritized list of mechanics. Each mechanic 
 ## Input Artifacts
 
 - `docs/agent-gdd.xml` — the game concept, core mechanics, and core fantasy
-- `docs/architecture/01-scope-and-boundaries-[system].md` — what is in and out of scope
-- `docs/architecture/04-systems-and-components-[system].md` — the components that exist
-- `docs/architecture/05-project-scaffold-[system].md` — the Godot scene tree structure
+- `docs/architecture/01-scope-and-boundaries-[group].md` — what is in and out of scope
+- `docs/architecture/04-systems-and-components-[group].md` — the components that exist
+- `docs/architecture/05-project-scaffold-[group].md` — the Godot scene tree structure
 
 ---
 
@@ -40,6 +40,8 @@ Read the architecture input artifacts above. For each mechanic candidate:
 - Is it within scope per `01-scope-and-boundaries`?
 - Which system or component in `04-systems-and-components` owns it?
 - Does it fit in the Godot scene tree defined in `05-project-scaffold`?
+
+If the owning system lives inside a TIGHT cluster, read the cluster-scoped `[group]` artifact and use the per-system sub-sections inside it. Do not assume one architecture file per mechanic owner.
 
 If a mechanic is outside scope, flag it immediately and ask the user whether to add it to scope or cut it.
 

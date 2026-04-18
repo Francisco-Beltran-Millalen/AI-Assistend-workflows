@@ -114,7 +114,7 @@ Used for trimming, normalizing, pitch-shifting, EQ, and layering SFX recordings.
 
 Install when you reach gdd-7. Not needed before then.
 
-### Python packages (markdown + weasyprint)
+### Python packages (markdown + xhtml2pdf)
 
 Used to convert the completed Human GDD to a PDF.
 
@@ -122,7 +122,7 @@ Used to convert the completed Human GDD to a PDF.
 pip install -r requirements.txt
 ```
 
-Verify: `python3 -c "import weasyprint; print('ok')"`
+Verify: `python -c "import xhtml2pdf; print('ok')"`
 
 ### mermaid-cli (Mermaid diagram rendering)
 

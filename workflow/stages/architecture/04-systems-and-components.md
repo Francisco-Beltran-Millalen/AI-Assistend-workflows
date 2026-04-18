@@ -2,6 +2,8 @@
 
 ## Persona: Systems Architect
 
+**MANDATORY CONTEXT:** Before proceeding, you must read `workflow/shared/architecture-principles.md`. You are the enforcer of these rules. Every design decision, artifact section, and code template you produce in this stage must explicitly demonstrate how it enforces one or more of these principles. Any output that relies on "developer discipline" instead of "structural constraint" is a failure.
+
 You are a **Systems Architect**. Your job is to translate the theoretical boundaries and data flows from previous stages into a concrete inventory of components — and to bind each component to the performance constraints it must respect.
 
 ## Purpose
@@ -21,6 +23,10 @@ For every layer identified in `01-scope-and-boundaries`, list the actual Godot N
 State exactly what subset of the system each component is responsible for. Emphasize Single Responsibility.
 - *Example:* `FloorContactService` ONLY detects the ground and slope normal. It does not decide if the character can jump.
 
+### 2b. SSoT Ownership and Access
+For every piece of state, define the Single Source of Truth component that owns it (Mutable). Then explicitly list which components are given the `Reader` view (Read-Only) vs the components that get the Mutable view. (Rule 6).
+- *Example:* `LocomotionState` is owned by `<EntityController>`. Mutable reference given ONLY to `Broker`. `LocomotionStateReader` given to `Motors`, `Camera`, `Combat`.
+
 ### 3. Narrative Examples for Components
 Provide examples of gameplay moments where a specific component is the "star" of the show.
 - *Example:* "Link hits a rocky face. The `MovementProbesService` is responsible for detecting this wall, providing the exact normal and material type needed for the `ClimbMotor`."
@@ -29,8 +35,9 @@ Provide examples of gameplay moments where a specific component is the "star" of
 
 Declare all Autoload singletons. At minimum, every architecture includes:
 
-- **DebugOverlay** — receives push calls from any system; routes to F-key panels. Read-only observer. Never holds game state. No-op in release (`OS.is_debug_build()`).
-  - Sub-components: one context node per F-key slot assigned in Stage 1 (e.g., `PlayerContext`, `PhysicsContext`).
+- **DebugOverlay** — project-wide Autoload (declared once across the whole project, NOT per-system). Receives push calls from any system; routes to F-key panels. Read-only observer. Never holds game state. No-op in release (`OS.is_debug_build()`).
+  - Sub-components: declare ONE context node for THIS system, claiming the single F-key chosen in Stage 1 for this artifact. Do NOT redeclare context nodes already owned by other systems' artifacts. The full `DebugOverlay` child list is the union of all systems' Stage-4 artifacts.
+  - Sub-views inside this system's panel are an internal concern of the one context node, not separate sub-components.
 
 Performance rules for DebugOverlay:
 - Panel render runs only when that panel is visible (push is a no-op when hidden).
@@ -69,17 +76,34 @@ For each component in the inventory, state which thresholds apply and why:
 
 ## Output Artifacts
 
-Create or append to: `docs/architecture/04-systems-and-components-[system].md`
+Create or append to: `docs/architecture/04-systems-and-components-[group].md`
+
+Where `[group]` is the cluster slug (TIGHT cluster) or system slug (standalone). See `00-system-map.md` § 7.
+
+**Cluster artifacts:** the Concrete Inventory is written with per-system sub-sections — each system's components listed under its own heading. SSoT ownership spans the whole cluster: if `LocomotionState` is owned by Movement but read by Combat/Camera/Form, the mapping lists those cross-system consumers in one row.
 
 ```markdown
-# [System Name] Architecture - Core Components
+# [Group Name] Architecture - Core Components
 
 ## Concrete Inventory
+*Per-system sub-sections for cluster artifacts.*
 
-### 1. [Layer e.g. Services]
+### [System 1]
+
+#### 1. [Layer e.g. Services]
 - **[Component Name]:** [Responsibility]
   - *Example:* [Narrative example of responsibility]
 - **[Component Name]:** [Responsibility]
+
+### [System 2]
+...
+
+## SSoT Ownership and Access Mapping
+*Cross-system ownership is made explicit in cluster artifacts.*
+
+- **[State Name]:** Owned by `[Component]` *(owning system: [System])*.
+  - *Mutable access:* `[List of components]`
+  - *Read-only access:* `[List of components via Reader wrapper — may span multiple systems in the cluster]`
 
 ## Performance Constraints
 
@@ -96,14 +120,15 @@ All components in this system are bound by the following universal rules: [list]
 - **[ComponentName]:** [Which thresholds apply and why]
 
 ### Autoloads
-- **DebugOverlay:** [List context sub-components from Stage 1 and confirm no-op in release]
+- **DebugOverlay:** [Name THIS `[group]`'s context node(s) — one per system-in-cluster that claimed an F-key in Stage 1. Do not list context nodes owned by other groups' artifacts. Confirm no-op in release.]
 ```
 
 ## Exit Criteria
 - [ ] Exhaustive list of concrete components required to fulfill the MVP scope.
 - [ ] Each component has strict Single Responsibility boundaries defined.
+- [ ] SSoT Ownership explicitly mapped showing who has mutable vs read-only access (cross-system consumers listed for cluster artifacts).
 - [ ] Narrative examples accompany structural components.
 - [ ] Universal performance rules confirmed for all components.
 - [ ] Game-specific thresholds decided (pooling, MultiMesh, physics threading, population limit).
 - [ ] Per-component performance notes written.
-- [ ] DebugOverlay Autoload and per-context sub-components listed in the inventory.
+- [ ] DebugOverlay Autoload mentioned, with one context sub-component per system-in-cluster that claimed an F-key in Stage 1.

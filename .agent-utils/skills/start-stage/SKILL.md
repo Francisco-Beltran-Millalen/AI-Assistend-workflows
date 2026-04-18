@@ -15,6 +15,8 @@ Start the specified workflow stage.
    - If `0`: Read `workflow/stages/phase-0/00-meta-workflow.md`
    - If `teacher`: Read `workflow/stages/phase-0/04-teacher.md`
    - If `plan-eval`: Read `workflow/stages/phase-0/05-plan-eval.md`
+   - If `architecture-0`: Read `workflow/stages/architecture/00-system-map.md`
+   - If `architecture-audit`: Read `workflow/stages/architecture/07-architecture-audit.md`
    - If `gdd-<stage-number>`: Read `workflow/stages/gdd-kickstart/<NN>-*.md`
    - If `<phase-name>-<stage-number>`: Read `workflow/stages/<phase-name>/<NN>-*.md`
      where `<NN>` is the stage number zero-padded to 2 digits (1 → `01`, 9 → `09`, 10 → `10`)
@@ -41,12 +43,14 @@ Start the specified workflow stage.
 - gdd-7: agent-export
 
 ### architecture: System Architecture
+- architecture-0: system-map (project-wide coupling map and batching plan)
 - architecture-1: scope-and-boundaries
 - architecture-2: data-flow
 - architecture-3: edge-cases
 - architecture-4: systems-and-components
 - architecture-5: project-scaffold
 - architecture-6: interfaces-and-contracts
+- architecture-audit: architecture-audit (cross-artifact consistency check after all 6 artifacts exist for the target `[group]`)
 
 ### mechanic: Mechanic Analysis
 - mechanic-1: mechanic-spec (extract mechanics from GDD, cross-reference architecture, write feel contracts — one-time)

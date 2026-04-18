@@ -17,12 +17,12 @@ Produce one `docs/mechanic-designs/[slug].md` per mechanic, per session. Each do
 ## Input Artifacts
 
 - `docs/mechanic-spec.md` — mechanic list, feel contracts, priority order
-- `docs/architecture/01-scope-and-boundaries-[system].md`
-- `docs/architecture/02-data-flow-[system].md`
-- `docs/architecture/03-edge-cases-[system].md`
-- `docs/architecture/04-systems-and-components-[system].md`
-- `docs/architecture/05-project-scaffold-[system].md`
-- `docs/architecture/06-interfaces-and-contracts-[system].md`
+- `docs/architecture/01-scope-and-boundaries-[group].md`
+- `docs/architecture/02-data-flow-[group].md`
+- `docs/architecture/03-edge-cases-[group].md`
+- `docs/architecture/04-systems-and-components-[group].md`
+- `docs/architecture/05-project-scaffold-[group].md`
+- `docs/architecture/06-interfaces-and-contracts-[group].md`
 - `docs/mechanic-designs/` — existing design documents for previously analyzed mechanics
 
 ---
@@ -42,6 +42,8 @@ For each level below, present your findings to the user, adjust based on their f
 After each confirmation, immediately update the design document with the locked content.
 
 If `docs/mechanic-designs/[slug].md` already exists with `Status: In Progress`, read it and resume from the first level that is still `*(pending)*`.
+
+Before Level 1, identify which architecture `[group]` owns this mechanic. If the owner system belongs to a TIGHT cluster, read the cluster-scoped architecture artifacts and use the matching per-system sub-sections plus any cross-system sections relevant to the mechanic.
 
 ---
 
@@ -91,7 +93,7 @@ Create the document shell at start of session:
 
 **Question:** Is every part of this mechanic within the defined project scope?
 
-Read `docs/architecture/01-scope-and-boundaries-[system].md`.
+Read `docs/architecture/01-scope-and-boundaries-[group].md`.
 
 Go through the mechanic behavior piece by piece. For each behavior:
 - Is it explicitly **in scope**? State which boundary allows it.
@@ -119,7 +121,7 @@ Go through the mechanic behavior piece by piece. For each behavior:
 
 **Question:** Which existing systems and nodes own this mechanic, and what new nodes (if any) does it require?
 
-Read `docs/architecture/04-systems-and-components-[system].md` and `05-project-scaffold-[system].md`.
+Read `docs/architecture/04-systems-and-components-[group].md` and `05-project-scaffold-[group].md`.
 
 For each part of the mechanic:
 - Identify which existing system owns it. Use exact names from `04-systems-and-components`.
@@ -151,7 +153,7 @@ For each part of the mechanic:
 
 **Question:** What data does this mechanic read, mutate, and emit — and does it flow through the correct channels?
 
-Read `docs/architecture/02-data-flow-[system].md`.
+Read `docs/architecture/02-data-flow-[group].md`.
 
 Map the mechanic's full data lifecycle:
 - **Input:** What triggers this mechanic? Where does the input come from? (PlayerInput node, signal, timer, physics callback?)
@@ -186,7 +188,7 @@ Map the mechanic's full data lifecycle:
 
 **Question:** What is the exact GDScript interface this mechanic implements, and does it conform to the base class contracts?
 
-Read `docs/architecture/06-interfaces-and-contracts-[system].md`.
+Read `docs/architecture/06-interfaces-and-contracts-[group].md`.
 
 For each node involved in this mechanic:
 - Which base class or interface does it inherit from or implement?
@@ -248,7 +250,7 @@ func [method_name]([param]: [Type]) -> [ReturnType]:
 
 **Question:** How does this mechanic behave under every known system-level edge case, plus its own mechanic-specific failure modes?
 
-Read `docs/architecture/03-edge-cases-[system].md`.
+Read `docs/architecture/03-edge-cases-[group].md`.
 
 **Part A — System edge cases:** Go through every edge case in `03-edge-cases`. For each one: how does *this* mechanic behave? State the specific resolution (ignore, queue, clamp, reset, emit signal, etc.).
 
@@ -286,7 +288,7 @@ After all 5 levels are confirmed, write the final handoff section:
 
 **Reading order for the Code Writer (`graybox-5`):**
 1. Read this document top to bottom
-2. Read `docs/architecture/06-interfaces-and-contracts-[system].md` for base class definitions
+2. Read `docs/architecture/06-interfaces-and-contracts-[group].md` for base class definitions
 3. Open `graybox-prototype/` and locate the nodes listed in Level 2
 4. Implement each stub from Level 4 in order
 5. Verify each edge case from Level 5 manually after implementation

@@ -2,6 +2,139 @@
 
 ---
 
+## 2026-04-18: Final audit cleanup — architecture import routing and explainer coverage
+
+**Problem:** The last review pass found three small but real workflow mismatches. Stage 0 import detection still skipped `architecture-0`, the `explain-artifact` skill still omitted both `architecture-0` and `architecture-audit`, and `graybox-2` still had duplicated pre-condition numbering.
+
+**Cause:** These were tail-end consistency gaps left after the larger architecture clustering and graybox contract refactors.
+
+**Fix:**
+- Added an explicit Stage 0 heuristic row for system maps, architecture grouping, cluster batching, and cross-system coupling so those imports route to `architecture-0`.
+- Expanded the `explain-artifact` stage map to include `architecture-0` and `architecture-audit`, keeping the explainer aligned with the current architecture workflow.
+- Renumbered the `graybox-2` pre-condition checklist so the plan generator prompt reads as a clean sequential gate again.
+
+**Files:**
+- `workflow/stages/phase-0/00-meta-workflow.md`
+- `.agent-utils/skills/explain-artifact/SKILL.md`
+- `workflow/stages/graybox/02-plan-generator.md`
+- `docs/workflow-changelog.md`
+
+---
+
+## 2026-04-18: Re-audit fixes — graybox debug flow aligned with DebugOverlay contracts
+
+**Problem:** A further audit found that the graybox implementation stages still referred to a legacy `DebugManager` pattern, while the architecture phase had already standardized on `DebugOverlay` plus `BaseDebugContext`. This created a direct contract break: graybox setup would build the wrong debug singleton, and later plan/code/audit stages would enforce the wrong integration model.
+
+**Cause:** The architecture debug overlay contract was introduced after the older graybox debug instructions, but the graybox stage files were not fully normalized afterward.
+
+**Fix:**
+- Updated `graybox-1` to create the `DebugOverlay` autoload instead of `DebugManager`, wire the `toggle_debug_overlay` input action, and instantiate the required `BaseDebugContext` children for the current `[group]`.
+- Updated `graybox-2` so execution plans describe debug hooks in terms of `DebugOverlay.push()` payloads and consuming `BaseDebugContext` nodes.
+- Updated `graybox-5` and `graybox-6` so implementation and audit rules enforce the `DebugOverlay` / `BaseDebugContext` contract instead of `DebugManager.debug_enabled`.
+
+**Files:**
+- `workflow/stages/graybox/01-project-initiator.md`
+- `workflow/stages/graybox/02-plan-generator.md`
+- `workflow/stages/graybox/05-code-writer.md`
+- `workflow/stages/graybox/06-auditor.md`
+- `docs/workflow-changelog.md`
+
+---
+
+## 2026-04-18: Re-audit fixes — downstream mechanic/graybox stages now consume architecture `[group]` artifacts
+
+**Problem:** A second audit found that the architecture phase had already moved to cluster-scoped `[group]` artifacts, but several downstream stages still hardcoded per-system architecture paths. `mechanic-1`, `mechanic-2`, `graybox-1`, `graybox-2`, and `graybox-4` all referenced `docs/architecture/*-[system].md`, which would cause later phases to miss cluster-scoped architecture documents entirely. The new `explain-artifact` skill also still taught users to think in terms of `-[system]` dynamic suffixes.
+
+**Cause:** The architecture refactor landed first, but the mechanic and graybox handoff stages were not fully normalized afterward. The result was a split-brain workflow: architecture produced `[group]` artifacts, while its consumers still looked for `[system]` files.
+
+**Fix:**
+- Updated `mechanic-1`, `mechanic-2`, `graybox-1`, `graybox-2`, and `graybox-4` to reference `docs/architecture/*-[group].md`.
+- Added explicit guidance in mechanic/graybox stages to identify the owning architecture `[group]` and use per-system sub-sections inside cluster-scoped artifacts when relevant.
+- Updated the `explain-artifact` skill text so it refers to dynamic `-[group]` suffixes and multiple architecture groups.
+
+**Files:**
+- `workflow/stages/mechanic/01-mechanic-spec.md`
+- `workflow/stages/mechanic/02-mechanic-design.md`
+- `workflow/stages/graybox/01-project-initiator.md`
+- `workflow/stages/graybox/02-plan-generator.md`
+- `workflow/stages/graybox/04-rule-enforcer.md`
+- `.agent-utils/skills/explain-artifact/SKILL.md`
+- `docs/workflow-changelog.md`
+
+---
+
+## 2026-04-18: Audit fixes — architecture-0 registration, [group] naming, and GDD section numbering
+
+**Problem:** A pre-commit audit found that the new cluster-scoped architecture workflow was only partially wired into the repo. `AGENTS.md` still described architecture artifacts as per-system (`[system]`) and did not mention the new required `architecture-0` system-map stage. The `start-stage` and `export-log` skills also had no explicit handling for `architecture-0`. Separately, `AGENTS.md` still tracked `gdd-2` through `gdd-6` against the wrong Human GDD section numbers.
+
+**Cause:** The stage files and supporting docs were updated at different times. The architecture stage files had already moved to `[group]` semantics and required `00-system-map.md`, but the canonical workflow registry and CLI skill maps still reflected the older per-system model.
+
+**Fix:**
+- Updated `AGENTS.md` architecture stage table, stage-detection logic, and project-status checklist to use `architecture-0`, `00-system-map.md`, and `[group]` artifact names.
+- Added `architecture-0` explicit path handling to the `start-stage` skill and stage-name mapping to the `export-log` skill.
+- Corrected the `gdd-kickstart` status checklist in `AGENTS.md` so gdd-2 through gdd-6 map to Human GDD Sections 4 through 8.
+
+**Files:**
+- `AGENTS.md`
+- `.agent-utils/skills/start-stage/SKILL.md`
+- `.agent-utils/skills/export-log/SKILL.md`
+- `docs/workflow-changelog.md`
+
+---
+
+## 2026-04-18: GDD kickstart — practical examples, visual anti-references, and condensed technical framing
+
+**Problem:** After running a first full GDD, the `gdd-kickstart` phase had three weak spots. The stages asked good questions, but lacked concrete examples of strong vs weak answers. The workflow captured positive references, but not explicit image-based anti-references with a rationale. And the `gdd-6` technical section encouraged a broader roadmap dump than the Human GDD actually needs that early.
+
+**Cause:** The phase was optimized for open-ended discovery, but not enough for calibration. Without examples, users can answer too vaguely. Without anti-reference images, the workflow defines only the target, not the forbidden zone. Without tighter `gdd-6` framing, the GDD can start duplicating work meant for later architecture and mechanic phases.
+
+**Fix:**
+- Added short strong/weak answer examples directly inside `gdd-1` through `gdd-6` so the coaching happens at the point of use.
+- Extended the Human GDD template and `gdd-1` to support Section 1 visual anti-references with explicit rejection rationales.
+- Updated `gdd-7` so it strips coaching/examples/placeholders but preserves resolved anti-references in `docs/agent-gdd.xml` as structured negative constraints under `<anti_references>`.
+- Tightened `gdd-6` to a compact decision brief plus MVP boundaries and directional milestones instead of a pseudo-architecture deep dive.
+- Updated `asset-1` input review notes so the Art Director explicitly reads already-defined anti-references.
+
+**Files:**
+- `workflow/templates/human-gdd-template.md`
+- `workflow/stages/gdd-kickstart/01-vision-and-references.md`
+- `workflow/stages/gdd-kickstart/02-gameplay-experience.md`
+- `workflow/stages/gdd-kickstart/03-systems-design.md`
+- `workflow/stages/gdd-kickstart/04-aesthetics-and-world.md`
+- `workflow/stages/gdd-kickstart/05-knowledge-research.md`
+- `workflow/stages/gdd-kickstart/06-technical-roadmap.md`
+- `workflow/stages/gdd-kickstart/07-agent-export.md`
+- `workflow/stages/asset/01-art-direction.md`
+- `docs/workflow-changelog.md`
+
+---
+
+## 2026-04-18: GDD kickstart consistency pass — placeholder replacement, folder names, PDF export docs
+
+**Problem:** The `gdd-kickstart` phase had internal contradictions after the full-template change. gdd-1 now creates the full GDD skeleton up front, but gdd-2 through gdd-6 still instructed the agent to "append" sections, which would encourage duplicated headers instead of filling the existing placeholders. Two stage files also referenced asset subfolders that gdd-1 never creates (`5-systems-design`, `6-aesthetics-and-world`). Separately, gdd-7, `PREREQUISITES.md`, and the exporter script docs still referred to `weasyprint` and `python3`, while the actual implementation uses `xhtml2pdf` and this repo is commonly used on Windows where `python` is the safer default executable name.
+
+**Cause:** gdd-1 and the template were modernized first, but the downstream stage instructions and PDF-export documentation were not fully normalized afterward.
+
+**Fix:**
+- Updated gdd-2 through gdd-6 to explicitly replace the existing section placeholders instead of appending new sections.
+- Added guidance in gdd-2 through gdd-4 to move image slots from the Image Gallery into the target section before replacing them with actual links.
+- Fixed the section-folder examples in gdd-3 and gdd-4 to match the real directories created by gdd-1 and listed in the template (`5-systems`, `6-aesthetics`).
+- Updated gdd-7 and `workflow/scripts/gdd_to_pdf.py` usage text to use `python workflow/scripts/gdd_to_pdf.py`.
+- Corrected PDF-export dependency references from `weasyprint` to `xhtml2pdf` in the script docs and `PREREQUISITES.md`.
+
+**Files:**
+- `workflow/stages/gdd-kickstart/02-gameplay-experience.md`
+- `workflow/stages/gdd-kickstart/03-systems-design.md`
+- `workflow/stages/gdd-kickstart/04-aesthetics-and-world.md`
+- `workflow/stages/gdd-kickstart/05-knowledge-research.md`
+- `workflow/stages/gdd-kickstart/06-technical-roadmap.md`
+- `workflow/stages/gdd-kickstart/07-agent-export.md`
+- `workflow/scripts/gdd_to_pdf.py`
+- `PREREQUISITES.md`
+- `docs/workflow-changelog.md`
+
+---
+
 ## 2026-04-15: Pre-commit audit — stage header naming, artifact references, section consistency
 
 **Problem:** Full workflow audit before commit revealed 4 categories of issues.

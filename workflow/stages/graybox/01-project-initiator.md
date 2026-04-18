@@ -15,9 +15,9 @@ One-time setup of the Godot graybox project. Runs once at the start of the grayb
 ## Input Artifacts
 
 - `docs/agent-gdd.xml` — 2D vs 3D decision, game description
-- `docs/architecture/04-systems-and-components-[system].md` — every component that needs a scene or script
-- `docs/architecture/05-project-scaffold-[system].md` — the exact Godot scene tree hierarchy
-- `docs/architecture/06-interfaces-and-contracts-[system].md` — base class definitions
+- `docs/architecture/04-systems-and-components-[group].md` — every component that needs a scene or script
+- `docs/architecture/05-project-scaffold-[group].md` — the exact Godot scene tree hierarchy
+- `docs/architecture/06-interfaces-and-contracts-[group].md` — base class definitions
 
 ---
 
@@ -33,7 +33,7 @@ Read `docs/agent-gdd.xml`. Confirm the rendering mode with the user:
 - **2D** — `ColorRect`, `Polygon2D`, `Sprite2D` with flat shapes
 
 #### A2. Extract Entities
-From `docs/architecture/04-systems-and-components-[system].md`, list every entity that will exist in the scene: player, enemies, terrain, interactables, projectiles.
+From `docs/architecture/04-systems-and-components-[group].md`, list every entity that will exist in the scene: player, enemies, terrain, interactables, projectiles.
 
 #### A3. Assign Geometry and Color
 Assign each entity a Godot primitive node type and a high-contrast, distinct color. Purpose: the prototype must be readable with zero real assets.
@@ -89,7 +89,7 @@ Confirm with the user before proceeding to Part B.
 ### Part B: Project Scaffold
 
 #### B1. Create Godot Project Structure
-Create the `graybox-prototype/` directory and all folders specified in `docs/architecture/05-project-scaffold-[system].md`.
+Create the `graybox-prototype/` directory and all folders specified in `docs/architecture/05-project-scaffold-[group].md`.
 
 Standard structure:
 ```
@@ -104,7 +104,7 @@ graybox-prototype/
 ```
 
 #### B2. Implement Base Classes
-Read `docs/architecture/06-interfaces-and-contracts-[system].md`. Create a GDScript file for every base class and interface defined there. These files define the contracts — implementing nodes extend them.
+Read `docs/architecture/06-interfaces-and-contracts-[group].md`. Create a GDScript file for every base class and interface defined there. These files define the contracts — implementing nodes extend them.
 
 Save each to `graybox-prototype/scripts/base/[class_name].gd`.
 
@@ -113,40 +113,46 @@ Rules:
 - Every method that subclasses must implement: `assert(false, "Not implemented: [method_name]")` as body
 - Every method that has a default behavior: implement it here
 
-#### B3. Create the DebugManager Autoload
-Create `graybox-prototype/scripts/debug_manager.gd`:
+#### B3. Create the DebugOverlay Autoload
+Read the `DebugOverlay` and `BaseDebugContext` contracts from `docs/architecture/06-interfaces-and-contracts-[group].md`.
+
+Create `graybox-prototype/scripts/debug_overlay.gd` implementing the project-wide singleton described by the architecture:
 
 ```gdscript
+class_name DebugOverlay
 extends Node
 
-var debug_enabled: bool = false
+var panel_visible: bool = false
 
 func _ready() -> void:
-    set_process(false)
-    set_physics_process(false)
+    process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _input(event: InputEvent) -> void:
-    if event.is_action_just_pressed("ui_cancel"):  # remap to F1 in project settings
-        debug_enabled = !debug_enabled
-        _on_debug_toggled(debug_enabled)
+    if event.is_action_just_pressed("toggle_debug_overlay"):
+        panel_visible = !panel_visible
 
-func _on_debug_toggled(enabled: bool) -> void:
-    pass  # connected nodes respond to this via signal or polling debug_enabled
+func push(context_key: int, data: Dictionary) -> void:
+    if not OS.is_debug_build():
+        return
+    # route data to the matching BaseDebugContext child by panel key
 ```
 
-Register `DebugManager` as an Autoload in `project.godot`.
+Register `DebugOverlay` as an Autoload in `project.godot`.
+
+Then create the `[group]`'s required debug context nodes from `05-project-scaffold-[group].md` and `06-interfaces-and-contracts-[group].md`. Each context must extend `BaseDebugContext` and claim the F-key/panel key allocated in architecture. Do not invent a second debug singleton.
 
 #### B4. Create the Root Scene Skeleton
-Create a root scene that matches the top-level scaffold from `docs/architecture/05-project-scaffold-[system].md`. Use exact node names and types from that document. Leave all child mechanics empty — each will be filled by `graybox-5` (Code Writer) per mechanic.
+Create a root scene that matches the top-level scaffold from `docs/architecture/05-project-scaffold-[group].md`. Use exact node names and types from that document. Leave all child mechanics empty — each will be filled by `graybox-5` (Code Writer) per mechanic.
 
 #### B5. Create Input Map
-In `project.godot`, define the input actions referenced in the architecture documents. Map them to keyboard/controller defaults.
+In `project.godot`, define the input actions referenced in the architecture documents. Map them to keyboard/controller defaults, including `toggle_debug_overlay` for the debug panel toggle.
 
 #### B6. Verify Project Launches
 Open the project in Godot 4.6+. Press F5. Confirm:
 - [ ] No GDScript errors on launch
 - [ ] Root scene visible
-- [ ] F1 (or mapped key) toggles `DebugManager.debug_enabled`
+- [ ] The debug toggle action shows/hides `DebugOverlay`
+- [ ] `DebugOverlay.push()` exists and is no-op in non-debug builds
 - [ ] All base class files parse without errors
 
 ---
@@ -154,7 +160,7 @@ Open the project in Godot 4.6+. Press F5. Confirm:
 ## Output Artifacts
 
 - `docs/graybox-visual-language.md` — visual grammar for the prototype
-- `graybox-prototype/` — Godot project with base classes, DebugManager, root scene skeleton, and input map
+- `graybox-prototype/` — Godot project with base classes, DebugOverlay, context nodes, root scene skeleton, and input map
 
 ---
 
@@ -163,7 +169,8 @@ Open the project in Godot 4.6+. Press F5. Confirm:
 - [ ] Visual language document written and user-approved
 - [ ] `graybox-prototype/` directory created with correct folder structure
 - [ ] All base classes from `06-interfaces-and-contracts` exist as GDScript files in `scripts/base/`
-- [ ] `DebugManager` autoload exists and registers correctly
+- [ ] `DebugOverlay` autoload exists and registers correctly
+- [ ] Required `BaseDebugContext` child nodes for this `[group]` exist
 - [ ] Root scene skeleton matches `05-project-scaffold`
 - [ ] Input map defined
 - [ ] Project launches without errors (F5 green)

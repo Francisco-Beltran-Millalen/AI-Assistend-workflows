@@ -17,6 +17,8 @@
 
 <!-- IMAGE: 1-hook-and-vision/mood-01 | Opening mood image — tone/atmosphere of the game -->
 <!-- IMAGE: 1-hook-and-vision/mood-02 | Secondary mood board — reinforces visual identity -->
+<!-- IMAGE: 1-hook-and-vision/anti-01 | Anti-reference image — a visual direction we explicitly reject -->
+<!-- IMAGE: 1-hook-and-vision/anti-02 | Second anti-reference image — reinforces what this game should not look like -->
 <!-- IMAGE: 2-reference-analysis/ref-01 | Reference game screenshot or artwork -->
 <!-- IMAGE: 2-reference-analysis/ref-02 | Second reference game visual -->
 <!-- IMAGE: 4-gameplay-experience/loop-01 | Core gameplay loop diagram or in-action GIF -->
@@ -31,6 +33,16 @@
 > *[gdd-1: Vision and References — Creative Director]*
 
 [Narrative hook placeholder]
+
+<!-- IMAGE: 1-hook-and-vision/mood-01 | Opening mood image — tone/atmosphere of the game -->
+<!-- IMAGE: 1-hook-and-vision/mood-02 | Secondary mood board — reinforces visual identity -->
+
+### Visual Anti-References
+- **[Anti-reference 1]:** [What this image represents and why it is out of bounds for the project]
+- **[Anti-reference 2]:** [What this image represents and why it is out of bounds for the project]
+
+<!-- IMAGE: 1-hook-and-vision/anti-01 | Anti-reference image — a visual direction we explicitly reject -->
+<!-- IMAGE: 1-hook-and-vision/anti-02 | Second anti-reference image — reinforces what this game should not look like -->
 
 ## 2. Reference Analysis
 > *[gdd-1: Vision and References — Creative Director]*
@@ -86,4 +98,16 @@
 ## 8. Technical Frame & Roadmap
 > *[gdd-6: Technical Roadmap — Technical Director & Production Designer]*
 
-[Placeholder — completed in gdd-6]
+### Technical Architecture
+- **Engine:** [Placeholder]
+- **Networking/Multiplayer:** [Placeholder]
+- **Key Technical Risks:**
+    1. [Placeholder]
+    2. [Placeholder]
+
+### MVP Boundaries
+- **In scope for the first playable prototype:** [Placeholder]
+- **Explicitly out of scope for the first playable prototype:** [Placeholder]
+
+### Production Milestones
+[Placeholder — directional milestone summary completed in gdd-6]

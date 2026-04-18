@@ -41,12 +41,14 @@ Examples:
 - gdd-7 → `gdd-7-agent-export`
 
 ### architecture: System Architecture
+- architecture-0 → `architecture-0-system-map`
 - architecture-1 → `architecture-1-scope-and-boundaries`
 - architecture-2 → `architecture-2-data-flow`
 - architecture-3 → `architecture-3-edge-cases`
 - architecture-4 → `architecture-4-systems-and-components`
 - architecture-5 → `architecture-5-project-scaffold`
 - architecture-6 → `architecture-6-interfaces-and-contracts`
+- architecture-audit → `architecture-audit-architecture-audit`
 
 ### mechanic: Mechanic Analysis
 - mechanic-1 → `mechanic-1-mechanic-spec`

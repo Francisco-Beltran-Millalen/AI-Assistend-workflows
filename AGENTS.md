@@ -33,12 +33,14 @@ This is the **Game Workflow** — a structured, AI-collaborative process for bui
 
 | Stage | File | Persona | Output |
 |-------|------|---------|--------|
-| architecture-1 | `workflow/stages/architecture/01-scope-and-boundaries.md` | Systems Architect | `docs/architecture/01-scope-and-boundaries-[system].md` |
-| architecture-2 | `workflow/stages/architecture/02-data-flow.md` | Systems Architect | `docs/architecture/02-data-flow-[system].md` |
-| architecture-3 | `workflow/stages/architecture/03-edge-cases.md` | Systems Architect | `docs/architecture/03-edge-cases-[system].md` |
-| architecture-4 | `workflow/stages/architecture/04-systems-and-components.md` | Systems Architect | `docs/architecture/04-systems-and-components-[system].md` |
-| architecture-5 | `workflow/stages/architecture/05-project-scaffold.md` | Systems Architect | `docs/architecture/05-project-scaffold-[system].md` |
-| architecture-6 | `workflow/stages/architecture/06-interfaces-and-contracts.md` | Systems Architect | `docs/architecture/06-interfaces-and-contracts-[system].md` |
+| architecture-0 | `workflow/stages/architecture/00-system-map.md` | Systems Architect | `docs/architecture/00-system-map.md` |
+| architecture-1 | `workflow/stages/architecture/01-scope-and-boundaries.md` | Systems Architect | `docs/architecture/01-scope-and-boundaries-[group].md` |
+| architecture-2 | `workflow/stages/architecture/02-data-flow.md` | Systems Architect | `docs/architecture/02-data-flow-[group].md` |
+| architecture-3 | `workflow/stages/architecture/03-edge-cases.md` | Systems Architect | `docs/architecture/03-edge-cases-[group].md` |
+| architecture-4 | `workflow/stages/architecture/04-systems-and-components.md` | Systems Architect | `docs/architecture/04-systems-and-components-[group].md` |
+| architecture-5 | `workflow/stages/architecture/05-project-scaffold.md` | Systems Architect | `docs/architecture/05-project-scaffold-[group].md` |
+| architecture-6 | `workflow/stages/architecture/06-interfaces-and-contracts.md` | Systems Architect | `docs/architecture/06-interfaces-and-contracts-[group].md` |
+| architecture-audit | `workflow/stages/architecture/07-architecture-audit.md` | Architecture Auditor | `docs/architecture/audit-report-[group].md` |
 
 ### mechanic: Mechanic Analysis
 
@@ -140,13 +142,15 @@ Check `docs/` for existing artifacts:
 - `docs/agent-gdd.xml` exists → gdd-kickstart phase complete → architecture-1
 
 **architecture phase:**
-- `docs/architecture/01-scope-and-boundaries-[system].md` does not exist → architecture-1
-- `docs/architecture/01-scope-and-boundaries-[system].md` exists, `02-data-flow-[system].md` does not → architecture-2
-- `docs/architecture/02-data-flow-[system].md` exists, `03-edge-cases-[system].md` does not → architecture-3
-- `docs/architecture/03-edge-cases-[system].md` exists, `04-systems-and-components-[system].md` does not → architecture-4
-- `docs/architecture/04-systems-and-components-[system].md` exists, `05-project-scaffold-[system].md` does not → architecture-5
-- `docs/architecture/05-project-scaffold-[system].md` exists, `06-interfaces-and-contracts-[system].md` does not → architecture-6
-- `docs/architecture/06-interfaces-and-contracts-[system].md` exists → architecture phase complete → graybox-1
+- `docs/architecture/00-system-map.md` does not exist → architecture-0
+- `docs/architecture/00-system-map.md` exists, no `01-scope-and-boundaries-[group].md` artifacts exist yet → architecture-1
+- any target `[group]` has `01-scope-and-boundaries-[group].md` but not `02-data-flow-[group].md` → architecture-2
+- any target `[group]` has `02-data-flow-[group].md` but not `03-edge-cases-[group].md` → architecture-3
+- any target `[group]` has `03-edge-cases-[group].md` but not `04-systems-and-components-[group].md` → architecture-4
+- any target `[group]` has `04-systems-and-components-[group].md` but not `05-project-scaffold-[group].md` → architecture-5
+- any target `[group]` has `05-project-scaffold-[group].md` but not `06-interfaces-and-contracts-[group].md` → architecture-6
+- any target `[group]` has `06-interfaces-and-contracts-[group].md` but not `audit-report-[group].md` → architecture-audit
+- all target `[group]` artifacts have `docs/architecture/audit-report-[group].md` with verdict CLEAN → architecture phase complete → graybox-1
 
 **mechanic phase:**
 - `docs/mechanic-spec.md` does not exist → mechanic-1
@@ -369,20 +373,22 @@ Which technique is enforced in which phase. Rules marked **All phases** are neve
 
 ### gdd-kickstart phase
 - [ ] `docs/human-gdd.md` started ← gdd-1 complete
-- [ ] `docs/human-gdd.md` section 2 ← gdd-2 complete
-- [ ] `docs/human-gdd.md` section 3 ← gdd-3 complete
-- [ ] `docs/human-gdd.md` section 4 ← gdd-4 complete
-- [ ] `docs/human-gdd.md` section 5 ← gdd-5 complete
-- [ ] `docs/human-gdd.md` section 6 ← gdd-6 complete
+- [ ] `docs/human-gdd.md` section 4 ← gdd-2 complete
+- [ ] `docs/human-gdd.md` section 5 ← gdd-3 complete
+- [ ] `docs/human-gdd.md` section 6 ← gdd-4 complete
+- [ ] `docs/human-gdd.md` section 7 ← gdd-5 complete
+- [ ] `docs/human-gdd.md` section 8 ← gdd-6 complete
 - [ ] `docs/agent-gdd.xml` ← gdd-7 complete
 
 ### architecture phase
-- [ ] `docs/architecture/01-scope-and-boundaries-[system].md` ← architecture-1 complete
-- [ ] `docs/architecture/02-data-flow-[system].md` ← architecture-2 complete
-- [ ] `docs/architecture/03-edge-cases-[system].md` ← architecture-3 complete
-- [ ] `docs/architecture/04-systems-and-components-[system].md` ← architecture-4 complete
-- [ ] `docs/architecture/05-project-scaffold-[system].md` ← architecture-5 complete
-- [ ] `docs/architecture/06-interfaces-and-contracts-[system].md` ← architecture-6 complete
+- [ ] `docs/architecture/00-system-map.md` ← architecture-0 complete
+- [ ] `docs/architecture/01-scope-and-boundaries-[group].md` ← architecture-1 complete
+- [ ] `docs/architecture/02-data-flow-[group].md` ← architecture-2 complete
+- [ ] `docs/architecture/03-edge-cases-[group].md` ← architecture-3 complete
+- [ ] `docs/architecture/04-systems-and-components-[group].md` ← architecture-4 complete
+- [ ] `docs/architecture/05-project-scaffold-[group].md` ← architecture-5 complete
+- [ ] `docs/architecture/06-interfaces-and-contracts-[group].md` ← architecture-6 complete
+- [ ] `docs/architecture/audit-report-[group].md` verdict CLEAN ← architecture-audit complete
 
 ### mechanic phase
 - [ ] `docs/mechanic-spec.md` ← mechanic-1 complete

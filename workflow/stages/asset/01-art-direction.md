@@ -23,6 +23,7 @@ Establish the visual language of the game and make the 2D/3D/mixed decision. Eve
 Read all input artifacts. Note:
 - The emotional tone the game is going for
 - Visual references already identified
+- Visual anti-references or rejected directions already identified
 - Every entity type that will need a real asset
 
 ### 2. Define Visual Style

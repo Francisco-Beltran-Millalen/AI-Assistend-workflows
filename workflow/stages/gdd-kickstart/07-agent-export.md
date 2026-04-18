@@ -22,7 +22,9 @@ Read the complete `docs/human-gdd.md`.
 Look for vague language in the mechanical or technical sections. If a system is described as "fun" but lacks a strict mechanical definition, ask the user to provide a 1-sentence technical constraint for the Agent XML.
 
 ### 3. Strip and Structure
-Extract ONLY the actionable, factual information. Discard narrative hooks, image placeholders, evocative adjectives, and Mermaid charts. Agents need strict text constraints.
+Extract ONLY the actionable, factual information. Discard narrative hooks, coaching examples, unresolved placeholders, evocative adjectives, and Mermaid charts. Agents need strict text constraints.
+
+**Important:** If the Human GDD includes resolved visual anti-references with an explicit rejection rationale, keep them. They are not fluff; they are negative constraints needed by downstream art-direction stages.
 
 ### 4. XML Generation
 Construct the XML document with a strict schema. This schema ensures that agents in the `graybox`, `asset`, and `sound` phases can easily parse exactly what they need without wasting context window tokens.
@@ -31,7 +33,7 @@ Construct the XML document with a strict schema. This schema ensures that agents
 After `docs/agent-gdd.xml` is written, run the PDF export script from the project root:
 
 ```
-python3 workflow/scripts/gdd_to_pdf.py
+python workflow/scripts/gdd_to_pdf.py
 ```
 
 This produces `docs/human-gdd.pdf` — the shareable, print-ready version of the complete GDD. Running it here (after any ambiguity clarifications from step 2) ensures the PDF reflects the final state of the document.
@@ -67,6 +69,14 @@ Generate the file using this exact XML structure:
         <sonic_identity>[Brief description]</sonic_identity>
     </aesthetics>
 
+    <anti_references>
+        <anti_reference type="visual">
+            <description>[Rejected visual direction]</description>
+            <rationale>[Why this direction is out of bounds]</rationale>
+        </anti_reference>
+        <!-- ... -->
+    </anti_references>
+
     <mechanics_and_systems>
         <system name="[System Name]">
             <description>[Factual description]</description>
@@ -96,5 +106,6 @@ Generate the file using this exact XML structure:
 ## Exit Criteria
 - [ ] Ambiguities are clarified with the user.
 - [ ] `docs/agent-gdd.xml` is generated perfectly matching the required schema.
-- [ ] All narrative fluff, Mermaid charts, and visual placeholders are successfully stripped.
+- [ ] Coaching examples, unresolved placeholders, and Mermaid charts are stripped.
+- [ ] Resolved anti-references are preserved as structured constraints.
 - [ ] PDF exported to `docs/human-gdd.pdf` via `gdd_to_pdf.py`.

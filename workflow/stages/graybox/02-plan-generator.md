@@ -25,8 +25,8 @@ If no slug is provided, ask: "Which mechanic? Provide the slug (matches the file
 ## Input Artifacts
 
 - `docs/mechanic-designs/[mechanic-slug].md` — the approved design document (must have `Status: Approved`)
-- `docs/architecture/06-interfaces-and-contracts-[system].md` — base classes the code writer must extend
-- `docs/architecture/05-project-scaffold-[system].md` — exact scene paths for file placement
+- `docs/architecture/06-interfaces-and-contracts-[group].md` — base classes the code writer must extend
+- `docs/architecture/05-project-scaffold-[group].md` — exact scene paths for file placement
 - `graybox-prototype/scripts/base/` — existing base class files
 - `graybox-prototype/` — current project state (to know what already exists)
 
@@ -37,8 +37,9 @@ If no slug is provided, ask: "Which mechanic? Provide the slug (matches the file
 Before generating a plan:
 1. Confirm `docs/mechanic-designs/[mechanic-slug].md` exists and has `Status: Approved`. If not approved, stop: "Design document is not approved. Run `/start-stage mechanic-2` and complete the design before generating an execution plan."
 2. Read the full design document.
-3. Read the relevant base class files in `graybox-prototype/scripts/base/`.
-4. Read `graybox-prototype/` to understand what is already implemented and what this mechanic adds.
+3. Identify the owning architecture `[group]` from the design document's referenced systems/nodes.
+4. Read the relevant base class files in `graybox-prototype/scripts/base/`.
+5. Read `graybox-prototype/` to understand what is already implemented and what this mechanic adds.
 
 ---
 
@@ -76,7 +77,7 @@ For each file, in order:
 
 **Signals to wire:** [signal name] from [NodeA] → [NodeB]._ready() connects it
 **Edge cases handled in this file:** [list from Level 5 of design doc, with method name]
-**Debug hook:** [What DebugManager-gated code goes here — state text format, if any]
+**Debug hook:** [What `DebugOverlay.push()` payload this file emits, which `BaseDebugContext` consumes it, and the state text format if shown]
 ```
 
 ### Step 4: Write the Verification Checklist

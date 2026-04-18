@@ -26,16 +26,17 @@ If no slug is provided, ask: "Which mechanic? Provide the slug."
 
 - `docs/mechanic-designs/[mechanic-slug].md` — the approved design (must be `Status: Approved`)
 - `docs/execution-plans/[mechanic-slug].md` — the approved execution plan (must be approved by plan-eval)
-- `docs/architecture/01-scope-and-boundaries-[system].md`
-- `docs/architecture/02-data-flow-[system].md`
-- `docs/architecture/03-edge-cases-[system].md`
-- `docs/architecture/06-interfaces-and-contracts-[system].md`
+- `docs/architecture/01-scope-and-boundaries-[group].md`
+- `docs/architecture/02-data-flow-[group].md`
+- `docs/architecture/03-edge-cases-[group].md`
+- `docs/architecture/06-interfaces-and-contracts-[group].md`
 
 ---
 
 ## Pre-Conditions
 
 1. Execution plan must be approved by `plan-eval`. If `docs/execution-plans/[mechanic-slug].md` shows `Status: Draft`, stop: "Execution plan has not been evaluated. Run `/start-stage plan-eval [mechanic-slug]` first."
+2. Identify the owning architecture `[group]` for this mechanic from the design document before deriving rules.
 
 ---
 
