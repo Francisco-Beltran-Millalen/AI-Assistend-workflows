@@ -1,98 +1,98 @@
-# Implementation Decisions
+# Decisiones de Implementación
 
-> **READ THIS AT THE START OF EVERY PHASE 4 SESSION.**
-> Updated after every completed use case (checkpoint).
-
----
-
-## Tech Stack
-
-See `consolidation-artifacts/tech-stack-consolidation.md`
+> **LEE ESTO AL INICIO DE CADA SESIÓN DE LA FASE 4.**
+> Actualizado después de cada caso de uso completado (checkpoint).
 
 ---
 
-## Architecture
+## Stack Tecnológico
 
-### Pattern
-
-[Chosen pattern: Ports & Adapters / Layered / Clean Architecture]
-
-### Architectural Rules
-
-[The binding rules for all of Phase 4 — established in Stage 4-1]
-
-- [Rule 1]
-- [Rule 2]
-- [Rule 3]
-
-### Folder Mapping
-
-[How the pattern maps to the actual folder structure]
-
-- `[path]` → [layer]
-- `[path]` → [layer]
+Ver `consolidation-artifacts/tech-stack-consolidation.md`
 
 ---
 
-## Implementation Roadmap
+## Arquitectura
 
-### Approved Use Case Order
+### Patrón
 
-1. [Use case] — [dependency reason]
-2. [Use case] — [dependency reason]
-3. [Use case] — [dependency reason]
+[Patrón elegido: Puertos y Adaptadores / Capas / Clean Architecture]
 
----
+### Reglas Arquitectónicas
 
-## Progress
+[Las reglas vinculantes para toda la Fase 4 — establecidas en la Etapa 4-1]
 
-### Completed Use Cases
+- [Regla 1]
+- [Regla 2]
+- [Regla 3]
 
-- [ ] [Use case 1]
-- [ ] [Use case 2]
-- [ ] [Use case 3]
+### Mapeo de Carpetas
 
-### Current Session
+[Cómo el patrón mapea a la estructura real de carpetas]
 
-[Stage and status — update each session]
-
----
-
-## Decisions
-
-| Date | Decision | Reason |
-|------|----------|--------|
-| [Date] | [Decision made] | [Why] |
+- `[ruta]` → [capa]
+- `[ruta]` → [capa]
 
 ---
 
-## Discoveries
+## Hoja de Ruta de Implementación
 
-Things found during implementation that affect the design:
+### Orden de Casos de Uso Aprobado
 
-- [Date]: [What was found, what was adjusted]
-
----
-
-## Deferred Items
-
-| Item | Reason | Priority |
-|------|--------|----------|
-| [Item] | [Why deferred] | [High/Medium/Low] |
+1. [Caso de uso] — [razón de dependencia]
+2. [Caso de uso] — [razón de dependencia]
+3. [Caso de uso] — [razón de dependencia]
 
 ---
 
-## Design Changes
+## Progreso
 
-When implementation reveals the design needs to change, record every approved change here per `workflow/shared/01-phase-4-artifact-authority.md`:
+### Casos de Uso Completados
 
-### YYYY-MM-DD — [one-line summary]
-Artifact: [filename]
-Change: [what changed precisely]
-Rationale: [what implementation discovered that required this change]
+- [ ] [Caso de uso 1]
+- [ ] [Caso de uso 2]
+- [ ] [Caso de uso 3]
+
+### Sesión Actual
+
+[Etapa y estado — actualizar cada sesión]
 
 ---
 
-## Next Session
+## Decisiones
 
-[What to implement next — update after each session]
+| Fecha | Decisión | Razón |
+|-------|----------|-------|
+| [Fecha] | [Decisión tomada] | [Por qué] |
+
+---
+
+## Descubrimientos
+
+Cosas encontradas durante la implementación que afectan el diseño:
+
+- [Fecha]: [Qué se encontró, qué se ajustó]
+
+---
+
+## Elementos Diferidos
+
+| Elemento | Razón | Prioridad |
+|----------|-------|-----------|
+| [Elemento] | [Por qué se difirió] | [Alta/Media/Baja] |
+
+---
+
+## Cambios de Diseño
+
+Cuando la implementación revela que el diseño necesita cambiar, registra cada cambio aprobado aquí según `workflow/shared/01-phase-4-artifact-authority.md`:
+
+### YYYY-MM-DD — [resumen en una línea]
+Artefacto: [nombre de archivo]
+Cambio: [qué cambió precisamente]
+Razón: [qué descubrió la implementación que requirió este cambio]
+
+---
+
+## Próxima Sesión
+
+[Qué implementar a continuación — actualizar después de cada sesión]

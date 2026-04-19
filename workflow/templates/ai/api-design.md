@@ -1,46 +1,46 @@
-# API Design
+# Diseño de API
 
 ---
 
-## Conventions
+## Convenciones
 
-- **Base URL:** `/api/v1`
+- **URL Base:** `/api/v1`
 - **Auth:** `Authorization: Bearer <token>`
 - **Content-Type:** `application/json`
-- **Errors:** `{ "error": { "code": "ERROR_CODE", "message": "Human-readable message" } }`
+- **Errores:** `{ "error": { "code": "CODIGO_ERROR", "message": "Mensaje legible por humanos" } }`
 
 ---
 
-## HTTP Status Codes
+## Códigos de Estado HTTP
 
-| Status | When |
-|--------|------|
-| 200 OK | GET, PATCH, PUT success |
-| 201 Created | POST success |
-| 204 No Content | DELETE success |
-| 400 Bad Request | Validation error |
-| 401 Unauthorized | Missing/invalid auth |
-| 403 Forbidden | Insufficient permissions |
-| 404 Not Found | Resource not found |
-| 409 Conflict | Business rule violation |
+| Estado | Cuándo |
+|--------|--------|
+| 200 OK | Éxito en GET, PATCH, PUT |
+| 201 Created | Éxito en POST |
+| 204 No Content | Éxito en DELETE |
+| 400 Bad Request | Error de validación |
+| 401 Unauthorized | Auth ausente o inválida |
+| 403 Forbidden | Permisos insuficientes |
+| 404 Not Found | Recurso no encontrado |
+| 409 Conflict | Violación de regla de negocio |
 
 ---
 
 ## Endpoints
 
-### [Resource]
+### [Recurso]
 
-#### GET /[resource]
+#### GET /[recurso]
 
-**Use case:** [UC name] | **Auth:** Required
+**Caso de uso:** [nombre UC] | **Auth:** Requerida
 
-**Query params:** `page` (default: 1), `per_page` (default: 20)
+**Parámetros de consulta:** `page` (default: 1), `per_page` (default: 20)
 
-**Response 200:**
+**Respuesta 200:**
 ```json
 {
   "data": [
-    { "id": 1, "[field]": "[value]" }
+    { "id": 1, "[campo]": "[valor]" }
   ],
   "meta": { "page": 1, "per_page": 20, "total": 45 }
 }
@@ -48,96 +48,95 @@
 
 ---
 
-#### GET /[resource]/:id
+#### GET /[recurso]/:id
 
-**Use case:** [UC name] | **Auth:** Required
+**Caso de uso:** [nombre UC] | **Auth:** Requerida
 
-**Response 200:**
+**Respuesta 200:**
 ```json
-{ "id": 1, "[field]": "[value]" }
+{ "id": 1, "[campo]": "[valor]" }
 ```
 
-**Errors:** `NOT_FOUND` 404
+**Errores:** `NOT_FOUND` 404
 
 ---
 
-#### POST /[resource]
+#### POST /[recurso]
 
-**Use case:** [UC name] | **Auth:** Required
+**Caso de uso:** [nombre UC] | **Auth:** Requerida
 
 **Request:**
 ```json
-{ "[field]": "[value]" }
+{ "[campo]": "[valor]" }
 ```
 
-**Response 201:**
+**Respuesta 201:**
 ```json
-{ "id": 1, "[field]": "[value]" }
+{ "id": 1, "[campo]": "[valor]" }
 ```
 
-**Errors:** `VALIDATION_ERROR` 400
+**Errores:** `VALIDATION_ERROR` 400
 
 ---
 
-#### PATCH /[resource]/:id
+#### PATCH /[recurso]/:id
 
-**Use case:** [UC name] | **Auth:** Required
+**Caso de uso:** [nombre UC] | **Auth:** Requerida
 
 **Request:**
 ```json
-{ "[field]": "[updated value]" }
+{ "[campo]": "[valor actualizado]" }
 ```
 
-**Response 200:**
+**Respuesta 200:**
 ```json
-{ "id": 1, "[field]": "[updated value]" }
+{ "id": 1, "[campo]": "[valor actualizado]" }
 ```
 
-**Errors:** `NOT_FOUND` 404, `VALIDATION_ERROR` 400
+**Errores:** `NOT_FOUND` 404, `VALIDATION_ERROR` 400
 
 ---
 
-#### DELETE /[resource]/:id
+#### DELETE /[recurso]/:id
 
-**Use case:** [UC name] | **Auth:** Required
+**Caso de uso:** [nombre UC] | **Auth:** Requerida
 
-**Response:** 204 No Content
+**Respuesta:** 204 No Content
 
-**Errors:** `NOT_FOUND` 404
+**Errores:** `NOT_FOUND` 404
 
 ---
 
-### Auth
+### Autenticación
 
 #### POST /auth/login
 
-**Auth:** None
+**Auth:** Ninguna
 
 **Request:**
 ```json
-{ "email": "user@example.com", "password": "secret" }
+{ "email": "usuario@ejemplo.com", "password": "secreto" }
 ```
 
-**Response 200:**
+**Respuesta 200:**
 ```json
-{ "token": "jwt-token", "user": { "id": 1, "email": "user@example.com" } }
+{ "token": "jwt-token", "user": { "id": 1, "email": "usuario@ejemplo.com" } }
 ```
 
-**Errors:** `INVALID_CREDENTIALS` 401
+**Errores:** `INVALID_CREDENTIALS` 401
 
 ---
 
-## View-Endpoint Mapping
+## Mapeo Vista-Endpoint
 
-| View | Endpoint | Request | Response Shape |
-|------|----------|---------|----------------|
-| [view.html] | GET /[resource] | — | `{ data: [...], meta: {...} }` |
-| [view.html] | POST /[resource] | `{ field: val }` | `{ id, field }` |
-| [view.html] | PATCH /[resource]/:id | `{ field: val }` | `{ id, field }` |
-| [view.html] | DELETE /[resource]/:id | — | 204 |
+| Vista | Endpoint | Request | Forma de Respuesta |
+|-------|----------|---------|-------------------|
+| [vista.html] | GET /[recurso] | — | `{ data: [...], meta: {...} }` |
+| [vista.html] | POST /[recurso] | `{ campo: val }` | `{ id, campo }` |
+| [vista.html] | PATCH /[recurso]/:id | `{ campo: val }` | `{ id, campo }` |
+| [vista.html] | DELETE /[recurso]/:id | — | 204 |
 
 ---
 
-*Generated: [Date]*
-*Stage: 2-3 - Endpoint Design*
-*Input: use-cases.md, entity-map.md, data-model-physical.md, views/*
+*Generado: [Fecha]*
+*Etapa: 2-3 - Diseño de API y Rutas*

@@ -1,52 +1,52 @@
-# Existing Artifact Protocol
+# Protocolo de Artefactos Existentes
 
-When starting a Phase 1–4 stage, the `start-stage` skill checks whether the stage's output artifacts already exist. This protocol defines what to do when they do.
+Cuando se inicia una etapa de las Fases 1 a 5, la habilidad `start-stage` verifica si los artefactos de salida de esa etapa ya existen. Este protocolo define qué hacer cuando existen.
 
-**Does not apply to on-demand stages (0, teacher).**
-
----
-
-## Step 1: Identify Which Artifacts Exist
-
-Look at the stage file's `## Output Artifacts` section. Check if any of the listed files (or folders) already exist.
-
-**Check for special cases first:** Some stages have special behavior when their artifacts already exist — check the stage file's `## Special Cases` section before proceeding. If the stage defines special handling, follow it. It may instruct you to skip this protocol entirely, use a different trigger artifact, or handle partial completion differently.
+**No aplica a las etapas bajo demanda (0, teacher).**
 
 ---
 
-## Step 2: Read and Summarize
+## Paso 1: Identificar qué artefactos existen
 
-For each existing artifact:
+Revisa la sección `## Outputs Esperados` del archivo de la etapa. Comprueba si alguno de los archivos (o carpetas) listados ya existe.
 
-1. **Read it**
-2. **Show a brief summary** — 2–5 bullet points covering the key content and decisions made
-
----
-
-## Step 3: Ask Why We're Revisiting
-
-Ask the user why this stage is being run again, and present these options:
-
-> "This stage's output already exists (summary above). Why are we revisiting it?"
-
-- **Iteration** — Refine, expand, or improve the existing work
-- **Project direction change** — Goals or scope have shifted; some or all of this may no longer apply
-- **Technology stack change** — Different technology choices were made; tech-specific content needs updating
-- **Error correction** — Something in the artifact is factually wrong and needs fixing
-- **Other** — User describes another reason
+**Verifica primero los casos especiales:** Algunas etapas tienen comportamiento especial cuando sus artefactos ya existen — revisa la sección `## Casos Especiales` del archivo de etapa antes de continuar. Si la etapa define un manejo especial, síguelo. Puede instruirte a omitir este protocolo por completo, usar un artefacto disparador diferente, o manejar la finalización parcial de otro modo.
 
 ---
 
-## Step 4: Proceed Based on the Reason
+## Paso 2: Leer y resumir
 
-| Reason | How to Proceed |
-|--------|----------------|
-| **Iteration** | Load as current state. Build on it. Do not restart from scratch. |
-| **Project direction change** | Start fresh. Keep existing artifact as historical reference only — do not be bound by prior decisions. |
-| **Technology stack change** | Update in place. Focus changes on tech-specific sections. Structural and domain decisions remain unless the user changes them. |
-| **Error correction** | Load the artifact, identify the specific error, fix it. Update in place. |
-| **Other** | Ask for more context, then decide together how to proceed. |
+Por cada artefacto existente:
+
+1. **Léelo**
+2. **Muestra un breve resumen** — 2 a 5 puntos cubriendo el contenido clave y las decisiones tomadas
 
 ---
 
-After completing this protocol, continue with the stage process (Step 5 of `start-stage`).
+## Paso 3: Preguntar por qué lo estamos revisando
+
+Pregunta al usuario por qué se está ejecutando esta etapa nuevamente y presenta estas opciones:
+
+> "Los artefactos de salida de esta etapa ya existen (resumen arriba). ¿Por qué los estamos revisando?"
+
+- **Iteración** — Refinar, expandir o mejorar el trabajo existente
+- **Cambio de dirección del proyecto** — Los objetivos o el alcance han cambiado; parte o todo esto puede ya no aplicar
+- **Cambio de stack tecnológico** — Se tomaron decisiones tecnológicas distintas; el contenido específico de tecnología necesita actualización
+- **Corrección de errores** — Algo en el artefacto es factualmente incorrecto y necesita corrección
+- **Otro** — El usuario describe otra razón
+
+---
+
+## Paso 4: Proceder según la razón
+
+| Razón | Cómo proceder |
+|-------|---------------|
+| **Iteración** | Cargar como estado actual. Construir sobre él. No reiniciar desde cero. |
+| **Cambio de dirección** | Empezar de cero. Conservar el artefacto existente solo como referencia histórica — no estar vinculado por decisiones previas. |
+| **Cambio de stack** | Actualizar en su lugar. Enfocar los cambios en las secciones específicas de tecnología. Las decisiones estructurales y de dominio permanecen salvo que el usuario las cambie. |
+| **Corrección de errores** | Cargar el artefacto, identificar el error específico, corregirlo. Actualizar en su lugar. |
+| **Otro** | Pedir más contexto, luego decidir juntos cómo proceder. |
+
+---
+
+Después de completar este protocolo, continúa con el proceso de la etapa (Paso 5 de `start-stage`).

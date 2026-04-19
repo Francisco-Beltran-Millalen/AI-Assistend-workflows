@@ -1,28 +1,28 @@
-# Data Model — Physical (PostgreSQL)
+# Modelo de Datos — Físico (PostgreSQL)
 
 ---
 
-## Type Mapping
+## Mapeo de Tipos
 
 | Conceptual | PostgreSQL |
 |------------|------------|
-| identifier | SERIAL PRIMARY KEY or BIGSERIAL PRIMARY KEY |
-| text (short) | VARCHAR(n) |
-| text (long) | TEXT |
-| number (int) | INTEGER |
-| number (decimal) | NUMERIC(p, s) |
-| boolean | BOOLEAN |
-| date/datetime | TIMESTAMPTZ |
-| enum | TEXT with CHECK constraint or custom ENUM type |
+| identificador | SERIAL PRIMARY KEY o BIGSERIAL PRIMARY KEY |
+| texto (corto) | VARCHAR(n) |
+| texto (largo) | TEXT |
+| número (entero) | INTEGER |
+| número (decimal) | NUMERIC(p, s) |
+| booleano | BOOLEAN |
+| fecha/datetime | TIMESTAMPTZ |
+| enum | TEXT con restricción CHECK o tipo ENUM personalizado |
 
 ---
 
 ## Schema
 
-### [entity] table
+### Tabla [entidad]
 
-| Column | Type | Constraints |
-|--------|------|-------------|
+| Columna | Tipo | Restricciones |
+|---------|------|---------------|
 | id | SERIAL | PRIMARY KEY |
 | [col] | TEXT | NOT NULL |
 | [col] | INTEGER | NOT NULL DEFAULT 0 |
@@ -30,35 +30,34 @@
 | created_at | TIMESTAMPTZ | NOT NULL DEFAULT NOW() |
 | updated_at | TIMESTAMPTZ | NOT NULL DEFAULT NOW() |
 
-**Foreign keys:**
-- `[col]` → `[other_table].id` (ON DELETE CASCADE)
+**Claves foráneas:**
+- `[col]` → `[otra_tabla].id` (ON DELETE CASCADE)
 
-**Indexes:**
-- `idx_[entity]_[col]` on `[col]` — [reason]
+**Índices:**
+- `idx_[entidad]_[col]` en `[col]` — [razón]
 
 ---
 
-### [entity] table
+### Tabla [entidad]
 
-| Column | Type | Constraints |
-|--------|------|-------------|
+| Columna | Tipo | Restricciones |
+|---------|------|---------------|
 | id | SERIAL | PRIMARY KEY |
 | [col] | TEXT | NOT NULL |
-| [fk_col] | INTEGER | NOT NULL REFERENCES [other_table](id) ON DELETE RESTRICT |
+| [fk_col] | INTEGER | NOT NULL REFERENCES [otra_tabla](id) ON DELETE RESTRICT |
 | created_at | TIMESTAMPTZ | NOT NULL DEFAULT NOW() |
 | updated_at | TIMESTAMPTZ | NOT NULL DEFAULT NOW() |
 
-**Indexes:**
-- `idx_[entity]_[fk_col]` on `[fk_col]` — foreign key lookup
+**Índices:**
+- `idx_[entidad]_[fk_col]` en `[fk_col]` — búsqueda por clave foránea
 
 ---
 
-## Mock Data
+## Datos de Prueba (Mock Data)
 
-Minimum 4 rows per table. See `docs/assets/schema.sql` for full INSERT statements.
+Mínimo 4 filas por tabla. Ver `docs/assets/schema.sql` para los INSERT completos.
 
 ---
 
-*Generated: [Date]*
-*Stage: 2-2 - Data Modeling*
-*Input: data-model-conceptual.md, tech-stack-consolidation.md*
+*Generado: [Fecha]*
+*Etapa: 2-2 - Modelado de Dominio y Datos*

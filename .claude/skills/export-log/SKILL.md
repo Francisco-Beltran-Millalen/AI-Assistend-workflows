@@ -4,7 +4,7 @@ description: Export the current conversation to docs/logs/
 allowed-tools: Bash
 ---
 
-Read `.agent-utils/skills/export-log/SKILL.md` for the naming convention and stage names.
+Read `.agents/skills/export-log/SKILL.md` for the naming convention and stage names.
 
 ## Claude Code — Transcript Location
 

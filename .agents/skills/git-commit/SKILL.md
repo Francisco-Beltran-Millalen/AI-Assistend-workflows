@@ -32,14 +32,12 @@ Run this? [yes / no / explain more]
 
 ---
 
-### Step 2: Determine Stage Context
+### Paso 2: Determinar el Contexto de Etapa
 
-Read `consolidation-artifacts/implementation-decisions.md` to identify:
-- Current stage (4-2, 4-3, etc.)
-- Use case just completed (e.g., "UC-3: User can view order list")
+Revisar `consolidation-artifacts/designs/` para identificar:
+- El caso de uso recién completado (ej. `crear-usuario-spec.md` marcado como `Implementado`)
 
-If the file doesn't exist, use the stage identifier from the session context.
-If context is unclear, ask: "What should I use as the commit message context?"
+Si la carpeta no existe o el contexto no está claro, preguntar: "¿Qué debería usar como contexto del mensaje de commit?"
 
 ---
 
@@ -56,12 +54,12 @@ git add prototype-code/src/orders/ prototype-code/tests/test_orders.py
 
 Run this? [yes / no / explain more]
 
-If there are workflow artifacts that changed (e.g., `consolidation-artifacts/implementation-decisions.md`):
+Si hay artefactos de workflow que cambiaron (ej. un spec en `consolidation-artifacts/designs/`):
 
 ```bash
-git add consolidation-artifacts/implementation-decisions.md
+git add consolidation-artifacts/designs/
 ```
-> Stages the updated implementation decisions log.
+> Incluye los specs de casos de uso actualizados.
 
 Run this? [yes / no / explain more]
 
@@ -82,13 +80,15 @@ Run this? [yes / no / explain more]
 
 Propose a commit message based on the stage context:
 
-**Format:**
-- Stage 4-2 or 4-3 (per use case): `feat: implement [use case name]`
-- Stage 4-1 (project setup): `chore: project setup and scaffolding`
-- Stage 3-x (UI): `design: [what was done]`
-- Stage 2-x (modeling): `docs: [artifact name]`
-- Stage 1-x (discovery): `docs: [artifact name]`
-- Stage 0 (meta): `workflow: [what was fixed or added]`
+**Formato:**
+- Etapa 4-2 (planificación): `spec: [nombre del caso de uso]`
+- Etapa 4-3 (implementación por caso): `feat: implement [nombre del caso de uso]`
+- Etapa 4-1 (setup del proyecto): `chore: project setup and scaffolding`
+- Etapa 4-4 (auditoría): `refactor: [qué se auditó/refactorizó]`
+- Etapa 3-x (UI): `design: [qué se hizo]`
+- Etapa 2-x (modelado): `docs: [nombre del artefacto]`
+- Etapa 1-x (descubrimiento): `docs: [nombre del artefacto]`
+- Etapa 0 (meta): `workflow: [qué se corrigió o agregó]`
 
 Example:
 ```bash

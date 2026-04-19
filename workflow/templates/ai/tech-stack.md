@@ -1,68 +1,67 @@
-# Technology Stack
+# Stack Tecnológico
 
-**Architecture (Fixed):** Web App · REST API · PostgreSQL
+**Arquitectura (Fija):** Aplicación Web · REST API · PostgreSQL
 
 ---
 
-## Stack Summary
+## Resumen del Stack
 
 ### Backend
 
-| Category | Choice | Version |
-|----------|--------|---------|
-| Language | [choice] | [version] |
-| Framework | [choice] | [version] |
-| Database | PostgreSQL | [version] |
-| ORM | [choice] | [version] |
-| Auth | [choice] | [version] |
-| Testing | [choice] | [version] |
+| Categoría | Elección | Versión |
+|-----------|----------|---------|
+| Lenguaje | [elección] | [versión] |
+| Framework | [elección] | [versión] |
+| Base de datos | PostgreSQL | [versión] |
+| ORM/Query Builder | [elección] | [versión] |
+| Autenticación | [elección] | [versión] |
+| Testing | [elección] | [versión] |
 
 ### Frontend
 
-| Category | Choice | Version |
-|----------|--------|---------|
-| Approach | [SPA/SSR/HTMX/...] | [version] |
-| Build tool | [choice] | [version] |
+| Categoría | Elección | Versión |
+|-----------|----------|---------|
+| Enfoque | [SPA/SSR/HTMX/...] | [versión] |
+| Build tool | [elección] | [versión] |
 
-### Dev Tools
+### Herramientas de Desarrollo
 
-| Category | Choice |
-|----------|--------|
-| Package manager | [choice] |
-| Linter/Formatter | [choice] |
-| Hot reload | [choice] |
+| Categoría | Elección |
+|-----------|----------|
+| Gestor de paquetes | [elección] |
+| Linter/Formatter | [elección] |
+| Hot reload | [elección] |
 
 ---
 
-## Development Environment
+## Entorno de Desarrollo
 
-### Required Tools
-- [tool] [version]
-- [tool] [version]
+### Herramientas Requeridas
+- [herramienta] [versión]
+- [herramienta] [versión]
 
-### Environment Variables
+### Variables de Entorno
 
 ```
-DATABASE_URL=postgresql://localhost:5432/[project]_dev
-SECRET_KEY=your-secret-key
+DATABASE_URL=postgresql://localhost:5432/[proyecto]_dev
+SECRET_KEY=tu-clave-secreta
 ENVIRONMENT=development
 ```
 
-### Local Setup
+### Configuración Local
 
-1. [Install dependencies]
-2. [Run migrations / load schema.sql]
-3. [Start dev server]
-
----
-
-## ADR References
-
-- [ADR-001: reason for key backend choice]
-- [ADR-002: reason for key frontend choice]
+1. [Instalar dependencias]
+2. [Ejecutar migraciones / cargar schema.sql]
+3. [Iniciar servidor de desarrollo]
 
 ---
 
-*Generated: [Date]*
-*Stage: 1-5 - Tech Selection*
-*Input: project-brief.md, knowledge-audit.md, research-findings.md, use-cases.md*
+## Referencias ADR
+
+- [ADR-001: razón para elección principal de backend]
+- [ADR-002: razón para elección principal de frontend]
+
+---
+
+*Generado: [Fecha]*
+*Etapa: 1-2 - Stack Técnico y Arquitectura*

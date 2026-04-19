@@ -1,25 +1,25 @@
-# ADR-[NNN]: [Title]
+# ADR-[NNN]: [Título]
 
-## Status
+## Estado
 
-[Proposed | Accepted | Deprecated]
+[Propuesto | Aceptado | Deprecado]
 
-## Context
+## Contexto
 
-[What is the issue?]
+[¿Cuál es el problema o situación?]
 
-## Decision
+## Decisión
 
-[What was decided]
+[Qué se decidió]
 
-## Consequences
+## Consecuencias
 
-### Positive
-- [Benefit]
+### Positivas
+- [Beneficio]
 
-### Negative
-- [Trade-off]
+### Negativas
+- [Concesión o trade-off]
 
 ---
 
-*Date: [Date]*
+*Fecha: [Fecha]*

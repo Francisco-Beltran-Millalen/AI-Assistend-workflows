@@ -4,6 +4,24 @@ Each entry records a significant design decision — what problem it solved and 
 
 ---
 
+## 2026-04-19: Renombre .agent-utils → .agents + audit de skills
+
+**Problema:** La carpeta `.agent-utils/` tenía un nombre verboso. Los 5 SKILL.md usaban stage names del workflow viejo (Fase 1 con 6 etapas, Fase 3 con 5, `4-guided`, `4-2 implementation-loop`, etc.) que ya no existen.
+
+**Causa:** Los skills no habían sido actualizados durante la refactorización del workflow a español con el nuevo paradigma Heavy Planner → Light Coder.
+
+**Correcciones:**
+- Carpeta renombrada: `.agent-utils/` → `.agents/`
+- `start-stage/SKILL.md`: Stage Mapping reescrito completo con las 14 etapas actuales
+- `export-log/SKILL.md`: Stage Names reescrito completo con los nombres en español
+- `git-commit/SKILL.md`: Referencias a `implementation-decisions.md` → `consolidation-artifacts/designs/`; prefijos de commit actualizados
+- `run-stage-tests/SKILL.md`: Referencia a `implementation-decisions.md` → `consolidation-artifacts/designs/`
+- Todas las referencias a `.agent-utils` actualizadas en `AGENTS.md`, `README.md`, `workflow/stages/phase-0/00-meta-workflow.md`, y los 5 wrappers de `.claude/skills/`
+
+**Archivos:** `.agents/skills/` (renombrado), `.claude/skills/` (5 wrappers), `AGENTS.md`, `README.md`, `workflow/stages/phase-0/00-meta-workflow.md`
+
+---
+
 ## 2026-03-25: Full audit — implementation-decisions template + teacher reading order
 
 **Problem:** Two issues found in a thorough audit of all workflow files:

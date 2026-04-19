@@ -4,13 +4,11 @@ Run the tests for the current use case being implemented.
 
 ## Process
 
-### 1. Identify the Current Use Case
+### 1. Identificar el Caso de Uso Actual
 
-Read `consolidation-artifacts/implementation-decisions.md`.
+Revisar `consolidation-artifacts/designs/` para encontrar el spec marcado como `En Progreso`, o si ninguno está en progreso, el último marcado como `Aprobado`.
 
-Look for the use case marked as in-progress, or if none is in-progress, the most recently completed one.
-
-If the file doesn't exist or is unclear, ask the user: "Which use case should I run tests for?"
+Si la carpeta no existe o no está claro, preguntar al usuario: "¿Para qué caso de uso debo ejecutar los tests?"
 
 ### 2. Determine the Test Filter
 

@@ -1,47 +1,47 @@
-# Phase 4: Consolidation Artifact Update Authority
+# Fase 4: Autoridad de Actualización de Artefactos de Consolidación
 
-Phase 4 personas have authority — and responsibility — to update consolidation artifacts when implementation reveals the design needs to change.
+Las personas de la Fase 4 tienen autoridad — y responsabilidad — de actualizar los artefactos de consolidación cuando la implementación revela que el diseño necesita cambiar.
 
-## Why This Exists
+## Por qué existe esto
 
-The consolidation artifacts are the source of truth. The `docs/` files from earlier phases are historical. When implementation discovers a discrepancy or necessary change, the consolidation artifact must be updated to reflect reality.
+Los artefactos de consolidación son la fuente de verdad. Los archivos en `docs/` de las fases anteriores son históricos. Cuando la implementación descubre una discrepancia o un cambio necesario, el artefacto de consolidación debe actualizarse para reflejar la realidad.
 
-## When to Apply This
+## Cuándo aplicarlo
 
-When any Phase 4 stage encounters:
-- An API contract that doesn't match what implementation requires
-- A data model that needs adjustment (new column, changed type, missing table)
-- A use case definition that needs clarification or scope change
-- A tech stack decision that needs revision
+Cuando cualquier etapa de la Fase 4 encuentre:
+- Un contrato de API que no coincide con lo que la implementación requiere
+- Un modelo de datos que necesita ajuste (nueva columna, tipo cambiado, tabla faltante)
+- Una definición de caso de uso que necesita aclaración o cambio de alcance
+- Una decisión de stack tecnológico que necesita revisión
 
-## Protocol
+## Protocolo
 
-1. **Stop** — do not make the change silently or work around it
-2. **Flag** to the user:
-   > "The current `[artifact-filename]` says [X]. Implementation reveals we need [Y] because [reason]. Proposing to update the artifact — agree?"
-3. **Get explicit approval** before modifying the artifact
-4. **Update the consolidation artifact** with the change
-5. **Record in `implementation-decisions.md`** under `## Design Changes`:
+1. **Detente** — no hagas el cambio silenciosamente ni trabajes alrededor del problema
+2. **Notifica** al usuario:
+   > "El `[nombre-artefacto]` actual dice [X]. La implementación revela que necesitamos [Y] porque [razón]. Propongo actualizar el artefacto — ¿de acuerdo?"
+3. **Obtén aprobación explícita** antes de modificar el artefacto
+4. **Actualiza el artefacto de consolidación** con el cambio
+5. **Registra en el spec del caso de uso** (`consolidation-artifacts/designs/[caso]-spec.md`) bajo `## Notas de Implementación`:
 
 ```
-### YYYY-MM-DD — [one-line summary]
-Artifact: [filename]
-Change: [what changed precisely]
-Rationale: [what implementation discovered that required this change]
+### YYYY-MM-DD — [resumen en una línea]
+Artefacto: [nombre de archivo]
+Cambio: [qué cambió precisamente]
+Razón: [qué descubrió la implementación que requirió este cambio]
 ```
 
-## Scope of Authority
+## Alcance de la Autoridad
 
-| Change type | Authority |
-|-------------|-----------|
-| Field rename, type correction, add missing field | Update + record |
-| New endpoint or endpoint restructure | Update + record |
-| New entity or table | Update + record |
-| Remove a use case from scope | User must explicitly agree — flag clearly |
-| Change project goals or core constraints | Out of scope for Phase 4 — requires Stage 0 |
+| Tipo de cambio | Autoridad |
+|----------------|-----------|
+| Renombrar campo, corregir tipo, agregar campo faltante | Actualizar + registrar |
+| Nuevo endpoint o reestructuración de endpoint | Actualizar + registrar |
+| Nueva entidad o tabla | Actualizar + registrar |
+| Eliminar un caso de uso del alcance | El usuario debe estar explícitamente de acuerdo — marcar claramente |
+| Cambiar objetivos del proyecto o restricciones centrales | Fuera del alcance de la Fase 4 — requiere Etapa 0 |
 
-## What NOT to Do
+## Qué NO hacer
 
-- Do not update `docs/` files — they are historical; consolidation artifacts are live
-- Do not make silent fixes — every change must be recorded
-- Do not invent changes to "improve" the design — only change what implementation genuinely requires
+- No actualices los archivos en `docs/` — son históricos; los artefactos de consolidación son los activos
+- No hagas correcciones silenciosas — cada cambio debe ser registrado
+- No inventes cambios para "mejorar" el diseño — solo cambia lo que la implementación genuinamente requiere

@@ -1,65 +1,64 @@
-# Use Cases
+# Casos de Uso
 
-## Actors
+## Actores
 
-| Actor | Core Actions |
-|-------|-------------|
-| [Actor] | [Core purpose] |
-| [Actor] | [Core purpose] |
-
----
-
-## Use Cases by Actor
-
-### [Actor] (Primary)
-
-**Core:** [What this actor mainly does]
-
-#### Core (P1)
-- [ ] [Actor] can [action]
-- [ ] [Actor] can [action]
-
-#### Supporting (P2)
-- [ ] [Actor] can [action]
-- [ ] [Actor] can [action]
+| Actor | Acciones Centrales |
+|-------|-------------------|
+| [Actor] | [Propósito central] |
+| [Actor] | [Propósito central] |
 
 ---
 
-### [Actor] (Secondary)
+## Casos de Uso por Actor
 
-**Core:** [Brief description]
+### [Actor] (Primario)
 
-#### Use Cases (P2)
-- [ ] [Actor] can [action]
-- [ ] [Actor] can [action]
+**Central:** [Lo que este actor hace principalmente]
 
----
+#### Esenciales (P1)
+- [ ] [Actor] puede [acción]
+- [ ] [Actor] puede [acción]
 
-## Standard Use Cases (Assumed)
-
-### Authentication
-- [ ] User can log in
-- [ ] User can log out
-- [ ] User can reset password via email
-
-### User Management
-- [ ] User can create account
-- [ ] User can update profile
-
-### Admin
-- [ ] Admin can view all users
+#### De Soporte (P2)
+- [ ] [Actor] puede [acción]
+- [ ] [Actor] puede [acción]
 
 ---
 
-## Implementation Order
+### [Actor] (Secundario)
 
-1. [Use case] — P1, [Actor]
-2. [Use case] — P1, [Actor]
-3. [Use case] — P2, [Actor]
-4. [Use case] — P3, Standard
+**Central:** [Breve descripción]
+
+#### Casos de Uso (P2)
+- [ ] [Actor] puede [acción]
+- [ ] [Actor] puede [acción]
 
 ---
 
-*Generated: [Date]*
-*Stage: 1-4 - Use Case Discovery*
-*Input: project-brief.md, knowledge-audit.md, research-findings.md*
+## Casos de Uso Estándar (Asumidos)
+
+### Autenticación
+- [ ] El usuario puede iniciar sesión
+- [ ] El usuario puede cerrar sesión
+- [ ] El usuario puede restablecer contraseña por email
+
+### Gestión de Usuarios
+- [ ] El usuario puede crear una cuenta
+- [ ] El usuario puede actualizar su perfil
+
+### Administración
+- [ ] El administrador puede ver todos los usuarios
+
+---
+
+## Orden de Implementación
+
+1. [Caso de uso] — P1, [Actor]
+2. [Caso de uso] — P1, [Actor]
+3. [Caso de uso] — P2, [Actor]
+4. [Caso de uso] — P3, Estándar
+
+---
+
+*Generado: [Fecha]*
+*Etapa: 1-1 - Project Brief y Casos de Uso*

@@ -69,7 +69,7 @@ Auto-export runs every 5 minutes during a session (crash protection). A final ex
 
 ### 7. Tool-Agnostic by Design
 
-The canonical workflow instructions live in `AGENTS.md` — the standard adopted by Claude Code, Gemini CLI, GitHub Copilot, Cursor, and others (Linux Foundation / Agentic AI Foundation, December 2025). Tool-specific configuration (`.claude/`, `.gemini/`) contains only thin wrappers that delegate to the canonical layer in `.agent-utils/`.
+The canonical workflow instructions live in `AGENTS.md` — the standard adopted by Claude Code, Gemini CLI, GitHub Copilot, Cursor, and others (Linux Foundation / Agentic AI Foundation, December 2025). Tool-specific configuration (`.claude/`, `.gemini/`) contains only thin wrappers that delegate to the canonical layer in `.agents/`.
 
 Adding support for a new LLM tool requires:
 1. A tool-specific skill wrapper for `start-stage`
@@ -180,7 +180,7 @@ project-root/
 │   └── skills/                  ← Claude Code slash commands (thin wrappers)
 │       ├── start-stage/
 │       └── export-log/
-├── .agent-utils/
+├── .agents/
 │   └── skills/                  ← Canonical, tool-agnostic skill content
 │       ├── start-stage/
 │       └── export-log/

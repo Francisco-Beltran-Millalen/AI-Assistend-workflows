@@ -1,62 +1,61 @@
-# Data Model — Conceptual
+# Modelo de Datos — Conceptual
 
-Technology-agnostic. No SQL types, no primary keys, no timestamps.
-
----
-
-## Entities
-
-### [Entity Name]
-
-**Description:** [What this represents in the domain]
-
-| Attribute | Type (Generic) | Required | Description |
-|-----------|---------------|----------|-------------|
-| [attr] | text | Yes | [desc] |
-| [attr] | number | No | [desc] |
-| [attr] | boolean | Yes | [desc] |
-| [attr] | date | No | [desc] |
-| [attr] | enum([A], [B]) | Yes | [desc] |
-
-**Relationships:**
-- [field] → [Entity] (N:1) — [description]
-- [field] → [Entity] (1:N) — [description]
+Agnóstico de tecnología. Sin tipos SQL, sin claves primarias, sin timestamps.
 
 ---
 
-### [Entity Name]
+## Entidades
 
-**Description:** [What this represents]
+### [Nombre de Entidad]
 
-| Attribute | Type (Generic) | Required | Description |
-|-----------|---------------|----------|-------------|
-| [attr] | text | Yes | [desc] |
+**Descripción:** [Qué representa en el dominio]
 
-**Relationships:**
-- [field] → [Entity] (N:M) — [description]
+| Atributo | Tipo (Genérico) | Requerido | Descripción |
+|----------|----------------|-----------|-------------|
+| [attr] | texto | Sí | [desc] |
+| [attr] | número | No | [desc] |
+| [attr] | booleano | Sí | [desc] |
+| [attr] | fecha | No | [desc] |
+| [attr] | enum([A], [B]) | Sí | [desc] |
+
+**Relaciones:**
+- [campo] → [Entidad] (N:1) — [descripción]
+- [campo] → [Entidad] (1:N) — [descripción]
+
+---
+
+### [Nombre de Entidad]
+
+**Descripción:** [Qué representa]
+
+| Atributo | Tipo (Genérico) | Requerido | Descripción |
+|----------|----------------|-----------|-------------|
+| [attr] | texto | Sí | [desc] |
+
+**Relaciones:**
+- [campo] → [Entidad] (N:M) — [descripción]
 
 ---
 
 ## Enums
 
-### [EnumName]
-| Value | Description |
+### [NombreEnum]
+| Valor | Descripción |
 |-------|-------------|
-| [VALUE] | [Description] |
-| [VALUE] | [Description] |
+| [VALOR] | [Descripción] |
+| [VALOR] | [Descripción] |
 
 ---
 
-## Entity Relationship Diagram
+## Diagrama de Relaciones entre Entidades
 
 ```mermaid
 erDiagram
-    [EntityA] ||--o{ [EntityB] : [relationship]
-    [EntityB] }o--|| [EntityC] : [relationship]
+    [EntidadA] ||--o{ [EntidadB] : [relación]
+    [EntidadB] }o--|| [EntidadC] : [relación]
 ```
 
 ---
 
-*Generated: [Date]*
-*Stage: 2-2 - Data Modeling*
-*Input: entity-map.md*
+*Generado: [Fecha]*
+*Etapa: 2-2 - Modelado de Dominio y Datos*
